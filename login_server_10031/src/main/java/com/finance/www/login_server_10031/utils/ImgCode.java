@@ -17,7 +17,7 @@ public class ImgCode {
     /**
      * 放到session中的key
      */
-    private static final String RANDOMCODEKEY = "RANDOMVALIDATECODEKEY";
+    public static final String RANDOMCODEKEY = "RANDOMVALIDATECODEKEY";
     private Random random = new Random();
     /**
      * 随机产生的字符串
