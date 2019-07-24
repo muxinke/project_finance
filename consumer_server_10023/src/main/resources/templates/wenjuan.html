@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>使用指南-轻松贷-一心一意，普惠金融</title>
+    <link rel="stylesheet" href="http://39.107.15.222:8081/src/layui/css/layui.css" media="all">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+</head>
+
+<body>
+<script type="text/javascript">
+    $(function() {
+        $(".navitem li").hover(function() {
+            $(this).find("ol").show().siblings().find("ol").hide("slow");
+        }, function() {
+            $(this).find("ol").slideUp("slow");
+        })
+        $(".code_text li").hover(function() {
+            var inde = $(this).index();
+            $(".code_img ul li").eq(inde).show().siblings().hide();
+        })
+        $.ajax({
+            type : "POST",
+            url : "newLogin/headerLogin.action",
+            dataType : "json",
+            success : function(data) {
+                if (data.status) {
+                    $('#register').before("<li><span class='nh'>您好，</span> </li>");
+                    $('#register a').text("" + data.message + "");
+                    $('#register a').attr("href", "userNew/index.go");
+                    $('#login').remove();
+                    $('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
+                    $("#bannerlogin").remove();
+                }
+
+            }
+        });
+    });
+</script>
+<base >
+<div class=" big100">
+    <div class="top clearfix">
+        <div class="top_left fl">
+            <ul>
+                <li class="phone">
+                    <img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+                </li>
+
+            </ul>
+        </div>
+        <div class="top_right fr">
+            <ul>
+                <li class="lilogin" id="login">
+                    <!--跳转登陆界面
+                        <a href="newLogin/loginPage.go">立即登录</a>-->
+                    <a href="login">立即登录</a>
+                </li>
+                <li class="liregister" id="register">
+                    <!--注册界面
+                        <a href="register/toRegister.go">快速注册</a>-->
+                    <a href="zhuce">快速注册</a>
+                </li>
+
+                <li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+                    <a href="guide">使用指南</a></li>
+
+                <li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+                    <a href="problem">常见问题</a></li>
+
+                <li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+                    <a style="color: #faa039" href="guarantee" >安全保障</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="nav">
+    <div class="topNavItem  clearfix" >
+
+        <div class="logo">
+            <img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+        </div>
+        <div class="adv">
+            <img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+        </div>
+        <ul class="navitem">
+            <li>
+                <a href="index">首页</a>
+            </li>
+
+            <li >
+                <a href="list"
+                >我要投资
+                </a>
+
+                <ol class="m-list">
+
+                    <li>
+                        <a href="list.html"
+                        >投资列表
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="xiangdao.html"
+                        >投资向导
+                        </a>
+                    </li>
+
+                </ol>
+            </li>
+
+            <li >
+                <a href="msgpilu"
+                >信息披露
+                </a>
+
+                <ol class="m-list">
+
+                </ol>
+            </li>
+
+            <li class="active" >
+                <a href="dae"
+                >我要借款
+                    <i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('theme/computer/img/hot2.gif') no-repeat"></i>
+
+                </a>
+
+                <ol class="m-list">
+
+                    <li>
+                        <a href="xiaoe">小额借款</a>
+                    </li>
+
+                    <li>
+                        <a href="dae"> 大额借款</a>
+                    </li>
+                </ol>
+            </li>
+
+            <li >
+                <a href="aboutus.html"> 关于我们</a>
+                <ol class="m-list">
+
+                    <li>
+                        <a href="aboutus.html"> 企业简介</a>
+                    </li>
+
+                    <li>
+                        <a href="zizhi.html"> 公司资质</a>
+                    </li>
+
+                    <li>
+                        <a href="hezuohb.html"> 合作伙伴</a>
+                    </li>
+
+                    <li>
+                        <a href="contactus.html"> 联系我们</a>
+                    </li>
+
+                    <li>
+                        <a href="bulletin.html"> 平台公告</a>
+                    </li>
+
+                    <li>
+                        <a href="hr.html"> 招贤纳士</a>
+                    </li>
+
+                </ol>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<button class="layui-btn layui-btn-lg" lay-submit lay-filter="formDemo">贷款额度</button><div style="margin-left: 150px;margin-top: -30px"><!--[您的测评结果为 : xx型]--></div>
+<div style="margin-top: 30px;margin-left: 50px;width: 1000px">
+<h2>尊敬的客户：</h2>
+为了便于您了解自身的还款能力，为您选择合适的贷款额度，请您填写以下评估问卷，本交易中心承诺对您的所有个人资料保密。 请回答所有的问题，并选中各题最合适的答案。我们将根据您的加总分评估您的还款能力，从而评估出你暂时的贷款额度。为了及时了解您的还款能力，我们建议您定期评估。
+    <h3 style="color: red">特别说明：您需符合以下两项前提条件，方可申请贷款：（1）年满18周岁；（2）有固定收入。</h3>
+</div>
+<div style="margin-top: 30px;margin-left: 50px;width: 1010px;height:800px;border: solid;border-color: #393D49">
+    <div style="float:left;margin-top: 10px;margin-left: 10px;width: 320px;height:250px;border: solid 1px;border-color: #393D49">
+        <div class="layui-card">
+            <div class="layui-card-header" style="background-color: #393D49"><h3 style="color: #ffffff">1、您的年龄是</h3></div>
+            <div class="layui-card-body">
+                    <div class="layui-input-block" style="margin-left: 8px">
+                        <input type="radio" name="age" value="1" checked ><span>18-26岁</span><br/>
+                        <input type="radio" name="age" value="4" ><span>27-44岁</span><br/>
+                        <input type="radio" name="age" value="3" ><span>45-60岁</span><br/>
+                        <input type="radio" name="age" value="2" ><span>61岁以上</span><br/>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div style="float:left;margin-top: 10px;margin-left: 10px;width: 320px;height:250px;border: solid 1px;border-color: #393D49">
+        <div class="layui-card">
+            <div class="layui-card-header" style="background-color: #393D49"><h3 style="color: #ffffff">2、您目前的职业是？</h3></div>
+            <div class="layui-card-body">
+                <div class="layui-input-block" style="margin-left: 8px">
+                    <input type="radio" name="work" value="1" checked ><span>学生</span><br/>
+                    <input type="radio" name="work" value="3" ><span>普通职员</span><br/>
+                    <input type="radio" name="work" value="4" ><span>领导</span><br/>
+                    <input type="radio" name="work" value="2" ><span>其他</span><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="float:left;margin-top: 10px;margin-left: 10px;width: 320px;height:250px;border: solid 1px;border-color: #393D49">
+        <div class="layui-card">
+            <div class="layui-card-header" style="background-color: #393D49"><h3 style="color: #ffffff">3、您目前全年收入状况如何？</h3></div>
+            <div class="layui-card-body">
+                <div class="layui-input-block" style="margin-left: 8px">
+                    <input type="radio" name="income" value="1" checked ><span>10万元以下</span><br/>
+                    <input type="radio" name="income" value="2" ><span>10-30万元</span><br/>
+                    <input type="radio" name="income" value="3" ><span>30-50万元</span><br/>
+                    <input type="radio" name="income" value="4" ><span>50万元以上</span><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="float:left;margin-top: 10px;margin-left: 10px;width: 320px;height:250px;border: solid 1px;border-color: #393D49">
+            <div class="layui-card">
+                <div class="layui-card-header" style="background-color: #393D49"><h3 style="color: #ffffff">4、您遇到过资金短缺的情况吗？</h3></div>
+                <div class="layui-card-body">
+                    <div class="layui-input-block" style="margin-left: 8px">
+                        <input type="radio" name="nomoney" value="1" checked ><span>一直有此情况</span><br/>
+                        <input type="radio" name="nomoney" value="2" ><span>经常遇到</span><br/>
+                        <input type="radio" name="nomoney" value="3" ><span>偶尔遇到</span><br/>
+                        <input type="radio" name="nomoney" value="4" ><span>从未遇到</span><br/>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div style="float:left;margin-top: 10px;margin-left: 10px;width: 320px;height:250px;border: solid 1px;border-color: #393D49">
+        <div class="layui-card">
+            <div class="layui-card-header" style="background-color: #393D49"><h3 style="color: #ffffff">5、您能够提供的担保方式？</h3></div>
+            <div class="layui-card-body">
+                <div class="layui-input-block" style="margin-left: 8px">
+                    <input type="radio" name="guarantee" value="4" checked ><span>商品房抵押</span><br/>
+                    <input type="radio" name="guarantee" value="3" ><span>店铺抵押</span><br/>
+                    <input type="radio" name="guarantee" value="2" ><span>担保公司担保</span><br/>
+                    <input type="radio" name="guarantee" value="1" ><span>不能提供任何担保</span><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="float:left;margin-top: 10px;margin-left: 10px;width: 320px;height:250px;border: solid 1px;border-color: #393D49">
+        <div class="layui-card">
+            <div class="layui-card-header" style="background-color: #393D49"><h3 style="color: #ffffff">6、您目前的负债情况？</h3></div>
+            <div class="layui-card-body">
+                <div class="layui-input-block" style="margin-left: 8px">
+                    <input type="radio" name="debt" value="4" checked ><span>暂无负债</span><br/>
+                    <input type="radio" name="debt" value="3" ><span>10万元以下</span><br/>
+                    <input type="radio" name="debt" value="2" ><span>10-30万元</span><br/>
+                    <input type="radio" name="debt" value="1" ><span>30万元以上</span><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="float:left;margin-top: 10px;margin-left: 10px;width: 320px;height:250px;border: solid 1px;border-color: #393D49">
+        <div class="layui-card">
+            <div class="layui-card-header" style="background-color: #393D49"><h3 style="color: #ffffff">7、除了房贷车贷,您最近一次贷款是在什么时候？</h3></div>
+            <div class="layui-card-body">
+                <div class="layui-input-block" style="margin-left: 8px">
+                    <input type="radio" name="loantime" value="1" checked ><span>最近一个月内</span><br/>
+                    <input type="radio" name="loantime" value="2" ><span>最近一年内</span><br/>
+                    <input type="radio" name="loantime" value="3" ><span>最近三年内</span><br/>
+                    <input type="radio" name="loantime" value="4" ><span>三年以上</span><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<button id="wenjuansubmit" style="margin-left: 480px;margin-top: 5px" class="layui-btn" lay-submit lay-filter="formDemo">确认提交</button>
+ <br><br>
+    <!--**********************************-->
+<script src="http://39.107.15.222:8081/src/layui/layui.js"></script>
+<script>
+    layui.use(['element','form','slider','layedit','layer','laydate','upload'], function(){
+        var $ = layui.$;
+        var element = layui.element;
+        var form = layui.form;
+        var slider = layui.slider;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+        var upload = layui.upload;
+        $("#wenjuansubmit").on("click",function () {
+            var age=$("input[name='age']:checked").val();
+            var work=$("input[name='work']:checked").val();
+            var income=$("input[name='income']:checked").val();
+            var nomoney=$("input[name='nomoney']:checked").val();
+            var guarantee=$("input[name='guarantee']:checked").val();
+            var debt=$("input[name='debt']:checked").val();
+            var loantime=$("input[name='loantime']:checked").val();
+            alert(age+work+income+nomoney+guarantee+debt+loantime);
+            window.location.href="http://localhost:10023/dae?age="+age+"&work="+work+"&income="+income+"&nomoney="+nomoney+"&guarantee="+guarantee+"&debt="+debt+"&loantime="+loantime;
+        });
+        //…
+        laydate.render({
+            elem: '#date1',
+            type: 'datetime',
+            value: new Date()
+        });
+
+        slider.render({
+            elem: '#slidexx'
+            ,input: true //输入框
+            ,step: 1000//步长
+            ,min: 1000 //最小值
+            ,max: 100000 //最大值
+        });
+        //触发事件
+        var active = {
+            notice: function () {
+                //示范一个公告层
+                layer.open({
+                    type: 1,
+                    title: false, //不显示标题栏
+                    closeBtn: false,
+                    area: '300px;',
+                    shade: 0.8,
+                    id: 'LAY_layuipro', //设定一个id，防止重复弹出
+                    btn: ['火速围观', '残忍拒绝'],
+                    btnAlign: 'c',
+                    moveType: 1, //拖拽模式，0或者1
+                    content: $("#aa").html(),
+                    /*success: function (layero) {
+                     var btn = layero.find('.layui-layer-btn');
+                     btn.find('.layui-layer-btn0').attr({
+                     href: 'http://www.layui.com/'
+                     , target: '_blank'
+                     });
+                     }*/
+                });
+            }
+        }
+
+        $('#layerDemo .layui-btn').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+        //执行实例
+        upload.render({
+            elem: '#test1,#test2,#test3' //绑定元素
+            ,url: '/upload/' //上传接口
+            ,auto: false
+            ,bindAction: '#testListAction'
+            ,choose: function(obj){
+
+                //上传完毕回调
+            }
+            ,error: function(){
+                //请求异常回调
+            }
+        });
+
+        //…
+        laydate.render({
+            elem: '#date1',
+            type: 'datetime',
+            value: new Date()
+        });
+        //…
+
+    });
+</script>
+<!-- 底部 -->
+
+<base >
+<div class="bottom" style="">
+    <div class="w1200">
+        <div class="bottom_1">
+            <ul>
+                <li><a href="aboutus.html">关于我们</a></li>
+                <li><a href="contcatus.html">联系我们</a></li>
+                <li><a href="guarantee.html">保障体系</a></li>
+                <li><a href="bulletin.html">平台公告</a></li>
+                <li><a href="hr.html">招贤纳士</a></li>
+                <li><a href="problem.html">常见问题</a></li>
+                <li><a href="guide.html">使用指南</a></li>
+                <li><a href="app.html">手机客户端</a></li>
+            </ul>
+        </div>
+        <div class="bottom_middle clearfix">
+            <div class="bottom_2">
+                <p>电话: 0791-83858285</p>
+                <p>邮箱: service@kkd2p.com</p>
+                <p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+            </div>
+
+            <div class="bottom_4">
+
+                <h3>400-8763-118</h3>
+
+
+                <div class="serviceTime clearfix">
+                    <p>服务时间：周一至周五9：00-21：00</p>
+                    <p>
+                        网贷有风险，出借需谨慎
+                    </p>
+                    <p>
+                        陕西省互联网金融协会:400-9158-227
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom_5 clearfix">
+            <ul>
+
+                <li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="theme/computer/img/aq.jpg"></a></li>
+
+                <li>© 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+
+            </ul>
+        </div>
+        <div class="bottom_6">
+            <ul>
+                <li>友情链接:</li>
+
+                <li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+
+                <li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+
+                <li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+
+
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery-2.1.4.min.js" ></script>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js" ></script>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+</body>
+</html>
+
