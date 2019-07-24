@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finance.www.pojo.MemberCardMapper">
+  <resultMap id="BaseResultMap" type="com.finance.www.pojo.MemberCard">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="bankcard" jdbcType="VARCHAR" property="bankcard" />
+    <result column="bankname" jdbcType="VARCHAR" property="bankname" />
+    <result column="abbreviation" jdbcType="VARCHAR" property="abbreviation" />
+    <result column="cardtype" jdbcType="VARCHAR" property="cardtype" />
+    <result column="nature" jdbcType="VARCHAR" property="nature" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="banklogo" jdbcType="VARCHAR" property="banklogo" />
+    <result column="weburl" jdbcType="VARCHAR" property="weburl" />
+    <result column="kefu" jdbcType="VARCHAR" property="kefu" />
+    <result column="cerate_time" jdbcType="TIMESTAMP" property="cerateTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, member_id, bankcard, bankname, abbreviation, cardtype, nature, province, city, 
+    banklogo, weburl, kefu, cerate_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.finance.www.pojo.MemberCardExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from member_card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from member_card
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from member_card
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.finance.www.pojo.MemberCardExample">
+    <!--@mbg.generated-->
+    delete from member_card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.finance.www.pojo.MemberCard" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into member_card (member_id, bankcard, bankname, 
+      abbreviation, cardtype, nature, 
+      province, city, banklogo, 
+      weburl, kefu, cerate_time, 
+      update_time)
+    values (#{memberId,jdbcType=INTEGER}, #{bankcard,jdbcType=VARCHAR}, #{bankname,jdbcType=VARCHAR}, 
+      #{abbreviation,jdbcType=VARCHAR}, #{cardtype,jdbcType=VARCHAR}, #{nature,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{banklogo,jdbcType=VARCHAR}, 
+      #{weburl,jdbcType=VARCHAR}, #{kefu,jdbcType=VARCHAR}, #{cerateTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.finance.www.pojo.MemberCard" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into member_card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="bankcard != null and bankcard != ''">
+        bankcard,
+      </if>
+      <if test="bankname != null and bankname != ''">
+        bankname,
+      </if>
+      <if test="abbreviation != null and abbreviation != ''">
+        abbreviation,
+      </if>
+      <if test="cardtype != null and cardtype != ''">
+        cardtype,
+      </if>
+      <if test="nature != null and nature != ''">
+        nature,
+      </if>
+      <if test="province != null and province != ''">
+        province,
+      </if>
+      <if test="city != null and city != ''">
+        city,
+      </if>
+      <if test="banklogo != null and banklogo != ''">
+        banklogo,
+      </if>
+      <if test="weburl != null and weburl != ''">
+        weburl,
+      </if>
+      <if test="kefu != null and kefu != ''">
+        kefu,
+      </if>
+      <if test="cerateTime != null">
+        cerate_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="bankcard != null and bankcard != ''">
+        #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null and bankname != ''">
+        #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="abbreviation != null and abbreviation != ''">
+        #{abbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null and cardtype != ''">
+        #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="nature != null and nature != ''">
+        #{nature,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null and province != ''">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null and city != ''">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="banklogo != null and banklogo != ''">
+        #{banklogo,jdbcType=VARCHAR},
+      </if>
+      <if test="weburl != null and weburl != ''">
+        #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="kefu != null and kefu != ''">
+        #{kefu,jdbcType=VARCHAR},
+      </if>
+      <if test="cerateTime != null">
+        #{cerateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.finance.www.pojo.MemberCardExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from member_card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update member_card
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankcard != null">
+        bankcard = #{record.bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankname != null">
+        bankname = #{record.bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.abbreviation != null">
+        abbreviation = #{record.abbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardtype != null">
+        cardtype = #{record.cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nature != null">
+        nature = #{record.nature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.banklogo != null">
+        banklogo = #{record.banklogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weburl != null">
+        weburl = #{record.weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kefu != null">
+        kefu = #{record.kefu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cerateTime != null">
+        cerate_time = #{record.cerateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update member_card
+    set id = #{record.id,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      bankcard = #{record.bankcard,jdbcType=VARCHAR},
+      bankname = #{record.bankname,jdbcType=VARCHAR},
+      abbreviation = #{record.abbreviation,jdbcType=VARCHAR},
+      cardtype = #{record.cardtype,jdbcType=VARCHAR},
+      nature = #{record.nature,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      banklogo = #{record.banklogo,jdbcType=VARCHAR},
+      weburl = #{record.weburl,jdbcType=VARCHAR},
+      kefu = #{record.kefu,jdbcType=VARCHAR},
+      cerate_time = #{record.cerateTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.finance.www.pojo.MemberCard">
+    <!--@mbg.generated-->
+    update member_card
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="bankcard != null and bankcard != ''">
+        bankcard = #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null and bankname != ''">
+        bankname = #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="abbreviation != null and abbreviation != ''">
+        abbreviation = #{abbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null and cardtype != ''">
+        cardtype = #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="nature != null and nature != ''">
+        nature = #{nature,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null and province != ''">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null and city != ''">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="banklogo != null and banklogo != ''">
+        banklogo = #{banklogo,jdbcType=VARCHAR},
+      </if>
+      <if test="weburl != null and weburl != ''">
+        weburl = #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="kefu != null and kefu != ''">
+        kefu = #{kefu,jdbcType=VARCHAR},
+      </if>
+      <if test="cerateTime != null">
+        cerate_time = #{cerateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.finance.www.pojo.MemberCard">
+    <!--@mbg.generated-->
+    update member_card
+    set member_id = #{memberId,jdbcType=INTEGER},
+      bankcard = #{bankcard,jdbcType=VARCHAR},
+      bankname = #{bankname,jdbcType=VARCHAR},
+      abbreviation = #{abbreviation,jdbcType=VARCHAR},
+      cardtype = #{cardtype,jdbcType=VARCHAR},
+      nature = #{nature,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      banklogo = #{banklogo,jdbcType=VARCHAR},
+      weburl = #{weburl,jdbcType=VARCHAR},
+      kefu = #{kefu,jdbcType=VARCHAR},
+      cerate_time = #{cerateTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

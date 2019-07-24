@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finance.www.pojo.MemberCreditMapper">
+  <resultMap id="BaseResultMap" type="com.finance.www.pojo.MemberCredit">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="number_success" jdbcType="INTEGER" property="numberSuccess" />
+    <result column="flow_standard_number" jdbcType="INTEGER" property="flowStandardNumber" />
+    <result column="success_payment_number" jdbcType="INTEGER" property="successPaymentNumber" />
+    <result column="days_overdue" jdbcType="INTEGER" property="daysOverdue" />
+    <result column="overdue_bills_number" jdbcType="INTEGER" property="overdueBillsNumber" />
+    <result column="prepayment_periods_number" jdbcType="INTEGER" property="prepaymentPeriodsNumber" />
+    <result column="More_30days_overdue" jdbcType="INTEGER" property="more30daysOverdue" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, create_time, update_time, number_success, flow_standard_number, success_payment_number, 
+    days_overdue, overdue_bills_number, prepayment_periods_number, More_30days_overdue
+  </sql>
+  <select id="selectByExample" parameterType="com.finance.www.pojo.MemberCreditExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from member_credit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from member_credit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from member_credit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.finance.www.pojo.MemberCreditExample">
+    <!--@mbg.generated-->
+    delete from member_credit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.finance.www.pojo.MemberCredit" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into member_credit (create_time, update_time, number_success, 
+      flow_standard_number, success_payment_number, 
+      days_overdue, overdue_bills_number, prepayment_periods_number, 
+      More_30days_overdue)
+    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{numberSuccess,jdbcType=INTEGER}, 
+      #{flowStandardNumber,jdbcType=INTEGER}, #{successPaymentNumber,jdbcType=INTEGER}, 
+      #{daysOverdue,jdbcType=INTEGER}, #{overdueBillsNumber,jdbcType=INTEGER}, #{prepaymentPeriodsNumber,jdbcType=INTEGER}, 
+      #{more30daysOverdue,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.finance.www.pojo.MemberCredit" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into member_credit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="numberSuccess != null">
+        number_success,
+      </if>
+      <if test="flowStandardNumber != null">
+        flow_standard_number,
+      </if>
+      <if test="successPaymentNumber != null">
+        success_payment_number,
+      </if>
+      <if test="daysOverdue != null">
+        days_overdue,
+      </if>
+      <if test="overdueBillsNumber != null">
+        overdue_bills_number,
+      </if>
+      <if test="prepaymentPeriodsNumber != null">
+        prepayment_periods_number,
+      </if>
+      <if test="more30daysOverdue != null">
+        More_30days_overdue,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="numberSuccess != null">
+        #{numberSuccess,jdbcType=INTEGER},
+      </if>
+      <if test="flowStandardNumber != null">
+        #{flowStandardNumber,jdbcType=INTEGER},
+      </if>
+      <if test="successPaymentNumber != null">
+        #{successPaymentNumber,jdbcType=INTEGER},
+      </if>
+      <if test="daysOverdue != null">
+        #{daysOverdue,jdbcType=INTEGER},
+      </if>
+      <if test="overdueBillsNumber != null">
+        #{overdueBillsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="prepaymentPeriodsNumber != null">
+        #{prepaymentPeriodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="more30daysOverdue != null">
+        #{more30daysOverdue,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.finance.www.pojo.MemberCreditExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from member_credit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update member_credit
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.numberSuccess != null">
+        number_success = #{record.numberSuccess,jdbcType=INTEGER},
+      </if>
+      <if test="record.flowStandardNumber != null">
+        flow_standard_number = #{record.flowStandardNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.successPaymentNumber != null">
+        success_payment_number = #{record.successPaymentNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.daysOverdue != null">
+        days_overdue = #{record.daysOverdue,jdbcType=INTEGER},
+      </if>
+      <if test="record.overdueBillsNumber != null">
+        overdue_bills_number = #{record.overdueBillsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.prepaymentPeriodsNumber != null">
+        prepayment_periods_number = #{record.prepaymentPeriodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.more30daysOverdue != null">
+        More_30days_overdue = #{record.more30daysOverdue,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update member_credit
+    set id = #{record.id,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      number_success = #{record.numberSuccess,jdbcType=INTEGER},
+      flow_standard_number = #{record.flowStandardNumber,jdbcType=INTEGER},
+      success_payment_number = #{record.successPaymentNumber,jdbcType=INTEGER},
+      days_overdue = #{record.daysOverdue,jdbcType=INTEGER},
+      overdue_bills_number = #{record.overdueBillsNumber,jdbcType=INTEGER},
+      prepayment_periods_number = #{record.prepaymentPeriodsNumber,jdbcType=INTEGER},
+      More_30days_overdue = #{record.more30daysOverdue,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.finance.www.pojo.MemberCredit">
+    <!--@mbg.generated-->
+    update member_credit
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="numberSuccess != null">
+        number_success = #{numberSuccess,jdbcType=INTEGER},
+      </if>
+      <if test="flowStandardNumber != null">
+        flow_standard_number = #{flowStandardNumber,jdbcType=INTEGER},
+      </if>
+      <if test="successPaymentNumber != null">
+        success_payment_number = #{successPaymentNumber,jdbcType=INTEGER},
+      </if>
+      <if test="daysOverdue != null">
+        days_overdue = #{daysOverdue,jdbcType=INTEGER},
+      </if>
+      <if test="overdueBillsNumber != null">
+        overdue_bills_number = #{overdueBillsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="prepaymentPeriodsNumber != null">
+        prepayment_periods_number = #{prepaymentPeriodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="more30daysOverdue != null">
+        More_30days_overdue = #{more30daysOverdue,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.finance.www.pojo.MemberCredit">
+    <!--@mbg.generated-->
+    update member_credit
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      number_success = #{numberSuccess,jdbcType=INTEGER},
+      flow_standard_number = #{flowStandardNumber,jdbcType=INTEGER},
+      success_payment_number = #{successPaymentNumber,jdbcType=INTEGER},
+      days_overdue = #{daysOverdue,jdbcType=INTEGER},
+      overdue_bills_number = #{overdueBillsNumber,jdbcType=INTEGER},
+      prepayment_periods_number = #{prepaymentPeriodsNumber,jdbcType=INTEGER},
+      More_30days_overdue = #{more30daysOverdue,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

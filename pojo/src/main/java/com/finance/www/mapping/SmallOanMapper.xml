@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finance.www.pojo.SmallOanMapper">
+  <resultMap id="BaseResultMap" type="com.finance.www.pojo.SmallOan">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="amount" jdbcType="VARCHAR" property="amount" />
+    <result column="borrow" jdbcType="INTEGER" property="borrow" />
+    <result column="also_means" jdbcType="INTEGER" property="alsoMeans" />
+    <result column="use_id" jdbcType="INTEGER" property="useId" />
+    <result column="is_agreed" jdbcType="SMALLINT" property="isAgreed" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, member_id, amount, borrow, also_means, use_id, is_agreed, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.finance.www.pojo.SmallOanExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from small_oan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from small_oan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from small_oan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.finance.www.pojo.SmallOanExample">
+    <!--@mbg.generated-->
+    delete from small_oan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.finance.www.pojo.SmallOan" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into small_oan (member_id, amount, borrow, 
+      also_means, use_id, is_agreed, 
+      create_time, update_time)
+    values (#{memberId,jdbcType=INTEGER}, #{amount,jdbcType=VARCHAR}, #{borrow,jdbcType=INTEGER}, 
+      #{alsoMeans,jdbcType=INTEGER}, #{useId,jdbcType=INTEGER}, #{isAgreed,jdbcType=SMALLINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.finance.www.pojo.SmallOan" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into small_oan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="amount != null and amount != ''">
+        amount,
+      </if>
+      <if test="borrow != null">
+        borrow,
+      </if>
+      <if test="alsoMeans != null">
+        also_means,
+      </if>
+      <if test="useId != null">
+        use_id,
+      </if>
+      <if test="isAgreed != null">
+        is_agreed,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null and amount != ''">
+        #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="borrow != null">
+        #{borrow,jdbcType=INTEGER},
+      </if>
+      <if test="alsoMeans != null">
+        #{alsoMeans,jdbcType=INTEGER},
+      </if>
+      <if test="useId != null">
+        #{useId,jdbcType=INTEGER},
+      </if>
+      <if test="isAgreed != null">
+        #{isAgreed,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.finance.www.pojo.SmallOanExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from small_oan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update small_oan
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.borrow != null">
+        borrow = #{record.borrow,jdbcType=INTEGER},
+      </if>
+      <if test="record.alsoMeans != null">
+        also_means = #{record.alsoMeans,jdbcType=INTEGER},
+      </if>
+      <if test="record.useId != null">
+        use_id = #{record.useId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isAgreed != null">
+        is_agreed = #{record.isAgreed,jdbcType=SMALLINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update small_oan
+    set id = #{record.id,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      amount = #{record.amount,jdbcType=VARCHAR},
+      borrow = #{record.borrow,jdbcType=INTEGER},
+      also_means = #{record.alsoMeans,jdbcType=INTEGER},
+      use_id = #{record.useId,jdbcType=INTEGER},
+      is_agreed = #{record.isAgreed,jdbcType=SMALLINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.finance.www.pojo.SmallOan">
+    <!--@mbg.generated-->
+    update small_oan
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null and amount != ''">
+        amount = #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="borrow != null">
+        borrow = #{borrow,jdbcType=INTEGER},
+      </if>
+      <if test="alsoMeans != null">
+        also_means = #{alsoMeans,jdbcType=INTEGER},
+      </if>
+      <if test="useId != null">
+        use_id = #{useId,jdbcType=INTEGER},
+      </if>
+      <if test="isAgreed != null">
+        is_agreed = #{isAgreed,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.finance.www.pojo.SmallOan">
+    <!--@mbg.generated-->
+    update small_oan
+    set member_id = #{memberId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=VARCHAR},
+      borrow = #{borrow,jdbcType=INTEGER},
+      also_means = #{alsoMeans,jdbcType=INTEGER},
+      use_id = #{useId,jdbcType=INTEGER},
+      is_agreed = #{isAgreed,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
