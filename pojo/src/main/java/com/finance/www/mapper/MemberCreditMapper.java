@@ -1,3 +1,4 @@
+/*
 package com.finance.www.mapper;
 
 import com.finance.www.pojo.MemberCredit;
@@ -29,4 +30,4 @@ public interface MemberCreditMapper {
     int updateByPrimaryKeySelective(MemberCredit record);
 
     int updateByPrimaryKey(MemberCredit record);
-}
+}*/

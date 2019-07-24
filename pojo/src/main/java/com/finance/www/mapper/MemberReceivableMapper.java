@@ -1,3 +1,4 @@
+/*
 package com.finance.www.mapper;
 
 import com.finance.www.pojo.MemberReceivable;
@@ -29,4 +30,4 @@ public interface MemberReceivableMapper {
     int updateByPrimaryKeySelective(MemberReceivable record);
 
     int updateByPrimaryKey(MemberReceivable record);
-}
+}*/

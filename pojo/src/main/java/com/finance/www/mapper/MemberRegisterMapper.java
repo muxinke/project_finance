@@ -1,3 +1,4 @@
+/*
 package com.finance.www.mapper;
 
 import com.finance.www.pojo.MemberRegister;
@@ -29,4 +30,4 @@ public interface MemberRegisterMapper {
     int updateByPrimaryKeySelective(MemberRegister record);
 
     int updateByPrimaryKey(MemberRegister record);
-}
+}*/

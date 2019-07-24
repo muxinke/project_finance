@@ -1,3 +1,4 @@
+/*
 package com.finance.www.mapper;
 
 import com.finance.www.pojo.SmallOan;
@@ -29,4 +30,4 @@ public interface SmallOanMapper {
     int updateByPrimaryKeySelective(SmallOan record);
 
     int updateByPrimaryKey(SmallOan record);
-}
+}*/

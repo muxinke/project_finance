@@ -1,3 +1,4 @@
+/*
 package com.finance.www.mapper;
 
 import com.finance.www.pojo.MemberLimit;
@@ -21,4 +22,4 @@ public interface MemberLimitMapper {
     int updateByExampleSelective(@Param("record") MemberLimit record, @Param("example") MemberLimitExample example);
 
     int updateByExample(@Param("record") MemberLimit record, @Param("example") MemberLimitExample example);
-}
+}*/
