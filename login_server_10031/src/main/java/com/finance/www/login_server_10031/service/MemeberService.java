@@ -28,4 +28,6 @@ public interface MemeberService{
 
     int updateByPrimaryKey(Memeber record);
 
+
+
 }

@@ -1,5 +1,8 @@
 spring:
+  application:
+    name: login-server
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://39.107.15.222:3306/easydai?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
     username: root
@@ -14,11 +17,16 @@ spring:
     port: 6379
     password: 971103
   thymeleaf:
-    cache: false # ¿ª·¢Ê±¹Ø±Õ»º´æ,²»È»Ã»·¨¿´µ½ÊµÊ±Ò³Ãæ
-    mode: LEGACYHTML5 # ÓÃ·ÇÑÏ¸ñµÄ HTML
+    cache: false # å¼€å‘æ—¶å…³é—­ç¼“å­˜,ä¸ç„¶æ²¡æ³•çœ‹åˆ°å®æ—¶é¡µé¢
+    mode: LEGACYHTML5 # ç”¨éä¸¥æ ¼çš„ HTML
     encoding: UTF-8
     servlet:
       content-type: text/html
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: server-config
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.finance.www.pojo
