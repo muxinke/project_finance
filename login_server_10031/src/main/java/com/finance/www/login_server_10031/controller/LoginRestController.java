@@ -2,6 +2,7 @@ package com.finance.www.login_server_10031.controller;
 
 
 import com.finance.www.login_server_10031.utils.ImgCode;
+import com.finance.www.utils.CookiesUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -23,8 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @description ： 登陆页面
  */
 @RestController
-public class LoginController {
-
+public class LoginRestController {
 
     @Autowired
     private StringRedisTemplate template;
@@ -45,9 +45,9 @@ public class LoginController {
     /**
      * 校验用户名密码，成功则返回通行令牌（这里写死huanzi/123456）
      *
-     * @param username  用户名
-     * @param password  密码
-     * @return          令牌KEY
+     * @param username 用户名
+     * @param password 密码
+     * @return 令牌KEY
      */
     @RequestMapping("/sso/checkUsernameAndPassword")
     private String checkUsernameAndPassword(String username, String password) {
@@ -62,8 +62,6 @@ public class LoginController {
         }
         return "error";
     }
-
-
 
 
     /**
@@ -100,10 +98,9 @@ public class LoginController {
             String check = checkUsernameAndPassword(username, password);
             if (!StringUtils.isEmpty(check)) {
                 try {
-                    Cookie cookie = new Cookie("accessToken", check);
+                    Cookie cookie = new Cookie(CookiesUtil.ACCESS_TOKEN, check);
                     // 时效3分钟
                     cookie.setMaxAge(60 * 3);
-
                     //设置域
 //                       cookie.setDomain("huanzi.cn");
                     // 设置访问路径
