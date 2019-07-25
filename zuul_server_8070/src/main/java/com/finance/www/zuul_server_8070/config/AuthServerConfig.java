@@ -1,12 +1,17 @@
 package com.finance.www.zuul_server_8070.config;
 
 import com.alibaba.fastjson.JSON;
+import com.finance.www.pojo.Memeber;
+import com.finance.www.pojo.MemeberExample;
+import com.finance.www.zuul_server_8070.service.MemeberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -21,6 +26,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,10 +62,10 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
 
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-
+       PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         clients.inMemory().withClient("myapp").resourceIds(SOURCE_ID).authorizedGrantTypes("password", "refresh_token")
 
-                .scopes("all").authorities("ADMIN").secret("lxapp").accessTokenValiditySeconds(ACCESS_TOKEN_TIMER)
+                .scopes("all").authorities("ADMIN").secret(passwordEncoder.encode("lxapp")).accessTokenValiditySeconds(ACCESS_TOKEN_TIMER)
 
                 .refreshTokenValiditySeconds(REFRESH_TOKEN_TIMER);
 
@@ -79,7 +85,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
 
-    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+    public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
 
         // 允许表单认证
 
@@ -87,7 +93,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     }
 
+    @Autowired
 
+    MemeberService memeberService;
 
 
     // JWT
@@ -113,25 +121,32 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
                 final Map<String, Object> additionalInformation = new HashMap<>();
 
-                // Map假装用户实体
+                MemeberExample memeberExample = new MemeberExample();
+                MemeberExample.Criteria criteria = memeberExample.createCriteria();
+                criteria.andUsernameEqualTo(userName);
 
-                Map<String, String> userinfo = new HashMap<>();
+                List<Memeber> memebers = memeberService.selectByExample(memeberExample);
+                if (memebers!=null && memebers.size()>0){
+                    Memeber memeber = memebers.get(0);
 
-                userinfo.put("id", "1");
+//                    Map<String, String> userinfo = new HashMap<>();
+//
+//                    userinfo.put("id", memeber.getId().toString());
+//
+//                    userinfo.put("username", memeber.getUsername());
+//
+//                    userinfo.put("email", memeber.getEmail());
+//
+//                    userinfo.put("mobile", memeber.getMobile());
 
-                userinfo.put("username", "LiaoXiang");
-
-                userinfo.put("qqnum", "438944209");
-
-                userinfo.put("userFlag", "1");
-
-                additionalInformation.put("userinfo", JSON.toJSONString(userinfo));
-
+//                    additionalInformation.put("userinfo", JSON.toJSONString(userinfo));
+                    additionalInformation.put("memberInfo", memeber);
+                }else{
+                    additionalInformation.put("userinfo", JSON.toJSONString(null));
+                }
                 ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInformation);
 
-                OAuth2AccessToken enhancedToken = super.enhance(accessToken, authentication);
-
-                return enhancedToken;
+                return super.enhance(accessToken, authentication);
 
             }
 
@@ -150,9 +165,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     public TokenStore tokenStore() {
 
-        RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
-
-        return tokenStore;
+        return new RedisTokenStore(redisConnectionFactory);
 
     }
 
