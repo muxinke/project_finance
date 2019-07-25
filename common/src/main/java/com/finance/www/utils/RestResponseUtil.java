@@ -1,6 +1,10 @@
 package com.finance.www.utils;
 
+import com.finance.www.enums.StatusCodeEnum;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ：邓一凡
@@ -9,28 +13,46 @@ import java.io.Serializable;
  */
 
 public class RestResponseUtil implements Serializable {
-    private  Object message;
-    private  boolean status;
+    private String message;
+    private StatusCodeEnum status;
+    private List<Object> data = new ArrayList<>();
 
 
-    public RestResponseUtil(Object message, boolean status) {
+    public RestResponseUtil() {
+    }
+
+    public RestResponseUtil(String message, StatusCodeEnum status) {
         this.message = message;
         this.status = status;
     }
 
-    public  Object getMessage() {
+    public RestResponseUtil(String message, StatusCodeEnum status, List<Object> data) {
+        this.message = message;
+        this.status = status;
+        this.data = data;
+    }
+
+    public String getMessage() {
         return message;
     }
 
-    public  void setMessage(String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
-    public  boolean isStatus() {
+    public StatusCodeEnum getStatus() {
         return status;
     }
 
-    public  void setStatus(boolean status) {
+    public void setStatus(StatusCodeEnum status) {
         this.status = status;
+    }
+
+    public List<Object> getData() {
+        return data;
+    }
+
+    public void setData(List<Object> data) {
+        this.data = data;
     }
 }
