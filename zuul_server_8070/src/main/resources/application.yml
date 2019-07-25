@@ -1,0 +1,26 @@
+
+server:
+
+  port: 8070
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+spring:
+
+  application:
+    name: zuul-server
+  redis:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+    host: 39.107.15.222
+    port: 6379
+    password: 971103
+logging:
+
+  level:
+
+    per.lx: DEBUG
