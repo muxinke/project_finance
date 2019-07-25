@@ -11,16 +11,8 @@ import java.util.Arrays;
  */
 public class App {
     public static void main(String[] args) {
-        int type = ProduitEnum.Easy_consumption.getType();
-        System.out.println("type = " + type);
-        String typeName = ProduitEnum.Easy_consumption.getTypeName();
-        System.out.println("typeName = " + typeName);
-        int type1 = 5;
+        Boolean i=false;
 
-        ProduitEnum[] values = ProduitEnum.values();
-        System.out.println("values = " + Arrays.toString(values));
-        String enumType = ProduitEnum.getEnumType(5);
-
-        System.err.println("enumType = " + enumType);
+        System.out.println("false = " + i.toString());
     }
 }

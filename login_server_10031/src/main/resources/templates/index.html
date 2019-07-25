@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <base>
@@ -327,7 +327,8 @@
 <div class="login">
     <div class="login_main">
         <div class="login_box">
-            <form>
+            <form action="">
+                <input name="url" type="hidden" th:value="${url}"/>
                 <div class="login_top clearfix">
                     <h3 class="fl">欢迎登录</h3>
                     <p class="fr">
@@ -337,16 +338,16 @@
                 <div class="userName" style="position:relative">
                     <img src="http://39.107.15.222:8081/src/theme/biaoqian/user.png"
                          style="position:absolute;top:7px;left:7px;"/> <span class="lineR"></span>
-                    <input type="text" name="name" id="name"/>
+                    <label for="name"></label><input type="text" name="name" id="name"/>
                 </div>
                 <div class="password">
                     <img src="http://39.107.15.222:8081/src/theme/biaoqian/possword.png"
                          style="position:absolute;top:7px;left:7px;"/><span class="lineR"></span>
-                    <input type="password" name="pwd" id="pwd"/>
+                    <label for="pwd"></label><input type="password" name="pwd" id="pwd"/>
                 </div>
                 <div class="code">
                     <span class="code_text"> 验证码 </span>
-                    <input type="text" name="code" id="code"/>
+                    <label for="code"></label><input type="text" name="code" id="code"/>
                     <img src="/security/securityCodeImage.action" id="verifyCode" class="codeImg"
                          onclick="securityCode(this);" alt="刷新验证码"/>
                 </div>
