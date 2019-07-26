@@ -1,0 +1,1082 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<base >
+	<title>投资详情-轻松贷-一心一意，普惠金融</title>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="keywords" content="互联网金融、轻松贷">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="description" content="高效、精准、安全的P2P网络借贷平台">
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/login.css" />
+	<script  type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery-1.8.2.min.js"></script>
+	<link href="http://39.107.15.222:8081/src/theme/validationEngine/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine-zh_CN.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery.form.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/common.js"></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/main.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/layer/layer.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.circliful.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/scroll.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/person_style.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/personal.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/swiper-3.4.2.min.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/mall.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
+
+
+
+
+
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+	<link rel="stylesheet"
+		  href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
+	<link rel="stylesheet"
+		  href="http://39.107.15.222:8081/src/theme/computer/css/investment.css" />
+	<title>投资详情</title>
+	<style type="text/css">
+		.newImg {
+			width: 145px;
+			height: 90px;
+			padding-right: 38px;
+			padding-top: 8px;
+		}
+
+		.detailed_warn {
+			width: 94%;
+			clear: both;
+			margin: 20px auto
+		}
+
+		.detailed_warn h3 {
+			font-size: 16px;
+			font-weight: 600;
+			position: relative;
+			margin-bottom: 8px;
+		}
+
+		.detailed_warn h3:after {
+			position: absolute;
+			content: '';
+			top: 10px;
+			left: 94px;
+			width: calc(100% -   65px);
+			height: 1px;
+			background-color: #CCCCCC;
+		}
+
+		.detailed_warn span {
+			line-height: 30px;
+		}
+	</style>
+	<script>
+
+
+        $(function() {
+            //兼容php版本上传的项目资料
+            $('.materials img').removeAttr('width');
+            $('.materials img').removeAttr('height');
+            $('.materials img').addClass('newImg');
+
+            $('.myStat2').circliful();
+			/* $(".lubo").lubo({}); */
+            new scrollTxt().init();
+            var flag;
+            //头部固定
+            var navOffset=$(".nav").offset().top;
+            $(window).scroll(function(){
+                var scrollPos=$(window).scrollTop();
+                if(scrollPos >=navOffset){
+                    $(".nav").addClass("navFixed");
+                }else{
+                    $(".nav").removeClass("navFixed");
+                }
+            });
+            var second = $("#time").val();
+            var toDays = function() {
+                var d = Math.floor(second / 1000 / 60 / 60 / 24);
+                var h = Math.floor(second / 1000 / 60 / 60 % 24);
+                var m = Math.floor(second / 1000 / 60 % 60);
+                var s = Math.floor(second / 1000 % 60);
+                return d + "天" + h + "小时" + m + "分钟" + s + "秒";
+            };
+            window.setInterval(function() {
+                second = second - 1000;
+                if(second > 0) {
+                    $('#showTimes').html(toDays());
+                } else {
+                    $('#showTimes').html("已过期");
+                }
+            }, 1000);
+
+            var jxbankUserstatus = '';
+            if(jxbankUserstatus == "undefined" || jxbankUserstatus == '' || jxbankUserstatus == null || jxbankUserstatus == 0) {
+                $('#balance').html("0.00");
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "account/showJxyh.action",
+                    dataType: "json",
+                    success: function(data) {
+                        var balance = Math.max(data.message * 100) / 100;
+                        var djbalance = Math.max(data.vemessage * 100) / 100;
+                        $('#balance').html(balance);
+                        $('#useAccount').val(balance);
+                    }
+                });
+            }
+        })
+
+	</script>
+
+</head>
+
+<body>
+<!--top begin-->
+
+<base >
+<script type="text/javascript">
+    $(function() {
+        $(".navitem li").hover(function() {
+            $(this).find("ol").show().siblings().find("ol").hide("slow");
+        }, function() {
+            $(this).find("ol").slideUp("slow");
+        })
+        $(".code_text li").hover(function() {
+            var inde = $(this).index();
+            $(".code_img ul li").eq(inde).show().siblings().hide();
+        })
+        $.ajax({
+            type : "POST",
+            url : "newLogin/headerLogin.action",
+            dataType : "json",
+            success : function(data) {
+                if (data.status) {
+                    $('#register').before("<li><span class='nh'>您好，</span> </li>");
+                    $('#register a').text("" + data.message + "");
+                    $('#register a').attr("href", "userNew/index.go");
+                    $('#login').remove();
+                    $('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
+                    $("#wealth").text('开启您的财富之旅');
+                    $("#wealth").attr("href","reCash/toAdd.go");
+                    $("#bannerlogin").remove();
+                }
+
+            }
+        });
+    });
+</script>
+<div class=" big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+					<!--跳转登陆界面
+                        <a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="login.html">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+					<!--注册界面
+                        <a href="register/toRegister.go">快速注册</a>-->
+					<a href="zhuce.html">快速注册</a>
+				</li>
+
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+					<a href="guide.html">使用指南</a></li>
+
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+					<a href="problem.html">常见问题</a></li>
+
+				<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+					<a style="color: #faa039" href="guarantee.html" >安全保障</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li  class="active" >
+				<a href="/index">首页</a>
+			</li>
+
+			<li >
+				<a href="/list"
+				>我要投资
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="/list"
+						>投资列表
+						</a>
+					</li>
+
+					<li>
+						<a href="xiangdao.html"
+						>投资向导
+						</a>
+					</li>
+
+				</ol>
+			</li>
+
+			<li >
+				<a href="msgpilu.html"
+				>信息披露
+				</a>
+
+				<ol class="m-list">
+
+				</ol>
+			</li>
+
+			<li >
+				<a href="dae.html"
+				>我要借款
+					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="xiaoe.html">小额借款</a>
+					</li>
+
+					<li>
+						<a href="dae.html"> 大额借款</a>
+					</li>
+				</ol>
+			</li>
+
+			<li >
+				<a href="aboutus.html"> 关于我们</a>
+				<ol class="m-list">
+
+					<li>
+						<a href="aboutus.html"> 企业简介</a>
+					</li>
+
+					<li>
+						<a href="zizhi.html"> 公司资质</a>
+					</li>
+
+					<li>
+						<a href="hezuohb.html"> 合作伙伴</a>
+					</li>
+
+					<li>
+						<a href="contactus.html"> 联系我们</a>
+					</li>
+
+					<li>
+						<a href="bulletin.html"> 平台公告</a>
+					</li>
+
+					<li>
+						<a href="hr.html"> 招贤纳士</a>
+					</li>
+
+				</ol>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="w1200">
+	<div class="project_introduction">
+		<div class="project_title">
+			<input type="hidden" name="borrow.id" value="9950" id="borrowId"/>
+			<span class="vouch bStyle" th:text="${jkxxs.biaoShiXiaoZi}">保</span>
+
+			<div class=" fl">
+				<span th:text="${jkxxs.borrowingTitle}">ll</span>
+			</div>
+			<div class="Credit_mark fl">
+					<span th:text="${jkxxs.produitsOrdre}">AA
+					</span>信用
+			</div>
+
+		</div>
+		<div class="tender_detail clearfix">
+			<div class="tender_left fl">
+				<ul class="Interest clearfix">
+					<li>
+						<h3 th:text="${jkxxs.yearInterestRate}">
+
+
+						</h3>
+						<p>预期年化收益率</p></li>
+					<li>
+						<h3 th:text="${jkxxs.produitDureeDes}+个月">
+						</h3>
+						<p>投资期限</p></li>
+					<li>
+						<h3 th:text="${jkxxs.ketou}+元">
+
+						</h3>
+						<p>剩余可投金额</p></li>
+				</ul>
+				<div class="bar">
+					<span class="fl">项目进度</span>
+					<div class="progress_bar fl">
+						<div class="pro-bar">
+							<small class="progress_bar_title"><span
+									class="progress_number" th:text="${jkxxs.wcbaifenbi}">0.2%</span>
+							</small> <span id="kk" th:name="${jkxxs.wcbaifenbi}" class="progress-bar-inner"
+										   style="background-color: #3bb4f9; width: 0.2%;"
+										   th:data-value="${jkxxs.wanchenglv}"
+										   th:data-percentage-value="${jkxxs.wanchenglv}"></span>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+                    $(document).ready(function() {
+                      var aa= $("#kk").attr("name");
+                      $("#kk").css("width",aa);
+                    });
+				</script>
+				<ul class="target_amount">
+					<li>
+						<div class="target_left fl">标的总额:</div>
+						<div class="target_right fl">
+							<span th:text="${jkxxs.montantDeOffre}"></span>
+						</div></li>
+					<li>
+						<!-- 		<div class="target_left fl">保障方式:</div>
+                            <div class="target_right fl"><span class="guarantee"> 风险备付金</span></div> -->
+						<div class="target_left fl">起息时间:</div>
+						<div class="target_right fl">
+								<span class="guarantee" th:text="${jkxxs.dateDeValeur}">
+								</span>
+						</div></li>
+				</ul>
+				<ul class="target_amount">
+					<li>
+						<div class="target_left fl">还款方式:</div>
+						<div class="target_right fl">
+							<span th:text="${jkxxs.remboursementsGuise}"> ll </span>
+						</div></li>
+
+				</ul>
+				<ul class="target_amount">
+					<li>
+						<div class="target_left fl">剩余时间:</div>
+						<input id="time" style="display: none" th:value="${jkxxs.dateShengyu}"/>
+						<div class="target_right fl">
+								<span class="remaining_time">
+										<em class="" id="showTimes"> </em>
+									 </span>
+						</div></li>
+				</ul>
+				<!-- <ul class="target_amount">
+                        <li style="color:#00a0e9;font-size:16px;">
+                            网贷有风险，出借需谨慎
+                        </li>
+                    </ul> -->
+
+			</div>
+			<div class="tender_right fr">
+				<div class="manual_tender">
+					<ul class="balance clearfix">
+						<li class="fl available">可用余额: <span id="balance"></span>元</li>
+						<li class="fr Recharge"><a href="###">充值</a>
+						</li>
+					</ul>
+					<div class="manual_input">
+						<input type="text" id="tenderMoney" onblur="assignInterest(this)"
+							   placeholder="100元起投且为整数" />
+						<button onclick="autoInput()">自动填写</button>
+						<input type="hidden" id="userId"
+							   value=""> <input
+							type="hidden" id="dbalance"
+							value=""> <input
+							type="hidden" id="balanc"
+							value=""> <input
+							type="hidden" id="useAccount" value="">
+					</div>
+
+					<div class="bid_button"
+						 onclick="location='newLogin/loginPage.go'">
+						<a href="login.html" style="color: white;">请登录</a>
+					</div>
+
+
+				</div>
+				<div
+						style="width:86%;height:30px;line-height:30px;margin:0px auto;">
+					<p style="color:#999;font-size:14px;">网贷有风险，出借需谨慎</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="project_record w1200">
+	<div class="record_title">
+		<ul>
+			<li class="active">标的详情</li>
+			<li>投资记录</li>
+			<li>持续评估</li>
+		</ul>
+	</div>
+	<div class="record_detail">
+		<ul>
+			<li class="detailed_infromation">
+				<dl>
+					<dt>基本信息</dt>
+					<dd>
+						主体性质：<span th:text="${jkxxs.natureDuSujet}">自然人
+							</span>
+					</dd>
+					<dd>
+						所属行业：<span th:text="${jkxxs.secteurActivite}">&#20010;&#20307;
+							</span>
+					</dd>
+					<dd>
+						收入情况：<span th:text="${jkxxs.revenuAnnuel}">&#24180;&#25910;&#20837;30&#19975;
+							</span><span>元</span>
+					</dd>
+					<dd>
+						负债情况：<span th:text="${jkxxs.totalEngagements}">0
+							</span>
+					</dd>
+					<dd>
+						征信报告：<span th:text="${jkxxs.creditFruit}">核查人行征信报告，该借款人近6月无逾期情况
+							</span>
+					</dd>
+					<dd style="height: 54px;">
+						其他借款情况：<span th:text="${jkxxs.autresEmprunts}">借款人保证借款人在不同网络借贷信息中介机构平台借款总余额与本合同借款金额合计总额不超过人民币100万元.
+							</span>
+					</dd>
+
+				</dl></li>
+			<li class="detailed_infromation">
+				<dl>
+					<dt>还款信用</dt>
+					<dd>
+						成功借款次数：<span th:text="${jkxxs.numberSuccess}">7
+							</span>
+					</dd>
+					<dd>
+						流标次数：<span th:text="${jkxxs.flowStandardNumber}">0
+							</span>
+					</dd>
+					<dd>
+						待还款次数：<span th:text="${jkxxs.daihuancs}">2
+							</span>
+					</dd>
+					<dd>
+						成功还款期数：<span th:text="${jkxxs.successPaymentNumber}">19
+							</span>
+					</dd>
+					<dd>
+						提前还款期数：<span th:text="${jkxxs.prepaymentPeriodsNumber}">6
+							</span>
+					</dd>
+					<dd>
+						30天之内的逾期期数：<span th:text="${jkxxs.daysOverdue}">0
+							</span>
+					</dd>
+					<dd>
+						超过30天的逾期期数：<span th:text="${jkxxs.more30daysOverdue}">0
+							</span>
+					</dd>
+					<dd>
+						逾期未还款期数：<span th:text="${jkxxs.overdueBillsNumber}">0
+							</span>
+					</dd>
+				</dl></li>
+			<li class="detailed_infromation">
+				<h3>详细介绍</h3> <span style="font-size:18px;"><strong>借款人详情：</strong><span th:text="${jkxxs.debtorParticulars}">ll</span><br />
+<br />
+<strong>贷款用途：</strong><span th:text="${jkxxs.loansUsed}">此次贷款5万元用于医疗保健品的生意周转。</span><br />
+<br />
+<strong>担保人详情：</strong><span th:text="${jkxxs.guarantorDetails}">担保人在新建县有一套位于新建县的面积为104平米的店面</span><br />
+<br />
+<strong>还款来源：</strong><br />
+<span th:text="${jkxxs.sourceRepayment}"></span>
+<br />
+<strong>风险控制：</strong><br />
+1、我司风控人员已实地考察，核实相关信息无误;<br />
+2、债务人还款来源稳定;<br />
+3、此笔贷款为担保贷款;<br />
+4、贷后跟踪。<br />
+<br />
+<strong>终审意见：</strong><span th:text="${jkxxs.finalOpinion}"></span></span><br />
+				<br /> <br /> <br /> <br /> <br /></li>
+			<li class="detailed_infromation" id="layer-photos">
+				<h3>项目相关资料</h3>
+				<ol class="materials" >
+
+					<li th:each="pimg:${pimgs}">
+						<img th:layer-src="${pimg.imgUrl}"
+							 th:src="@{${pimg.imgUrl}}"/>
+					</li>
+
+
+
+				</ol>
+
+			</li>
+			<li class="detailed_warn clearfix">
+				<h3>风险提示</h3>
+
+				<span> 1、该自然人在本平台借款余额不超过20万元。<br />
+						2、本项目虽然有还款来源、增信保障等保障措施，但您仍可能面临本金及收益的流失。请依据自己的风险承受能力审慎决策，并自行承担全部风险。市场有风险，投资需谨慎！
+					</span>
+
+			</li>
+
+		</ul>
+
+		<ul class="record_table" style="display: none;">
+			<li>
+				<ul class="record_table_title">
+					<li class="in_user">投资用户</li>
+					<li class="in_money"><span>投资金额</span>
+					</li>
+					<li class="effective_amount">有效金额</li>
+					<li class="bidding_month">投标方式</li>
+					<li class="in_time">投资时间</li>
+				</ul></li>
+			<li>
+				<ul class="record_list">
+					<li class="in_user">
+					</li>
+					<li class="in_money">
+						<div class="fl InmoneyIcon">
+
+							<img src="http://39.107.15.222:8081/src/theme/computer/img/p2.png">
+
+							<img src="http://39.107.15.222:8081/src/theme/computer/img/p1.png">
+
+							<img src="http://39.107.15.222:8081/src/theme/computer/img/p3.png">
+
+						</div>
+						<div class="fl InmonJe">
+									<span>100.0
+									</span><span>元</span>
+						</div></li>
+					<li class="effective_amount">100.0
+					</li>
+					<li class="bidding_month">
+						<img src="http://39.107.15.222:8081/src/theme/computer/img/pc.png"
+							 style="width:26px;height:24px;">
+					</li>
+					<li class="in_time">2019-07-18 14:26:09
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<ul class="evolve_table" style="display: none;">
+			<li>
+
+			</li>
+		</ul>
+	</div>
+</div>
+<input id="status" type="hidden" value="" />
+<!-- 底部 -->
+
+<base >
+<div class="bottom">
+	<div class="w1200">
+		<div class="bottom_1">
+			<ul>
+				<li><a href="aboutus.html">关于我们</a></li>
+				<li><a href="contcatus.html">联系我们</a></li>
+				<li><a href="guarantee.html">保障体系</a></li>
+				<li><a href="bulletin.html">平台公告</a></li>
+				<li><a href="hr.html">招贤纳士</a></li>
+				<li><a href="problem.html">常见问题</a></li>
+				<li><a href="guide.html">使用指南</a></li>
+				<li><a href="app.html">手机客户端</a></li>
+			</ul>
+		</div>
+		<div class="bottom_middle clearfix">
+			<div class="bottom_2">
+				<p>电话: 0791-83858285</p>
+				<p>邮箱: service@kkd2p.com</p>
+				<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+			</div>
+
+			<div class="bottom_4">
+
+				<h3>400-8763-118</h3>
+
+
+				<div class="serviceTime clearfix">
+					<p>服务时间：周一至周五9：00-21：00</p>
+					<p>
+						网贷有风险，出借需谨慎
+					</p>
+					<p>
+						陕西省互联网金融协会:400-9158-227
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="bottom_5 clearfix">
+			<ul>
+
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+
+				<li>© 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+
+			</ul>
+		</div>
+		<div class="bottom_6">
+			<ul>
+				<li>友情链接:</li>
+
+				<li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+
+				<li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+
+				<li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+
+
+
+
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+<script type="text/javascript"
+		src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
+<script type="text/javascript"
+		src="http://39.107.15.222:8081/src/theme/computer/js/style.js"></script>
+<script>
+    function fun(){
+        var checks = document.getElementsByName("hongbaoIds");
+        var check = document.getElementsByName("ratesCouponIds");
+        var totalMoney = 0;
+        var addapr=0;
+        n = 0;
+        j=0;
+        for(i=0;i<checks.length;i++){
+
+            if(checks[i].checked){
+                var tenderMoneyCondition = parseFloat($(checks[i]).attr('id'));
+                totalMoney += parseFloat(tenderMoneyCondition);
+                n++;
+            }
+        }
+
+
+        for(i=0;i<check.length;i++){
+
+            if(check[i].checked){
+                var aprCondition = parseFloat($(check[i]).attr('id'));
+                addapr += parseFloat(aprCondition);
+                j++;
+            }
+
+        }
+        if(n>0){
+            if(j>0){
+                $('#prompt').html("抱歉,现金券与加息券不能叠加使用,请重新选择!");
+                return false;
+            }
+        }
+
+        if(n>0){
+            $('#men').html(totalMoney);
+            $('#mun').html(n);
+            $('#xj').show();
+            $('#jx').hide();
+            $('#mo').hide();
+            return false;
+        }
+
+        if(j>0){
+            $('#ap').html(addapr);
+            $('#jxi').html(j);
+            $('#jx').show();
+            $('#xj').hide();
+            $('#mo').hide();
+            return false;
+        }
+    }
+
+</script>
+<script>
+
+
+
+
+    $(document).ready(function() {
+        //          头部导航
+        $(".navitem li").hover(function() {
+            $(this).find("ol").show().siblings().find("ol").hide("slow");
+        }, function() {
+            $(this).find("ol").slideUp("slow");
+        })
+        //				标的详情切换
+        $(".record_title ul li").on("click", function() {
+            $(this).addClass("active").siblings().removeClass("active");
+            var ind = $(this).index();
+            $(".record_detail").children().eq(ind).show().siblings().hide();
+        })
+
+        //				卡券
+        $(".card_coupons").on("click", function() {
+            $(this).find("h5").slideUp(150);
+            $(this).find(".cards").slideDown(150);
+
+        })
+        //				关闭卡券
+        $('.iconfont.icon-guanbianniu').on("click", function(e) {
+            $(".card_coupons h5").slideDown(150);
+            $(".card_coupons .cards").slideUp(150);
+            e.stopPropagation();
+        })
+
+        //			卡券切换
+        $(".cards_t ul li").on("click", function() {
+            var objectIn = $(this).index();
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".card_list ol").eq(objectIn).show().siblings().hide();
+        })
+        //确定按钮
+        $(".cards_button .confirm").on("click", function(e) {
+            $(".card_coupons h5").slideDown(150);
+            $(".card_coupons .cards").slideUp(150);
+            e.stopPropagation();
+        })
+        //取消按钮
+        $(".cards_button .cancel").on("click", function(e) {
+            $(".card_coupons h5").slideDown(150);
+            $(".card_coupons .cards").slideUp(150);
+            $(".card_list ol li").removeClass("active");
+            $(".card_list ol li").find("span").attr("class", "iconfont icon-duoxuankuangxuanzhong");
+            e.stopPropagation();
+        })
+        //			选中卡券
+        $(".card_list ol li").on("click", function() {
+            var a =$(this).find("span").attr('class');
+            if(a=="iconfont icon-duoxuankuangxuanzhong1"){
+                $(this).addClass("active");
+                $(this).find("span").attr("class", "iconfont icon-duoxuankuangxuanzhong");
+            }else{
+                $(this).removeClass("active");
+                $(this).find("span").attr("class", "iconfont icon-duoxuankuangxuanzhong1");
+            }
+
+        })
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+        //点击图片即可触发
+        layer.photos({
+            photos: '#layer-photos',
+            anim: 5
+        });
+
+
+
+    });
+    $(function() {
+        var second =$("#time").val();
+        console.log(second)
+        var toDays = function() {
+            var d = Math.floor(second / 1000 / 60 / 60 / 24);
+            var h = Math.floor(second / 1000 / 60 / 60 % 24);
+            var m = Math.floor(second / 1000 / 60 % 60);
+            var s = Math.floor(second / 1000 % 60);
+            return d + "天" + h + "小时" + m + "分钟" + s + "秒";
+        };
+        window.setInterval(function() {
+            second = second - 1000;
+            if(second > 0) {
+                $('#showTimes').html(toDays());
+            } else {
+                $('#showTimes').html("已过期");
+            }
+        }, 1000);
+
+
+    });
+
+    function autoInput(){
+        var useMoney =$('#useAccount').val();;
+        var account = 49900.0;
+        if(useMoney>account){
+            $('#tenderMoney').val(account);
+        }else{
+            if(useMoney>0){
+                $('#tenderMoney').val(parseInt(useMoney));
+            }
+        }
+
+    }
+
+    function showTendPanel() {
+        //    if(1!=3 || 0.2 >=100){
+        //        alert("非法操作");
+        //    }
+
+        $('#prompt').html("");
+        if(islogin()) {
+            var timestamp = new Date().getTime();
+			/* if(timestamp>1478617200000){
+			 public_alert('尊敬的用户，您好！由于江西银行存管版本系统正在做域名切换导致投标功能暂时关闭;预计时间早上9.00恢复正常。',9,function(){
+			 window.location="http://jxyh.yxp2p.com/index.action";
+			 },function(){
+			 window.location="http://jxyh.yxp2p.com/index.action";
+			 });
+			 return false;
+			 }  */
+            var biaoType = 'vouch';
+            var inviteUserid = '';
+            if(inviteUserid=='网贷天眼' && biaoType=='xsb'){
+
+                $('#prompt').html("您是我们合作方平台,不能投资新手标。");
+                return false;
+            }
+            var balanc = $("#balanc").val();
+            if(balanc==undefined){
+                $('#prompt').html("银行余额未读取,请耐心等待");
+                return false;
+            }
+            var tenderMoney = $('#tenderMoney').val();
+            var Regx = /^[0-9]*$/;
+            if(Regx.test(tenderMoney)) {} else {
+                $('#prompt').html("请输入有效的金额");
+                return false;
+            }
+            if(tenderMoney < 0) {
+                $('#prompt').html("请输入投资金额");
+                return false;
+            }
+            var status = '';
+            if(status == 0) {
+                $('#prompt').html("<a style='color:red;' href='userNew/index.action'>请先去绑定电子账户哦,再来投标哦.</a>");
+                return false;
+            }
+
+            var bindCard = '';
+            if(bindCard == null || bindCard == '') {
+                $('#prompt').html("<a style='color:red;' href='userNew/safeTy.action'>您还没设置银行卡号, 请先去银行卡号.</a>");
+                return false;
+            }
+            var payPasswordYes = '';
+            if(payPasswordYes == 0) {
+                $('#prompt').html("<a style='color:red;' href='userNew/safeTy.action'>您还没设置支付密码, 请先去设置支付密码</a>");
+                return false;
+            }
+
+            var minInvestorAmount = 100;
+            var maxInvestorAmount = 5000000;
+            if(tenderMoney < minInvestorAmount) {
+                $('#prompt').html("投资金额不能少于" + minInvestorAmount + "元");
+                return false;
+            }
+            if(biaoType == 'bx') {
+                if(tenderMoney % minInvestorAmount != 0) {
+                    $('#prompt').html("投资金额必须为" + minInvestorAmount + "的整数倍");
+                    return false;
+                };
+            }
+            var useMoney = $('#useAccount').val();
+            if(tenderMoney == "" || tenderMoney > parseFloat(useMoney)) {
+                $('#prompt').html("帐户余额不足,请先去充值.");
+                return false;
+            }
+            if(tenderMoney > maxInvestorAmount) {
+                $('#prompt').html("投资金额不能大于" + maxInvestorAmount + "元");
+                return false;
+            }
+            var useMoney = $('#useAccount').val();
+            if(tenderMoney == "" || tenderMoney > parseFloat(useMoney)) {
+                $('#prompt').html("帐户余额不足,请先去充值.");
+                return false;
+            }
+
+            var accountSum = 49900.0;
+            if(tenderMoney > accountSum) {
+                $('#prompt').html("投资金额不能大于差额" + accountSum + "元哦！！");
+                return false;
+            }
+
+            //计算
+			/* var hongbaoId =  $('#hongbaoId').val();
+			 if(hongbaoId>0){
+			 var hongbaoMoney =  $("#hongbaoId").find("option:selected").text();
+			 hongbaoMoney=hongbaoMoney.substring(0,hongbaoMoney.length-1);
+			 var timeLimit = 3;
+			 var account =  50000.0;
+			 var tenderMoney = $('#tenderMoney').val();
+			 var deductionMoney = 0;
+			 if(timeLimit<5){
+			 deductionMoney = (tenderMoney*(timeLimit/1000.00));
+			 }else{
+			 deductionMoney = (tenderMoney*(5/1000.00));
+			 }
+			 if(deductionMoney>hongbaoMoney){
+			 deductionMoney = hongbaoMoney;
+			 }
+			 $('#HbMessage').text("您已选择使用红包,可抵扣"+deductionMoney+"元");
+			 }    */
+            var timeLimit = '3';
+            var dbalance = $("#dbalance").val();
+            var userid = $("#userId").val();
+            if(biaoType == 'xsb') {
+                if(userid != 11978 && userid != 27066 && userid != 12085 && userid != 12152 && userid !=15525 && userid !=12334&& userid !=15583 && userid !=30410&& userid !=15583) {
+                    if(dbalance >= 1) {
+                        $('#prompt').html("抱歉,未投资者才能投新手标哦（只能投一次哦）！");
+                        return false;
+                    }
+                }
+            }
+            $('#newTenderMoney').val(tenderMoney);
+            $('#limit').val(timeLimit);
+            $('#biao').val(biaoType);
+            var useMoney = $('#useAccount').val();
+            if(tenderMoney == "" || tenderMoney > parseFloat(useMoney)) {
+                $('#prompt').html("帐户余额不足,请先去充值.");
+                return false;
+            }
+            var tenderlimit = $('#limit').val();
+            var tenderbiao = $('#biao').val();
+            $('#erromess').html("");
+            $('#tenderprompt').html("");
+            var radio = document.getElementsByName("hongbaoIds");
+            var radioLength = radio.length;
+            var hongbaoIds = "";
+            var totalMoney = 0;
+            var countHongb = 0;
+            for(var i = 0; i < radioLength; i++) {
+                if(radio[i].checked) {
+                    var tenderMoneyCondition = parseFloat($(radio[i]).attr('rel'));
+                    if(parseFloat(tenderMoney) < tenderMoneyCondition) {
+                        $('#prompt').html("此现金劵未达到投资条件必须满" + tenderMoneyCondition + "!不能使用");
+                        return false;
+                    }
+                    totalMoney += parseFloat(tenderMoneyCondition);
+                    hongbaoIds += radio[i].value + ",";
+                    countHongb += 1;
+                    if(hongbaoIds != null && hongbaoIds != "") {
+                        if(biaoType == 'xsb') {
+                            $('#prompt').html("此标为新手标,不能使用现金劵哦！！");
+                            return false;
+                        }
+                    }
+                }
+            }
+            if(parseFloat(tenderMoney) < parseFloat(totalMoney)) {
+                $('#prompt').html("现金劵未达到投资条件必须满" + totalMoney + "!不能使用");
+                return false;
+            }
+            var radio1 = document.getElementsByName("ratesCouponIds");
+            var radio1Length = radio1.length;
+            var ratesCouponIds = "";
+            var totalRatesCoupon = 0;
+            var biaoType = 'vouch';
+            for(var j = 0; j < radio1.length; j++) {
+                if(radio1[j].checked) {
+                    var biaotypetion = $(radio1[j]).attr('rel');
+                    if(biaotypetion.indexOf(biaoType) < 0 && biaotypetion.indexOf('0') < 0) {
+                        $('#prompt').html("此加息劵不是" + biaotypetion + "标!请重新选择！");
+                        return false;
+                    }
+                    totalRatesCoupon += 1;
+                    ratesCouponIds += radio1[j].value + ",";
+                }
+            }
+            var addAprCount = 1;
+            var hbAndAprKG = false;
+            if(totalRatesCoupon > addAprCount) {
+                $('#prompt').html("加息券使用个数不能超过" + addAprCount + "个,请重新选择!");
+                return false;
+            }
+            if(!hbAndAprKG && countHongb >= 1 && totalRatesCoupon >= 1) {
+                $('#prompt').html("抱歉,现金券与加息券不能叠加使用,请重新选择!");
+                return false;
+            }
+            var token = $('#token').val();
+            var borrowId = $('#borrowId').val();
+            $.ajax({
+                type: "POST",
+                url: "jxyhapi/bidTender.action",
+                dataType: "json",
+                data: {
+                    tenderMoney: tenderMoney,
+                    borrowId: borrowId,
+                    token: token,
+                    hongbaoIds: hongbaoIds
+                },
+                success: function(data) {
+                    if(data.status) {
+                        window.location.href = "newBorrow/bidApply.go?tenderMoney=" + tenderMoney + "&borrowId=" + borrowId + "&hongbaoIds=" + hongbaoIds + "&ratesCouponIds=" + ratesCouponIds;
+                    } else {
+                        $('#prompt').html(data.message);
+                    }
+                }
+            });
+			/*             showTend = popLayer('#tenderPanel','验证支付密码','470px','320px'); */
+        };
+    }
+
+    function assignInterest(selected) {
+        var aa = 0;
+        var cc = 0;
+        var param = {};
+        var borrowSum = $('#tenderMoney').val();
+        var yearRate = "9.5";
+        var borrowTime = "3";
+        var repayWay = "3";
+        param["paramMap.borrowSum"] = $('#tenderMoney').val();
+        param["paramMap.yearRate"] = "9.5";
+        param["paramMap.borrowTime"] = "3";
+        param["paramMap.repayWay"] = "3";
+        $.post("Investment/toolsCalculate!toolsCalculateDay.action",
+            param, function(data) {
+                for ( var i = 0; i < data.length; i++) {
+
+                    if (i == 0) {
+                        aa = data[i].map.monForRateA;
+                        cc = data[i].map.allPay;
+                    }
+                }
+                $("#monthEarnings").html(aa);
+                $("#totalEarnings").html(cc);
+                $('#earnings').show();
+            });
+
+    }
+</script>
+</body>
+
+</html>

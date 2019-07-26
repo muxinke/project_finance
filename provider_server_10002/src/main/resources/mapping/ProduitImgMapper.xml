@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.finance.www.pojo.ProduitImgMapper">
+<mapper namespace="com.finance.www.mapper.ProduitImgMapper">
   <resultMap id="BaseResultMap" type="com.finance.www.pojo.ProduitImg">
     <!--@mbg.generated-->
     <id column="id" jdbcType="INTEGER" property="id" />

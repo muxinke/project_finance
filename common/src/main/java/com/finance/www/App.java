@@ -1,7 +1,8 @@
 package com.finance.www;
 
+import com.finance.www.enums.ProduitEnum;
 
-import com.finance.www.enums.StatusCodeEnum;
+import java.util.Arrays;
 
 /**
  * Hello world!
@@ -10,9 +11,8 @@ import com.finance.www.enums.StatusCodeEnum;
  */
 public class App {
     public static void main(String[] args) {
-        StatusCodeEnum error = StatusCodeEnum.ERROR;
+        Boolean i=false;
 
-
-
+        System.out.println("false = " + i.toString());
     }
 }
