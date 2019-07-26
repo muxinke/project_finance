@@ -1,7 +1,6 @@
 
 #spring:
-#  application:
- #   name: consumer-server10022
+
  # profiles:
  #   active: 10022
 #  cloud:
@@ -16,9 +15,15 @@ eureka:
 server:
   port: 10022
 spring:
+  application:
+    name: consumer-server10022
   thymeleaf:
       cache: false # 开发时关闭缓存,不然没法看到实时页面
       mode: LEGACYHTML5 # 用非严格的 HTML
       encoding: UTF-8
       servlet:
         content-type: text/html
+feign:
+  httpclient:
+    enabled: true
+    connection-timeout: 10000

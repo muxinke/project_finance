@@ -214,14 +214,14 @@
 			</li>
 
 			<li >
-				<a href="list.html"
+				<a href="/list"
 				>我要投资
 				</a>
 
 				<ol class="m-list">
 
 					<li>
-						<a href="list.html"
+						<a href="/list"
 						>投资列表
 						</a>
 					</li>
@@ -488,7 +488,7 @@
 				<img src="http://39.107.15.222:8081/src/theme/computer/img/s1.png" class="circle">
 				<img src="http://39.107.15.222:8081/src/theme/computer/img/s2.png" class="icon" onclick="location.href='newBorrow/guarantee.go'">
 				<h4>透明</h4>
-				<p>珂珂贷接入法大大电子签章</p>
+				<p>轻松贷接入法大大电子签章</p>
 			</li>
 		</ul>
 	</div>
@@ -499,7 +499,7 @@
 <div class="novice_Exclusive w1200">
 	<div class="novice_left fl">
 		<h3>新手专享</h3>
-		<a href="list.html">查看更多>></a>
+		<a href="/list">查看更多>></a>
 	</div>
 	<div class="novcie_box">
 		<div class="novice_detail">
@@ -524,11 +524,11 @@
 					<div class="subject_detail">
 						<ul>
 							<li class="profit">
-								<h3 th:text="${produit1.yearInterestRate}+%">9.0%</h3>
+								<h3 th:text="${produit1.yearInterestRate}">9.0%</h3>
 								<p >预期收益</p>
 							</li>
 							<li class="a_money">
-								<h3 th:text="${(produit1.montantDeOffre)/100}">200000.0</h3>
+								<h3 th:text="${(produit1.montantDeOffre)}">200000.0</h3>
 								<p>贷款金额(元)</p>
 							</li>
 							<li class="term">
@@ -542,12 +542,12 @@
 					</div>
 					<div class="subject_bottom clearfix">
 						<div class="investment_amount fl">
-							<h3 th:text="${(produit1.montantDeOffre)-(produit1.investmentAmount)}">0.0</h3>
+							<h3 th:text="${produit1.ketou}">0.0</h3>
 							<p>可投金额(元)</p>
 						</div>
 						<div class="immediate_investment fr">
 
-							<a style="background-color: #707070; color: #ffffff;cursor: pointer;display: block;height: 45px;line-height: 45px;margin: 0 auto;text-align: center;width: 135px;" href="detail.html" th:text="${produit1.isCondition}">已还款</a>
+							<a style="background-color: #707070; color: #ffffff;cursor: pointer;display: block;height: 45px;line-height: 45px;margin: 0 auto;text-align: center;width: 135px;" th:href="'/detail?pid='+${produit1.id}" th:text="${produit1.isCondition}">已还款</a>
 
 						</div>
 					</div>
@@ -585,7 +585,7 @@
     $(document).ready(function() {
         $(".lending_yxd  .lending_left ul li").on("click", function() {
             var type = $(this).attr('id');
-            var url = basePath+"/newBorrow/list.action?biaotype="+type;
+            var url = "/list?biaotype="+type;
             window.location.href = url;
         })
 
@@ -601,11 +601,11 @@
 <div class="lending_yxd w1200 clearfix">
 	<div class="lending_left fl">
 		<h3>保证金贷款</h3>
-		<a href="list.html">查看更多>></a>
+		<a href="/list">查看更多>></a>
 		<ul class="lending_title">
-			<li id="bzj" class="active">保证金 <!--<span>0</span>-->
+			<li id="4" class="active">保证金 <!--<span>0</span>-->
 			</li>
-			<li id="bx">保险承保 <!--<span>0</span>-->
+			<li id="2">保险承保 <!--<span>0</span>-->
 			</li>
 		</ul>
 	</div>
@@ -624,14 +624,14 @@
 
 					</div>
 					<div class="project_speed fr myStat2" data-dimension="70"
-						 data-text="100.0%" data-width="6"
+						 th:data-text="${produit4.wcbaifenbi}" data-width="6"
 						 data-fontsize="14" data-border="inline"
-						 data-percent="100.0"
+						 th:data-percent="${produit4.wanchenglv}"
 						 data-fgcolor="#009dda" data-bgcolor="#ccc"></div>
 				</div>
 				<div class="project_middle clearfix">
 					<dl>
-						<dt class="profit" th:text="${produit4.yearInterestRate}+%">
+						<dt class="profit" th:text="${produit4.yearInterestRate}">
 							9.0
 							%
 						</dt>
@@ -645,13 +645,13 @@
 					</dl>
 				</div>
 				<div class="project_amount">
-					<h3 th:text="${(produit4.montantDeOffre)/100}">
+					<h3 th:text="${produit4.montantDeOffre}">
 						180000.0
 					</h3>
 					<p>贷款金额(元)</p>
 				</div>
 				<div class="filled">
-					<a class="auu" href="detail.html" th:text="${produit4.isCondition}">还款中</a>
+					<a class="auu" th:href="'/detail?pid='+${produit4.id}" th:text="${produit4.isCondition}">还款中</a>
 				</div>
 
 			</li>
@@ -672,14 +672,14 @@
 
 					</div>
 					<div class="project_speed fr myStat2" data-dimension="70"
-						 data-text="100.0%" data-width="6"
+						 th:data-text="${produit2.wcbaifenbi}" data-width="6"
 						 data-fontsize="14" data-border="inline"
-						 data-percent="100.0"
-						 data-fgcolor="#009dda" data-bgcolor="#ccc"></div>
+						 th:data-percent="${produit2.wanchenglv}" data-fgcolor="#009dda"
+						 data-bgcolor="#ccc"></div>
 				</div>
 				<div class="project_middle clearfix">
 					<dl>
-						<dt class="profit" th:text="${produit2.yearInterestRate}+%">
+						<dt class="profit" th:text="${produit2.yearInterestRate}">
 							6.0
 							%
 						</dt>
@@ -693,13 +693,13 @@
 					</dl>
 				</div>
 				<div class="project_amount" >
-					<h3 th:text="${(produit2.montantDeOffre)/100}">
+					<h3 th:text="${produit2.montantDeOffre}">
 						830000.0
 					</h3>
 					<p>贷款金额(元)</p>
 				</div>
 				<div class="filled">
-					<a class="auu" href="detail.html" th:text="${produit2.isCondition}">已还款</a>
+					<a class="auu" th:href="'/detail?pid='+${produit2.id}" th:text="${produit2.isCondition}">已还款</a>
 				</div>
 
 			</li>
@@ -771,8 +771,7 @@
     $(document).ready(function() {
         $(".investment_project  .investment_left ul li").on("click",function() {
             var type = $(this).attr('id');
-            var url = basePath
-                + "/newBorrow/list.action?biaotype="
+            var url = "/list?biaotype="
                 + type;
             window.location.href = url;
         })
@@ -787,11 +786,11 @@
 <div class="investment_project w1200">
 	<div class="investment_left fl">
 		<h3>投资项目</h3>
-		<a href="list.html">查看更多>></a>
+		<a href="/list">查看更多>></a>
 		<ul class="investment_title">
-			<li id="gyl" class="active" >供应链 <!--<span>0</span>--></li>
-			<li id="fast">抵押标 <!--<span>0</span>--></li>
-			<li id="vouch">担保标 <!--<span>4</span>--></li>
+			<li id="3" class="active" >供应链 <!--<span>0</span>--></li>
+			<li id="8">抵押标 <!--<span>0</span>--></li>
+			<li id="7">担保标 <!--<span>4</span>--></li>
 
 		</ul>
 	</div>
@@ -813,14 +812,14 @@
 						</p>
 					</div>
 					<div class="project_speed fr myStat2" data-dimension="70"
-						 data-text="100.0%" data-width="6"
+						 th:data-text="${produit3.wcbaifenbi}" data-width="6"
 						 data-fontsize="14" data-border="inline"
-						 data-percent="100.0" data-fgcolor="#009dda"
+						 th:data-percent="${produit3.wanchenglv}" data-fgcolor="#009dda"
 						 data-bgcolor="#ccc"></div>
 				</div>
 				<div class="project_middle clearfix">
 					<dl>
-						<dt class="profit" th:text="${produit3.yearInterestRate}+%">
+						<dt class="profit" th:text="${produit3.yearInterestRate}">
 							9.0
 							%
 						</dt>
@@ -834,13 +833,13 @@
 					</dl>
 				</div>
 				<div class="project_amount">
-					<h3 th:text="${(produit3.montantDeOffre)/100}">
+					<h3 th:text="${produit3.montantDeOffre}">
 						500000.0
 					</h3>
 					<p>贷款金额(元)</p>
 				</div>
 				<div class="filled">
-					<a class="auu" href="detail.html" th:text="${produit3.isCondition}">已还款
+					<a class="auu" th:href="'/detail?pid='+${produit3.id}" th:text="${produit3.isCondition}">已还款
 					</a>
 				</div>
 			</li>
@@ -867,14 +866,14 @@
 
 					</div>
 					<div class="project_speed fr myStat2" data-dimension="70"
-						 data-text="100.0%" data-width="6"
+						 th:data-text="${produit8.wcbaifenbi}" data-width="6"
 						 data-fontsize="14" data-border="inline"
-						 data-percent="100.0" data-fgcolor="#009dda"
+						 th:data-percent="${produit8.wanchenglv}" data-fgcolor="#009dda"
 						 data-bgcolor="#ccc"></div>
 				</div>
 				<div class="project_middle clearfix">
 					<dl>
-						<dt class="profit" th:text="${produit8.yearInterestRate}+%">
+						<dt class="profit" th:text="${produit8.yearInterestRate}">
 							9.0
 							%
 						</dt>
@@ -888,13 +887,13 @@
 					</dl>
 				</div>
 				<div class="project_amount" >
-					<h3 th:text="${(produit8.montantDeOffre)/100}">
+					<h3 th:text="${produit8.montantDeOffre}">
 						200000.0
 					</h3>
 					<p>贷款金额(元)</p>
 				</div>
 				<div class="filled">
-					<a class="auu" href="detail.html" th:text="${produit8.isCondition}">已还款
+					<a class="auu"th:href="'/detail?pid'+${produit8.id}" th:text="${produit8.isCondition}">已还款
 					</a>
 				</div>
 			</li>
@@ -920,35 +919,38 @@
 						</p>
 
 					</div>
+
 					<div class="project_speed fr myStat2" data-dimension="70"
-						 data-text="0.0%" data-width="6"
+						 th:data-text="${produit7.wcbaifenbi}" data-width="6"
 						 data-fontsize="14" data-border="inline"
-						 data-percent="0.0" data-fgcolor="#009dda"
+						 th:data-percent="${produit7.wanchenglv}" data-fgcolor="#009dda"
 						 data-bgcolor="#ccc"></div>
 				</div>
+
+
 				<div class="project_middle clearfix">
 					<dl>
-						<dt class="profit" th:text="${produit7.yearInterestRate}+%">
+						<dt class="profit" th:text="${produit7.yearInterestRate}">
 							9.0
 							%
 						</dt>
 						<dd>预期收益</dd>
 					</dl>
 					<dl>
-						<dt class="days" th:text="${produit8.produitDureeDes}+月">
+						<dt class="days" th:text="${produit7.produitDureeDes}+月">
 							31天
 						</dt>
 						<dd>项目期限</dd>
 					</dl>
 				</div>
 				<div class="project_amount">
-					<h3 th:text="${(produit8.montantDeOffre)/100}">
+					<h3 th:text="${produit7.montantDeOffre}">
 						250000.0
 					</h3>
 					<p>贷款金额(元)</p>
 				</div>
 				<div class="project_button">
-					<a class="auu" href="detail.html" th:text="${produit8.isCondition}">投标中
+					<a class="auu" th:href="'/detail?pid='+${produit7.id}" th:text="${produit7.isCondition}">投标中
 					</a>
 				</div>
 			</li>
@@ -957,7 +959,7 @@
 
 	</div>
 	<div class="more_project">
-		<a href="newBorrow/list.action" >查看更多投资项目</a>
+		<a href="/list" >查看更多投资项目</a>
 	</div>
 </div>
 <!-- 平台信息 -->
@@ -979,9 +981,10 @@
         $(".auu:contains('投标中')").css("backgroundColor","#ffbd34")
         $(".cooperative_partner li").on("click", function() {
             var pn = $(this).attr("rel");
-            var url = "newCatalog/partner.action?id=126&pname="+pn;
+            var url = "#"+pn;
             window.location.href = url;
         })
+
     });
 </script>
 

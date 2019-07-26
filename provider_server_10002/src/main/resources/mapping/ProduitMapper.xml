@@ -543,4 +543,49 @@
       release_time = #{releaseTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="chajkXx" parameterType="int" resultType="com.finance.www.pvo.JieKuanXxVo">
+   SELECT
+  p.id pid,
+  p.investment_type investmentType,
+  p.produits_ordre produitsOrdre,
+p.montant_de_offre montantDeOffre,
+p.investment_amount investmentAmount,
+p.produit_duree_des produitDureeDes,
+p.produit_marque produitMarque,
+p.remboursements_expires remboursementsExpires,
+p.remboursements_guise remboursementsGuise,
+p.is_condition isCondition,
+p.date_de_valeur dateDeValeur,
+p.nature_du_sujet natureDuSujet,
+p.secteur_activite secteurActivite,
+p.revenu_annuel revenuAnnuel,
+p.credit_fruit creditFruit,
+p.total_engagements totalEngagements,
+p.autres_emprunts autresEmprunts,
+p.year_interest_rate yearInterestRate,
+p.borrowing_title borrowingTitle,
+mc.number_success numberSuccess,
+mc.flow_standard_number flowStandardNumber,
+mc.success_payment_number successPaymentNumber,
+mc.days_overdue daysOverdue,
+mc.overdue_bills_number overdueBillsNumber,
+mc.prepayment_periods_number prepaymentPeriodsNumber,
+mc.More_30days_overdue more30daysOverdue,
+mpc.debtor_particulars debtorParticulars,
+mpc.guarantor_details guarantorDetails,
+mpc.loans_used loansUsed,
+mpc.Source_repayment sourceRepayment,
+p.create_time createTime,
+mpc.final_opinion finalOpinion
+FROM
+member_credit mc,
+member_produit_creditor mpc,
+produit p,
+memeber m
+where
+ mc.id=m.id
+and mpc.produit_id=p.id
+and mpc.member_id=m.id
+and p.id=#{pid}
+  </select>
 </mapper>

@@ -2,14 +2,13 @@ package com.finance.www.Vo;
 
 import lombok.Data;
 
-import java.util.Date;
 
 /**
- * Created by 杜碧天 on 2019/7/24.
+ * Created by 杜碧天 on 2019/7/25.
  */
 @Data
-public class ProduitVo {
-    private Integer id;
+public class JieKuanXxVos {
+    private Integer pid;
     //投资类型
     private String  investmentType;
     /**
@@ -54,7 +53,11 @@ public class ProduitVo {
      *起息时间
 
      */
-    private Date dateDeValeur;
+    private String dateDeValeur;
+    /**
+     * 剩余时间
+     */
+    private  String dateShengyu;
     /**
      *主体性质
 
@@ -101,7 +104,77 @@ public class ProduitVo {
      * 可投金额
      */
     private String ketou;
+    /**
+     * 完成率
+     */
     private  String wanchenglv;
+    /**
+     * 完成%
+     */
     private String wcbaifenbi;
+    /**
+     * 成功借款次数
+     */
+    private Integer numberSuccess;
 
+    /**
+     * 流标次数
+     */
+    private Integer flowStandardNumber;
+
+    /**
+     * 成功还款次数
+     */
+    private Integer successPaymentNumber;
+
+    /**
+     * 30天内逾期数
+     */
+    private Integer daysOverdue;
+
+    /**
+     * 逾期未还款期数
+     */
+    private Integer overdueBillsNumber;
+
+    /**
+     * 提前还款期数
+     */
+    private Integer prepaymentPeriodsNumber;
+
+    /**
+     * 超过30天的逾期期数
+     */
+    private Integer more30daysOverdue;
+    /**
+     * 待还款次数
+     */
+    private Integer daihuancs;
+    /**
+     * 债务人详情
+     */
+    private String debtorParticulars;
+
+    /**
+     * 担保人详情
+     */
+    private String guarantorDetails;
+
+    /**
+     * 贷款用途
+     */
+    private String loansUsed;
+
+    /**
+     * 还款来源
+     */
+    private String sourceRepayment;
+    /**
+     * 标识小字
+     */
+    private String biaoShiXiaoZi;
+    /**
+     * 终审意见
+     */
+    private String finalOpinion;
 }

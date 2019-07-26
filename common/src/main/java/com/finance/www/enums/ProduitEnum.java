@@ -14,7 +14,7 @@ public enum ProduitEnum {
     FINANCE_LEASE(6, "融资租赁"),
     GUARANTEE_THE(7, "担保标"),
     MORTGAGE_THE(8, "抵押标"),
-    THE_CREDIT_SCALE(9, "信用标"),
+    THE_CREDIT_SCALE(9, "信用标")
     ;
 
     public int getType() {
