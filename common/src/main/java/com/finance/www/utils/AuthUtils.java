@@ -20,7 +20,7 @@ import java.util.List;
 public class AuthUtils {
 
     private static final String HEADER = "Authorization";
-    private static final String SEPARATOR = "bearer";
+    private static final String SEPARATOR = "Bearer";
     private static final String CHARSET_NAME = "UTF-8";
 
     public static Memeber getReqUser(HttpServletRequest req) {
