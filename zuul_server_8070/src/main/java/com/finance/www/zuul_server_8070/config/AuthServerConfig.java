@@ -121,29 +121,6 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
                 final Map<String, Object> additionalInformation = new HashMap<>();
 
-                MemeberExample memeberExample = new MemeberExample();
-                MemeberExample.Criteria criteria = memeberExample.createCriteria();
-                criteria.andUsernameEqualTo(userName);
-
-                List<Memeber> memebers = memeberService.selectByExample(memeberExample);
-                if (memebers!=null && memebers.size()>0){
-                    Memeber memeber = memebers.get(0);
-
-//                    Map<String, String> userinfo = new HashMap<>();
-//
-//                    userinfo.put("id", memeber.getId().toString());
-//
-//                    userinfo.put("username", memeber.getUsername());
-//
-//                    userinfo.put("email", memeber.getEmail());
-//
-//                    userinfo.put("mobile", memeber.getMobile());
-
-//                    additionalInformation.put("userinfo", JSON.toJSONString(userinfo));
-                    additionalInformation.put("memberInfo", memeber);
-                }else{
-                    additionalInformation.put("userinfo", JSON.toJSONString(null));
-                }
                 ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInformation);
 
                 return super.enhance(accessToken, authentication);

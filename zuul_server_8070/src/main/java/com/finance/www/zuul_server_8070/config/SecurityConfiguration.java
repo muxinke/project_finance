@@ -6,12 +6,14 @@ import com.finance.www.zuul_server_8070.service.MemeberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,9 +34,7 @@ import java.util.List;
 @Configuration
 
 
-
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
 
 
     // 请配置这个，以保证在刷新Token时能成功刷新
@@ -49,13 +49,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         auth.userDetailsService(userDetailsService()).passwordEncoder(new BCryptPasswordEncoder());
 
-//        System.err.println("auth = "+auth.userDetailsService(userDetailsService()) );
-//        System.out.println("------------------------");
-//        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        String password = passwordEncoder.encode("123456");
-//        System.err.println("password = " + password);
 
 
+        System.out.println("------------------------");
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String password = passwordEncoder.encode("971103");
+        System.err.println("password = " + password);
     }
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
@@ -82,77 +81,57 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     protected UserDetailsService userDetailsService() {
 
-
-
-        // 这里是添加两个用户到内存中去，实际中是从#下面去通过数据库判断用户是否存在
-
-//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-
-
-
-
-//        String pwd = passwordEncoder.encode("123456");
-
-//        manager.createUser(User.withUsername("user_1").password(pwd).authorities("USER").build());
-
-//        manager.createUser(User.withUsername("user_2").password(pwd).authorities("USER").build());
-
-//        return manager;
-
-
-
         // #####################实际开发中在下面写从数据库获取数据###############################
 
 
+        return new UserDetailsService() {
 
-         return new UserDetailsService() {
+            @Override
+            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-         @Override
-         public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                // 通过用户名获取用户信息
+                MemeberExample memeberExample = new MemeberExample();
+                MemeberExample.Criteria criteria = memeberExample.createCriteria();
+                criteria.andUsernameEqualTo(username);
 
-         // 通过用户名获取用户信息
-             MemeberExample memeberExample = new MemeberExample();
-             MemeberExample.Criteria criteria = memeberExample.createCriteria();
-             criteria.andUsernameEqualTo(username);
-
-             List<Memeber> memebers = memeberService.selectByExample(memeberExample);
-
+                List<Memeber> memebers = memeberService.selectByExample(memeberExample);
 
 
-             boolean isUserExist = memebers!=null&&memebers.size()>0;
+                boolean isUserExist = memebers != null && memebers.size() > 0;
 
-         if (isUserExist) {
-             Memeber memeber = memebers.get(0);
-             //创建spring security安全用户和对应的权限（从数据库查找）
+                if (isUserExist) {
+                    Memeber memeber = memebers.get(0);
+                    //创建spring security安全用户和对应的权限（从数据库查找）
 
-             return new User(memeber.getUsername(), memeber.getPassword(),
+                    return new User(memeber.getUsername(), memeber.getPassword(),
 
-         AuthorityUtils.createAuthorityList("admin", "manager"));
+                            AuthorityUtils.createAuthorityList("admin", "manager"));
 
+                } else {
 
-         } else {
+                    throw new UsernameNotFoundException("用户[" + username + "]不存在");
 
-         throw new UsernameNotFoundException("用户[" + username + "]不存在");
+                }
 
-         }
+            }
 
-         }
-
-         };
-
+        };
 
 
     }
-
 
 
     @Override
 
     protected void configure(HttpSecurity http) throws Exception {
 
-        // @formatter:off
+//         @formatter:off
 
-        http.requestMatchers().anyRequest().and().authorizeRequests().antMatchers("/oauth/**").permitAll();
+        http.requestMatchers().anyRequest()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/oauth/*")
+                .permitAll();
 
         // @formatter:on
 

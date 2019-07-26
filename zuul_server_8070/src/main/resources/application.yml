@@ -35,16 +35,16 @@ zuul:
   host:
     connect-timeout-millis: 60000
     socket-timeout-millis: 20000
-  routes:
-    user-server:
-      path: /user-server/**
-        serviceId: user-server
-      sensitiveHeaders: "*"
-    page-consumer:
-      path: /page-consumer/**
-      serviceId: page-consumer
-      sensitiveHeaders: "*"
-    generaldata-server:
-      path: /generaldata-server/**
-      serviceId: generaldata-server
-      sensitiveHeaders: "*"
+#  routes:
+#    user-server:
+#      path: /user-server/**
+#        serviceId: user-server
+#      sensitiveHeaders: "*"
+#    page-consumer:
+#      path: /page-consumer/**
+#      serviceId: page-consumer
+#      sensitiveHeaders: "*"
+#    generaldata-server:
+#      path: /generaldata-server/**
+#      serviceId: generaldata-server
+#      sensitiveHeaders: "*"
