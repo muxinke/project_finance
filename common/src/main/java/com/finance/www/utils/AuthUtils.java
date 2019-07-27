@@ -1,14 +1,12 @@
 package com.finance.www.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.finance.www.pojo.Memeber;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Member;
 import java.util.List;
 
 /**
@@ -43,8 +41,7 @@ public class AuthUtils {
         // 拿到当前用户
         //1、使用JSONObject
         List<Memeber> members = JSON.parseArray((String) claims.get("userinfo"),Memeber.class);
-        Memeber memeber = members.get(0);
-        return memeber;
+        return members.get(0);
 
     }
 
