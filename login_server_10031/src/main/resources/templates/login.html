@@ -93,9 +93,10 @@
             layer.alert('请填写验证码', {icon: 0})
             return;
         }
+        //登陆提交到这里
         $.ajax({
             type: "post",
-            url: "index.html",
+            url: "/login.action",
             data: {
                 verifyCode: verifyCode,
                 username: username,
@@ -103,9 +104,7 @@
             },
             dataType: "json",
             success: function (data) {
-                var message = data.message;
-                var status = data.status;
-                if (status) {
+                if ("SUCCESS"==data.status) {
                     window.location.href = prePage;
                 } else {
                     layer.alert(data.message, {icon: 0});
@@ -131,21 +130,21 @@
             layer.alert("请填写验证码", {icon: 0});
             return;
         }
+
+        //找回密码接口
         $.ajax({
             type: "post",
-            url: "newLogin/findPwd.action",
+            url: "/newLogin/findPwd.action",
             data: {
                 verificationCode: verifyCode,
                 findphone: phone,
                 findpwd: password,
-                mode: 1,
-                type: "password"
             },
             dataType: "json",
             success: function (data) {
                 var message = data.message;
-                var status = data.status;
-                if (status) {
+
+                if ("SUCCESS"==data.status) {
                     layer.alert(message, {icon: 1});
                 } else {
                     layer.alert(message, {icon: 0});
@@ -168,20 +167,21 @@
         $(".code_text li").hover(function () {
             var inde = $(this).index();
             $(".code_img ul li").eq(inde).show().siblings().hide();
-        })
+        });
+        //头部用户信息栏
         $.ajax({
             type: "POST",
-            url: "newLogin/headerLogin.action",
+            url: "/newLogin/headerLogin.action",
             dataType: "json",
             success: function (data) {
-                if (data.status) {
+                if ("SUCCESS"==data.status) {
                     $('#register').before("<li><span class='nh'>您好，</span> </li>");
                     $('#register a').text("" + data.message + "");
                     $('#register a').attr("href", "userNew/index.go");
                     $('#login').remove();
                     $('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
                     $("#wealth").text('开启您的财富之旅');
-                    $("#wealth").attr("href", "reCash/toAdd.go");
+                    $("#wealth").attr("href", "/reCash/toAdd.go");
                     $("#bannerlogin").remove();
                 }
 
@@ -323,16 +323,15 @@
         </ul>
     </div>
 </div>
-<input type="hidden" value="/userNew/index.action" id="prePage"/>
+<input type="hidden" th:value="${url}" id="prePage"/>
 <div class="login">
     <div class="login_main">
         <div class="login_box">
             <form action="">
-                <input name="url" type="hidden" th:value="${url}"/>
                 <div class="login_top clearfix">
                     <h3 class="fl">欢迎登录</h3>
                     <p class="fr">
-                        没有账户, <a href="register/toRegister.action">免费注册</a>
+                        没有账户, <a href="/register/toRegister.action">免费注册</a>
                     </p>
                 </div>
                 <div class="userName" style="position:relative">
@@ -348,7 +347,7 @@
                 <div class="code">
                     <span class="code_text"> 验证码 </span>
                     <label for="code"></label><input type="text" name="code" id="code"/>
-                    <img src="/security/securityCodeImage.action" id="verifyCode" class="codeImg"
+                    <img src="/register/security/securityCodeImage.action" id="verifyCode" class="codeImg"
                          onclick="securityCode(this);" alt="刷新验证码"/>
                 </div>
                 <div class="u-form u-loin-red">
