@@ -39,7 +39,9 @@ zuul:
     login-server:
       path: /member/**
       serviceId: login-server
-
+    resources-server:
+      path: /resouces/**
+      serviceId: resources-server
 
 
   #全局取消敏感头让其可以传递到

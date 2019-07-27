@@ -49,9 +49,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder);
 
-//        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        String password = passwordEncoder.encode("971103");
-//        System.err.println("password = " + password);
     }
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
