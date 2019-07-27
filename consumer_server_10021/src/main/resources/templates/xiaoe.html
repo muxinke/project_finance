@@ -1,0 +1,492 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>使用指南-轻松贷-一心一意，普惠金融</title>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+    <link rel="stylesheet" href="css/layui.css"/>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1305052_77tleuf0yqo.css"/>
+</head>
+<body>
+<div class="big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+				
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+				<!--跳转登陆界面
+					<a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="login.html">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+				<!--注册界面
+					<a href="register/toRegister.go">快速注册</a>-->
+					<a href="zhuce.html">快速注册</a>
+				</li>
+				
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+				<a href="guide.html">使用指南</a></li>
+				
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+				<a href="problem.html">常见问题</a></li>
+				
+               <li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+			   <a style="color: #faa039" href="guarantee.html" >安全保障</a></li> 
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+		 
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+			
+					<li >
+						<a href="list.html"
+							>我要投资
+						</a>
+						
+						<ol class="m-list">
+							
+									<li>
+										<a href="list.html"
+											>投资列表
+										</a>
+									</li>
+								
+									<li>
+										<a href="xiangdao.html"
+											>投资向导
+										</a>
+									</li>
+								
+						</ol>
+					</li>
+				
+					<li >
+						<a href="msgpilu.html"
+							>信息披露
+						</a>
+						
+						<ol class="m-list">
+							
+						</ol>
+					</li>
+				
+					<li class="active" >
+						<a href="dae.html"
+							>我要借款
+							 <i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('theme/computer/img/hot2.gif') no-repeat"></i>
+						    
+						</a>
+						
+						<ol class="m-list">
+							
+									<li>
+										<a href="xiaoe.html">小额借款</a>
+									</li>
+								
+									<li>
+										<a href="dae.html"> 大额借款</a>
+									</li>
+						</ol>
+					</li>
+				
+					<li >
+						<a href="aboutus.html"> 关于我们</a>
+						<ol class="m-list">
+							
+									<li>
+										<a href="aboutus.html"> 企业简介</a>
+									</li>
+								
+									<li>
+										<a href="zizhi.html"> 公司资质</a>
+									</li>
+								
+									<li>
+										<a href="hezuohb.html"> 合作伙伴</a>
+									</li>
+								
+									<li>
+										<a href="contactus.html"> 联系我们</a>
+									</li>
+								
+									<li>
+										<a href="bulletin.html"> 平台公告</a>
+									</li>
+								
+									<li>
+										<a href="hr.html"> 招贤纳士</a>
+									</li>
+								
+						</ol>
+					</li>
+		</ul>
+	</div>
+</div>
+<div style="width:700px;border:1px solid #DCDCDC;margin-left:auto;margin-right:auto;margin-bottom:50px;">
+<div class="layui-collapse" lay-filter="test" style="width:700px; position:relative; margin-left:auto;margin-right:auto;">
+  <div class="layui-colla-item site-demo-active"  data-type="setPercent">
+    <h2 class="layui-colla-title">可借余额(点此查看)</h2>
+    <div class="layui-colla-content">
+			<h6>您的可用余额为：<span id="yue" th:text="${edu}">2000</span>￥</h6>
+			<div style="margin-top: 15px; width:300px">
+			  <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="demo">
+				<div class="layui-progress-bar layui-bg-cyan" lay-percent=""></div>
+				</div>
+			</div>
+    </div>
+  </div>
+  </div >
+  <div style="width:650px; position:relative;margin-left:auto;margin-right:auto;">
+  
+  <form class="layui-form " action="/borrowSubmit" lay-filter="demo1" method="post">
+   <div class="layui-form-item" >
+    <label class="layui-form-label">请输入您的借款金额:</label></br>
+    <div class="layui-input-block">
+      <input id="borrow" type="text" name="borrowMoney" lay-verify="required" lay-reqtext="输入金额是必填项，岂能为空？" autocomplete="off" placeholder="请输入金额" class="layui-input">
+    </div>
+  </div>
+   <div class="layui-form-item">
+    <label class="layui-form-label">借多久</label>
+    <div class="layui-input-block">
+      <select name="borrowTime" lay-filter="qixian" id="time">
+        <option value="3">3个月</option>
+        <option value="6">6个月</option>
+        <option value="12" selected="">12个月</option>
+        <option value="18">18个月</option>
+      </select>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">怎么还</label>
+    <div class="layui-input-block" >
+      <select name="borrowStyle" lay-filter="fangshi" id="style">
+        <option value="1">每月等额（每月还款金额相同）</option>
+        <option value="2">先息后本（先还利息，到期还本金）</option>
+    
+      </select>
+    </div>
+	<div class="layui-form-item">
+	 <label class="layui-form-label">还款计划</label>
+	 <div  class="site-demo-button" id="layerDemo">
+		 <button data-method="notice" type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-top:10px"><span id="firstTime"></span><span style="color:blue" id="firstMoney"></span><i class="layui-icon"></i></button>
+	 </div>
+  </div>
+   <div class="layui-form-item">
+   <label class="layui-form-label">收款账户</br><span style="font-size:5px;color:red">即时到账</span></label>
+   <div class="layui-input-block">
+       <input type="radio" name="cardName" value="本地账户" title="本地账户" checked="">
+      <input th:each="card:${cards}" type="radio" name="cardName" value="中国银行4567" th:value="${card}" th:title="${card}" title="中国银行4567">
+      <!--<input type="radio" name="card" value="中国农业银行2345" title="中国农业银行2345">
+      <input type="radio" name="card" value="中国工商银行1234" title="中国工商银行1234">
+      <input type="radio" name="card" value="中国建设银行6789" title="中国建设银行6789">-->
+    </div>
+   </div>
+   <div class="layui-form-item">
+   <label class="layui-form-label">借款用途</br></label>
+   <div class="layui-input-block">
+	 <input type="radio" name="borrowUse" value="1" title="个人日常消费" checked="">
+      <input type="radio" name="borrowUse" value="2" title="装修">
+      <input type="radio" name="borrowUse" value="3" title="旅游">
+      <input type="radio" name="borrowUse" value="4" title="教育">
+      <input type="radio" name="borrowUse" value="5" title="医疗">
+   </div>
+   </div>
+   <div class="layui-form-item">
+   <label class="layui-form-label">放款机构</br></label>
+   <div class="layui-input-block">
+	<input type="text" name="jigou" lay-verify="title" autocomplete="off" value="西安银行" class="layui-input" readonly>
+   </div>
+   </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">贷款协议</label>
+    <div class="layui-input-block">
+     <input type="checkbox"  name="open" lay-skin="switch" lay-filter="switchTest" lay-text="同意|不同意" ><br>
+	  <a  href="http://www.baidu.com">本人已阅读并同意签署<font style="color:blue">《个人消费贷款合同》</font>、<font style="color:blue">《个人信用报告查询授权书》</font>，<font>同意报送</font>贷款相关信息至金融信息信息基础
+	  数据库<font>人行征信系统</font></a>
+    </div>
+  </div>
+   <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="" lay-filter="demosub">立即提交</button>
+    </div>
+  </div>
+  </form>
+  </div>
+  
+  
+  <div id="aa" style="display:none">
+  <div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">
+	  <ul class="layui-timeline" id="ulappend">
+	 <!-- <span th:if="${cpmVo != null}">
+	  <h6>还款总金额：<span  th:text="${cpmVo.totalMoney}"></span></h6>
+	  <h6>还款总利息：<span   th:text="${cpmVo.totalInterest}"></span></h6>
+  <li class="layui-timeline-item"   th:each="item:${cpmVo.MoneyVoList}">
+    <i class="layui-icon layui-timeline-axis"></i>
+    <div class="layui-timeline-content layui-text">
+      <div class="layui-timeline-title"><span th:text="${item.periods}">首期</span> <span th:text="${item.schedule}">2019/07/26</span><br>
+		  					还款额：<span th:text="${item.money}">88.69</span></div>
+    </div>
+  </li></span>-->
+</ul></div>
+</div>
+</div>
+</div>
+		<!-- 底部 -->
+		
+<base >
+<div class="bottom" >
+	<div class="w1200">
+		<div class="bottom_1">
+			<ul>
+				<li><a href="aboutus.html">关于我们</a></li>
+				<li><a href="contcatus.html">联系我们</a></li>
+				<li><a href="guarantee.html">保障体系</a></li>
+				<li><a href="bulletin.html">平台公告</a></li>
+				<li><a href="hr.html">招贤纳士</a></li>
+				<li><a href="problem.html">常见问题</a></li>
+				<li><a href="guide.html">使用指南</a></li>
+				<li><a href="app.html">手机客户端</a></li>
+			</ul>
+		</div>
+		<div class="bottom_middle clearfix">
+			<div class="bottom_2">
+				<p>电话: 0791-83858285</p>
+				<p>邮箱: service@kkd2p.com</p>
+				<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+			</div>
+		
+			<div class="bottom_4">
+				
+				<h3>400-8763-118</h3>
+				
+				
+				<div class="serviceTime clearfix">
+							<p>服务时间：周一至周五9：00-21：00</p>
+							<p>
+								网贷有风险，出借需谨慎
+							</p>
+							<p>
+							  陕西省互联网金融协会:400-9158-227
+							</p>
+						</div>
+			</div>
+		</div>
+		<div class="bottom_5 clearfix">
+			<ul>
+				
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+				
+				<li>? 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+			
+			</ul>
+		</div>
+		<div class="bottom_6">
+			<ul>
+				<li>友情链接:</li>
+				
+					                    <li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+					
+					                    <li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+					
+					                    <li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+					
+					                  
+
+					
+			</ul>
+		</div>
+	</div>
+</div>	
+<script src="http://39.107.15.222:8081/src/layui/layui.js"></script>
+<script>
+    //JavaScript代码区域	
+		layui.use(['element', 'layer','form'], function(){
+		  var $ = layui.jquery
+		  ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		   var layer = layui.layer;
+		   var form = layui.form;
+  
+  //触发事件
+  var active = {
+    setPercent: function(){
+      //设置剩余额度百分比
+		var yue =$("#yue").text();
+		var percent = (yue/4500);
+    element.progress('demo',(percent*100).toFixed(2)+'%');
+    }
+	,notice: function(){
+      //示范一个公告层
+      layer.open({
+        type: 1
+        ,title: false //不显示标题栏
+        ,closeBtn: false
+        ,area: '300px;'
+        ,shade: 0.8
+        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+        ,btn: ['确认']
+        ,btnAlign: 'c'
+        ,moveType: 1 //拖拽模式，0或者1
+        ,content: $("#aa").html()
+        /*,success: function(layero){
+          var btn = layero.find('.layui-layer-btn');
+          btn.find('.layui-layer-btn0').attr({
+            href: 'http://www.layui.com/'
+            ,target: '_blank'
+          });
+        }*/
+      });
+    }
+  };
+  form.on('submit(demosub)', function(data){
+      if (parseFloat($("#borrow").val())>parseFloat($("#yue").text())){
+          $("#ulappend").empty();
+          layer.msg("不能超过您的可借余额",{ icon: 5,time:2000,anim: 0});
+          return false;
+      }
+	if(escape(JSON.stringify(data.field)).indexOf("open")>0){
+
+			return true;
+	}
+      layer.msg("请确认已经同意了贷款条约",{ icon: 1,time:2000,anim: 0});
+		return false;
+  });
+  form.on('switch(switchTest)', function(data){
+		  if((this.checked ? 'true' : 'false')=='true'){
+		  
+		  layer.tips("您已经同意贷款协议，请遵从贷款条约，按时还款", data.othis)
+		  }
+    
+  });
+  //触发下拉余额显示
+  $('.site-demo-active').on('click', function(){
+    var othis = $(this), type = $(this).data('type');
+    active[type] ? active[type].call(this, othis) : '';
+  });
+  //触发公示弹出
+   $('#layerDemo .layui-btn').on('click', function(){
+    var othis = $(this), method = othis.data('method');
+    active[method] ? active[method].call(this, othis) : '';
+  });
+   //设置输入金额的控制条件
+			$("#borrow").blur(function () {
+				if (parseFloat($(this).val())>parseFloat($("#yue").text())){
+				    $("#borrow").val("");
+                    $("#ulappend").empty();
+				    layer.msg("不能超过您的可借余额",{ icon: 5,time:2000,anim: 0});
+				}else if (parseFloat($("#borrow").val())>0){
+				    calculate();
+				}else if($("#borrow").val()==""){
+                    $("#firstTime").text("");
+                    $("#firstMoney").text("");
+				}
+            });
+			//下拉框触发事件 还款方式
+            form.on('select(fangshi)', function (data) {
+                if (parseFloat($("#borrow").val())>0){
+                    calculate();
+                }
+            });
+            //下拉框触发事件 还款时间
+            form.on('select(qixian)', function (data) {
+                if (parseFloat($("#borrow").val())>0){
+                    calculate();
+                }
+            });
+			//计算还款
+			function calculate() {
+				//获取金额、还款期限、还款方式
+				var borrow =$("#borrow").val();
+				var time =$("#time").val();
+				var style =$("#style").val();
+				if (style==1) {
+                    if (parseFloat(borrow) <= parseFloat($("#yue").text()) && parseFloat(borrow) > 0) {
+                        //发ajax请求
+                        $.ajax({
+                            url: "/querycpm",
+                            type: 'post',
+                            data: {
+                                borrow: borrow,
+                                time: time,
+                            },
+                            success: function (data) {
+                                $("#firstTime").text(data.moneyVoList[0].periods);
+                                $("#firstMoney").text("应还"+data.moneyVoList[0].money+"元");
+                                $("#ulappend").empty();
+                                $("#ulappend").append('<h6>还款总金额：<span>' + data.totalMoney + '</span></h6>' +
+                                    '<h6>还款总利息：<span>' + data.totalInterest + '</span></h6>');
+                                $.each(data.moneyVoList, function (i, value) {
+                                    $("#ulappend").append('<li class="layui-timeline-item">' +
+                                        '<i class="layui-icon layui-timeline-axis"></i>' +
+                                        '<div class="layui-timeline-content layui-text">' +
+                                        '<div class="layui-timeline-title"><span >' + value.periods + '</span> <span >' + value.schedule + '</span><br>' +
+                                        '还款额：<span >' + value.money + '</span></div>' +
+                                        '</div>' +
+                                        '</li>');
+                                })
+
+                            }
+                        })
+                    }
+                }else if (style==2){
+                    if (parseFloat(borrow) <= parseFloat($("#yue").text()) && parseFloat(borrow) > 0) {
+                        //发ajax请求
+                        $.ajax({
+                            url: "/querybiapp",
+                            type: 'post',
+                            data: {
+                                borrow: borrow,
+                                time: time,
+                            },
+                            success: function (data) {
+                                $("#firstTime").text(data.moneyVoList[0].periods);
+                                $("#firstMoney").text("应还"+data.moneyVoList[0].money+"元");
+                                $("#ulappend").empty();
+                                $("#ulappend").append('<h6>还款总金额：<span>' + data.totalMoney + '</span></h6>' +
+                                    '<h6>还款总利息：<span>' + data.totalInterest + '</span></h6>');
+                                $.each(data.moneyVoList, function (i, value) {
+                                    $("#ulappend").append('<li class="layui-timeline-item">' +
+                                        '<i class="layui-icon layui-timeline-axis"></i>' +
+                                        '<div class="layui-timeline-content layui-text">' +
+                                        '<div class="layui-timeline-title"><span >' + value.periods + '</span> <span >' + value.schedule + '</span><br>' +
+                                        '还款额：<span >' + value.money + '</span></div>' +
+                                        '</div>' +
+                                        '</li>');
+                                })
+
+                            }
+                        })
+                    }
+				}
+            }
+});
+   
+</script>
+<script type="text/javascript" src="theme/computer/js/jquery-2.1.4.min.js" ></script>
+		<script type="text/javascript" src="theme/computer/js/iconfont.js" ></script>
+		<script type="text/javascript" src="theme/computer/js/style.js" ></script>
+
+</body>
+</html>
