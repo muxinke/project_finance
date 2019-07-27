@@ -4,9 +4,8 @@ import com.finance.www.login_server_10031.service.serviceimpl.Fallback;
 import com.finance.www.token.Token;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
 
 /**
  * @author ：邓一凡
