@@ -58,8 +58,7 @@ public class LoginRestController {
     @Autowired
 
     ZuulTokenService tokenService;
-
-
+    
     /**
      * 跳转登录页面
      *
@@ -99,7 +98,7 @@ public class LoginRestController {
      * @return RestResponseUtil
      */
     @PostMapping("/login.action")
-    private RestResponseUtil login(HttpSession session, HttpServletResponse response, String username, String password, String verifyCode, String url) {
+    public RestResponseUtil login(HttpSession session, HttpServletResponse response, String username, String password, String verifyCode, String url) {
         try {
             String codeKey = (String) session.getAttribute(ImgCode.RANDOMCODEKEY);
             // 验证码判断
