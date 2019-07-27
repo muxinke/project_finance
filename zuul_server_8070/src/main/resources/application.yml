@@ -1,0 +1,56 @@
+server:
+  port: 8070
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.107.15.222:3306/easydai?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+    username: root
+    password: 971103
+    type: com.alibaba.druid.pool.DruidDataSource
+  application:
+    name: zuul-server
+  redis:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+    host: 39.107.15.222
+    port: 6379
+    password: 971103
+logging:
+  level:
+    per.lx: DEBUG
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.finance.www.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+zuul:
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+  sensitiveHeaders:
+  routes:
+    login-server:
+      path: /member/**
+      serviceId: login-server
+    resources-server:
+      path: /resouces/**
+      serviceId: resources-server
+
+
+  #全局取消敏感头让其可以传递到
+
+#    page-consumer:
+#      path: /page-consumer/**
+#      serviceId: page-consumer
+#      sensitiveHeaders: "*"
+#    generaldata-server:
+#      path: /generaldata-server/**
+#      serviceId: generaldata-server
+#      sensitiveHeaders: "*"

@@ -1,58 +1,129 @@
 package com.finance.www.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Produit {
+public class Produit implements Serializable {
     private Integer id;
-
+    //投资类型
     private Integer investmentType;
-
+    /**
+     *产品等级
+     */
     private Integer produitsOrdre;
-
+    /**
+     *投标金额
+     */
     private String montantDeOffre;
-
+    /**
+     *
+     已投金额
+     */
     private String investmentAmount;
-
+    /**
+     *产品期限
+     */
     private Integer produitDureeDes;
+    /**
+     * 产品标号
 
+     */
     private Integer produitMarque;
+    /**
+     *还款期限
 
+     */
     private Integer remboursementsExpires;
-
+    /**
+     *
+     还款方式
+     */
     private Integer remboursementsGuise;
+    /**
+     *
+     项目状态
 
+     */
     private Integer isCondition;
+    /**
+     *起息时间
 
+     */
     private Date dateDeValeur;
+    /**
+     *主体性质
 
+     */
     private String natureDuSujet;
+    /**
+     *所属行业
 
+     */
     private String secteurActivite;
+    /**
+     * 年收入情况
 
+     */
     private String revenuAnnuel;
+    /**
+     *征信报告核查结果信息
 
+     */
     private String creditFruit;
+    /**
+     * 负债情况
 
+     */
     private String totalEngagements;
+    /**
+     *其他借款情况
 
+     */
     private String autresEmprunts;
+    /**
+     *创建时间
 
+     */
     private Date createTime;
+    /**
+     *最后更改时间
 
+     */
     private Date updateTime;
+    /**
+     * 是否同意借款协议&征信授权协议
 
+     */
     private Integer isConsent;
+    /**
+     * 年利率
 
+     */
     private String yearInterestRate;
+    /**
+     *
+     未还本息
 
+     */
     private String haveNotPrincipaInterest;
+    /**
+     * 已还本息
 
+     */
     private String hasAlsoPrincipaInterest;
+    /**
+     * 应还本息
 
+     */
     private String shouldCallPrincipaInterest;
+    /**
+     * 借款标题
 
+     */
     private String borrowingTitle;
-
+    /**
+     *发布时间
+     */
     private Date releaseTime;
 
     public Integer getId() {

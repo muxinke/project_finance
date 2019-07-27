@@ -1,0 +1,19 @@
+
+server:
+  port: 10023
+spring:
+  thymeleaf:
+    cache: false
+  application:
+    name: consumer-server-10023
+  profiles:
+    active: 10023
+  cloud:
+    config:
+      discovery:
+        service-id: server-config
+        enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka

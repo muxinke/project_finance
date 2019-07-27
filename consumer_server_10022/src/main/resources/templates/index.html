@@ -1,0 +1,1336 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<base >
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="keywords" content="互联网金融、轻松贷">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="description" content="高效、精准、安全的P2P网络借贷平台">
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/login.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
+	<script  type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery-1.8.2.min.js"></script>
+	<link href="http://39.107.15.222:8081/src/theme/validationEngine/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine-zh_CN.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery.form.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/common.js"></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/main.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/layer/layer.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.circliful.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/scroll.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/person_style.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/personal.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/swiper-3.4.2.min.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/mall.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
+
+
+
+
+
+	<title>轻松贷-一心一意，普惠金融</title>
+
+	<script type="text/javascript"
+			src="http://39.107.15.222:8081/src/theme/layer/layer.min.js"></script>
+	<style>
+		.opentb {
+			display: block;
+			position: fixed;
+			right: 20px;
+			width: 181px;
+			height: 218px;
+			cursor: pointer;
+			z-index: 9999;
+		}
+
+		.opentb img {width: 181px; height: 218px;}
+		html,body{
+			margin:0;padding:0;
+			width: 100%;
+			height: 100%;
+		}
+		.wap{
+			display: none;
+		}
+	</style>
+
+
+
+	<script type="text/javascript">
+
+
+        function browserRedirect() {
+            var sUserAgent = navigator.userAgent.toLowerCase();
+            var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+            var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+            var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+            var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+            var bIsAndroid = sUserAgent.match(/android/i) == "android";
+            var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+            var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+            if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+                var url = location.search;
+                url = url.replace('?too=',"");
+                if(url=='wa'){
+                    return;
+                }
+                window.location.href="index.html";
+
+            } else {
+
+            }
+        }
+        browserRedirect();
+
+	</script>
+	<script type="text/javascript">
+        $(function(){
+            var timestamp = (new Date()).valueOf();
+            if(timestamp >1546271999000){
+                $('#award').hide();
+                return false;
+            }
+            var a=sessionStorage.getItem("load");
+            if(!a){
+                sessionStorage.setItem("load","1111");
+                cookit();
+            }
+
+            function cookit() {
+                $.layer({
+                    type: 1,
+                    area: ['600px', 'auto'],
+                    offset : ['160px' , '50%'],
+                    bgcolor:'',
+                    shift: 'top',
+                    shadeClose:true,
+                    title: false,
+                    border: [0],
+                    shadeClose:true,
+                    page: {dom : '#award'}
+                });
+            }
+        });
+	</script>
+</head>
+<body>
+
+<!--<div class="opentb"   style="right:79px; top: 534px;">
+<a href="http://www.yxp2p.com/investAct/invest.go" >
+    <img src="theme/default/images/yandan.png" data-url="http://www.yxp2p.com/investAct/invest.go">
+</a>
+</div>-->
+<!--top begin-->
+
+<base >
+<script type="text/javascript">
+    $(function() {
+        $(".navitem li").hover(function() {
+            $(this).find("ol").show().siblings().find("ol").hide("slow");
+        }, function() {
+            $(this).find("ol").slideUp("slow");
+        })
+        $(".code_text li").hover(function() {
+            var inde = $(this).index();
+            $(".code_img ul li").eq(inde).show().siblings().hide();
+        })
+        $.ajax({
+            type : "POST",
+            url : "newLogin/headerLogin.action",
+            dataType : "json",
+            success : function(data) {
+                if (data.status) {
+                    $('#register').before("<li><span class='nh'>您好，</span> </li>");
+                    $('#register a').text("" + data.message + "");
+                    $('#register a').attr("href", "userNew/index.go");
+                    $('#login').remove();
+                    $('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
+
+                    $("#bannerlogin").remove();
+                }
+
+            }
+        });
+    });
+</script>
+<div class=" big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+					<!--跳转登陆界面
+                        <a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="login.html">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+					<!--注册界面
+                        <a href="register/toRegister.go">快速注册</a>-->
+					<a href="zhuce.html">快速注册</a>
+				</li>
+
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+					<a href="guide.html">使用指南</a></li>
+
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+					<a href="problem.html">常见问题</a></li>
+
+				<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+					<a style="color: #faa039" href="guarantee.html" >安全保障</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li  class="active" >
+				<a href="index.html">首页</a>
+			</li>
+
+			<li >
+				<a href="/list"
+				>我要投资
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="/list"
+						>投资列表
+						</a>
+					</li>
+
+					<li>
+						<a href="xiangdao.html"
+						>投资向导
+						</a>
+					</li>
+
+				</ol>
+			</li>
+
+			<li >
+				<a href="msgpilu.html"
+				>信息披露
+				</a>
+
+				<ol class="m-list">
+
+				</ol>
+			</li>
+
+			<li >
+				<a href="dae.html"
+				>我要借款
+					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="xiaoe.html">小额借款</a>
+					</li>
+
+					<li>
+						<a href="dae.html"> 大额借款</a>
+					</li>
+				</ol>
+			</li>
+
+			<li >
+				<a href="aboutus.html"> 关于我们</a>
+				<ol class="m-list">
+
+					<li>
+						<a href="aboutus.html"> 企业简介</a>
+					</li>
+
+					<li>
+						<a href="zizhi.html"> 公司资质</a>
+					</li>
+
+					<li>
+						<a href="hezuohb.html"> 合作伙伴</a>
+					</li>
+
+					<li>
+						<a href="contactus.html"> 联系我们</a>
+					</li>
+
+					<li>
+						<a href="bulletin.html"> 平台公告</a>
+					</li>
+
+					<li>
+						<a href="hr.html"> 招贤纳士</a>
+					</li>
+
+				</ol>
+			</li>
+
+		</ul>
+	</div>
+</div>
+<!--轮播图 -->
+
+<base >
+<link href="http://39.107.15.222:8081/src/theme/computer/css/module.css" rel="stylesheet"
+	  type="text/css" />
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/lrtk.js"></script>
+
+<script type="text/javascript">
+    var t = n = 0;
+    var count;
+    $(function() {
+        count = $("#u-bd li").length;
+        $("#u-bd li:not(:first-child)").hide();
+
+        $("#u-tab a").click(
+            function() {
+                var i = $(this).attr("rel") - 1;//获取Li元素内的值，即1，2，3，4
+
+                n = i;
+                if (i >= count)
+                    return;
+                $("#u-bd li").filter(":visible").fadeOut(500).parent()
+                    .children().eq(i).fadeIn(1000);
+                $(this).css({
+                    "background" : "#6e7179",
+                    "width":"28px",
+                    "height":"12px",
+                    "border-radius":"20px"
+                }).siblings().css({
+                    "background" : "#fff",
+                    "width":"12px",
+                    "height":"12px",
+                    "border-radius":"50%"
+                });
+            });
+        t = setInterval("showAuto()", 2000);
+
+
+    });
+
+    function showAuto() {
+        n = n >= (count - 1) ? 0 : ++n;
+        $("#u-tab a").eq(n).trigger('click');
+    }
+</script>
+
+<div class="g-bd" >
+	<div class="m-bd">
+		<ul class="u-bd" id="u-bd">
+
+			<li id="id=bi_0 "
+				style="background:url(http://39.107.15.222:8081/src/uploads/banner//20190115092244_697.png) no-repeat;background-size:100% 330px;"
+
+				onclick="javascript:window.open('#')"
+
+			>
+
+
+			</li>
+
+			<li id="id=bi_0 "
+				style="background:url(http://39.107.15.222:8081/src/uploads/banner//20190530165345_664.png) no-repeat;background-size:100% 330px;"
+				onclick="javascript:window.open('#')"
+			>
+
+
+			</li>
+
+			<li id="id=bi_0 "
+				style="background:url(http://39.107.15.222:8081/src/uploads/banner//20190531145034_961.png) no-repeat;background-size:100% 330px;"
+
+				onclick="javascript:window.open('#')"
+
+			>
+
+
+			</li>
+
+			<li id="id=bi_0 "
+				style="background:url(http://39.107.15.222:8081/src/uploads/banner//20190704170558_32.png) no-repeat;background-size:100% 330px;"
+
+				onclick="javascript:window.open('#')"
+
+			>
+
+
+			</li>
+
+			<li id="id=bi_0 "
+				style="background:url(http://39.107.15.222:8081/src/uploads/banner//20180323093641_48.jpg) no-repeat;background-size:100% 330px;"
+
+				onclick="javascript:window.open('#')"
+
+			>
+
+
+			</li>
+
+		</ul>
+
+		<div class="u-tab" id="u-tab" >
+
+			<a href="javascript:;"
+			   rel="1"></a>
+
+			<a href="javascript:;"
+			   rel="2"></a>
+
+			<a href="javascript:;"
+			   rel="3"></a>
+
+			<a href="javascript:;"
+			   rel="4"></a>
+
+			<a href="javascript:;"
+			   rel="5"></a>
+		</div>
+
+	</div>
+	<div class="latest_yxd">
+		<div class="latest_box">
+			<h4>预期年化收益率高达</h4>
+			<h3>11.00%</h3>
+			<p>银行存管,提现实时到账</p>
+			<a id="wealth" href="register/toRegister.action" class="collar">领1000元现金红包</a>
+			<p id="bannerlogin" class="latest_login">
+				已有账号,<a href="login.html">立即登录</a>
+			</p>
+		</div>
+	</div>
+</div>
+
+
+
+<!--公告 -->
+
+<base >
+<div class="notice">
+	<div class="w1200 container_notice">
+		<div class="yxd_gg">
+			<span>最新公告</span>
+		</div>
+		<ul class="notice_yxd fl">
+
+			<li>
+				<a href="newCatalog/show.action?id=22&detailId=980">
+					<div class="notice_yxd_left">
+						这里是查出的咨询
+					</div>
+					<div class="notice_yxd_time">
+						2019-06-06
+					</div>
+				</a>
+			</li>
+
+
+		</ul>
+		<div class="more_yxd fr">
+			<a href="newCatalog/bulletin.action?id=22">更多>></a>
+		</div>
+	</div>
+</div>
+
+<!--四个图标-->
+
+<div class="propaganda">
+	<div class="w1200">
+		<ul>
+			<li>
+				<img src="http://39.107.15.222:8081/src/theme/computer/img/t1.png" class="circle">
+				<img src="http://39.107.15.222:8081/src/theme/computer/img/t2.png" class="icon" onclick="location.href='newBorrow/guarantee.go'">
+				<h4>信赖</h4>
+				<p>陕西电子集团成员企业</p>
+			</li>
+			<li>
+				<img src="http://39.107.15.222:8081/src/theme/computer/img/g1.png" class="circle">
+				<img src="http://39.107.15.222:8081/src/theme/computer/img/g2.png" class="icon" onclick="location.href='newBorrow/guarantee.go'">
+				<h4>保障</h4>
+				<p>银行资金存管</p>
+			</li>
+			<li>
+				<img src="http://39.107.15.222:8081/src/theme/computer/img/a1.png" class="circle">
+				<img src="http://39.107.15.222:8081/src/theme/computer/img/a2.png" class="icon" onclick="location.href='newBorrow/guarantee.go'">
+				<h4>权威</h4>
+				<p>陕西省互联网金融协会会长穆歆柯</p>
+			</li>
+			<li>
+				<img src="http://39.107.15.222:8081/src/theme/computer/img/s1.png" class="circle">
+				<img src="http://39.107.15.222:8081/src/theme/computer/img/s2.png" class="icon" onclick="location.href='newBorrow/guarantee.go'">
+				<h4>透明</h4>
+				<p>轻松贷接入法大大电子签章</p>
+			</li>
+		</ul>
+	</div>
+</div>
+<!--新手专享begin-->
+
+<base >
+<div class="novice_Exclusive w1200">
+	<div class="novice_left fl">
+		<h3>新手专享</h3>
+		<a href="/list">查看更多>></a>
+	</div>
+	<div class="novcie_box">
+		<div class="novice_detail">
+			<div class="novice_middle fl">
+				<div class="bz">
+					<span>新手专享</span>
+				</div>
+				<div class="subject " th:each="produit1:${produit1s}">
+
+					<div class="subject_1" style="width:100%;height:auto;min-height:1px;overflow:hidden;">
+
+						<p class="title"><span th:text="${produit1.investmentType}">新人标</span>【<span th:text="${produit1.id}">354</span>】</p>
+
+						<p class="increase_interest" >
+							<span>+4.0%</span>息
+						</p>
+
+					</div>
+					<p class="credit_rating">
+						<span>信用等级:</span><span th:text="${produit1.produitsOrdre}">AA</span>
+					</p>
+					<div class="subject_detail">
+						<ul>
+							<li class="profit">
+								<h3 th:text="${produit1.yearInterestRate}">9.0%</h3>
+								<p >预期收益</p>
+							</li>
+							<li class="a_money">
+								<h3 th:text="${(produit1.montantDeOffre)}">200000.0</h3>
+								<p>贷款金额(元)</p>
+							</li>
+							<li class="term">
+								<h3 th:text="${produit1.produitDureeDes}+月">
+									31天
+
+								</h3>
+								<p>项目期限</p>
+							</li>
+						</ul>
+					</div>
+					<div class="subject_bottom clearfix">
+						<div class="investment_amount fl">
+							<h3 th:text="${produit1.ketou}">0.0</h3>
+							<p>可投金额(元)</p>
+						</div>
+						<div class="immediate_investment fr">
+
+							<a style="background-color: #707070; color: #ffffff;cursor: pointer;display: block;height: 45px;line-height: 45px;margin: 0 auto;text-align: center;width: 135px;" th:href="'/detail?pid='+${produit1.id}" th:text="${produit1.isCondition}">已还款</a>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="novice_right fl">
+				<div class="bz">
+					<span>新手攻略</span>
+				</div>
+				<div class="raiders">
+					<p class="title">新手任务</p>
+					<p class="new_raiders">今日已有0人完成任务，拿到新手福利！</p>
+					<div class="raiders_img">
+						<dl>
+							<dt><img src="http://39.107.15.222:8081/src/theme/computer/img/red1.png"></dt>
+							<dd>完成注册</dd>
+							<dd class="raiders_incentive">送1000元红包</dd>
+						</dl>
+						<dl>
+							<dt><img src="http://39.107.15.222:8081/src/theme/computer/img/money2.png"></dt>
+							<dd>投资新手项目</dd>
+							<dd class="raiders_register"><a href="zhuce.html">去注册</a></dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--保证金贷款-->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".lending_yxd  .lending_left ul li").on("click", function() {
+            var type = $(this).attr('id');
+            var url = "/list?biaotype="+type;
+            window.location.href = url;
+        })
+
+        var timestamp = (new Date()).valueOf();
+        if(timestamp>1513008000000 && timestamp<1513267199000){
+            $('#stat').show();
+        }
+    })
+
+
+</script>
+
+<div class="lending_yxd w1200 clearfix">
+	<div class="lending_left fl">
+		<h3>保证金贷款</h3>
+		<a href="/list">查看更多>></a>
+		<ul class="lending_title">
+			<li id="4" class="active">保证金 <!--<span>0</span>-->
+			</li>
+			<li id="2">保险承保 <!--<span>0</span>-->
+			</li>
+		</ul>
+	</div>
+	<div class="lending_right fr lending_1">
+		<ul>
+
+
+			<li th:each="produit4:${produit4s}">
+				<div class="project_top clearfix">
+					<div class="subject  fl">
+						<div class="subject_1" >
+							<p class="title" ><span th:text="${produit4.borrowingTitle}">保险金贷款</span>【<span th:text="${produit4.id}">3740</span>】&#26631;&#12305;</p>
+
+						</div>
+						<p class="credit_rating2"><span>信用等级:</span><span th:text="${produit4.produitsOrdre}">AA</span></p>
+
+					</div>
+					<div class="project_speed fr myStat2" data-dimension="70"
+						 th:data-text="${produit4.wcbaifenbi}" data-width="6"
+						 data-fontsize="14" data-border="inline"
+						 th:data-percent="${produit4.wanchenglv}"
+						 data-fgcolor="#009dda" data-bgcolor="#ccc"></div>
+				</div>
+				<div class="project_middle clearfix">
+					<dl>
+						<dt class="profit" th:text="${produit4.yearInterestRate}">
+							9.0
+							%
+						</dt>
+						<dd>预期收益</dd>
+					</dl>
+					<dl>
+						<dt class="days" th:text="${produit4.produitDureeDes}+月">
+							31天
+						</dt>
+						<dd>项目期限</dd>
+					</dl>
+				</div>
+				<div class="project_amount">
+					<h3 th:text="${produit4.montantDeOffre}">
+						180000.0
+					</h3>
+					<p>贷款金额(元)</p>
+				</div>
+				<div class="filled">
+					<a class="auu" th:href="'/detail?pid='+${produit4.id}" th:text="${produit4.isCondition}">还款中</a>
+				</div>
+
+			</li>
+
+		</ul>
+		<ul style="display: none;">
+
+			<li th:each="produit2:${produit2s}">
+				<div class="project_top clearfix">
+					<div class="subject  fl">
+						<div class="subject_1" >
+							<p class="title" ><span th:text="${produit2.borrowingTitle}">保险承保</span>【<span th:text="${produit2.id}">006</span>】</p>
+
+						</div>
+						<p class="credit_rating2"><span>信用等级:</span><span th:text="${produit2.produitsOrdre}">AA</span></p>
+
+
+
+					</div>
+					<div class="project_speed fr myStat2" data-dimension="70"
+						 th:data-text="${produit2.wcbaifenbi}" data-width="6"
+						 data-fontsize="14" data-border="inline"
+						 th:data-percent="${produit2.wanchenglv}" data-fgcolor="#009dda"
+						 data-bgcolor="#ccc"></div>
+				</div>
+				<div class="project_middle clearfix">
+					<dl>
+						<dt class="profit" th:text="${produit2.yearInterestRate}">
+							6.0
+							%
+						</dt>
+						<dd>预期收益</dd>
+					</dl>
+					<dl>
+						<dt class="days" th:text="${produit2.produitDureeDes}+月">
+							31天
+						</dt>
+						<dd>项目期限</dd>
+					</dl>
+				</div>
+				<div class="project_amount" >
+					<h3 th:text="${produit2.montantDeOffre}">
+						830000.0
+					</h3>
+					<p>贷款金额(元)</p>
+				</div>
+				<div class="filled">
+					<a class="auu" th:href="'/detail?pid='+${produit2.id}" th:text="${produit2.isCondition}">已还款</a>
+				</div>
+
+			</li>
+
+
+
+
+		</ul>
+	</div>
+</div>
+
+<!--统计数据-->
+
+<script>
+    $(function() {
+        var createTime = "2019-07-16";
+        createTime = new Date(createTime).getTime();
+        function computed() {
+            var now = new Date().getTime();
+            var total = now - createTime;
+            var year = parseInt(total / (1000 * 60 * 60 * 24));
+            var yearRem = total / (1000 * 60 * 60 * 24 * 365) - year;
+            var month = parseInt(yearRem * 12);
+            var monthRem = yearRem * 12 - month;
+            var day = parseInt(monthRem * 30);
+            var dayRem = monthRem * 30 - day;
+            var hour = parseInt(dayRem * 24);
+            var hourRem = dayRem * 24 - hour;
+            var min = parseInt(hourRem * 60);
+            var minRem = hourRem * 60 - min;
+            var second = parseInt(minRem * 60);
+            var newDate = '<span class="year">' + year + '<i>年</i></span>'
+                + '<span>' + month + '<i>月</i></span>' + '<span>' + day
+                + '<i>天</i></span>' + '<span>' + hour + '<i>时</i></span>'
+                + '<span>' + min + '<i>分</i></span>' + '<span>' + second
+                + '<i>秒</i></span>';
+            return year;
+        }
+        $("#date").html(computed());
+    })
+</script>
+<div class="data w1200">
+	<ul>
+		<li>
+			<p>轻松贷稳健运营（天）</p>
+			<h3 id="date"></h3>
+		</li>
+		<li>
+			<p>注册用户数（人）</p>
+			<h3>5</h3>
+		</li>
+		<li>
+			<p>累计交易额（元）</p>
+			<h3>0.00</h3>
+		</li>
+		<li>
+			<p>累计为用户赚取收益（元）</p>
+			<h3>0.00</h3>
+		</li>
+	</ul>
+	<div class="lookMore">
+		<img src="http://39.107.15.222:8081/src/theme/computer/img/data.gif">
+		<a href="yyshuju.html">查看更多</a>
+	</div>
+</div>
+<!--投资项目-->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".investment_project  .investment_left ul li").on("click",function() {
+            var type = $(this).attr('id');
+            var url = "/list?biaotype="
+                + type;
+            window.location.href = url;
+        })
+        var timestamp = (new Date()).valueOf();
+        if(timestamp>1546271999000){
+            $('#timeLimit').hide();
+
+        }
+
+    })
+</script>
+<div class="investment_project w1200">
+	<div class="investment_left fl">
+		<h3>投资项目</h3>
+		<a href="/list">查看更多>></a>
+		<ul class="investment_title">
+			<li id="3" class="active" >供应链 <!--<span>0</span>--></li>
+			<li id="8">抵押标 <!--<span>0</span>--></li>
+			<li id="7">担保标 <!--<span>4</span>--></li>
+
+		</ul>
+	</div>
+	<div class="investment_right fr">
+		<ul class="clearfix">
+
+			<li th:each="produit3:${produit3s}">
+				<div class="project_top clearfix">
+					<div class="subject  fl">
+						<div class="subject_1">
+							<p class="title">
+								<span th:text="${produit3.borrowingTitle}">供应链贷款</span>【<span th:text="${produit3.id}">340</span>】
+							</p>
+
+						</div>
+						<p class="credit_rating2">
+							<span>信用等级:</span ><span th:text="${produit3.produitsOrdre}">AA
+                                </span>
+						</p>
+					</div>
+					<div class="project_speed fr myStat2" data-dimension="70"
+						 th:data-text="${produit3.wcbaifenbi}" data-width="6"
+						 data-fontsize="14" data-border="inline"
+						 th:data-percent="${produit3.wanchenglv}" data-fgcolor="#009dda"
+						 data-bgcolor="#ccc"></div>
+				</div>
+				<div class="project_middle clearfix">
+					<dl>
+						<dt class="profit" th:text="${produit3.yearInterestRate}">
+							9.0
+							%
+						</dt>
+						<dd>预期收益</dd>
+					</dl>
+					<dl>
+						<dt class="days" th:text="${produit3.produitDureeDes}+月">
+							31天
+						</dt>
+						<dd>项目期限</dd>
+					</dl>
+				</div>
+				<div class="project_amount">
+					<h3 th:text="${produit3.montantDeOffre}">
+						500000.0
+					</h3>
+					<p>贷款金额(元)</p>
+				</div>
+				<div class="filled">
+					<a class="auu" th:href="'/detail?pid='+${produit3.id}" th:text="${produit3.isCondition}">已还款
+					</a>
+				</div>
+			</li>
+
+
+		</ul>
+		<ul class="clearfix" style="display: none;" >
+
+			<li th:each="produit8:${produit8s}">
+				<div class="project_top clearfix">
+					<div class="subject  fl">
+						<div class="subject_1">
+							<p class="title">
+								<span th:text="${produit8.borrowingTitle}">房屋抵押</span>【<span th:text="${produit8.id}">1117</span>】								</p>
+
+						</div>
+
+						<p class="credit_rating2">
+							<span>信用等级:</span><span th:text="${produit8.produitsOrdre}">AA
+								</span>
+						</p>
+
+
+
+					</div>
+					<div class="project_speed fr myStat2" data-dimension="70"
+						 th:data-text="${produit8.wcbaifenbi}" data-width="6"
+						 data-fontsize="14" data-border="inline"
+						 th:data-percent="${produit8.wanchenglv}" data-fgcolor="#009dda"
+						 data-bgcolor="#ccc"></div>
+				</div>
+				<div class="project_middle clearfix">
+					<dl>
+						<dt class="profit" th:text="${produit8.yearInterestRate}">
+							9.0
+							%
+						</dt>
+						<dd>预期收益</dd>
+					</dl>
+					<dl>
+						<dt class="days" th:text="${produit8.produitDureeDes}+月">
+							1个月
+						</dt>
+						<dd>项目期限</dd>
+					</dl>
+				</div>
+				<div class="project_amount" >
+					<h3 th:text="${produit8.montantDeOffre}">
+						200000.0
+					</h3>
+					<p>贷款金额(元)</p>
+				</div>
+				<div class="filled">
+					<a class="auu"th:href="'/detail?pid'+${produit8.id}" th:text="${produit8.isCondition}">已还款
+					</a>
+				</div>
+			</li>
+
+		</ul>
+		<ul class="clearfix" style="display: none;" >
+
+
+
+
+			<li th:each="produit7:${produit7s}">
+				<div class="project_top clearfix">
+					<div class="subject  fl">
+						<div class="subject_1">
+							<p class="title">
+								<span th:text="${produit7.borrowingTitle}">经营周转</span>【<span th:text="${produit7.id}">2513</span>】标								</p>
+
+						</div>
+
+						<p class="credit_rating2">
+							<span>信用等级:</span><span th:text="${produit7.produitsOrdre}">AA
+								</span>
+						</p>
+
+					</div>
+
+					<div class="project_speed fr myStat2" data-dimension="70"
+						 th:data-text="${produit7.wcbaifenbi}" data-width="6"
+						 data-fontsize="14" data-border="inline"
+						 th:data-percent="${produit7.wanchenglv}" data-fgcolor="#009dda"
+						 data-bgcolor="#ccc"></div>
+				</div>
+
+
+				<div class="project_middle clearfix">
+					<dl>
+						<dt class="profit" th:text="${produit7.yearInterestRate}">
+							9.0
+							%
+						</dt>
+						<dd>预期收益</dd>
+					</dl>
+					<dl>
+						<dt class="days" th:text="${produit7.produitDureeDes}+月">
+							31天
+						</dt>
+						<dd>项目期限</dd>
+					</dl>
+				</div>
+				<div class="project_amount">
+					<h3 th:text="${produit7.montantDeOffre}">
+						250000.0
+					</h3>
+					<p>贷款金额(元)</p>
+				</div>
+				<div class="project_button">
+					<a class="auu" th:href="'/detail?pid='+${produit7.id}" th:text="${produit7.isCondition}">投标中
+					</a>
+				</div>
+			</li>
+
+		</ul>
+
+	</div>
+	<div class="more_project">
+		<a href="/list" >查看更多投资项目</a>
+	</div>
+</div>
+<!-- 平台信息 -->
+<!--干掉了-->
+<div class="cooperative_partner">
+	<ul>
+		<li>合作伙伴</li>
+		<li rel="lc"><img src="http://39.107.15.222:8081/src/theme/computer/img/lc.png">联创光电</li>
+		<li rel="jx"><img src="http://39.107.15.222:8081/src/theme/computer/img/jxBank.png">陕西银行</li>
+		<li rel="yabx"><img src="http://39.107.15.222:8081/src/theme/computer/img/yabx.png">易安保险</li>
+		<li rel="wdty"><img src="http://39.107.15.222:8081/src/theme/computer/img/wdty.png">网贷天眼</li>
+		<li rel="wdzj"><img src="http://39.107.15.222:8081/src/theme/computer/img/wdzj.png">网贷之家</li>
+
+
+	</ul>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".auu:contains('投标中')").css("backgroundColor","#ffbd34")
+        $(".cooperative_partner li").on("click", function() {
+            var pn = $(this).attr("rel");
+            var url = "#"+pn;
+            window.location.href = url;
+        })
+
+    });
+</script>
+
+
+<!-- 底部 -->
+
+<base >
+<div class="bottom">
+	<div class="w1200">
+		<div class="bottom_1">
+			<ul>
+				<li><a href="aboutus.html">关于我们</a></li>
+				<li><a href="contcatus.html">联系我们</a></li>
+				<li><a href="guarantee.html">保障体系</a></li>
+				<li><a href="bulletin.html">平台公告</a></li>
+				<li><a href="hr.html">招贤纳士</a></li>
+				<li><a href="problem.html">常见问题</a></li>
+				<li><a href="guide.html">使用指南</a></li>
+				<li><a href="app.html">手机客户端</a></li>
+			</ul>
+		</div>
+		<div class="bottom_middle clearfix">
+			<div class="bottom_2">
+				<p>电话: 0791-83858285</p>
+				<p>邮箱: service@kkd2p.com</p>
+				<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+			</div>
+
+			<div class="bottom_4">
+
+				<h3>400-8763-118</h3>
+
+
+				<div class="serviceTime clearfix">
+					<p>服务时间：周一至周五9：00-21：00</p>
+					<p>
+						网贷有风险，出借需谨慎
+					</p>
+					<p>
+						陕西省互联网金融协会:400-9158-227
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="bottom_5 clearfix">
+			<ul>
+
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+
+				<li>© 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+
+			</ul>
+		</div>
+		<div class="bottom_6">
+			<ul>
+				<li>友情链接:</li>
+
+				<li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+
+				<li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+
+				<li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+
+
+
+
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+<style>
+
+	.iconphone {
+		font-family: "iconphone";
+		font-size: 25px;
+		font-style: normal;
+	}
+
+	.apperweima {
+		position: fixed;
+		top: 333px;
+		right: -80px;
+		width: 120px;
+		height: 50px;
+		padding: 5px 5px 10px;
+		text-indent: 7px;
+		background: #fff;
+		border-radius: 5px 0 0 5px;
+		z-index: 9999;
+	}
+	.apperweima var,.apperweima1 var{font-style:normal;font-size:14px;}
+	.apperweima:hover {
+		cursor:pointer;
+		color: #fff;
+		background: #ffcc33;
+	}
+
+	.apperweima img {
+		position: absolute;
+		left: -100px;
+		top: -18px;
+		max-width: 100px;
+		display: none;
+	}
+
+	.apperweima:hover img {
+		display: block;
+	}
+
+	.apperweima1 {
+		position: fixed;
+		top: 400px;
+		right: -80px;
+		width: 120px;
+		height: 60px;
+		padding: 5px 5px 10px;
+		text-indent: 7px;
+		background: #fff;
+		border-radius: 5px 0 0 5px;
+		z-index: 9999;
+	}
+
+	.apperweima1:hover {
+		color: #fff;
+		background: #ffcc33;
+		cursor:pointer;
+	}
+
+	.apperweima1 img {
+		position: absolute;
+		left: -100px;
+		top: -18px;
+		max-width: 100px;
+		display: none;
+	}
+
+	.apperweima1:hover img {
+		display: block;
+	}
+
+	.apperweima1:hover .iconfon {
+		background: url(http://39.107.15.222:8081/src/theme/images/weixin2.png) no-repeat;
+		background-size: 100% 100%;
+	}
+
+	.online-service {
+		position: fixed;
+		top: 200px;
+		right: -80px;
+		width: 120px;
+		height: 110px;
+		overflow: hidden;
+		background: #fff;
+		padding: 5px 5px 15px;
+		border-radius: 5px 0 0 5px;
+		-webkit-border-radius: 5px 0 0 5px;
+		-moz-border-radius: 5px 0 0 5px;
+		z-index: 1099;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+	}
+
+	.online-service-title {
+		position: absolute vertical-align:  top;
+		width: 40px;
+		display: inline-block;
+	}
+
+	.online-service h5 {
+		width: 20px;
+		margin-left: 13px;
+		line-height: 18px;
+		font-size: 14px;
+	}
+
+	.online-service:hover {
+		text-decoration: none;
+		color: #fff;
+		background: #ffcc33;
+	}
+
+	.online-service:hover .online-service-qq {
+		background-position: -316px -142px;
+	}
+
+	.online-service:hover h5 {
+		color: #fff;
+	}
+
+	.online-service-show {
+		position: fixed;
+		top: 200px;
+		right: -136px;
+		width: 136px;
+		border: 2px solid #90bb0e;
+		background: #fff;
+		z-index: 1099;
+	}
+
+	.online-service-show h5 {
+		background: #90bb0e;
+		font-size: 16px;
+		color: #fff;
+	}
+
+	.qun-list {
+		border-top: 2px solid #90bb0e;
+	}
+
+	.iconfon {
+		width: 24px;
+		height: 24px;
+		overflow: hidden;
+		font-size: 0;
+		line-height: 0;
+		background: url(http://39.107.15.222:8081/src/theme/images/weixin.png) no-repeat;
+		background-size: 100% 100%;
+		margin-left: 7px;
+	}
+
+	.icons {
+		width: 24px;
+		height: 24px;
+		overflow: hidden;
+		font-size: 0;
+		line-height: 0;
+		text-indent: -9999px;
+		display: inline-block;
+		background: url(http://39.107.15.222:8081/src/theme/images/sprites.png) no-repeat;
+		vertical-align: middle;
+	}
+
+	.online-service-qq {
+		margin: 5px;
+		display: inline-block;
+		width: 32px;
+		height: 32px;
+		line-height: 30px;
+		background-position: -355px -142px;
+		-webkit-transition: all .2s ease-in-out;
+		-moz-transition: all .2s ease-in-out;
+		-o-transition: all .2s ease-in-out;
+		-ms-transition: all .2s ease-in-out;
+		transition: all .2s ease-in-out;
+	}
+
+	.online-service:hover .online-service-qq {
+		background-position: -316px -142px;
+	}
+
+	.cc {
+		cursor: pointer;
+		display: block;
+		text-decoration: none;
+	}
+
+	.cc:hover {
+		text-decoration: none;
+	}
+
+	.a {
+		text-decoration: none;
+		color: #5e5e5e;
+	}
+
+	.block {
+		display: block;
+	}
+
+	.lh30 {
+		line-height: 30px;
+	}
+</style>
+
+<!-- <div class="online-service hidden-form" id="online-service-hide"> -->
+<div class="online-service hidden-form">
+	<a class="online-service-title cc" style=""
+	   href="http://wpa.qq.com/msgrd?v=3&uin=2104772003&site=qq&menu=yes"
+	   target="_blank">
+		<div class="online-service-qq icons"></div>
+		<h5 style="color:#605f5f">在线客服</h5> </a>
+</div>
+<span class="apperweima  lh30 "><img src="http://39.107.15.222:8081/src/theme/biaoqian/shouji.png"><br>
+	<var style="color:#605f5f" class="f12 block">APP</var> <img
+			src="http://39.107.15.222:8081/src/theme/images/apperweima.png" />
+	</span>
+<span class="apperweima1  lh30 "><div class='iconfon'></div>
+		<var style="color:#605f5f" class="f12 block">微信</var> <img
+			src="http://39.107.15.222:8081/src/theme/images/weixint.png" />
+	</span>
+<script>
+    $(function(){
+        $("#online_qq_layer").mouseover(function() {
+            $(this).stop();
+            $(this).animate({right:'0'});
+        });
+        $("#online_qq_layer").mouseout(function() {
+            $(this).stop();
+            $(this).animate({right:'-140px'});
+        });
+    });
+
+</script>
+
+<script>
+    $(function() {
+        $('.myStat2').circliful();
+        new scrollTxt().init();
+        var flag;
+        //头部固定
+        var navOffset=$(".nav").offset().top;
+        $(window).scroll(function(){
+            var scrollPos=$(window).scrollTop();
+            if(scrollPos >=navOffset){
+                $(".nav").addClass("navFixed");
+            }else{
+                $(".nav").removeClass("navFixed");
+            }
+        });
+
+        //保证金贷款
+        $(".lending_title li").hover(function(){
+            var $index=$(this).index();
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".lending_right  ul").eq($index).show().siblings().hide();
+        })
+        //			投资项目
+        $(".investment_title li").hover(function() {
+            var _index = $(this).index();
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+            $(".investment_right ul").eq(_index).show().siblings().hide();
+        })
+        //		最新公告
+        $(".information_title li").hover(function() {
+            $(this).css("cursor", "pointer");
+            var infro = $(this).index();
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+            $(".information_content ul").eq(infro).show().siblings().hide();
+        })
+
+    })
+</script>
+</body>
+</html>
