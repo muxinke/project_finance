@@ -37,18 +37,18 @@ import java.util.concurrent.TimeUnit;
  * @description ： 登陆页面
  */
 @RestController
-@RequestMapping("sso")
+//@RequestMapping("sso")
 public class LoginRestController {
 
     private static final String SESSION_SMS_VERIFICATION_CODE = "SMSVerificationCode";
 
     private static final String GRANT_TYPE = "password";
 
-    private static final String CLIENT_ID = "myapp";
+    private static final String CLIENT_ID = "dyf";
 
-    private static final String SCOPE = "all";
+    private static final String SCOPE = "read";
 
-    private static final String CLIENT_SECRET = "lxapp";
+    private static final String CLIENT_SECRET = "secret";
 
     private static final String AUTHORIZATION = "Authorization";
 
@@ -69,8 +69,8 @@ public class LoginRestController {
      * @param url url 默认跳转到百度页面
      * @return index
      */
-    @GetMapping("/register/login")
-    private ModelAndView loginPage(@RequestParam(value = "url", defaultValue = "http://www.baidu.com") String url) {
+    @GetMapping("/login")
+    public ModelAndView loginPge(@RequestParam(value = "url", defaultValue = "http://www.baidu.com") String url) {
         ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("url", url);
         return modelAndView;
@@ -102,7 +102,7 @@ public class LoginRestController {
      * @param url        跳转到URL
      * @return RestResponseUtil
      */
-    @PostMapping("/login")
+    @PostMapping("/login.action")
     private RestResponseUtil login(HttpSession session, HttpServletResponse response, String username, String password, String verifyCode, String url) {
         try {
             String codeKey = (String) session.getAttribute(ImgCode.RANDOMCODEKEY);
@@ -289,5 +289,14 @@ public class LoginRestController {
         System.err.println("s = " + s);
         session.setAttribute(SESSION_SMS_VERIFICATION_CODE, s);
     }
+
+/*    //找回密码接口
+        $.ajax({
+        type: "post",
+                url: "/newLogin/findPwd.action",
+                data: {
+            verificationCode: verifyCode,
+                    findphone: phone,
+                    findpwd: password,*/
 
 }

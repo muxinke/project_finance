@@ -24,7 +24,7 @@ public class ImgCodeController {
      * @param request  request
      * @param response response
      */
-    @RequestMapping(value = "/sso/register/security/securityCodeImage.action",method = RequestMethod.GET)
+    @RequestMapping(value = "/register/security/securityCodeImage.action",method = RequestMethod.GET)
     public void getCode(HttpServletRequest request, HttpServletResponse response) {
         ImgCode imgCode = new ImgCode();
         imgCode.getRandcode(request, response);
