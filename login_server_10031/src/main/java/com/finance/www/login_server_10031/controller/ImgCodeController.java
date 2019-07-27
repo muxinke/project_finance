@@ -29,6 +29,4 @@ public class ImgCodeController {
         ImgCode imgCode = new ImgCode();
         imgCode.getRandcode(request, response);
     }
-
-
 }

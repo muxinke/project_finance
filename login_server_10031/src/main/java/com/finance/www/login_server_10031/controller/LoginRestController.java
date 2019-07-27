@@ -52,14 +52,12 @@ public class LoginRestController {
 
     private static final String AUTHORIZATION = "Authorization";
 
-
-
     @Autowired
+
     private MemeberService memeberService;
 
-
-
     @Autowired
+
     ZuulTokenService tokenService;
 
 
@@ -89,7 +87,6 @@ public class LoginRestController {
         System.err.println("baiqi = " + baiqi);
         return baiqi;
     }
-
 
     /**
      * 页面 登录页面form提交到这里
