@@ -3,7 +3,9 @@ package com.finance.www.login_server_10031.controller;
 
 import com.finance.www.login_server_10031.utils.ImgCode;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +24,11 @@ public class ImgCodeController {
      * @param request  request
      * @param response response
      */
-    @RequestMapping("/security/securityCodeImage.action")
+    @RequestMapping(value = "/sso/register/security/securityCodeImage.action",method = RequestMethod.GET)
     public void getCode(HttpServletRequest request, HttpServletResponse response) {
         ImgCode imgCode = new ImgCode();
         imgCode.getRandcode(request, response);
     }
+
+
 }
