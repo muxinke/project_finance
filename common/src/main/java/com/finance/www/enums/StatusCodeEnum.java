@@ -1,6 +1,6 @@
 package com.finance.www.enums;
 
-public enum  StatusCodeEnum {
+public enum StatusCodeEnum {
     /**
      * 请求成功
      */
@@ -8,12 +8,14 @@ public enum  StatusCodeEnum {
     /**
      * 请求失败
      */
-    ERROR;
+    ERROR,
+    TIMEOUT;
+
     StatusCodeEnum() {
     }
 
     public static StatusCodeEnum valueOf(int value) {
-        switch(value) {
+        switch (value) {
             case 0:
                 return SUCCESS;
             case 1:
