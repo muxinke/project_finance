@@ -73,7 +73,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 // 资源id
                 .resourceIds(SOURCE_ID)
                 // 授权类型
-                .authorizedGrantTypes("password", "refresh_token")
+                .authorizedGrantTypes("password")
+//                .authorizedGrantTypes("password", "refresh_token")
                 // 范围
                 .scopes("all")
                 // 密钥
@@ -91,7 +92,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
                 .scopes("read")
 
-                .authorizedGrantTypes("password","refresh_token");
+                .authorizedGrantTypes("password");
 
     }
 
@@ -139,10 +140,16 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
             public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 
                 String userName = authentication.getUserAuthentication().getName();
-
+                System.err.println("userName = " + userName);
                 // 得到用户名，去处理数据库可以拿到当前用户的信息和角色信息（需要传递到服务中用到的信息）
 
                 final Map<String, Object> additionalInformation = new HashMap<>();
+
+                MemeberExample memeberExample = new MemeberExample();
+                memeberExample.createCriteria().andUsernameEqualTo(userName);
+                List<Memeber> memebers = memeberService.selectByExample(memeberExample);
+
+                additionalInformation.put("userinfo", JSON.toJSONString(memebers));
 
                 ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInformation);
 
