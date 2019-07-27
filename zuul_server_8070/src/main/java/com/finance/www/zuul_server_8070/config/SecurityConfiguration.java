@@ -47,14 +47,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         // 配置密码加密方式  BCryptPasswordEncoder，添加用户加密的时候请也用这个加密
 
-        auth.userDetailsService(userDetailsService()).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder);
 
-
-
-        System.out.println("------------------------");
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String password = passwordEncoder.encode("971103");
-        System.err.println("password = " + password);
+//        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String password = passwordEncoder.encode("971103");
+//        System.err.println("password = " + password);
     }
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
@@ -64,7 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

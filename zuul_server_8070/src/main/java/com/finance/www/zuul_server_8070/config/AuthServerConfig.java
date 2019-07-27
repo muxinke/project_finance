@@ -38,7 +38,6 @@ import java.util.Map;
 @Configuration
 
 
-
 public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     // 资源ID
@@ -58,16 +57,41 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     RedisConnectionFactory redisConnectionFactory;
 
+    @Autowired
+
+    PasswordEncoder passwordEncoder;
+
 
     @Override
 
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-       PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        clients.inMemory().withClient("myapp").resourceIds(SOURCE_ID).authorizedGrantTypes("password", "refresh_token")
+        // 如果你用的是5.0.7的版本，那么在设置secret的是需要加密的，正确的赋值方式.secret(passwordEncoder.encode("你的值"))。
 
-                .scopes("all").authorities("ADMIN").secret(passwordEncoder.encode("lxapp")).accessTokenValiditySeconds(ACCESS_TOKEN_TIMER)
+        clients.inMemory()
+                // 客户端id
+                .withClient("login")
+                // 资源id
+                .resourceIds(SOURCE_ID)
+                // 授权类型
+                .authorizedGrantTypes("password", "refresh_token")
+                // 范围
+                .scopes("all")
+                // 密钥
+                .secret(passwordEncoder.encode("secret"))
+                // 访问令牌有效性秒
+                .accessTokenValiditySeconds(ACCESS_TOKEN_TIMER)
+                //刷新令牌有效性秒
+                .refreshTokenValiditySeconds(REFRESH_TOKEN_TIMER)
 
-                .refreshTokenValiditySeconds(REFRESH_TOKEN_TIMER);
+                .and()
+
+                .withClient("dyf")
+
+                .secret(passwordEncoder.encode("secret"))
+
+                .scopes("read")
+
+                .authorizedGrantTypes("password","refresh_token");
 
     }
 
@@ -75,11 +99,10 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
 
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-
+        // 访问令牌转换器
         endpoints.accessTokenConverter(accessTokenConverter());
-
+        // 令牌存储
         endpoints.tokenStore(tokenStore()).authenticationManager(authenticationManager);
-
     }
 
 

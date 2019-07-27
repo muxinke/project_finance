@@ -30,16 +30,20 @@ mybatis:
   type-aliases-package: com.finance.www.pojo
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
 zuul:
   host:
     connect-timeout-millis: 60000
-    socket-timeout-millis: 20000
-#  routes:
-#    user-server:
-#      path: /user-server/**
-#        serviceId: user-server
-#      sensitiveHeaders: "*"
+    socket-timeout-millis: 60000
+  sensitiveHeaders:
+  routes:
+    login-server:
+      path: /member/**
+      serviceId: login-server
+
+
+
+  #全局取消敏感头让其可以传递到
+
 #    page-consumer:
 #      path: /page-consumer/**
 #      serviceId: page-consumer
