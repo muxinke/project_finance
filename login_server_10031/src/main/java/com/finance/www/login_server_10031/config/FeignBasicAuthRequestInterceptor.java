@@ -15,10 +15,14 @@ public class FeignBasicAuthRequestInterceptor implements RequestInterceptor {
 
     }
 
+    /**
+     * 从系统变量上获取令牌添加到请求头中
+     *
+     * @param template
+     */
     @Override
     public void apply(RequestTemplate template) {
         String property = System.getProperty("fangjia.auth.token");
-        System.err.println("property@@@@@@@ = " + property);
         template.header("Authorization", property);
     }
 }
