@@ -1,8 +1,6 @@
 package com.finance.www.login_server_10031.controller;
 
 
-
-
 import com.finance.www.enums.StatusCodeEnum;
 import com.finance.www.login_server_10031.service.MemeberService;
 import com.finance.www.login_server_10031.service.ZuulTokenService;
@@ -15,6 +13,7 @@ import com.finance.www.utils.AuthUtils;
 
 import com.finance.www.utils.RestResponseUtil;
 
+import feign.RetryableException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -105,14 +104,8 @@ public class LoginRestController {
             String codeKey = (String) session.getAttribute(ImgCode.RANDOMCODEKEY);
             // 验证码判断
             if (codeKey.equalsIgnoreCase(verifyCode)) {
-
-
                 Token token = tokenService.getToken(username, password, GRANT_TYPE, CLIENT_ID, SCOPE, CLIENT_SECRET);
-                if (new Token().equals(token)) {
-                    return new RestResponseUtil("请求超时", StatusCodeEnum.TIMEOUT);
-                } else if (token != null) {
-
-
+                if (token != null) {
                     Cookie cookie = new Cookie(AUTHORIZATION, token.getToken_type() + token.getAccess_token());
                     // 时效3分钟
                     cookie.setMaxAge(60 * 3);
@@ -123,18 +116,20 @@ public class LoginRestController {
                     response.addCookie(cookie);
                     ArrayList<Object> tokens = new ArrayList<>();
                     tokens.add(token);
+                    System.setProperty("fangjia.auth.token", token.getToken_type() + token.getAccess_token());
                     return new RestResponseUtil(url, StatusCodeEnum.SUCCESS, tokens);
                 } else {
                     session.removeAttribute(ImgCode.RANDOMCODEKEY);
-                    return new RestResponseUtil("请求超时", StatusCodeEnum.TIMEOUT);
+                    return new RestResponseUtil("用户名或密码错误", StatusCodeEnum.TIMEOUT);
                 }
-
-
             } else {
                 return new RestResponseUtil("验证码错误", StatusCodeEnum.ERROR);
             }
         } catch (NullPointerException e) {
             return new RestResponseUtil("验证码过期", StatusCodeEnum.ERROR);
+        } catch (RetryableException e) {
+            e.printStackTrace();
+            return new RestResponseUtil("请求超时", StatusCodeEnum.TIMEOUT);
         } catch (Exception e) {
             e.printStackTrace();
             return new RestResponseUtil("服务器发生错误", StatusCodeEnum.ERROR);
