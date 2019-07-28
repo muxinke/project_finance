@@ -5,45 +5,35 @@ eureka:
     service-url:
       defaultZone: http://localhost:8080/eureka
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://39.107.15.222:3306/easydai?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
-    username: root
-    password: 971103
-    type: com.alibaba.druid.pool.DruidDataSource
   application:
     name: zuul-server
-  redis:
-    lettuce:
-      pool:
-        max-active: 8
-        max-idle: 8
-        max-wait: -1ms
-    host: 39.107.15.222
-    port: 6379
-    password: 971103
+
 logging:
   level:
     per.lx: DEBUG
-mybatis:
-  mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.finance.www.pojo
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#--------------------Zuul-----------------------
 zuul:
   host:
     connect-timeout-millis: 60000
     socket-timeout-millis: 60000
   sensitiveHeaders:
+  ribbon:
+    eager-load:
+      enabled: true
+  retryable: false
   routes:
-    login-server:
-      path: /member/**
-      serviceId: login-server
+#    login-server:
+#      path: /member/**
+#      serviceId: login-server
     resources-server:
       path: /resouces/**
       serviceId: resources-server
-
-
+    oauth-server:
+      path: /auth/**
+      serviceId: oauth-server
+  add-proxy-headers: true
+#--------------------Zuul-----------------------
   #全局取消敏感头让其可以传递到
 
 #    page-consumer:
@@ -54,3 +44,32 @@ zuul:
 #      path: /generaldata-server/**
 #      serviceId: generaldata-server
 #      sensitiveHeaders: "*"
+
+#----------------------超时配置-------------------
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 2
+  eureka:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3500
+
+#---------------------OAuth2---------------------
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:${server.port}/auth/oauth/token
+      user-authorization-uri: http://localhost:${server.port}/auth/oauth/authorize
+      client-id: login
+    resource:
+      user-info-uri:  http://localhost:${server.port}/auth/api/member
+      prefer-token-info: false
