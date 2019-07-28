@@ -83,7 +83,7 @@
         })
         $.ajax({
             type: "POST",
-            url: "/sso/newLogin/headerLogin.action",
+            url: "/newLogin/headerLogin.action",
             dataType: "json",
             success: function (data) {
                 if ("SUCCESS"==data.status) {
@@ -117,12 +117,12 @@
                 <li class="lilogin" id="login">
                     <!--跳转登陆界面
                         <a href="newLogin/loginPage.go">立即登录</a>-->
-                    <a href="/sso/register/login">立即登录</a>
+                    <a href="/login">立即登录</a>
                 </li>
                 <li class="liregister" id="register">
                     <!--注册界面
                         <a href="register/toRegister.go">快速注册</a>-->
-                    <a href="/sso/register/toRegister.action">快速注册</a>
+                    <a href="/register/toRegister.action">快速注册</a>
                 </li>
 
                 <li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
@@ -298,7 +298,7 @@
                                     }
                                     $.ajax({
                                         type: "post",
-                                        url: "/sso/register/registerSendBindPhoneCode.action",
+                                        url: "/register/registerSendBindPhoneCode.action",
                                         data: {
                                             phone: phone
                                         },
@@ -471,7 +471,7 @@
             }
             $.ajax({
                 type: "post",
-                url: "/sso/register/checkInfo.action",
+                url: "/register/checkInfo.action",
                 data: {
                     phone: phone,
                     email: email,
@@ -566,7 +566,7 @@
 
         $.ajax({
             type: "post",
-            url: "/sso/register/register.action",
+            url: "/register/register.action",
             data: {
                 phone: phone,
                 phoneVerifyCode: phoneVerifyCode,
@@ -578,7 +578,7 @@
             dataType: "json",
             success: function (data) {
                 if ("SUCCESS"==data.status){
-                    window.location.href = "/sso/register/login";
+                    window.location.href = "/login";
                 } else {
                     layer.alert(data.message, {icon: 0});
                 }

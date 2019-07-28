@@ -1,6 +1,9 @@
 package com.finance.www.login_server_10031.controller;
 
 
+import ch.qos.logback.core.joran.action.NewRuleAction;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.finance.www.enums.StatusCodeEnum;
 import com.finance.www.login_server_10031.service.MemeberService;
 import com.finance.www.login_server_10031.service.ZuulTokenService;
@@ -115,7 +118,10 @@ public class LoginRestController {
                     response.addCookie(cookie);
                     ArrayList<Object> tokens = new ArrayList<>();
                     tokens.add(token);
+                    String userinfo = token.getUserinfo();
+                    List<Memeber> objects = JSON.parseArray(userinfo, Memeber.class);
                     System.setProperty("fangjia.auth.token", token.getToken_type() + token.getAccess_token());
+                    System.setProperty("mobile", objects.get(0).getMobile());
                     return new RestResponseUtil(url, StatusCodeEnum.SUCCESS, tokens);
                 } else {
                     session.removeAttribute(ImgCode.RANDOMCODEKEY);
@@ -151,23 +157,20 @@ public class LoginRestController {
     /**
      * 标题栏用户信息
      *
-     * @param request 请求
      * @return RestResponseUtil
      */
-    @PostMapping("/newLogin/headerLogin.action")
-    public RestResponseUtil headerLogin(HttpServletRequest request) {
+    @PostMapping("newLogin/headerLogin.action")
+    public RestResponseUtil headerLogin() {
         try {
-            Memeber memeber = AuthUtils.getReqUser(request);
-            if (memeber != null) {
-                return new RestResponseUtil(memeber.getMobile(), StatusCodeEnum.SUCCESS);
-            } else {
-                return new RestResponseUtil("", StatusCodeEnum.ERROR);
+            String mobile = System.getProperty("mobile");
+            if (mobile!=null){
+                return new RestResponseUtil(mobile,StatusCodeEnum.SUCCESS);
+            }else {
+                return new RestResponseUtil("",StatusCodeEnum.ERROR);
             }
         } catch (Exception e) {
-            e.printStackTrace();
             return new RestResponseUtil("", StatusCodeEnum.ERROR);
         }
-
     }
 
     /**
