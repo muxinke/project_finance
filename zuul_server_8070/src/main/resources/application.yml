@@ -1,0 +1,75 @@
+server:
+  port: 8070
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+spring:
+  application:
+    name: zuul-server
+
+logging:
+  level:
+    per.lx: DEBUG
+
+#--------------------Zuul-----------------------
+zuul:
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+  sensitiveHeaders:
+  ribbon:
+    eager-load:
+      enabled: true
+  retryable: false
+  routes:
+#    login-server:
+#      path: /member/**
+#      serviceId: login-server
+    resources-server:
+      path: /resouces/**
+      serviceId: resources-server
+    oauth-server:
+      path: /auth/**
+      serviceId: oauth-server
+  add-proxy-headers: true
+#--------------------Zuul-----------------------
+  #全局取消敏感头让其可以传递到
+
+#    page-consumer:
+#      path: /page-consumer/**
+#      serviceId: page-consumer
+#      sensitiveHeaders: "*"
+#    generaldata-server:
+#      path: /generaldata-server/**
+#      serviceId: generaldata-server
+#      sensitiveHeaders: "*"
+
+#----------------------超时配置-------------------
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 2
+  eureka:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3500
+
+#---------------------OAuth2---------------------
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:${server.port}/auth/oauth/token
+      user-authorization-uri: http://localhost:${server.port}/auth/oauth/authorize
+      client-id: login
+    resource:
+      user-info-uri:  http://localhost:${server.port}/auth/api/member
+      prefer-token-info: false

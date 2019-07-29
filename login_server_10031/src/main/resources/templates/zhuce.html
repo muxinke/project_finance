@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <base>
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="互联网金融、轻松贷">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="description" content="高效、精准、安全的P2P网络借贷平台">
+    <link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css"/>
+    <link rel="shortcut icon" href="favicon.ico"></link>
+    <link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/login.css"/>
+    <link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css"/>
+    <script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery-1.8.2.min.js"></script>
+    <link href="http://39.107.15.222:8081/src/theme/validationEngine/css/validationEngine.jquery.css" rel="stylesheet"
+          type="text/css"/>
+    <script type="text/javascript"
+            src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine-zh_CN.js"></script>
+    <script type="text/javascript"
+            src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery.form.js"></script>
+    <script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/common.js"></script>
+    <link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/main.css"/>
+    <script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/layer/layer.js"></script>
+    <script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.circliful.js"></script>
+    <script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/scroll.js"></script>
+    <script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
+    <script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/person_style.js"></script>
+    <script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js"></script>
+    <link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/personal.css"/>
+    <link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/style.css"/>
+    <link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/mall.css"/>
+    <script type="text/javascript"
+            src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
+
+
+    <title>注册-轻松贷-一心一意，普惠金融</title>
+    <script src="http://39.107.15.222:8081/src/theme/js/gt.js"></script>
+    <script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/sms.js"></script>
+    <style type="text/css">
+        .submit {
+            background-color: #2d9ee2;
+        }
+
+        .sub {
+            background-image: -moz-linear-gradient(0deg, rgb(100, 238, 250) 0%, rgb(75, 213, 250) 49%, rgb(41, 179, 252) 100%);
+            background-image: -webkit-linear-gradient(0deg, rgb(100, 238, 250) 0%, rgb(75, 213, 250) 49%, rgb(41, 179, 252) 100%);
+            background-image: -ms-linear-gradient(0deg, rgb(100, 238, 250) 0%, rgb(75, 213, 250) 49%, rgb(41, 179, 252) 100%);
+        }
+    </style>
+</head>
+<script>
+
+    $(function () {
+        initBehaviorVerify();
+    });
+    $(document).ready(function () {
+        $("#sele span").click(function () {
+            $("#content").remove();
+        })
+    });
+</script>
+
+<body>
+
+<base>
+<script type="text/javascript">
+    $(function () {
+        $(".navitem li").hover(function () {
+            $(this).find("ol").show().siblings().find("ol").hide("slow");
+        }, function () {
+            $(this).find("ol").slideUp("slow");
+        })
+        $(".code_text li").hover(function () {
+            var inde = $(this).index();
+            $(".code_img ul li").eq(inde).show().siblings().hide();
+        })
+        $.ajax({
+            type: "POST",
+            url: "/newLogin/headerLogin.action",
+            dataType: "json",
+            success: function (data) {
+                if ("SUCCESS"==data.status) {
+                    $('#register').before("<li><span class='nh'>您好，</span> </li>");
+                    $('#register a').text("" + data.message + "");
+                    $('#register a').attr("href", "userNew/index.go");
+                    $('#login').remove();
+                    $('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
+                    $("#wealth").text('开启您的财富之旅');
+                    $("#wealth").attr("href", "reCash/toAdd.go");
+                    $("#bannerlogin").remove();
+                }
+
+            }
+        });
+    });
+</script>
+<div class=" big100">
+    <div class="top clearfix">
+        <div class="top_left fl">
+            <ul>
+                <li class="phone">
+                    <img style="width:18px;height:18px;"
+                         src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+                </li>
+
+            </ul>
+        </div>
+        <div class="top_right fr">
+            <ul>
+                <li class="lilogin" id="login">
+                    <!--跳转登陆界面
+                        <a href="newLogin/loginPage.go">立即登录</a>-->
+                    <a href="/login">立即登录</a>
+                </li>
+                <li class="liregister" id="register">
+                    <!--注册界面
+                        <a href="register/toRegister.go">快速注册</a>-->
+                    <a href="/register/toRegister.action">快速注册</a>
+                </li>
+
+                <li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+                    <a href="guide.html">使用指南</a></li>
+
+                <li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+                    <a href="problem.html">常见问题</a></li>
+
+                <li><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+                    <a style="color: #faa039" href="guarantee.html">安全保障</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="nav">
+    <div class="topNavItem  clearfix">
+
+        <div class="logo">
+            <img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+        </div>
+        <div class="adv">
+            <img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+        </div>
+        <ul class="navitem">
+            <li class="active">
+                <a href="index.html">首页</a>
+            </li>
+
+            <li>
+                <a href="list.html"
+                >我要投资
+                </a>
+
+                <ol class="m-list">
+
+                    <li>
+                        <a href="list.html"
+                        >投资列表
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="xiangdao.html"
+                        >投资向导
+                        </a>
+                    </li>
+
+                </ol>
+            </li>
+
+            <li>
+                <a href="msgpilu.html"
+                >信息披露
+                </a>
+
+                <ol class="m-list">
+
+                </ol>
+            </li>
+            <li>
+                <a href="dae.html"
+                >我要借款
+                    <i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+
+                </a>
+
+                <ol class="m-list">
+
+                    <li>
+                        <a href="xiaoe.html">小额借款</a>
+                    </li>
+
+                    <li>
+                        <a href="dae.html"> 大额借款</a>
+                    </li>
+                </ol>
+            </li>
+
+            <li>
+                <a href="aboutus.html"> 关于我们</a>
+                <ol class="m-list">
+
+                    <li>
+                        <a href="aboutus.html"> 企业简介</a>
+                    </li>
+
+                    <li>
+                        <a href="zizhi.html"> 公司资质</a>
+                    </li>
+
+                    <li>
+                        <a href="hezuohb.html"> 合作伙伴</a>
+                    </li>
+
+                    <li>
+                        <a href="contactus.html"> 联系我们</a>
+                    </li>
+
+                    <li>
+                        <a href="bulletin.html"> 平台公告</a>
+                    </li>
+
+                    <li>
+                        <a href="hr.html"> 招贤纳士</a>
+                    </li>
+
+                </ol>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<div class="register">
+    <div class="register_box">
+        <div class="register_box_top">
+            <ul>
+                <li class="active">
+                    <p>填写账户信息</p><span><i>1</i></span></li>
+                <li>
+                    <p>绑定存管账户</p><span> <i>2</i></span></li>
+                <li>
+                    <p>注册成功</p><span><i>3</i></span></li>
+            </ul>
+        </div>
+        <div class="reLogin">已有账号?
+            <a href="login.html">立即登录</a>
+        </div>
+        <div class="register_box_content">
+            <form>
+                <ul>
+
+                    <li class="phone register-list clearfix">
+                        <div class="left_ident fl"><span>*</span>用户名:</div>
+                        <div class="right_input2 fl">
+                            <img src="http://39.107.15.222:8081/src/theme/biaoqian/shouji.png"
+                                 style="position:absolute;top:4px;left:4px;"/>
+                            <span class="lineR"></span>
+                            <input type="text" name="username" id="username"/>
+                        </div>
+                        <div class="remind" id="g_username"></div>
+                    </li>
+
+                    <li class="phone register-list clearfix">
+                        <div class="left_ident fl"><span>*</span>手机号:</div>
+                        <div class="right_input2 fl">
+                            <img src="http://39.107.15.222:8081/src/theme/biaoqian/shouji.png"
+                                 style="position:absolute;top:4px;left:4px;"/>
+                            <span class="lineR"></span>
+                            <input type="text" name="phone" id="phone"/>
+                        </div>
+                        <div class="remind" id="g_phone"></div>
+                    </li>
+                    <li class="verification register-list clearfix">
+                        <div class="left_ident fl"><span>*</span>手机验证码:</div>
+                        <div class="right_input2 fl" id="captcha">
+                            <img src="http://39.107.15.222:8081/src/theme/biaoqian/yanzhengma.png"
+                                 style="position:absolute;top:4px;left:4px;"/>
+                            <span class="lineR"></span>
+                            <input type="text" name="phone" id="code"/>
+                            <input class="get_code" id="registerSendBindPhoneCode" onclick="handler()" value="获取验证码"
+                                   rel="bindPhone"/>
+                        </div>
+                        <script>
+                            var handler = function () {
+
+                                // 将验证码加到id为captcha的元素里
+
+
+                                    var phone = $('#phone').val();
+                                    if (phone == null || phone == '') {
+                                        $("#g_phone").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请输入手机号码");
+                                        return false;
+                                    }
+                                    $.ajax({
+                                        type: "post",
+                                        url: "/register/registerSendBindPhoneCode.action",
+                                        data: {
+                                            phone: phone
+                                        },
+                                        dataType: "json",
+                                        success: function () {
+                                            layer.alert('发送成功', {icon: 0})
+                                        }
+                                    })
+
+                            };
+                        </script>
+                        <div class="code_remind fl" id="content"></div>
+                        <div class="remind" id="g_code"></div>
+                    </li>
+                    <li class="login_password register-list clearfix">
+                        <div class="left_ident fl">
+                            <span>*</span>登录密码:
+                        </div>
+                        <div class="right_input2 fl">
+                            <img src="http://39.107.15.222:8081/src/theme/biaoqian/possword.png"
+                                 style="position:absolute;top:4px;left:4px;"/>
+                            <span class="lineR"></span>
+                            <input type="password" name="phone" id="password"/>
+                        </div>
+                        <div class="remind" id="g_password"></div>
+                    </li>
+                    <li class="reset_password register-list clearfix">
+                        <div class="left_ident fl">
+                            <span>*</span>重复密码:
+                        </div>
+                        <div class="right_input2 fl">
+                            <img src="http://39.107.15.222:8081/src/theme/biaoqian/possword.png"
+                                 style="position:absolute;top:4px;left:4px;"/>
+                            <span class="lineR"></span>
+                            <input type="password" name="phone" id="paypassword"/>
+                        </div>
+                        <div class="remind" id="g_paypassword"></div>
+                    </li>
+                    <li class="email register-list clearfix">
+                        <div class="left_ident fl"><span>*</span>邮箱:</div>
+                        <div class="right_input2 fl">
+                            <img src="http://39.107.15.222:8081/src/theme/biaoqian/youxiang.png"
+                                 style="position:absolute;top:4px;left:4px;"/>
+                            <span class="lineR"></span>
+                            <input type="text" name="email" id="email"/>
+                        </div>
+                        <div class="remind" id="g_email"></div>
+                    </li>
+
+
+                    <li class="agreement">
+                        <input id="protocolCheck" type="checkbox" checked="checked">我已阅读并同意
+                        <a href="javascript:void(0)" onclick="websiteProtocol();"
+                           class="u-color lf">《轻松贷网站服务协议》</a><a href="javascript:void(0)" onclick="risk_warning();"
+                                                                class="u-color lf">《风险提示》</a>
+                    </li>
+                    <li class="register_button">
+                        <a target="_blank" onclick="check();">立即注册</a>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+<!--register bottom-->
+<div class="register_bottom">© 2015 轻松贷 All rights reserved | 江西懿懿投资咨询有限公司 | 赣ICP备13008061-1</div>
+<script>
+    $(document).ready(function () {
+        $(".right_input span").on("click", function () {
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+            var index = $(this).index();
+            $(".register_content .registerItem").eq(index).show().siblings().hide();
+        });
+        //             底部高度固定
+        var height = $(window).height();
+        var topHeight = $(".big100").height();
+        var navHeight = $(".nav").height();
+        var cHeight = $(".register").height();
+        var bottom = height - topHeight - navHeight - cHeight;
+        $(".register_bottom").css({
+            "height": bottom + "px",
+            "line-height": bottom + "px"
+        });
+    });
+
+
+    $(document).ready(function () {
+        //失去焦点
+        $("form :input").blur(function () {
+            var pattern = /^1[34578]\d{0-9}$/;
+
+            //username
+            if ($(this).attr("id") == "username") {
+                if (this.value == "" || this.value == null) {
+                    $("#g_username").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请输入用户名");
+                } else {
+                    $("#g_username").empty();
+                    checkRegister();
+                }
+            }
+
+
+            //phone
+            if ($(this).attr("id") == "phone") {
+                if (this.value == "" || this.value == null) {
+                    $("#g_phone").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请设置您的手机号");
+                } else {
+                    $("#g_phone").empty();
+                    checkRegister();
+                }
+            }
+
+            //code
+            if ($(this).attr("id") == "code") {
+                if (this.value == "" || this.value == null) {
+                    $("#g_code").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请输入验证码");
+                } else {
+                    $("#g_code").empty();
+                }
+            }
+
+            //email
+            if ($(this).attr("id") == "email") {
+                if (this.value == "" || this.value == null) {
+                    $("#g_email").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请输入您的邮箱地址");
+                } else if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(this.value)) {
+                    $("#g_email").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>邮箱格式错误");
+                } else {
+                    $("#g_email").empty();
+                    checkRegister();
+                }
+            }
+
+            //password
+            if ($(this).attr("id") == "password") {
+                pwd = this.value;
+                if (this.value == "" || this.value == null) {
+                    $("#g_password").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请设置您的密码");
+                } else if (this.value.length < 6) {
+                    $("#g_password").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>密码长度为6-20个字符");
+                } else {
+                    $("#g_password").empty();
+                }
+            }
+
+            //paypassword
+            if ($(this).attr("id") == "paypassword") {
+                if (this.value == "" || this.value == null) {
+                    $("#g_paypassword").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请输入确认密码");
+                } else if (this.value != pwd) {
+                    $("#g_paypassword").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>两次输入的密码不一致");
+                } else if (this.value.length < 6) {
+                    $("#g_paypassword").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>密码长度为6-20个字符致");
+                } else {
+                    $("#g_paypassword").empty();
+                }
+            }
+
+
+        });
+
+        function checkRegister() {
+            var phone = $("#phone").val();
+            var inviteUserid = $("#inviteUserid").val();
+            var email = $("#email").val();
+            var username = $("#username").val();
+            if (email == "a") {
+                email = null;
+            }
+            $.ajax({
+                type: "post",
+                url: "/register/checkInfo.action",
+                data: {
+                    phone: phone,
+                    email: email,
+                    username:username
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data == "4") {
+                        $("#g_phone").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>注册手机号重复");
+                    } else if (data == "6") {
+                        $("#g_email").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>注册邮箱重复");
+                    }else if (data == "7") {
+                        $("#g_username").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>用户名已被使用");
+                    }
+                }
+            })
+        };
+    });
+
+    function websiteProtocol() {
+        layer.open({
+            type: 2,
+            title: '注册协议',
+            shadeClose: true,
+            shade: false,
+            maxmin: true, //开启最大化最小化按钮
+            area: ['1050px', '600px'],
+            content: 'LongRegister/Tousermanual!Tousermanual.go'
+        });
+    }
+
+    function risk_warning() {
+        layer.open({
+            type: 2,
+            title: '风险提示',
+            shadeClose: true,
+            shade: false,
+            maxmin: true, //开启最大化最小化按钮
+            area: ['1050px', '600px'],
+            content: 'risk_warning.go'
+        });
+    }
+
+    function check() {
+        var username = $("#username").val();
+        var phone = $("#phone").val();
+
+        if (username == '' || username == null) {
+            $("#g_username").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请设置您的用户名");
+            return;
+        }
+
+        if (phone == '' || phone == null) {
+            $("#g_phone").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请设置您的手机号");
+            return;
+        }
+        var phoneVerifyCode = $("#code").val();
+        if (phoneVerifyCode == '' || phoneVerifyCode == null) {
+            $("#g_code").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请输入验证码");
+            return
+        }
+        var password = $("#password").val();
+        if (password == '' || password == null) {
+            $("#g_password").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请设置您的密码");
+            return
+        }
+        if (password.length < 6) {
+            $("#g_password").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>密码不能少于六位数");
+            return
+        }
+
+        var paypassword = $("#paypassword").val();
+        if (paypassword == '' || paypassword == null) {
+            $("#g_paypassword").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>请输入确认密码");
+            return
+        }
+        var userId = $("#userId").val();
+        var typeId = $('#sele .active').attr("rel");
+        var email = $("#email").val();
+        if (typeId == "1") {
+            email = null;
+        } else if (typeId == "2") {
+            if (email == '' || email == null) {
+                $("#g_email").html("<img src='http://39.107.15.222:8081/src/theme/computer/img/remind.png'>确认密码不能为空");
+                return
+            }
+        }
+        if (!document.getElementById("protocolCheck").checked) {
+            layer.alert("请阅读服务协议和风险提示并勾选！", {icon: 0});
+            return;
+        }
+
+        $.ajax({
+            type: "post",
+            url: "/register/register.action",
+            data: {
+                phone: phone,
+                phoneVerifyCode: phoneVerifyCode,
+                password: password,
+                paypassword: paypassword,
+                email: email,
+                username:username
+            },
+            dataType: "json",
+            success: function (data) {
+                if ("SUCCESS"==data.status){
+                    window.location.href = "/login";
+                } else {
+                    layer.alert(data.message, {icon: 0});
+                }
+            }
+        })
+    };
+    $(".right_input2 input").focus(function () {
+        $(".register_button").css("background-color", "#2d9ee2");
+        $(".register_button").hover(function () {
+            $(".register_button").addClass("sub");
+        }, function () {
+            $(".register_button").removeClass("sub");
+        })
+    })
+    $(".right_input2 input").blur(function () {
+        $(".register_button").css("background-color", "#999");
+    })
+</script>
+</body>
+
+</html>

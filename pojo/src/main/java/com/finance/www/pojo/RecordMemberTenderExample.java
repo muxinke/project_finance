@@ -12,7 +12,7 @@ public class RecordMemberTenderExample {
     protected List<Criteria> oredCriteria;
 
     public RecordMemberTenderExample() {
-        oredCriteria = new ArrayList<>();
+        oredCriteria = new ArrayList<Criteria>();
     }
 
     public void setOrderByClause(String orderByClause) {
@@ -69,7 +69,7 @@ public class RecordMemberTenderExample {
 
         protected GeneratedCriteria() {
             super();
-            criteria = new ArrayList<>();
+            criteria = new ArrayList<Criterion>();
         }
 
         public boolean isValid() {
@@ -286,62 +286,62 @@ public class RecordMemberTenderExample {
         }
 
         public Criteria andInvestmentTimeIsNull() {
-            addCriterion("Investment_time is null");
+            addCriterion("investment_time is null");
             return (Criteria) this;
         }
 
         public Criteria andInvestmentTimeIsNotNull() {
-            addCriterion("Investment_time is not null");
+            addCriterion("investment_time is not null");
             return (Criteria) this;
         }
 
         public Criteria andInvestmentTimeEqualTo(Date value) {
-            addCriterion("Investment_time =", value, "investmentTime");
+            addCriterion("investment_time =", value, "investmentTime");
             return (Criteria) this;
         }
 
         public Criteria andInvestmentTimeNotEqualTo(Date value) {
-            addCriterion("Investment_time <>", value, "investmentTime");
+            addCriterion("investment_time <>", value, "investmentTime");
             return (Criteria) this;
         }
 
         public Criteria andInvestmentTimeGreaterThan(Date value) {
-            addCriterion("Investment_time >", value, "investmentTime");
+            addCriterion("investment_time >", value, "investmentTime");
             return (Criteria) this;
         }
 
         public Criteria andInvestmentTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("Investment_time >=", value, "investmentTime");
+            addCriterion("investment_time >=", value, "investmentTime");
             return (Criteria) this;
         }
 
         public Criteria andInvestmentTimeLessThan(Date value) {
-            addCriterion("Investment_time <", value, "investmentTime");
+            addCriterion("investment_time <", value, "investmentTime");
             return (Criteria) this;
         }
 
         public Criteria andInvestmentTimeLessThanOrEqualTo(Date value) {
-            addCriterion("Investment_time <=", value, "investmentTime");
+            addCriterion("investment_time <=", value, "investmentTime");
             return (Criteria) this;
         }
 
         public Criteria andInvestmentTimeIn(List<Date> values) {
-            addCriterion("Investment_time in", values, "investmentTime");
+            addCriterion("investment_time in", values, "investmentTime");
             return (Criteria) this;
         }
 
         public Criteria andInvestmentTimeNotIn(List<Date> values) {
-            addCriterion("Investment_time not in", values, "investmentTime");
+            addCriterion("investment_time not in", values, "investmentTime");
             return (Criteria) this;
         }
 
         public Criteria andInvestmentTimeBetween(Date value1, Date value2) {
-            addCriterion("Investment_time between", value1, value2, "investmentTime");
+            addCriterion("investment_time between", value1, value2, "investmentTime");
             return (Criteria) this;
         }
 
         public Criteria andInvestmentTimeNotBetween(Date value1, Date value2) {
-            addCriterion("Investment_time not between", value1, value2, "investmentTime");
+            addCriterion("investment_time not between", value1, value2, "investmentTime");
             return (Criteria) this;
         }
 
