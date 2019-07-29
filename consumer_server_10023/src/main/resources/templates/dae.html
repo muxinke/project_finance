@@ -195,16 +195,15 @@
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">借款金额</label>
-		<div id="slidexx"  class="demo-slider" style="width: 400px;margin-left: 120px;margin-top: 20px"></div><!--<div id="test-slider-tips1" name="amount" style="position:relative; left: 30px; top: -20px;"></div>--><br/>
-
-		<input type="text" hidden id="jine" name="amount">
+		<div id="slidexx"  class="demo-slider" style="width: 400px;margin-left: 120px;margin-top: 20px"></div><br/>
 		<div style="margin-left: 100px">最低:10000元</div>
         <div style="margin-left: 400px;margin-top: -20px">最高:<span id="maxmoney" th:text="${edu}">1000000</span>元</div>
+		<input type="text" hidden id="jine" name="amount">
     </div>
     <div class="layui-form-item" style="width: 410px">
         <label class="layui-form-label">借款性质</label>
         <div class="layui-input-block">
-            <select name="xingzhi" lay-verify="required" >
+            <select name="xingzhi"  lay-verify="required" >
                 <option value=""></option>
                 <option value="1">保证金贷款</option>
                 <option value="2">经营周转</option>
@@ -222,15 +221,15 @@
 
     <div class="layui-form-item">
         <label class="layui-form-label">借款期限</label>
-        <div class="layui-input-block">
-            <input type="radio" name="qixian" value="9" title="9月" checked>
-            <input type="radio" name="qixian" value="12" title="12月" >
-            <input type="radio" name="qixian" value="18" title="18月" >
+        <div class="layui-input-block" id="howlong" >
+            <input type="radio" name="qixian" value="9" title="9个月" checked>
+            <input type="radio" name="qixian" value="12" title="12个月" >
+            <input type="radio" name="qixian" value="18" title="18个月" >
         </div>
     </div>
         <div class="layui-form-item">
             <label class="layui-form-label">还款方式</label>
-            <div class="layui-input-block">
+            <div class="layui-input-block" id="how">
                 <input type="radio"  name="paymethod" value="1" title="按期付息到期还本" checked>
                 <input type="radio"  name="paymethod" value="2" title="按月按期还款" >
                 <input type="radio"  name="paymethod" value="3" title="到期全额还款" >
@@ -254,38 +253,38 @@
 <!--******************************************************************-->
 <div id="aa" style="display:none">
     <div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">
-<ul class="layui-timeline">
-    <li class="layui-timeline-item">
-        <i class="layui-icon layui-timeline-axis"></i>
-        <div class="layui-timeline-content layui-text">
-            <div class="layui-timeline-title">2018年，layui 5.0 发布。并发展成为中国最受欢迎的前端UI框架（期望）</div>
-        </div>
-    </li>
-    <li class="layui-timeline-item">
-        <i class="layui-icon layui-timeline-axis"></i>
-        <div class="layui-timeline-content layui-text">
-            <div class="layui-timeline-title">2017年，layui 里程碑版本 2.0 发布</div>
-        </div>
-    </li>
-    <li class="layui-timeline-item">
-        <i class="layui-icon layui-timeline-axis"></i>
-        <div class="layui-timeline-content layui-text">
-            <div class="layui-timeline-title">2016年，layui 首个版本发布</div>
-        </div>
-    </li>
-    <li class="layui-timeline-item">
-        <i class="layui-icon layui-timeline-axis"></i>
-        <div class="layui-timeline-content layui-text">
-            <div class="layui-timeline-title">2015年，layui 孵化</div>
-        </div>
-    </li>
-    <li class="layui-timeline-item">
-        <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-timeline-axis"></i>
-        <div class="layui-timeline-content layui-text">
-            <div class="layui-timeline-title">更久前，轮子时代。维护几个独立组件：layer等</div>
-        </div>
-    </li>
-</ul>
+        <ul class="layui-timeline" id="ulxx">
+            <!--<li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">2018年，layui 5.0 发布。并发展成为中国最受欢迎的前端UI框架（期望）</div>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">2017年，layui 里程碑版本 2.0 发布</div>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">2016年，layui 首个版本发布</div>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">2015年，layui 孵化</div>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">更久前，轮子时代。维护几个独立组件：layer等</div>
+                </div>
+            </li>-->
+        </ul>
     </div>
 </div>
 <!--******************************************************************-->
@@ -321,6 +320,96 @@
             $("#jine").val(money);
             return true;
         });
+        $("#slidexx").mousedown(function () {
+            calculate();
+        });
+      //计算还款
+        function calculate() {
+            //获取金额、还款期限、还款方式
+            var jine =$("#jine").val();
+            var howlong =$("#howlong").val();
+            var how =$("#how").val();
+            if (how==1) {//按期付息到期还本
+                //发ajax请求
+                $.ajax({
+                    url: "/query1",
+                    type: 'post',
+                    data: {
+                        borrow: borrow,
+                        time: time,
+                    },
+                    success: function (data) {
+                        $("#firstTime").text(data.moneyVoList[0].periods);
+                        $("#firstMoney").text("应还"+data.moneyVoList[0].money+"元");
+                        $("#ulappend").empty();
+                        $("#ulappend").append('<h6>还款总金额：<span>' + data.totalMoney + '</span></h6>' +
+                            '<h6>还款总利息：<span>' + data.totalInterest + '</span></h6>');
+                        $.each(data.moneyVoList, function (i, value) {
+                            $("#ulappend").append('<li class="layui-timeline-item">' +
+                                '<i class="layui-icon layui-timeline-axis"></i>' +
+                                '<div class="layui-timeline-content layui-text">' +
+                                '<div class="layui-timeline-title"><span >' + value.periods + '</span> <span >' + value.schedule + '</span><br>' +
+                                '还款额：<span >' + value.money + '</span></div>' +
+                                '</div>' +
+                                '</li>');
+                        })
+                    }
+                })
+            }else if (how==2){//按月按期还款
+				//发ajax请求
+                $.ajax({
+                    url: "/query2",
+                    type: 'post',
+                    data: {
+                        borrow: borrow,
+                        time: time,
+                    },
+                    success: function (data) {
+                        $("#firstTime").text(data.moneyVoList[0].periods);
+                        $("#firstMoney").text("应还"+data.moneyVoList[0].money+"元");
+                        $("#ulappend").empty();
+                        $("#ulappend").append('<h6>还款总金额：<span>' + data.totalMoney + '</span></h6>' +
+                            '<h6>还款总利息：<span>' + data.totalInterest + '</span></h6>');
+                        $.each(data.moneyVoList, function (i, value) {
+                            $("#ulappend").append('<li class="layui-timeline-item">' +
+                                '<i class="layui-icon layui-timeline-axis"></i>' +
+                                '<div class="layui-timeline-content layui-text">' +
+                                '<div class="layui-timeline-title"><span >' + value.periods + '</span> <span >' + value.schedule + '</span><br>' +
+                                '还款额：<span >' + value.money + '</span></div>' +
+                                '</div>' +
+                                '</li>');
+                        })
+                    }
+                })
+            }else if (how==3){//到期全额还款
+                //发ajax请求
+                $.ajax({
+                    url: "/query3",
+                    type: 'post',
+                    data: {
+                        borrow: borrow,
+                        time: time,
+                    },
+                    success: function (data) {
+                        $("#firstTime").text(data.moneyVoList[0].periods);
+                        $("#firstMoney").text("应还"+data.moneyVoList[0].money+"元");
+                        $("#ulappend").empty();
+                        $("#ulappend").append('<h6>还款总金额：<span>' + data.totalMoney + '</span></h6>' +
+                            '<h6>还款总利息：<span>' + data.totalInterest + '</span></h6>');
+                        $.each(data.moneyVoList, function (i, value) {
+                            $("#ulappend").append('<li class="layui-timeline-item">' +
+                                '<i class="layui-icon layui-timeline-axis"></i>' +
+                                '<div class="layui-timeline-content layui-text">' +
+                                '<div class="layui-timeline-title"><span >' + value.periods + '</span> <span >' + value.schedule + '</span><br>' +
+                                '还款额：<span >' + value.money + '</span></div>' +
+                                '</div>' +
+                                '</li>');
+                        })
+                    }
+                })
+
+			}
+        }
         //触发事件
         var active = {
             notice: function () {
@@ -332,7 +421,7 @@
                     area: '300px;',
                     shade: 0.8,
                     id: 'LAY_layuipro', //设定一个id，防止重复弹出
-                    btn: ['火速围观', '残忍拒绝'],
+                    btn: ['我知道了'],
                     btnAlign: 'c',
                     moveType: 1, //拖拽模式，0或者1
                     content: $("#aa").html(),
