@@ -1,6 +1,4 @@
-package com.finance.www.vo;
-
-import lombok.Data;
+package com.finance.www.voxx;
 
 /**
  * Created by Administrator on 2019/7/24.

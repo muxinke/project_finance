@@ -2,24 +2,12 @@ package com.finance.www.controller;
 
 import com.finance.www.service.BigLoanService;
 import com.finance.www.service.LoanLimitService;
-import com.finance.www.utils.AliyunOssUtils;
-import com.finance.www.utils.DeleteFileUtil;
-import com.finance.www.vo.AddBigLoan;
-import com.finance.www.vo.AddBigLoanImg;
-import com.finance.www.vo.BasicAddBigLoan;
-import net.sf.json.JSONException;
+import com.finance.www.voxx.AddBigLoan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by Administrator on 2019/7/24.

@@ -1,7 +1,7 @@
 package com.finance.www.testxx;
 
 import com.finance.www.mapper.BigLoanMapper;
-import com.finance.www.vo.AddBigLoan;
+import com.finance.www.voxx.AddBigLoan;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

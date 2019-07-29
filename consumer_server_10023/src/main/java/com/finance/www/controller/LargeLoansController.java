@@ -3,15 +3,7 @@ package com.finance.www.controller;
 import com.finance.www.service.LoanService;
 import com.finance.www.utils.AliyunOssUtils;
 import com.finance.www.utils.DeleteFileUtil;
-import com.finance.www.vo.AddBigLoan;
-import com.finance.www.vo.AddBigLoanImg;
-import com.finance.www.vo.BasicAddBigLoan;
-import com.finance.www.vo.WenJuan;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import com.finance.www.voxx.AddBigLoan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,14 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.sound.midi.Soundbank;
-import javax.xml.bind.SchemaOutputResolver;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**

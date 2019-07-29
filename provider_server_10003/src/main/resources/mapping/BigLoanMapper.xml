@@ -303,7 +303,7 @@
       state = #{state,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <insert id="addBigLoan" parameterType="com.finance.www.vo.AddBigLoan" useGeneratedKeys="true"  keyProperty="id">
+  <insert id="addBigLoan" parameterType="com.finance.www.voxx.AddBigLoan" useGeneratedKeys="true" keyProperty="id">
     insert into big_loan (member_id, amount,xingzhi,howlong, paymethod)
     values (#{memberId}, #{amount},#{xingzhi}, #{howlong}, #{paymethod})
   </insert>

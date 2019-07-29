@@ -1,4 +1,4 @@
-package com.finance.www.vo;
+package com.finance.www.voxx;
 
 import lombok.Data;
 

@@ -4,7 +4,6 @@ import com.finance.www.pojo.BigloanImgurl;
 import com.finance.www.pojo.BigloanImgurlExample;
 import java.util.List;
 
-import com.finance.www.vo.AddBigLoanImg;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper

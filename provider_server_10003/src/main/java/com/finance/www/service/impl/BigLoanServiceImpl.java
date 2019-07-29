@@ -3,19 +3,15 @@ package com.finance.www.service.impl;
 import com.finance.www.mapper.BigLoanMapper;
 import com.finance.www.mapper.BigloanImgurlMapper;
 import com.finance.www.service.BigLoanService;
-import com.finance.www.vo.AddBigLoan;
-import com.finance.www.vo.AddBigLoanImg;
-import com.finance.www.vo.BasicAddBigLoan;
-import org.hibernate.validator.constraints.LuhnCheck;
+import com.finance.www.voxx.AddBigLoan;
+import com.finance.www.voxx.BasicAddBigLoan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2019/7/26.

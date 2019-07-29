@@ -1,12 +1,8 @@
 package com.finance.www.service;
 
-import com.finance.www.vo.AddBigLoan;
-import com.finance.www.vo.AddBigLoanImg;
-import com.finance.www.vo.BasicAddBigLoan;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.finance.www.voxx.AddBigLoan;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2019/7/26.
