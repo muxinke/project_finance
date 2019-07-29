@@ -155,5 +155,23 @@ public class LargeLoansController {
     public String daeshenhe(){
         return "daeshenhe";
     }
+    //按期付息到期还本
+    @PostMapping("/query1")
+    @ResponseBody
+    public String query1(){
+        return "";
+    }
+    //按月按期还款
+    @PostMapping("/query2")
+    @ResponseBody
+    public String query2(){
+        return "";
+    }
+    //到期全额还款
+    @PostMapping("/query3")
+    @ResponseBody
+    public String query3(){
+        return "";
+    }
 
 }
