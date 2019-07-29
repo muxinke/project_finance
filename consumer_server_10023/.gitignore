@@ -28,4 +28,8 @@ target/
 build/
 
 ### VS Code ###
+<<<<<<< Updated upstream
 .vscode/
+=======
+.vscode/
+>>>>>>> Stashed changes
