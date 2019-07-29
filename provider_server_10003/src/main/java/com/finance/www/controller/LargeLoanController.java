@@ -2,7 +2,7 @@ package com.finance.www.controller;
 
 import com.finance.www.service.BigLoanService;
 import com.finance.www.service.LoanLimitService;
-import com.finance.www.voxx.AddBigLoan;
+import com.finance.www.vox.AddBigLoan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

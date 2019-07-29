@@ -1,6 +1,6 @@
 package com.finance.www.service;
 
-import com.finance.www.voxx.AddBigLoan;
+import com.finance.www.vox.AddBigLoan;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

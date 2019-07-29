@@ -1,6 +1,6 @@
 package com.finance.www.service;
 
-import com.finance.www.voxx.AddBigLoan;
+import com.finance.www.vox.AddBigLoan;
 
 import java.util.ArrayList;
 

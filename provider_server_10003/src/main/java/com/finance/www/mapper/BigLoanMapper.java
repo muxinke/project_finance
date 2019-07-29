@@ -4,7 +4,7 @@ import com.finance.www.pojo.BigLoan;
 import com.finance.www.pojo.BigLoanExample;
 import java.util.List;
 
-import com.finance.www.voxx.BasicAddBigLoan;
+import com.finance.www.vox.BasicAddBigLoan;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper

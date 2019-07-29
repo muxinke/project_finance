@@ -3,7 +3,7 @@ package com.finance.www.controller;
 import com.finance.www.service.LoanService;
 import com.finance.www.utils.AliyunOssUtils;
 import com.finance.www.utils.DeleteFileUtil;
-import com.finance.www.voxx.AddBigLoan;
+import com.finance.www.vox.AddBigLoan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
