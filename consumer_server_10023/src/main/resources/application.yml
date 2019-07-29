@@ -6,14 +6,27 @@ spring:
     cache: false
   application:
     name: consumer-server-10023
-  profiles:
-    active: 10023
-  cloud:
-    config:
-      discovery:
-        service-id: server-config
-        enabled: true
+  jta:
+    atomikos:
+      properties:
+        service:
+ # profiles:
+ #   active: 10023
+  #cloud:
+   # config:
+    #  discovery:
+     #   service-id: server-config
+      #  enabled: true
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8080/eureka
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+ribbon:
+  ReadTimeout: 600000
+  ConnectTimeout: 600000

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -130,6 +130,9 @@
                 </a>
 
                 <ol class="m-list">
+                    <li>
+                        <a href="wenjuan">我的额度</a>
+                    </li>
 
                     <li>
                         <a href="xiaoe">小额借款</a>
@@ -297,8 +300,7 @@
             var guarantee=$("input[name='guarantee']:checked").val();
             var debt=$("input[name='debt']:checked").val();
             var loantime=$("input[name='loantime']:checked").val();
-            alert(age+work+income+nomoney+guarantee+debt+loantime);
-            window.location.href="http://localhost:10023/dae?age="+age+"&work="+work+"&income="+income+"&nomoney="+nomoney+"&guarantee="+guarantee+"&debt="+debt+"&loantime="+loantime;
+            window.location.href="http://localhost:10023/daexx?age="+age+"&work="+work+"&income="+income+"&nomoney="+nomoney+"&guarantee="+guarantee+"&debt="+debt+"&loantime="+loantime;
         });
         //…
         laydate.render({

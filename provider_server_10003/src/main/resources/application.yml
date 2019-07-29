@@ -2,13 +2,13 @@
 spring:
   application:
     name: provider-server-10003
-  profiles:
-    active: 10003
-  cloud:
-    config:
-      discovery:
-        service-id: server-config
-        enabled: true
+  #profiles:
+  #  active: 10003
+ # cloud:
+   # config:
+   #   discovery:
+     #   service-id: server-config
+     #   enabled: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://39.107.15.222:3306/easydai?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
@@ -21,3 +21,6 @@ eureka:
       defaultZone: http://localhost:8080/eureka
 server:
   port: 10003
+mybatis:
+  type-aliases-package: com.finance.www.pojo
+  mapper-locations: classpath:mapping/*.xml
