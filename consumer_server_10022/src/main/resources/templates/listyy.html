@@ -1,0 +1,156 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+.addinterest {
+	background: red none repeat scroll 0 0;
+	color: #fff;
+	display: block;
+	font-style: normal;
+	font-size: 12px;
+	height: 20px;
+	margin-left: 60px;
+	line-height: 20px;
+	position: absolute;
+	text-align: center;
+	margin-top: -47px;
+	width: 28px;
+}
+
+.addapr {
+	border: 1px solid red;
+	color: red;
+	display: block;
+	font-size: 14px;
+	font-style: normal;
+	height: 18px;
+	line-height: 18px;
+	margin-left: 88px;
+	margin-top: -47px;
+	position: absolute;
+	text-align: center;
+}
+.project_list_title .action12{margin-left:10px;}
+.project_list_title .action12 img{vertical-align:middle;height:22px;}
+
+</style>
+
+
+
+<div class="project_item">
+<ul>
+	
+
+		<li class="project_list" th:each="produit:${produits}">
+			<input id="sid" type="hidden" th:value="${produit.id}">
+			<a th:href="'/detail?pid='+${produit.id}">
+				<div class="project_list_title clearfix">
+					<h3 class="fl">
+						<span class="vouch bStyle" th:text="${produit.biaotizi}">保</span>
+						<span class="fl">经营周转【<span th:text="${produit.id}">2636</span>标】</span>
+						<div class="Credit_mark fl"><span th:text="${produit.produitsOrdre}">AA</span></div>
+					</h3>
+					
+				</div>
+			
+					<div class="project_detail">
+						<div class="project_detail_list annualized_return">
+							<h3 th:text="${produit.yearInterestRate}"></h3>
+							<p> 预期年化收益率</p>
+						</div>
+						<div class="project_detail_list project_duration">
+							<h3 th:text="${produit.produitDureeDes}+个月">
+
+            					
+							</h3>
+							<p>项目期限</p>
+						</div>
+						<div class="project_detail_list tender_amount">
+							<h3 th:text="${produit.montantDeOffre}+元">250000.0<span>元</span></h3>
+							<p>投标金额</p>
+						</div>
+						<div class="project_detail_list surplus_amount">
+							<h3 th:text="${produit.ketou}+元">249900.0<span>元</span></h3>
+							<p>剩余可投金额</p>
+						</div>
+						<div class="project_detail_list tender_schedule">
+							<div class="progress_bar1">
+								<div class="pro-bar1">
+									<small class="progress_bar_title1">
+										<span class="progress_number1" th:text="${produit.wcbaifenbi}">
+											ddd
+										</span>
+									</small>
+									<span class="progress-bar-inner1 uu" style="background-color: #00a0e9; width: 0.0%;" data-value="65" data-percentage-value="65"></span>
+								</div>
+							</div>
+						</div>
+						<div class="project_detail_list projectStatus">
+							<a th:href="'/detail?pid='+${produit.id}"><button>
+									<span th:text="${produit.isCondition}">投标中</span>
+							</button></a>
+						</div>
+						
+					</div>
+
+			</a>
+		</li>
+	
+	
+</ul>
+
+<style>
+.m-page {
+	width: 44%;
+	margin: 40px auto 20px auto;
+	height: auto;
+	min-height: 1px;
+	overflow: hidden;
+	
+}
+
+.m-page ol {
+	width: auto;
+	height: auto;
+	float:left;
+	min-height: 1px;
+	overflow: hidden;
+	border:1px solid #cfcfcf;
+}
+.m-page ol a{
+	display:block;
+    float: left;
+    border-left: 1px solid #cfcfcf;
+    width:40px;
+    padding:0px 5px;
+    height: 40px;
+    line-height: 40px;
+    text-align:center;
+    background-color: #f5f5f5;
+    color:#7e7e7e;
+}
+.m-page ol a#up,.m-page ol a#next{width:72px;padding:0px 5px;}
+.m-page ol a span{display:block;}
+.m-page ol a:first-child{
+border-left:0px;
+}
+.m-page ol a.lf.f-active{
+background-color:#2ab4fc;
+color:#fff;
+}
+</style>
+<div class="f-clear m-page mt2">
+	<ol class="lr f-clear">
+		<a href="#" style="float: left;" th:href="@{/listyy(page=${1>(page - 1)?page:(page - 1)},biaotype=${biaotype},style=${style},timeLimit=${timeLimit})}" id="up">上一页</a>
+		
+		<a href="#" th:href="@{/listyy(page=${page},biaotype=${biaotype},style=${style},timeLimit=${timeLimit})}" class="lf f-active"><span th:text="${page}">1</span> </a>
+		
+		<a href="#" class="lf" th:href="@{/listyy(page=${(page+1)},biaotype=${biaotype},style=${style},timeLimit=${timeLimit})}" th:if="${total/6>=(page + 1)}"><span th:text="${page + 1}">2</span> </a>
+		
+		<a href="#" style="float: left;"  th:href="@{/listyy(page=${total/6<(page + 1)?page:(page + 1)},biaotype=${biaotype},style=${style},timeLimit=${timeLimit})}" id="next">下一页</a>
+		<input type="hidden" id="currentPage" th:value="${page}">
+		<input type="hidden" id="pageTotal" th:value="${total/6}">
+	</ol>
+</div>
+
+
+</div>
+</html>

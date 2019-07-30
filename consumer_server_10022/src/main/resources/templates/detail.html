@@ -40,8 +40,6 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
 	<link rel="stylesheet"
-		  href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
-	<link rel="stylesheet"
 		  href="http://39.107.15.222:8081/src/theme/computer/css/investment.css" />
 	<title>投资详情</title>
 	<style type="text/css">
@@ -119,17 +117,16 @@
                 }
             }, 1000);
 
-            var jxbankUserstatus = '';
-            if(jxbankUserstatus == "undefined" || jxbankUserstatus == '' || jxbankUserstatus == null || jxbankUserstatus == 0) {
+            var jxbankUserstatus =$("#lg").text();
+            if(jxbankUserstatus=="请登录") {
                 $('#balance').html("0.00");
             } else {
                 $.ajax({
                     type: "POST",
-                    url: "account/showJxyh.action",
+                    url: "/showzhanghujine",
                     dataType: "json",
                     success: function(data) {
-                        var balance = Math.max(data.message * 100) / 100;
-                        var djbalance = Math.max(data.vemessage * 100) / 100;
+                         var balance=data.account;
                         $('#balance').html(balance);
                         $('#useAccount').val(balance);
                     }
@@ -170,6 +167,7 @@
                     $("#wealth").text('开启您的财富之旅');
                     $("#wealth").attr("href","reCash/toAdd.go");
                     $("#bannerlogin").remove();
+                    $("#lg").text("立即投资");
                 }
 
             }
@@ -423,8 +421,8 @@
 					</div>
 
 					<div class="bid_button"
-						 onclick="location='newLogin/loginPage.go'">
-						<a href="login.html" style="color: white;">请登录</a>
+						 onclick="location='login.html'">
+						<a id="lg" href="login.html" style="color: white;">请登录</a>
 					</div>
 
 
@@ -565,31 +563,36 @@
 					<li class="bidding_month">投标方式</li>
 					<li class="in_time">投资时间</li>
 				</ul></li>
-			<li>
+			<li th:each="invest:${invests}">
 				<ul class="record_list">
-					<li class="in_user">
+					<li class="in_user"><span th:text="${invest.investName}">ll</span>
 					</li>
 					<li class="in_money">
 						<div class="fl InmoneyIcon">
-
+<!--
 							<img src="http://39.107.15.222:8081/src/theme/computer/img/p2.png">
 
 							<img src="http://39.107.15.222:8081/src/theme/computer/img/p1.png">
 
-							<img src="http://39.107.15.222:8081/src/theme/computer/img/p3.png">
+							<img src="http://39.107.15.222:8081/src/theme/computer/img/p3.png">-->
 
 						</div>
 						<div class="fl InmonJe">
-									<span>100.0
+									<span th:text="${invest.jine}">100.0
 									</span><span>元</span>
 						</div></li>
-					<li class="effective_amount">100.0
+					<li class="effective_amount"><span th:text="${invest.yxjine}">100.0</span>
 					</li>
-					<li class="bidding_month">
-						<img src="http://39.107.15.222:8081/src/theme/computer/img/pc.png"
+					<li class="bidding_month" th:switch="${invest.investWay}">
+
+						<img th:case="'1'" src="http://39.107.15.222:8081/src/theme/computer/img/pc.png"
 							 style="width:26px;height:24px;">
+						<img th:case="'2'" src="http://39.107.15.222:8081/src/theme/computer/img/telephone.png"
+								 style="width:26px;height:24px;">
+						<img th:case="'3'" src="http://39.107.15.222:8081/src/theme/computer/img/weixin.png"
+								 style="width:26px;height:24px;">
 					</li>
-					<li class="in_time">2019-07-18 14:26:09
+					<li class="in_time"><span th:text="${invest.investtime}">ss</span>
 					</li>
 				</ul>
 			</li>
@@ -749,7 +752,7 @@
             $(".record_detail").children().eq(ind).show().siblings().hide();
         })
 
-        //				卡券
+      /*  //				卡券
         $(".card_coupons").on("click", function() {
             $(this).find("h5").slideUp(150);
             $(this).find(".cards").slideDown(150);
@@ -793,7 +796,7 @@
                 $(this).find("span").attr("class", "iconfont icon-duoxuankuangxuanzhong1");
             }
 
-        })
+        })*/
     });
 </script>
 <script type="text/javascript">
@@ -968,7 +971,7 @@
                 $('#prompt').html("帐户余额不足,请先去充值.");
                 return false;
             }
-            var tenderlimit = $('#limit').val();
+           /* var tenderlimit = $('#limit').val();
             var tenderbiao = $('#biao').val();
             $('#erromess').html("");
             $('#tenderprompt').html("");
@@ -994,8 +997,8 @@
                         }
                     }
                 }
-            }
-            if(parseFloat(tenderMoney) < parseFloat(totalMoney)) {
+            }*/
+           /* if(parseFloat(tenderMoney) < parseFloat(totalMoney)) {
                 $('#prompt').html("现金劵未达到投资条件必须满" + totalMoney + "!不能使用");
                 return false;
             }
@@ -1014,8 +1017,8 @@
                     totalRatesCoupon += 1;
                     ratesCouponIds += radio1[j].value + ",";
                 }
-            }
-            var addAprCount = 1;
+            }*/
+            /*var addAprCount = 1;
             var hbAndAprKG = false;
             if(totalRatesCoupon > addAprCount) {
                 $('#prompt').html("加息券使用个数不能超过" + addAprCount + "个,请重新选择!");
@@ -1024,7 +1027,7 @@
             if(!hbAndAprKG && countHongb >= 1 && totalRatesCoupon >= 1) {
                 $('#prompt').html("抱歉,现金券与加息券不能叠加使用,请重新选择!");
                 return false;
-            }
+            }*/
             var token = $('#token').val();
             var borrowId = $('#borrowId').val();
             $.ajax({
