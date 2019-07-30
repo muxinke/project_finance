@@ -55,22 +55,22 @@
 				<li class="lilogin" id="login">
 					<!--跳转登陆界面
                         <a href="newLogin/loginPage.go">立即登录</a>-->
-					<a href="login.html">立即登录</a>
+					<a href="login">立即登录</a>
 				</li>
 				<li class="liregister" id="register">
 					<!--注册界面
                         <a href="register/toRegister.go">快速注册</a>-->
-					<a href="zhuce.html">快速注册</a>
+					<a href="zhuce">快速注册</a>
 				</li>
 
 				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
-					<a href="guide.html">使用指南</a></li>
+					<a href="guide">使用指南</a></li>
 
 				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
-					<a href="problem.html">常见问题</a></li>
+					<a href="problem">常见问题</a></li>
 
 				<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
-					<a style="color: #faa039" href="guarantee.html" >安全保障</a></li>
+					<a style="color: #faa039" href="guarantee" >安全保障</a></li>
 			</ul>
 		</div>
 	</div>
@@ -86,24 +86,24 @@
 		</div>
 		<ul class="navitem">
 			<li>
-				<a href="index.html">首页</a>
+				<a href="index">首页</a>
 			</li>
 
 			<li >
-				<a href="list.html"
+				<a href="list"
 				>我要投资
 				</a>
 
 				<ol class="m-list">
 
 					<li>
-						<a href="list.html"
+						<a href="list"
 						>投资列表
 						</a>
 					</li>
 
 					<li>
-						<a href="xiangdao.html"
+						<a href="xiangdao"
 						>投资向导
 						</a>
 					</li>
@@ -112,7 +112,7 @@
 			</li>
 
 			<li >
-				<a href="msgpilu.html"
+				<a href="msgpilu"
 				>信息披露
 				</a>
 
@@ -122,7 +122,7 @@
 			</li>
 
 			<li class="active" >
-				<a href="dae.html"
+				<a href="dae"
 				>我要借款
 					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
 
@@ -144,31 +144,31 @@
 			</li>
 
 			<li >
-				<a href="aboutus.html"> 关于我们</a>
+				<a href="aboutus"> 关于我们</a>
 				<ol class="m-list">
 
 					<li>
-						<a href="aboutus.html"> 企业简介</a>
+						<a href="aboutus"> 企业简介</a>
 					</li>
 
 					<li>
-						<a href="zizhi.html"> 公司资质</a>
+						<a href="zizhi"> 公司资质</a>
 					</li>
 
 					<li>
-						<a href="hezuohb.html"> 合作伙伴</a>
+						<a href="hezuohb"> 合作伙伴</a>
 					</li>
 
 					<li>
-						<a href="contactus.html"> 联系我们</a>
+						<a href="contactus"> 联系我们</a>
 					</li>
 
 					<li>
-						<a href="bulletin.html"> 平台公告</a>
+						<a href="bulletin"> 平台公告</a>
 					</li>
 
 					<li>
-						<a href="hr.html"> 招贤纳士</a>
+						<a href="hr"> 招贤纳士</a>
 					</li>
 
 				</ol>
@@ -197,7 +197,7 @@
 				<label class="layui-form-label">借款金额</label>
 				<div id="slidexx"  class="demo-slider" style="width: 400px;margin-left: 120px;margin-top: 20px"></div><br/>
 				<div style="margin-left: 100px">最低:10000元</div>
-				<div style="margin-left: 400px;margin-top: -20px">最高:<span id="maxmoney" th:text="${edu}">1000000</span>元</div>
+				<div style="margin-left: 400px;margin-top: -20px">最高:<span id="maxmoney" th:text="${edu}">10000</span>元</div>
 				<input type="text" hidden id="jine" name="amount">
 			</div>
 			<div class="layui-form-item" style="width: 410px">
@@ -221,18 +221,18 @@
 
 			<div class="layui-form-item">
 				<label class="layui-form-label">借款期限</label>
-				<div class="layui-input-block" id="howlong" >
-					<input type="radio" name="qixian" value="9" title="9个月" checked>
-					<input type="radio" name="qixian" value="12" title="12个月" >
-					<input type="radio" name="qixian" value="18" title="18个月" >
+				<div class="layui-input-block" id="id1" >
+					<input type="radio" lay-filter="qixianxx"  name="qixian" value="9" title="9个月" checked>
+					<input type="radio" lay-filter="qixianxx"  name="qixian" value="12" title="12个月" >
+					<input type="radio" lay-filter="qixianxx"  name="qixian" value="18" title="18个月" >
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">还款方式</label>
-				<div class="layui-input-block" id="how">
-					<input type="radio"  name="paymethod" value="1" title="按期付息到期还本" checked>
-					<input type="radio"  name="paymethod" value="2" title="按月按期还款" >
-					<input type="radio"  name="paymethod" value="3" title="到期全额还款" >
+				<div class="layui-input-block" id="id2" >
+					<input type="radio" lay-filter="paymethodxx"  name="paymethod" value="1" title="按期付息到期还本" checked>
+					<input type="radio" lay-filter="paymethodxx"  name="paymethod" value="2" title="按月按期还款" >
+					<input type="radio" lay-filter="paymethodxx"  name="paymethod" value="3" title="到期全额还款" >
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -241,7 +241,10 @@
                     <input type="text" name="title" required  lay-verify="required"  autocomplete="off" class="layui-input"  style="width: 300px">
                 </div>-->
 				<div class="site-demo-button" id="layerDemo">
-					<button type="button" data-method="notice" class="layui-btn layui-btn-primary">总利息 <span>796.97</span>元 &nbsp;&nbsp;<i class="layui-icon layui-icon-next"></i> </button>
+					<button type="button" data-method="notice" class="layui-btn layui-btn-primary">
+						<span id="totalInterest"></span> &nbsp;&nbsp;
+						<i class="layui-icon layui-icon-next"></i>
+					</button>
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -293,16 +296,18 @@
 <script src="http://39.107.15.222:8081/src/layui/layui.js"></script>
 <script>
     layui.use(['element','form','slider','layer','laydate','upload'], function(){
-        var $ = layui.$;
+        var $ = layui.jquery;
         var element = layui.element;
         var form = layui.form;
         var slider = layui.slider;
         var layer = layui.layer;
         var laydate = layui.laydate;
         var upload = layui.upload;
+
         //获取最大额度
         var maxmoney=$("#maxmoney").text();
-        var  money=0;
+        var  money=10000;
+        //滑块
         slider.render({
             elem: '#slidexx'
             ,input: true //输入框
@@ -313,6 +318,7 @@
                 $('#test-slider-tips1').html(value);
                 console.log("value=="+value );
                 money=value;
+                $("#jine").val(money);
             }
         });
         //监听提交
@@ -320,96 +326,22 @@
             $("#jine").val(money);
             return true;
         });
+        //借款金额
         $("#slidexx").mousedown(function () {
-            calculate();
+                setTimeout("calculate()",500);
         });
-        //计算还款
-        function calculate() {
-            //获取金额、还款期限、还款方式
-            var jine =$("#jine").val();
-            var howlong =$("#howlong").val();
-            var how =$("#how").val();
-            if (how==1) {//按期付息到期还本
-                //发ajax请求
-                $.ajax({
-                    url: "/query1",
-                    type: 'post',
-                    data: {
-                        borrow: borrow,
-                        time: time,
-                    },
-                    success: function (data) {
-                        $("#firstTime").text(data.moneyVoList[0].periods);
-                        $("#firstMoney").text("应还"+data.moneyVoList[0].money+"元");
-                        $("#ulappend").empty();
-                        $("#ulappend").append('<h6>还款总金额：<span>' + data.totalMoney + '</span></h6>' +
-                            '<h6>还款总利息：<span>' + data.totalInterest + '</span></h6>');
-                        $.each(data.moneyVoList, function (i, value) {
-                            $("#ulappend").append('<li class="layui-timeline-item">' +
-                                '<i class="layui-icon layui-timeline-axis"></i>' +
-                                '<div class="layui-timeline-content layui-text">' +
-                                '<div class="layui-timeline-title"><span >' + value.periods + '</span> <span >' + value.schedule + '</span><br>' +
-                                '还款额：<span >' + value.money + '</span></div>' +
-                                '</div>' +
-                                '</li>');
-                        })
-                    }
-                })
-            }else if (how==2){//按月按期还款
-                //发ajax请求
-                $.ajax({
-                    url: "/query2",
-                    type: 'post',
-                    data: {
-                        borrow: borrow,
-                        time: time,
-                    },
-                    success: function (data) {
-                        $("#firstTime").text(data.moneyVoList[0].periods);
-                        $("#firstMoney").text("应还"+data.moneyVoList[0].money+"元");
-                        $("#ulappend").empty();
-                        $("#ulappend").append('<h6>还款总金额：<span>' + data.totalMoney + '</span></h6>' +
-                            '<h6>还款总利息：<span>' + data.totalInterest + '</span></h6>');
-                        $.each(data.moneyVoList, function (i, value) {
-                            $("#ulappend").append('<li class="layui-timeline-item">' +
-                                '<i class="layui-icon layui-timeline-axis"></i>' +
-                                '<div class="layui-timeline-content layui-text">' +
-                                '<div class="layui-timeline-title"><span >' + value.periods + '</span> <span >' + value.schedule + '</span><br>' +
-                                '还款额：<span >' + value.money + '</span></div>' +
-                                '</div>' +
-                                '</li>');
-                        })
-                    }
-                })
-            }else if (how==3){//到期全额还款
-                //发ajax请求
-                $.ajax({
-                    url: "/query3",
-                    type: 'post',
-                    data: {
-                        borrow: borrow,
-                        time: time,
-                    },
-                    success: function (data) {
-                        $("#firstTime").text(data.moneyVoList[0].periods);
-                        $("#firstMoney").text("应还"+data.moneyVoList[0].money+"元");
-                        $("#ulappend").empty();
-                        $("#ulappend").append('<h6>还款总金额：<span>' + data.totalMoney + '</span></h6>' +
-                            '<h6>还款总利息：<span>' + data.totalInterest + '</span></h6>');
-                        $.each(data.moneyVoList, function (i, value) {
-                            $("#ulappend").append('<li class="layui-timeline-item">' +
-                                '<i class="layui-icon layui-timeline-axis"></i>' +
-                                '<div class="layui-timeline-content layui-text">' +
-                                '<div class="layui-timeline-title"><span >' + value.periods + '</span> <span >' + value.schedule + '</span><br>' +
-                                '还款额：<span >' + value.money + '</span></div>' +
-                                '</div>' +
-                                '</li>');
-                        })
-                    }
-                })
+        //借款期限,单选按钮
+        form.on('radio(qixianxx)', function (data) {
+             calculate();
+            form.render('radio');
+        });
 
-            }
-        }
+        //借款方式
+        form.on('radio(paymethodxx)', function (data) {
+            calculate();
+            form.render('radio');
+        });
+
         //触发事件
         var active = {
             notice: function () {
@@ -441,6 +373,81 @@
             active[method] ? active[method].call(this, othis) : '';
         });
     });
+    //计算还款
+    function calculate() {
+        //获取金额、还款期限、还款方式
+        var jine = $("#jine").val();
+        var howlong =$('input[name="qixian"]:checked ').val();
+        var how =$('input[name="paymethod"]:checked ').val();
+        if (how==1) {//按期付息到期还本
+            //发ajax请求
+            $.ajax({
+                url: "/query1",
+                type: 'post',
+                data: {
+                    borrow: jine,
+                    time: howlong,
+                },
+                success: function (data) {
+                    $("#totalInterest").text("总利息"+data.totalInterest+"元");
+                    $("#ulxx").empty();
+                    $("#ulxx").append('<h6>还款总金额：<span>' + data.totalMoney + '</span></h6>' +
+                        '<h6>还款总利息：<span>' + data.totalInterest + '</span></h6>');
+                    $.each(data.xianXiHouBenVoList, function (i, value) {
+                        $("#ulxx").append('<li class="layui-timeline-item">' +
+                            '<i class="layui-icon layui-timeline-axis"></i>' +
+                            '<div class="layui-timeline-content layui-text">' +
+                            '<div class="layui-timeline-title"><span >' + value.periods + '</span> <span >' + value.days + '</span><br>' +
+                            '还款额：<span >' + value.money + '</span></div>' +
+                            '</div>' +
+                            '</li>');
+                    })
+                }
+            })
+        }else if (how==2){//按月按期还款
+            //发ajax请求
+            $.ajax({
+                url: "/query2",
+                type: 'post',
+                data: {
+                    borrow: jine,
+                    time: howlong,
+                },
+                success: function (data) {
+                    $("#totalInterest").text("总利息"+data.totalInterest+"元");
+                    $("#ulxx").empty();
+                    $("#ulxx").append('<h6>还款总金额：<span>' + data.totalMoney + '</span></h6>' +
+                        '<h6>还款总利息：<span>' + data.totalInterest + '</span></h6>');
+                    $.each(data.dengEVoList, function (i, value) {
+                        $("#ulxx").append('<li class="layui-timeline-item">' +
+                            '<i class="layui-icon layui-timeline-axis"></i>' +
+                            '<div class="layui-timeline-content layui-text">' +
+                            '<div class="layui-timeline-title"><span >' + value.periods + '</span> <span >' + value.days + '</span><br>' +
+                            '还款额：<span >' + value.money + '</span></div>' +
+                            '</div>' +
+                            '</li>');
+                    })
+                }
+            })
+        }else if (how==3){//到期全额还款
+            //发ajax请求
+            $.ajax({
+                url: "/query3",
+                type: 'post',
+                data: {
+                    borrow: jine,
+                    time: 1,
+                },
+                success: function (data) {
+                    $("#totalInterest").text("总利息"+data.totalInterest+"元");
+                    $("#ulxx").empty();
+                    $("#ulxx").append('<h6>还款总金额：<span>' + data.totalMoney + '</span></h6>' +
+                        '<h6>还款总利息：<span>' + data.totalInterest + '</span></h6>');
+                }
+            })
+
+        }
+    }
 </script>
 <!-- 底部 -->
 
@@ -449,14 +456,14 @@
 	<div class="w1200">
 		<div class="bottom_1">
 			<ul>
-				<li><a href="aboutus.html">关于我们</a></li>
-				<li><a href="contcatus.html">联系我们</a></li>
-				<li><a href="guarantee.html">保障体系</a></li>
-				<li><a href="bulletin.html">平台公告</a></li>
-				<li><a href="hr.html">招贤纳士</a></li>
-				<li><a href="problem.html">常见问题</a></li>
-				<li><a href="guide.html">使用指南</a></li>
-				<li><a href="app.html">手机客户端</a></li>
+				<li><a href="aboutus">关于我们</a></li>
+				<li><a href="contcatus">联系我们</a></li>
+				<li><a href="guarantee">保障体系</a></li>
+				<li><a href="bulletin">平台公告</a></li>
+				<li><a href="hr">招贤纳士</a></li>
+				<li><a href="problem">常见问题</a></li>
+				<li><a href="guide">使用指南</a></li>
+				<li><a href="app">手机客户端</a></li>
 			</ul>
 		</div>
 		<div class="bottom_middle clearfix">

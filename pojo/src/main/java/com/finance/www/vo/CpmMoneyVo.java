@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Data
 public class CpmMoneyVo implements Serializable {
-        private String periods;
-        private String schedule;
-        private String money;
+        private String periods;//期数
+        private String schedule;//日期
+        private String money;//还款金额
 }
