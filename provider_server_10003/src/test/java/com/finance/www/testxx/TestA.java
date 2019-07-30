@@ -1,6 +1,9 @@
 package com.finance.www.testxx;
 
 import com.finance.www.mapper.BigLoanMapper;
+import com.finance.www.mapper.MemberRegisterMapper;
+import com.finance.www.pojo.MemberRegister;
+import com.finance.www.service.MemberRegisterService;
 import com.finance.www.vox.AddBigLoan;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +21,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TestA {
     @Autowired
     private BigLoanMapper bigLoanMapper;
+    @Autowired
+    private MemberRegisterService memberRegisterService;
     @Test
     public void test(){
         AddBigLoan addBigLoan = new AddBigLoan();
@@ -31,5 +36,10 @@ public class TestA {
         int i = bigLoanMapper.addBigLoan(addBigLoan);
         Integer id = addBigLoan.getId();
         System.out.println("id = " + id);
+    }
+    @Test
+    public void test2(){
+        MemberRegister byId = memberRegisterService.findById(2);
+        System.out.println("memberRegister = " + byId);
     }
 }

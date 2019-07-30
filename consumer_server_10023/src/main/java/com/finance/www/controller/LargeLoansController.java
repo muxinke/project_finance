@@ -3,7 +3,11 @@ package com.finance.www.controller;
 import com.finance.www.service.LoanService;
 import com.finance.www.utils.AliyunOssUtils;
 import com.finance.www.utils.DeleteFileUtil;
+import com.finance.www.utils.DengEUtils;
+import com.finance.www.utils.XianXiHouBenUtils;
 import com.finance.www.vox.AddBigLoan;
+import com.finance.www.vox.DengEMethod;
+import com.finance.www.vox.XianXiHouBenMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +56,7 @@ public class LargeLoansController {
     }
     @GetMapping("/dae")
     public String dae(Model model){
-        long edu=100000;
+        long edu=10000;
         model.addAttribute("edu",edu);
         return "dae";
     }
@@ -158,20 +162,26 @@ public class LargeLoansController {
     //按期付息到期还本
     @PostMapping("/query1")
     @ResponseBody
-    public String query1(){
-        return "";
+    public XianXiHouBenMethod query1(@RequestParam("borrow")String money,
+                         @RequestParam("time")int time){
+        XianXiHouBenMethod xianXiHouBen = XianXiHouBenUtils.getXianXiHouBen(money, time, 0.012f);
+        return xianXiHouBen;
     }
     //按月按期还款
     @PostMapping("/query2")
     @ResponseBody
-    public String query2(){
-        return "";
+    public DengEMethod query2(@RequestParam("borrow")String money,
+                         @RequestParam("time")int time){
+        DengEMethod dengE = DengEUtils.getDengE(money, time, 0.012f);
+        return dengE;
     }
     //到期全额还款
     @PostMapping("/query3")
     @ResponseBody
-    public String query3(){
-        return "";
+    public DengEMethod query3(@RequestParam("borrow")String money,
+                              @RequestParam("time")int time){
+        DengEMethod dengE = DengEUtils.getDengE(money, time, 0.023f);
+        return dengE;
     }
 
 }
