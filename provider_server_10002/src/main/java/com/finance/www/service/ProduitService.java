@@ -18,5 +18,6 @@ public interface ProduitService {
     JieKuanXxVo chaProduitBypid(Integer pid);
     //根据标的类型与标的还款方式，标的还款时间来获取资源并分页
     PageVo chaProduitByPage(String ProduitType, String style, String timeLimit,Integer page);
-
+    //根据userid和标的类型来查询投该类型标的次数
+    Integer chaCountByIdType(Integer userid,Integer biaotype);
 }

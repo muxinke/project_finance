@@ -1,14 +1,13 @@
 package com.finance.www.controller;
 
+import com.finance.www.Vo.MemberInfoVo;
+import com.finance.www.pojo.MemberInfo;
 import com.finance.www.pojo.Produit;
 import com.finance.www.pojo.ProduitImg;
-import com.finance.www.pojo.RecordMemberTender;
 import com.finance.www.pvo.InvestmentVo;
 import com.finance.www.pvo.PageVo;
-import com.finance.www.service.ProduitImgService;
-import com.finance.www.service.ProduitService;
+import com.finance.www.service.*;
 import com.finance.www.pvo.JieKuanXxVo;
-import com.finance.www.service.RecordMemberTenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,11 +19,19 @@ import java.util.List;
 @RestController
 public class TController {
     @Autowired
+    MemberInfoService memberInfoService;
+    @Autowired
     ProduitImgService produitImgService;
     @Autowired
     ProduitService produitService;
     @Autowired
     RecordMemberTenderService recordMemberTenderService;
+    @Autowired
+    MemberProduitService memberProduitService;
+    @Autowired
+    MemberReceivableService memberReceivableService;
+    @Autowired
+    TransactionRecordsService transactionRecordsService;
     @RequestMapping(value = "/findtypesan",method = RequestMethod.GET)
     public List<Produit> findProduitBySan(@RequestParam(value = "pt") Integer pt){
         List<Produit> produits = produitService.chaProduitsanBytype(pt);
@@ -45,7 +52,9 @@ public class TController {
     //商品的图片
     @RequestMapping(value = "/findProduitImgById",method = RequestMethod.GET)
     List<ProduitImg> findProduitImgById(@RequestParam(value = "pid")Integer pid){
+        System.out.println("pid = " + pid);
         List<ProduitImg> produitImgs = produitImgService.chaProduitImgById(pid);
+        System.out.println(produitImgs);
         return produitImgs;
     }
     //查出投资该标的所有人
@@ -62,5 +71,26 @@ public class TController {
                                     @RequestParam(value = "page",defaultValue = "1") Integer page){
         PageVo produits = produitService.chaProduitByPage(biaotype, style, timeLimit,page);
         return produits;
+    }
+    //查询用户的具体信息
+    @RequestMapping(value = "/chaxunyonghubyid",method = RequestMethod.POST)
+    MemberInfoVo findUserInfoByid(@RequestParam(value = "userid")Integer userid, @RequestParam(value = "biaotype")Integer biaotype){
+        MemberInfo memberInfo = memberInfoService.chaXunYongHuXx(userid);
+        Integer integer = produitService.chaCountByIdType(userid, biaotype);
+        MemberInfoVo memberInfoVo = new MemberInfoVo();
+        memberInfoVo.setCishu(integer);
+        memberInfoVo.setMemberInfo(memberInfo);
+        return memberInfoVo;
+    }
+    //将投资记录分别存入四各表中
+    @RequestMapping(value = "/cundaosigebiao",method = RequestMethod.POST)
+    void addSiGeBiao(@RequestParam(value = "userid")Integer userid,
+                        @RequestParam(value = "tenderMoney")Integer tenderMoney,
+                        @RequestParam(value = "borrowId")Integer borrowId){
+          memberProduitService.addTouZiGuanLi(userid,borrowId,tenderMoney);
+          memberReceivableService.addMemberReceivble(userid,borrowId,tenderMoney);
+          recordMemberTenderService.addtoubiaojilu(userid,borrowId,tenderMoney);
+          transactionRecordsService.addjiaoyijl(userid,tenderMoney,borrowId);
+
     }
 }

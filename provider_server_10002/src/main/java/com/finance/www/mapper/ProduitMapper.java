@@ -31,4 +31,7 @@ public interface ProduitMapper {
 
     int updateByPrimaryKey(Produit record);
     JieKuanXxVo chajkXx(@Param("pid")Integer pid);
+
+    Integer chaCountBytype(@Param("userid")Integer userid,@Param("biaotype") Integer biaotype);
+    String chaProduitMember(@Param("pid")Integer pid);
 }

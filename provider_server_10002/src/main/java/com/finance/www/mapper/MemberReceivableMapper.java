@@ -1,5 +1,6 @@
-/*
 package com.finance.www.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 import com.finance.www.pojo.MemberReceivable;
 import com.finance.www.pojo.MemberReceivableExample;
@@ -30,4 +31,4 @@ public interface MemberReceivableMapper {
     int updateByPrimaryKeySelective(MemberReceivable record);
 
     int updateByPrimaryKey(MemberReceivable record);
-}*/
+}

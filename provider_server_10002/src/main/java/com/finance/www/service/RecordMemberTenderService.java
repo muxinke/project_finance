@@ -10,5 +10,7 @@ import java.util.List;
  * Created by 杜碧天 on 2019/7/27.
  */
 public interface RecordMemberTenderService {
-    List<InvestmentVo> chaInvestmentBypid(Integer pid);
+    List<InvestmentVo> chaInvestmentBypid(Integer pid );
+    //添加纪录
+    void addtoubiaojilu(Integer userid,Integer pid,Integer benjins);
 }
