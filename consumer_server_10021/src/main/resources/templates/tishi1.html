@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>转账成功，您可以到我的账户查看您的余额</h3>
+    <h3><spam id="jishi">5</spam>秒后返回我的账户页面</h3>
+    <a href="zhanghuguanli">点击跳转</a>
+</body>
+<script>
+    var count=4;
+    var jishi = setInterval("daojishi()",1000);
+    function daojishi() {
+        if (count==0) {
+            clearInterval(jishi);
+            //返回首页
+            window.location.href = "zhanghuguanli";
+        }
+        var time =document.getElementById("jishi");
+        time.innerHTML=count;
+        count--;
+    }
+</script>
+</html>
