@@ -2,21 +2,21 @@ package com.finance.www.controller;
 
 import com.finance.www.Vo.InvestVos;
 import com.finance.www.Vo.JieKuanXxVos;
+import com.finance.www.Vo.MemberInfoVo;
 import com.finance.www.Vo.ProduitVo;
+import com.finance.www.pojo.MemberAccount;
 import com.finance.www.pojo.Produit;
 import com.finance.www.pojo.ProduitImg;
 import com.finance.www.pvo.InvestmentVo;
 import com.finance.www.pvo.PageVo;
 import com.finance.www.service.IndexService;
+import com.finance.www.service.Service10001;
 import com.finance.www.utils.PojoZVoUtil;
 import com.finance.www.pvo.JieKuanXxVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,9 +33,12 @@ import java.util.List;
  THE_CREDIT_SCALE(9, "信用标"),
  */
 @Controller
+@RequestMapping("/contents")
 public class Dcontroller {
     @Autowired
     IndexService indexService;
+    @Autowired
+    Service10001 service10001;
 /*     @Autowired
      ListService listService;*/
     @GetMapping("/")
@@ -132,5 +135,28 @@ public class Dcontroller {
         model.addAttribute("pimgs",produitImgs);
         model.addAttribute("jkxxs",jieKuanXxVos);
         return "detail";
+    }
+    //查询账户的余额
+    @RequestMapping(value = "/showzhanghujine",method = RequestMethod.POST)
+    @ResponseBody
+    public MemberAccount showZhangHuJine(@RequestParam(value = "userid",defaultValue = "")Integer userid){
+        MemberAccount memberAccount = service10001.showZhangHuJine(userid);
+        return memberAccount;
+    }
+    //根据id查询用户的具体信息
+    @RequestMapping(value = "/chaxustatus",method = RequestMethod.POST)
+    @ResponseBody
+    public MemberInfoVo chaxunxx(@RequestParam(value = "userid",defaultValue = "")Integer userid, @RequestParam(value = "biaotype",defaultValue = "")Integer biaotype){
+        MemberInfoVo userInfoByid = indexService.findUserInfoByid(userid, biaotype);
+        return  userInfoByid;
+    }
+    //我要投资
+    @RequestMapping(value = "/woyaotouzi",method = RequestMethod.POST)
+    @ResponseBody
+    public String woYaoTouZi(@RequestParam(value = "userid",defaultValue = "")Integer userid,
+                             @RequestParam(value = "tenderMoney",defaultValue = "")Integer tenderMoney,
+                             @RequestParam(value = "borrowId",defaultValue = "")Integer borrowId){//商品的id
+       indexService.addSiGeBiao(userid,tenderMoney,borrowId);
+       return "1";
     }
 }

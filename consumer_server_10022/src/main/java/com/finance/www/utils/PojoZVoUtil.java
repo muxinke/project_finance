@@ -81,7 +81,7 @@ public class PojoZVoUtil {
         DecimalFormat df = new DecimalFormat("0.0");
         JieKuanXxVos jieKuanXxVos = new JieKuanXxVos();
         jieKuanXxVos.setPid(jieKuanXxVo.getPid());
-        jieKuanXxVos.setInvestmentType(ProduitEnum.getEnumType(jieKuanXxVo.getInvestmentType()));
+        jieKuanXxVos.setInvestmentType(jieKuanXxVo.getInvestmentType());
         jieKuanXxVos.setProduitsOrdre(OrdreEnum.getEnumLevel(jieKuanXxVo.getProduitsOrdre()));
         jieKuanXxVos.setMontantDeOffre(df.format(Long.valueOf(jieKuanXxVo.getMontantDeOffre())/100));
         jieKuanXxVos.setInvestmentAmount(df.format(Long.valueOf(jieKuanXxVo.getInvestmentAmount())/100));

@@ -118,17 +118,20 @@
             }, 1000);
 
             var jxbankUserstatus =$("#lg").text();
+            var userid=$("#userId").val();
             if(jxbankUserstatus=="请登录") {
                 $('#balance').html("0.00");
             } else {
                 $.ajax({
                     type: "POST",
-                    url: "/showzhanghujine",
+                    url: "/showzhanghujine?userid="+userid,
                     dataType: "json",
                     success: function(data) {
-                         var balance=data.account;
+                         var balance=data.accountBalance;
                         $('#balance').html(balance);
                         $('#useAccount').val(balance);
+                        $('#balanc').val(balance);
+
                     }
                 });
             }
@@ -168,6 +171,24 @@
                     $("#wealth").attr("href","reCash/toAdd.go");
                     $("#bannerlogin").remove();
                     $("#lg").text("立即投资");
+                    $("#lg").attr("href","javascript:showTendPanel()");
+                    $("#userId").val(data.id);
+                    var  userid=data.id;
+                    var biaotype=$("#biaoType").val();
+                    $.ajax({
+                        type:"post",
+                        url:"/chaxustatus",
+                        data:{
+                            userid:userid,
+                            biaotype:biaotype
+                        },
+                        success:function (data) {
+                            $("#isTransactionPassword").val(data.memberInfo.isTransactionPassword)
+                            $("#isTiedCard").val(data.memberInfo.isTiedCard)
+                            $("#dbalance").val(data.cishu)
+                        }
+
+                    });
                 }
 
             }
@@ -310,7 +331,8 @@
 <div class="w1200">
 	<div class="project_introduction">
 		<div class="project_title">
-			<input type="hidden" name="borrow.id" value="9950" id="borrowId"/>
+			<input type="hidden" name="borrow.id" th:value="${jkxxs.pid}" id="borrowId"/>
+			<input type="hidden"  id="biaoType" th:value="${jkxxs.investmentType}"/>
 			<span class="vouch bStyle" th:text="${jkxxs.biaoShiXiaoZi}">保</span>
 
 			<div class=" fl">
@@ -411,17 +433,15 @@
 						<input type="text" id="tenderMoney" onblur="assignInterest(this)"
 							   placeholder="100元起投且为整数" />
 						<button onclick="autoInput()">自动填写</button>
-						<input type="hidden" id="userId"
-							   value=""> <input
-							type="hidden" id="dbalance"
-							value=""> <input
-							type="hidden" id="balanc"
-							value=""> <input
-							type="hidden" id="useAccount" value="">
+						<input type="hidden" id="userId" value="">
+						<input	type="hidden" id="dbalance" value="">
+						<input	type="hidden" id="isTransactionPassword" value="">
+						<input	type="hidden" id="isTiedCard" value="">
+						<input 	type="hidden" id="balanc"	value="">
+						<input	type="hidden" id="useAccount" value="">
 					</div>
 
-					<div class="bid_button"
-						 onclick="location='login.html'">
+					<div class="bid_button">
 						<a id="lg" href="login.html" style="color: white;">请登录</a>
 					</div>
 
@@ -706,12 +726,12 @@
             }
 
         }
-        if(n>0){
+    /*    if(n>0){
             if(j>0){
                 $('#prompt').html("抱歉,现金券与加息券不能叠加使用,请重新选择!");
                 return false;
             }
-        }
+        }*/
 
         if(n>0){
             $('#men').html(totalMoney);
@@ -861,14 +881,9 @@
 			 });
 			 return false;
 			 }  */
-            var biaoType = 'vouch';
-            var inviteUserid = '';
-            if(inviteUserid=='网贷天眼' && biaoType=='xsb'){
-
-                $('#prompt').html("您是我们合作方平台,不能投资新手标。");
-                return false;
-            }
+            //银行的余额
             var balanc = $("#balanc").val();
+            var biaoType= $("#biaoType").val();
             if(balanc==undefined){
                 $('#prompt').html("银行余额未读取,请耐心等待");
                 return false;
@@ -883,19 +898,13 @@
                 $('#prompt').html("请输入投资金额");
                 return false;
             }
-            var status = '';
-            if(status == 0) {
-                $('#prompt').html("<a style='color:red;' href='userNew/index.action'>请先去绑定电子账户哦,再来投标哦.</a>");
+            var bindCard =$("#isTiedCard").val();
+            if(bindCard =="0") {
+                $('#prompt').html("<a style='color:red;' href='#绑定银行卡界面'>您还没设置银行卡号, 请先去银行卡号.</a>");
                 return false;
             }
-
-            var bindCard = '';
-            if(bindCard == null || bindCard == '') {
-                $('#prompt').html("<a style='color:red;' href='userNew/safeTy.action'>您还没设置银行卡号, 请先去银行卡号.</a>");
-                return false;
-            }
-            var payPasswordYes = '';
-            if(payPasswordYes == 0) {
+            var payPasswordYes = $("isTransactionPassword");
+            if(payPasswordYes == "0") {
                 $('#prompt').html("<a style='color:red;' href='userNew/safeTy.action'>您还没设置支付密码, 请先去设置支付密码</a>");
                 return false;
             }
@@ -906,7 +915,7 @@
                 $('#prompt').html("投资金额不能少于" + minInvestorAmount + "元");
                 return false;
             }
-            if(biaoType == 'bx') {
+            if(biaoType == '2') {
                 if(tenderMoney % minInvestorAmount != 0) {
                     $('#prompt').html("投资金额必须为" + minInvestorAmount + "的整数倍");
                     return false;
@@ -932,36 +941,16 @@
                 $('#prompt').html("投资金额不能大于差额" + accountSum + "元哦！！");
                 return false;
             }
-
-            //计算
-			/* var hongbaoId =  $('#hongbaoId').val();
-			 if(hongbaoId>0){
-			 var hongbaoMoney =  $("#hongbaoId").find("option:selected").text();
-			 hongbaoMoney=hongbaoMoney.substring(0,hongbaoMoney.length-1);
-			 var timeLimit = 3;
-			 var account =  50000.0;
-			 var tenderMoney = $('#tenderMoney').val();
-			 var deductionMoney = 0;
-			 if(timeLimit<5){
-			 deductionMoney = (tenderMoney*(timeLimit/1000.00));
-			 }else{
-			 deductionMoney = (tenderMoney*(5/1000.00));
-			 }
-			 if(deductionMoney>hongbaoMoney){
-			 deductionMoney = hongbaoMoney;
-			 }
-			 $('#HbMessage').text("您已选择使用红包,可抵扣"+deductionMoney+"元");
-			 }    */
             var timeLimit = '3';
+            //投标次数
             var dbalance = $("#dbalance").val();
             var userid = $("#userId").val();
-            if(biaoType == 'xsb') {
-                if(userid != 11978 && userid != 27066 && userid != 12085 && userid != 12152 && userid !=15525 && userid !=12334&& userid !=15583 && userid !=30410&& userid !=15583) {
+            if(biaoType == '1') {
                     if(dbalance >= 1) {
                         $('#prompt').html("抱歉,未投资者才能投新手标哦（只能投一次哦）！");
                         return false;
                     }
-                }
+
             }
             $('#newTenderMoney').val(tenderMoney);
             $('#limit').val(timeLimit);
@@ -1028,23 +1017,22 @@
                 $('#prompt').html("抱歉,现金券与加息券不能叠加使用,请重新选择!");
                 return false;
             }*/
-            var token = $('#token').val();
             var borrowId = $('#borrowId').val();
+            var userid=$("#userId").val();
             $.ajax({
                 type: "POST",
-                url: "jxyhapi/bidTender.action",
+                url: "/woyaotouzi",
                 dataType: "json",
                 data: {
                     tenderMoney: tenderMoney,
                     borrowId: borrowId,
-                    token: token,
-                    hongbaoIds: hongbaoIds
+					userid:userid
                 },
                 success: function(data) {
-                    if(data.status) {
-                        window.location.href = "newBorrow/bidApply.go?tenderMoney=" + tenderMoney + "&borrowId=" + borrowId + "&hongbaoIds=" + hongbaoIds + "&ratesCouponIds=" + ratesCouponIds;
+                    if(data=='1') {
+                        alert("已成功投资，具体信息请查看我的账户")
                     } else {
-                        $('#prompt').html(data.message);
+                        $('#prompt').html("tou");
                     }
                 }
             });
