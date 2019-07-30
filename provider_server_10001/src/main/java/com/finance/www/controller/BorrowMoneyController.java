@@ -9,11 +9,13 @@ import com.finance.www.service.SmallOanService;
 import com.finance.www.vo.MemberSmallBorrow;
 import jdk.nashorn.internal.ir.ReturnNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Future;
 
 /**
  * Created by Administrator on 2019/7/24.
@@ -36,7 +38,7 @@ public class BorrowMoneyController {
     public MemberLimit xiaoe(@RequestParam("id")Integer id){
         //调用业务接口查找用户的当前剩余额度
         MemberLimit memberLimit = memberLimitService.queryById(id);
-        return memberLimit;
+        return  memberLimit;
     }
 
     /**

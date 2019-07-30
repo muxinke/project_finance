@@ -103,5 +103,9 @@ public class ProduitVo {
     private String ketou;
     private  String wanchenglv;
     private String wcbaifenbi;
+    /**
+     * 标题小字
+     */
+    private String biaotizi;
 
 }

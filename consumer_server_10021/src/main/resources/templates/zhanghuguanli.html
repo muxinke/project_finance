@@ -1,0 +1,1567 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<base >
+	<meta charset="utf-8"/>
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="keywords" content="互联网金融、轻松贷">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="description" content="高效、精准、安全的P2P网络借贷平台">
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/login.css" />
+	<script  type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery-1.8.2.min.js"></script>
+	<link href="http://39.107.15.222:8081/src/theme/validationEngine/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine-zh_CN.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery.form.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/common.js"></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/main.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/layer/layer.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.circliful.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/scroll.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/person_style.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/personal.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/swiper-3.4.2.min.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/mall.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
+
+
+
+
+
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/userSafe.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/userSms.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/userfo.js"></script>
+	<script src="http://39.107.15.222:8081/src/theme/js/gt.js"></script>
+
+	<title>首页-轻松贷-一心一意，普惠金融</title>
+
+	<script type="text/javascript">
+        var i;
+        function pop() {
+            i = layer.open({
+                type : 2,
+                title : '修改头像',
+                offset: ['160px', ''],
+                area: ['auto','700px;'],
+                border : [5, 0.5, '#666'],
+                content: 'userInfo/headImg.action',
+                area : [ '690px', '398px' ]
+            });
+        }
+	</script>
+	<script>
+        var handler = function (captchaObj) {
+
+            // 将验证码加到id为captcha的元素里;
+			/* captchaObj.bindOn("#btnSendUpdateEmailCode");   */
+            captchaObj.appendTo("#updatePhone");
+            captchaObj.bindOn("#btnSendUpdatePhoneCode");
+			/*   captchaObj.bindOn("#btnSendBindPhoneCode");  */
+            captchaObj.bindOn("#btnSendpwdCode");
+            captchaObj.onSuccess(function(){
+                var validateData = captchaObj.getValidate();
+				/*   if($("#updateEmail").css('display')=='block'){
+				 alert(btnSendUpdatePhoneCode);
+				 sendBehaviorVerificationCode(validateData.geetest_challenge,validateData.geetest_validate,
+				 validateData.geetest_seccode,$("#btnSendUpdateEmailCode"),1,1);
+				 }  */
+                if($("#updatePhone").css('display')=='block'){
+                    sendBehaviorVerificationCode(validateData.geetest_challenge,validateData.geetest_validate,
+                        validateData.geetest_seccode,$("#btnSendUpdatePhoneCode"),3,1);
+                }
+                if($("#updatepayPwd").css('display')=='block'){
+
+                    sendBehaviorVerificationCode(validateData.geetest_challenge,validateData.geetest_validate,
+                        validateData.geetest_seccode,$("#btnSendpwdCode"),24,1);
+                }
+				/*    if($("#bindPhone").css('display')=='block'){
+				 var phone = $('#newPhone').val();
+				 if(phone==null || phone==''){
+				 alert('请先输入手机号码');
+				 return false;
+				 }
+				 sendBehaviorVerificationCode(validateData.geetest_challenge,validateData.geetest_validate,
+				 validateData.geetest_seccode,$("#btnSendBindPhoneCode"),2,1,phone);
+				 }  */
+
+            });
+        };
+        $(function(){
+            initBehaviorVerify();
+        });
+	</script>
+
+	<script type="text/javascript">
+        $(function(){
+            var status = true;
+            if(!status){
+                public_alert('',9,function(){
+                    window.location="userNew/safeTy.action";
+                },function(){
+                    window.location="userNew/safeTy.action";
+                });
+                return;
+            }
+            var aa = '';
+
+            var bb = aa.replace(/%3A/g, ":").replace(/%2c/g, ",");
+            if (bb != '') {
+                var obj = eval("("+bb+")");
+                var message = obj.message;
+                if(message=='txmmsuccess'){
+
+                    message="设置交易密码成功";
+
+                }
+                if(message=='txmmerror'){
+                    message="设置交易密码失败";
+
+                }
+                var  messageStatus=obj.status;
+                if(messageStatus==true){
+                    public_alert(message,9,function(){
+                        window.location="userNew/safeTy.action";
+                    },function(){
+
+                        window.location="userNew/safeTy.action";
+                    });
+                }
+                else{
+                    layer.alert(message);
+                }
+
+            }
+        });
+	</script>
+
+
+	<script type="text/javascript">
+        $(function() {
+
+            //修改交易密码
+            $("#btnSendUpdatepwdCode").click(function() {
+
+                var verifyCode = $('#verifyCodeupdateCode').val();
+
+                if (verifyCode == null || verifyCode == '') {
+                    $("#s_verifyCodeupdateCode").html("请先输入图形验证码");
+                    return false;
+                }
+                var status = verifyStatus(verifyCode, '#s_verifyCodeupdateCode');
+                if (!status) {
+                    return false;
+                }
+                $("#s_verifyCodeupdateCode").html("");
+                sendVerificationCode(verifyCode, $(this), 24, 1);
+            });
+
+            //表单验证
+            $('#bindYemadaiFrom').validationEngine({
+                promptPosition : "topRight",
+                ajaxSubmit : true
+            });
+            $('#bindYemadaiFrom').submit(function() {
+                var realname = $('#realname').val();
+                var cardId = $('#cardId').val();
+                var bindCard = $('#bindCard').val();
+                var phone = $('#phone').val();
+                if (realname == '' || realname == null) {
+                    layer.alert("真实姓名不能为空");
+
+                    return false;
+                }
+                if (cardId == '' || cardId == null) {
+                    layer.alert("身份证号码不能为空");
+                    return false;
+                }
+                if (!onlyStatus("cardId", cardId)) {
+                    layer.alert("该身份证号码已存在");
+                    return false;
+                }
+                if (bindCard == '' || bindCard == null) {
+                    layer.alert("银行卡不能为空");
+
+                    return false;
+                }
+
+                if (phone == '' || phone == null) {
+                    layer.alert("手机不能为空");
+                    return false;
+                }
+                $(this).ajaxSubmit(ajaxOption($(this), "绑定成功"));
+                return false; // 阻止表单默认提交
+            });
+
+        });
+	</script>
+	<script type="text/javascript">
+
+		/* function showTendPanel() {
+		 var bindcard = $('#bindcard').val();
+		 var bankname = $('#bankname').val();
+		 var phone = $('#phone').val();
+		 $('#warnmessage').html("");
+		 if (bindcard == '' || bindcard == null) {
+
+		 $('#warnmessage')
+		 .html(
+		 "<div id='erroMessage' ><p style='color: red;font-size: 16px;margin-left:40px;margin-top:8px;'>银行卡不能为空</p></div>");
+		 return false;
+		 }
+		 if (bankname == '' || bankname == null) {
+
+		 $('#warnmessage')
+		 .html(
+		 "<div id='erroMessage' ><p style='color: red;font-size: 16px;margin-left:40px;margin-top:8px;'>手机不能为空</p></div>");
+		 return false;
+		 }
+		 var loadi = layer.load('绑卡中,请勿其它操作…');
+		 $.ajax({
+		 type : "POST",
+		 url : "userNew/bindSignedCard.action",
+		 data : {
+		 bindcard : bindcard,
+		 bankname : bankname,
+		 phone : phone
+		 },
+		 dataType : "json",
+		 success : function(data) {
+		 if (data.status) {
+		 layer.close(loadi);
+		 public_alert("绑定成功！", 9, function() {
+		 window.location.reload(true);
+		 }, function() {
+		 window.location.reload(true);
+		 });
+		 } else {
+		 layer.close(loadi);
+		 layer.alert(data.message);
+		 }
+
+		 }
+		 });
+
+		 } */
+
+        $(function(){
+            //修改昵称表单验证
+            $('#bindSignedCardForm').validationEngine({
+                promptPosition: "topRight",
+                ajaxSubmit: true
+            });
+            $("#showTendPanel").on("click",function(){
+                var bindcard = $('#bindcard').val();
+                $('#bindSignedCardForm').submit();
+            });
+            // 修改昵称
+            $('#bindSignedCardForm').submit(function() {
+
+
+
+                // $(this).ajaxSubmit(ajaxOption($(this),"修改昵称成功!"));
+                return true; // 阻止表单默认提交
+            });
+        });
+
+	</script>
+	<script type="text/javascript">
+		/*
+		 function cancelBindSignedCard() {
+
+		 var bindcard = $('#bindcard').val();
+		 var bankname = $('#bankname').val();
+		 $('#warnmessage').html("");
+		 var repayLayer = layer.open({
+
+		 type : 1,
+		 area : [ 'auto', 'auto' ],
+		 content : '<div style="padding: 20px 80px;">你确定要解除吗？</div>',
+		 btn : [ '立即解除', '取消' ],
+		 btnAlign : 'c' ,//按钮居中
+		 shade : 0, //不显示遮罩
+
+		 yes : function() {
+		 $.ajax({
+		 type : "POST",
+		 url : "userNew/cancelBindSignedCard.action",
+		 data : {
+		 bindcard : bindcard,
+		 bankname : bankname
+		 },
+		 dataType : "json",
+		 success : function(data) {
+		 if (data.status) {
+		 public_alert("解绑成功！", 9, function() {
+		 window.location.reload(true);
+		 }, function() {
+		 window.location.reload(true);
+		 });
+		 } else {
+
+		 layer.alert(data.message);
+		 }
+
+		 }
+		 });
+		 },
+		 no : function() {
+		 layer.close(repayLayer);
+		 }
+		 });
+		 } */
+
+        $(function(){
+            //修改昵称表单验证
+            $('#bindSignedCardForm').validationEngine({
+                promptPosition: "topRight",
+                ajaxSubmit: true
+            });
+            $("#cancelBindSignedCard").on("click",function(){
+
+                $('#cancelBindForm').submit();
+            });
+            // 修改昵称
+            $('#cancelBindForm').submit(function() {
+
+
+                // $(this).ajaxSubmit(ajaxOption($(this),"修改昵称成功!"));
+                // 阻止表单默认提交
+                return true;
+            });
+        });
+
+	</script>
+	<script  type="text/javascript">
+
+        $(function(){
+            //修改昵称表单验证
+            $('#authorizatForm').validationEngine({
+                promptPosition: "topRight",
+                ajaxSubmit: true
+            });
+            $("#businessLicense").on("click",function(){
+
+                $('#authorizatForm').submit();
+            });
+            // 修改昵称
+            $('#authorizatForm').submit(function() {
+
+                // $(this).ajaxSubmit(ajaxOption($(this),"修改昵称成功!"));
+                // 阻止表单默认提交
+                return true;
+            });
+        });
+
+	</script>
+	<script type="text/javascript">
+        $(function(){
+
+            document.getElementById("mySelect1").disabled=true
+            document.getElementById("mySelect2").disabled=true
+            document.getElementById("mySelect3").disabled=true
+            document.getElementById("mySelect4").disabled=true
+            document.getElementById("mySelect5").disabled=true
+        })
+        $(function(){
+            //修改昵称表单验证
+            $('#updateNameForm').validationEngine({
+                promptPosition: "topRight",
+                ajaxSubmit: true
+            });
+            $("#nameSumbit").on("click",function(){
+
+                $('#updateNameForm').submit();
+            });
+            // 修改昵称
+            $('#updateNameForm').submit(function() {
+
+                $(this).ajaxSubmit(ajaxOption($(this),"修改昵称成功!"));
+                return false; // 阻止表单默认提交
+            });
+        });
+
+	</script>
+	<style type="text/css">
+		.modify_nickName{width:27%;margin:40px auto 80px auto;height:auto;min-height:1px;overflow:hidden;}
+		.modify_nickName ul li{margin-top:10px;}
+		.modify_phoneName ul li .name_left{width:90px;text-align:right;line-height:30px;}
+		.modify_phoneNumber ul li .phone_right,.modify_phoneName ul li .name_right{width:calc(100% - 100px);margin-left:10px;position:relative;}
+		.modify_nickName ul li .name_right input[type="text"]{width:200px;padding-left:10px;height:30px;border:1px solid #CCCCCC;}
+		.modify_nickName ul li .name_right .u-amount{width:86px;}
+		.modify_nickName ul li p{padding-left:100px;font-size:13px;color:#ff0000;}
+		.modify_nickName ul li p img{margin-right:2px;}
+		.modify_nickName ul li .name_right .get_verification{cursor:pointer;position:absolute;top:0px;left:89px;display: inline-block;padding:8px 3px;border-radius:2px;background-color:#2ab4fc;color:#FFFFFF;font-size:13px;border:0px;font-size:12px;}
+		.modify_nickName ul li a{display:block;margin-left:100px;margin-top:10px;width:40%;height:40px;line-height:40px;background-color:#2ab4fc;color:#FFFFFF;text-align:center;}
+		.personal_nav ul>li {
+			float: left;
+			width: 20%;
+			text-align: center;
+			height: 55px;
+			line-height: 55px;
+			font-size: 18px;
+		}
+	</style>
+</head>
+
+<body>
+<!--top begin-->
+
+<base href="">
+<script type="text/javascript">
+    $(function() {
+        $(".navitem li").hover(function() {
+            $(this).find("ol").show().siblings().find("ol").hide("slow");
+        }, function() {
+            $(this).find("ol").slideUp("slow");
+        })
+        $(".code_text li").hover(function() {
+            var inde = $(this).index();
+            $(".code_img ul li").eq(inde).show().siblings().hide();
+        })
+        $.ajax({
+            type : "POST",
+            url : "newLogin/headerLogin.action",
+            dataType : "json",
+            success : function(data) {
+                if (data.status) {
+                    $('#register').before("<li><span class='nh'>您好，</span> </li>");
+                    $('#register a').text("" + data.message + "");
+                    $('#register a').attr("href", "userNew/index.go");
+                    $('#login').remove();
+                    $('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
+                    $("#wealth").text('开启您的财富之旅');
+                    $("#wealth").attr("href","reCash/toAdd.go");
+                    $("#bannerlogin").remove();
+                }
+
+            }
+        });
+    });
+</script>
+<div class=" big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+					<!--跳转登陆界面
+                        <a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="login.html">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+					<!--注册界面
+                        <a href="register/toRegister.go">快速注册</a>-->
+					<a href="zhuce.html">快速注册</a>
+				</li>
+
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+					<a href="guide.html">使用指南</a></li>
+
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+					<a href="problem.html">常见问题</a></li>
+
+				<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+					<a style="color: #faa039" href="guarantee.html" >安全保障</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+
+			<li >
+				<a href="list.html"
+				>我要投资
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="list.html"
+						>投资列表
+						</a>
+					</li>
+
+					<li>
+						<a href="xiangdao.html"
+						>投资向导
+						</a>
+					</li>
+
+				</ol>
+			</li>
+
+			<li >
+				<a href="msgpilu.html"
+				>信息披露
+				</a>
+
+				<ol class="m-list">
+
+				</ol>
+			</li>
+
+			<li >
+				<a href="dae.html"
+				>我要借款
+					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="xiaoe">小额借款</a>
+					</li>
+
+					<li>
+						<a href="dae"> 大额借款</a>
+					</li>
+				</ol>
+			</li>
+
+			<li >
+				<a href="aboutus"> 关于我们</a>
+				<ol class="m-list">
+
+					<li>
+						<a href="aboutus.html"> 企业简介</a>
+					</li>
+
+					<li>
+						<a href="zizhi.html"> 公司资质</a>
+					</li>
+
+					<li>
+						<a href="hezuohb.html"> 合作伙伴</a>
+					</li>
+
+					<li>
+						<a href="contactus.html"> 联系我们</a>
+					</li>
+
+					<li>
+						<a href="bulletin.html"> 平台公告</a>
+					</li>
+
+					<li>
+						<a href="hr.html"> 招贤纳士</a>
+					</li>
+
+				</ol>
+			</li>
+
+			<li class="m-menu active"><a href="wodezhanghu.html">我的账户</a></li>
+
+		</ul>
+	</div>
+</div>
+<!--top end-->
+
+<!--nav end-->
+<div class="w1200" style="margin-bottom:10px;">
+	<div class="location">
+		你所在位置:
+		<a href="/newIndex/index.go">首页</a> >
+		<a href="/userNew/safeTy.go">我的账户</a>
+	</div>
+	<!--  menu -->
+
+
+	<script>
+        $(document).ready(function() {
+            $(".payment li").on("click", function() {
+                var ind = $(this).index();
+                $(this).addClass("active").siblings().removeClass("active");
+                $(".table_list .table_list_item").eq(ind).show().siblings().hide();
+            })
+            $(".personal_nav ul li").hover(function() {
+                $(this).find("ol").show().siblings().find("ol").hide("slow");
+            }, function() {
+                $(this).find("ol").slideUp("slow");
+            })
+        })
+	</script>
+	<div class="personanNavList" >
+		<div class="personal_nav">
+
+			<ul style="margin-left:auto;margin-right:auto;">
+
+				<li
+				>
+
+					<a class="nav1"  href="wodezhanghu.html"
+					>我的账户<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+					</ol></li>
+
+				<li
+				>
+
+					<a class="nav2"  href="touziguanli.html"
+					>投资管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li ><a href="fengxianpinggu.html"
+						>风险评估
+						</a></li>
+
+						<li ><a href="touziguanli.html"
+						>我的投资
+						</a></li>
+
+						<li ><a href="huikuanmingxi.html"
+						>回款明细
+						</a></li>
+
+					</ol></li>
+
+				<li
+				>
+
+					<a class="nav3"  href="jiekuanguanli.html"
+					>借款管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li ><a href="jiekuanguanli"
+						>我的借款
+						</a></li>
+
+						<li ><a href="huankuanjihua"
+						>还款计划
+						</a></li>
+
+					</ol></li>
+
+				<li
+				>
+
+					<a class="nav4"  href="zijinguanli.html"
+					>资金管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li ><a href="zijinguanli.html"
+						>重置/提现
+						</a></li>
+
+						<li ><a href="jiaoyijilu.html"
+						>交易记录
+						</a></li>
+
+						<li ><a href="cunguanjilu.html"
+						>存管交易记录
+						</a></li>
+
+					</ol></li>
+
+				<li
+
+						class="active"
+				>
+
+					<a class="nav5"  href="zhanghuguanli.html"
+					>账户管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li
+								class="active"
+						><a href="zhanghuguanli.html">个人信息
+						</a></li>
+
+
+
+						<li ><a href="zhanneixinxi.html"
+						>站内消息
+						</a></li>
+
+					</ol></li>
+
+
+			</ul>
+
+		</div>
+	</div>
+	<!--个人信息-->
+	<div class="personal_information">
+		<div class="personal_data">
+			<div class="head_portrait fl">
+				<a href="javascript:void(0);" onclick="pop();">
+
+					<img src="http://39.107.15.222:8081/src/theme/computer/img/man.png"  />
+
+
+				</a>
+				<a href="javascript:;" onclick="pop();">更换头像</a>
+			</div>
+			<ul class="essential_information fl">
+				<li>
+					<p>
+						昵称: <span class="essentialName" id="essentialName"> 18720920060</span><i id="modify_name">[修改昵称]</i>
+					</p>
+					<p>
+						真实姓名: <span>*&#20048;&#26126;</span>
+					</p>
+					<p>
+						绑定手机: <span>****0920060</span><i id="modify_phone">[修改绑定]</i>
+					</p>
+				</li>
+				<li>
+					<p>
+						电子账户: <span>6212461110000099832</span>
+					</p>
+					<div class="bankCard">
+						<span class="fl ">银行卡:</span>
+						<div class="fl bundling_card ">6236682830002880390 <i id="unbundling_card">[解绑]</i></div>
+						<!-- 								<div class="fl unbundling_card" style="display:none;"><span>6217002020028513455</span></div> -->
+					</div>
+				</li>
+				<li>
+					<p>
+						登录密码:已设置<i id="modify_loginPwd">[修改]</i>
+					</p>
+					<p>
+						交易密码:已设置<i id="transaction_password">[修改]</i>
+					</p>
+
+					<p>
+						缴费授权:未设置<i id="modify_authorizeSet">[修改]</i>
+					</p>
+				</li>
+
+			</ul>
+		</div>
+
+		<div class="personal_bottom">
+			<!--基本信息-->
+			<div class="basic_information data_item" style="display:block;">
+				<div class="essential_information clearfix">
+					<ul>
+						<li>
+							<div class="essential_left fl">性别:</div>
+							<div class="essential_right fl"><span class="sex">  男</span></div>
+						</li>
+						<li>
+							<div class="essential_left fl">出生日期:</div>
+							<div class="essential_right fl"><span class="date_of_birth">1990-12-03 </span></div>
+						</li>
+						<li>
+							<div class="essential_left fl">最高学历:</div>
+							<div class="essential_right fl"><span class="education">
+									<select name="userInfo.education" id="mySelect5" class="u-select1 u-amount ">
+    <option value=""
+	>请选择</option>
+    <option value="20">其他</option>
+    <option value="19">博士后</option>
+    <option value="18">博士</option>
+    <option value="17">硕士</option>
+    <option value="16">研究生</option>
+    <option value="15">本科</option>
+    <option value="13">中专</option>
+    <option value="12">高中</option>
+    <option value="11">小学</option>
+    <option value="14">专科</option>
+
+
+</select>
+
+                                </span></div>
+						</li>
+						<li>
+							<div class="essential_left fl">毕业院校:</div>
+							<div class="essential_right fl"><span class="graduated_University"></span></div>
+						</li>
+						<li>
+							<div class="essential_left fl">婚姻状况:</div>
+							<div class="essential_right fl"><span class="marital_status"><select name="userInfo.marry" id="mySelect4" class="u-select1 u-amount">
+    <option value=""
+	>请选择</option>
+    <option value="1">已婚</option>
+    <option value="2">离异</option>
+    <option value="3">未婚</option>
+    <option value="4">丧偶</option>
+
+
+</select>
+</span></div>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<div class="essential_left fl">常住地址:</div>
+							<div class="essential_right fl"><span class="address"></span></div>
+						</li>
+						<li>
+							<div class="essential_left fl">住房条件:</div>
+							<div class="essential_right fl"><span class="house"><select name="userInfo.housing" id="mySelect3" class="u-select1 u-amount">
+    <option value=""
+	>请选择</option>
+    <option value="33">租房</option>
+    <option value="35">其他</option>
+    <option value="34">自有房子</option>
+
+
+</select>
+</span></div>
+						</li>
+						<li>
+							<div class="essential_left fl">所在行业:</div>
+							<div class="essential_right fl"><span class="industry"><select name="userInfo.companyIndustry" id="mySelect2" class="u-select1 u-amount">
+    <option value=""
+	>请选择</option>
+    <option value="70">文化、体育和娱乐业</option>
+    <option value="54">农、林、牧、渔业</option>
+    <option value="65">科学研究、技术服务和地质勘查业</option>
+    <option value="60">批发和零售业</option>
+    <option value="71">公共管理和社会组织</option>
+    <option value="55">制造业</option>
+    <option value="66">水利、环境和公共设施管理业</option>
+    <option value="61">金融业</option>
+    <option value="72">国际组织</option>
+    <option value="56">电力、燃气及水的生产和供应业</option>
+    <option value="67">居民服务和其他服务业</option>
+    <option value="62">房地产业</option>
+    <option value="57">建筑业</option>
+    <option value="68">教育</option>
+    <option value="63">采矿业</option>
+    <option value="58">交通运输、仓储和邮政业</option>
+    <option value="69">卫生、社会保障和社会福利业</option>
+    <option value="64">租赁和商务服务业</option>
+    <option value="59">信息传输、计算机服务和软件业</option>
+
+
+</select>
+</span></div>
+						</li>
+						<li>
+							<div class="essential_left fl">月收入:</div>
+							<div class="essential_right fl"><span class="income"><select name="userInfo.income" id="mySelect1" class="u-select1 u-amount">
+    <option value=""
+	>请选择</option>
+    <option value="21">1000元以下</option>
+    <option value="27">8000-10000</option>
+    <option value="22">1000-2000</option>
+    <option value="28">10000-30000</option>
+    <option value="23">2000-3000</option>
+    <option value="29">30000-50000</option>
+    <option value="24">3000-4000</option>
+    <option value="30">50000以上</option>
+    <option value="26">5000-8000</option>
+    <option value="25">4000-5000</option>
+
+
+</select>
+</span></div>
+						</li>
+					</ul>
+
+				</div>
+				<div class="modify_information">
+					<span style="color:#87CEFA;">[更改信息]</span>
+				</div>
+			</div>
+			<!--修改信息-->
+			<div class="data_item modifyInformation " style="display:none;">
+				<form id="updateUserInfoForm" name="updateUserInfoForm" action="/userNew/update.action" method="post">
+					<table class="wwFormTable">
+						<div class="modify_data">
+
+							<ul>
+								<li>
+									<div class="modify_left fl">性别:</div>
+									<div class="modify_right fl">
+										<input type="radio" name="user.sex" value="1"  checked="checked" />男
+										<input type="radio" name="user.sex" value="0" />女
+									</div>
+								</li>
+								<li>
+									<div class="modify_left fl">出生日期:</div>
+									<div class="modify_right fl">
+										<input type="text" name="birthday" value="1990-12-03" id="updateUserInfoForm_birthday" class="validate[required] u-amount laydate-icon" onclick="laydate({max:laydate.now()})"/>
+									</div>
+								</li>
+								<li>
+									<div class="modify_left fl">最高学历:</div>
+									<div class="modify_right fl">
+										<select name="userInfo.education" id="updateUserInfoForm_userInfo_education" class="validate[required] u-amount">
+											<option value=""
+											>请选择</option>
+											<option value="20">其他</option>
+											<option value="19">博士后</option>
+											<option value="18">博士</option>
+											<option value="17">硕士</option>
+											<option value="16">研究生</option>
+											<option value="15">本科</option>
+											<option value="13">中专</option>
+											<option value="12">高中</option>
+											<option value="11">小学</option>
+											<option value="14">专科</option>
+
+
+										</select>
+
+									</div>
+								</li>
+								<li>
+									<div class="modify_left fl">毕业院校:</div>
+									<div class="modify_right fl">
+										<input type="text" name="userInfo.educationSchool" value="" id="updateUserInfoForm_userInfo_educationSchool" class="validate[required] u-amount"/>
+									</div>
+								</li>
+								<li>
+									<div class="modify_left fl">婚姻状况:</div>
+									<div class="modify_right fl">
+										<select name="userInfo.marry" id="updateUserInfoForm_userInfo_marry" class="validate[required] u-amount">
+											<option value=""
+											>请选择</option>
+											<option value="1">已婚</option>
+											<option value="2">离异</option>
+											<option value="3">未婚</option>
+											<option value="4">丧偶</option>
+
+
+										</select>
+
+
+									</div>
+								</li>
+							</ul>
+							<ul>
+								<li>
+									<div class="modify_left fl">常住地址:</div>
+									<div class="modify_right fl">
+										<input type="text" name="userInfo.address" value="" id="updateUserInfoForm_userInfo_address" class="validate[required] u-amount"/>
+									</div>
+								</li>
+								<li>
+									<div class="modify_left fl">住房条件:</div>
+									<div class="modify_right fl">
+										<select name="userInfo.housing" id="updateUserInfoForm_userInfo_housing" class="validate[required] u-amount">
+											<option value=""
+											>请选择</option>
+											<option value="33">租房</option>
+											<option value="35">其他</option>
+											<option value="34">自有房子</option>
+
+
+										</select>
+
+									</div>
+								</li>
+								<li>
+									<div class="modify_left fl">所在行业:</div>
+									<div class="modify_right fl">
+										<select name="userInfo.companyIndustry" id="updateUserInfoForm_userInfo_companyIndustry" class="validate[required] u-amount">
+											<option value=""
+											>请选择</option>
+											<option value="70">文化、体育和娱乐业</option>
+											<option value="54">农、林、牧、渔业</option>
+											<option value="65">科学研究、技术服务和地质勘查业</option>
+											<option value="60">批发和零售业</option>
+											<option value="71">公共管理和社会组织</option>
+											<option value="55">制造业</option>
+											<option value="66">水利、环境和公共设施管理业</option>
+											<option value="61">金融业</option>
+											<option value="72">国际组织</option>
+											<option value="56">电力、燃气及水的生产和供应业</option>
+											<option value="67">居民服务和其他服务业</option>
+											<option value="62">房地产业</option>
+											<option value="57">建筑业</option>
+											<option value="68">教育</option>
+											<option value="63">采矿业</option>
+											<option value="58">交通运输、仓储和邮政业</option>
+											<option value="69">卫生、社会保障和社会福利业</option>
+											<option value="64">租赁和商务服务业</option>
+											<option value="59">信息传输、计算机服务和软件业</option>
+
+
+										</select>
+
+									</div>
+								</li>
+								<li>
+									<div class="modify_left fl">月收入:</div>
+									<div class="modify_right fl">
+										<select name="userInfo.income" id="updateUserInfoForm_userInfo_income" class="validate[required] u-amount">
+											<option value=""
+											>请选择</option>
+											<option value="21">1000元以下</option>
+											<option value="27">8000-10000</option>
+											<option value="22">1000-2000</option>
+											<option value="28">10000-30000</option>
+											<option value="23">2000-3000</option>
+											<option value="29">30000-50000</option>
+											<option value="24">3000-4000</option>
+											<option value="30">50000以上</option>
+											<option value="26">5000-8000</option>
+											<option value="25">4000-5000</option>
+
+
+										</select>
+
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="confirm_button">
+
+							<a id="userInfoSumbit" href="javascript:;" class="userInfoSumbit fl">
+								确认提交
+							</a>
+							<a id="cancleButton" href="javascript:;" class="cancleButton fl">
+								取消
+							</a>
+						</div>
+					</table></form>
+
+
+
+
+			</div>
+			<!--修改登录密码-->
+			<div class="modify_loginPwd" style="display: none;">
+				<form id="updateLoginpwdForm" method="post" class="ui-form"
+					  action="/userNew/updateLoginPwd.action" data-name="modpsw"
+					  novalidate="novalidate">
+					<ul>
+						<li>
+							<div class="clearfix">
+								<div class="loginPwd_left fl">
+									原密码:
+								</div>
+								<div class="loginPwd_right fl">
+									<input name="oldPassword" id="oldPassword" type="password" placeholder="请输入原登录密码"
+										   class="validate[required] u-amount">
+								</div>
+							</div>
+							<div class="remind clearfix">
+
+							</div>
+						</li>
+						<li>
+							<div class="clearfix">
+								<div class="loginPwd_left fl">
+									新密码:
+								</div>
+								<div class="loginPwd_right fl">
+									<input id="newPassword" name="newPassword" id="newPassword"
+										   placeholder="6-16位字母、数字和符号(不包括空格)" type="password"
+										   class="validate[required] u-amount">
+								</div>
+							</div>
+							<div class="remind clearfix">
+							</div>
+						</li>
+						<li>
+							<div class="clearfix">
+								<div class="loginPwd_left fl">
+									确认密码:
+								</div>
+								<div class="loginPwd_right fl">
+									<input id="newPassword2" placeholder="请再次输入您的新密码" type="password"
+										   class="validate[required,equals[newPassword]] u-amount">
+								</div>
+							</div>
+							<div class="remind clearfix">
+
+							</div>
+						</li>
+						<li>
+
+							<a id="loginpwdSumbit" href="javascript:;"class="confirm_button">
+								确认提交
+							</a>
+						</li>
+					</ul>
+				</form>
+			</div>
+			<!--交易密码-->
+			<div id="updatepayPwd" class="transactionPwd"  style="display:none;">
+				<form action="userNew/updatePwd.action" method="post"
+					  id="updatepaypwdForm" data-name="modCashPsw" novalidate="novalidate">
+					<p>
+						为了您的账户安全,请定期更换交易密码,并确保支付密码与登录密码不同。
+					</p>
+					<ul>
+						<li>
+							<div class="transaction_left fl">
+								您的手机号:
+							</div>
+							<div class="transaction_right fl">
+								18720920060
+							</div>
+						</li>
+						<li>
+							<div class="clearfix">
+								<div class="transaction_left fl">
+									手机验证码:
+								</div>
+								<div class="transaction_right fl">
+									<input type="text" name="verificationCode" class="validate[required] u-amount"/>
+									<span><input
+											id="btnSendpwdCode" type="button" value="获取验证码" rel="updatepayPwd" class="get"/></span>
+									<p style="margin-left:80px;text-indent: 10em;display: none; "
+									   class="mt10 f12 blue phone_code_msg hide">
+										验证码已发送，请查看手机短信<br>
+										<strong>（如遇收不到短信或短信验证超时，请及时联系在线客服帮您处理） </strong>
+								</div>
+							</div>
+							<!-- <div class="remind">
+                                <img src="img/remind.png">验证码错误
+                            </div> -->
+						</li>
+						<li>
+
+
+							<a id="paySumbit" href="javascript:;"  class="confirm_button" style="margin-top:5px;margin-left:110px;">
+								下一步
+							</a>
+						</li>
+					</ul>
+				</form>
+				<div class="customer_telephone">
+					如果您在操作过程中出现问题，请点击页面右侧在线客服，或拨打轻松贷客服电话:400-8763-118
+				</div>
+			</div>
+			<!--绑定银行卡-->
+			<div class="bank_card" style="display:none;">
+				<form action="userNew/bindSignedCard.action" method="post"
+					  id="bindSignedCardForm" data-name="modCashPsw" novalidate="novalidate">
+
+					<ul>
+						<li class="clearfix">
+							<div class="card_left fl">
+								存管电子账户:
+							</div>
+							<div class="card_right fl">
+								6212461110000099832
+							</div>
+						</li>
+						<li class="clearfix">
+							<div class="card_left fl">
+								选择银行:
+							</div>
+							<div class="card_right fl">
+								<select name="bankname" id="bankname" class="validate[required] u-select1 u-amount">
+									<option value=""
+									>请选择</option>
+									<option value="300">工商银行</option>
+									<option value="468">兴业银行</option>
+									<option value="301">中国银行</option>
+									<option value="469">民生银行</option>
+									<option value="302">建设银行</option>
+									<option value="472">中信银行</option>
+									<option value="303">农业银行</option>
+									<option value="473">光大银行</option>
+									<option value="466">招商银行</option>
+									<option value="508">中国邮政储蓄银行 </option>
+									<option value="467">平安银行</option>
+
+
+								</select>
+
+							</div>
+						</li>
+						<li class="clearfix">
+							<div class="card_left fl">
+								绑定银行卡号:
+							</div>
+							<div class="card_right fl">
+								<input type="text" name="jxbankUser.bindCard" value="6236682830002880390" id="bindcard" class="validate[required,minSize[11],maxSize[20]] u-amount" errormsg="至少16个字符,最多20个字符！" placeholder="请输入您的银行卡号" datatype="s5-16"/>
+							</div>
+						</li>
+						<li class="clearfix">
+							<div class="card_left fl">
+								预留银行手机号码:
+							</div>
+							<div class="card_right fl">
+								<input type="text" name="user.phone" value="18720920060" readonly="readonly" id="phone" class="validate[required,minSize[2],maxSize[20]] u-amount" errormsg="至少11个字符,最多16个字符！" placeholder="请输入您的手机号" datatype="s5-16"/></span>
+							</div>
+						</li>
+						<li>
+							<p class="remind">
+								注：请查看预留手机号码是否正确，如果不对请联系客服400-8763118
+							</p>
+						</li>
+
+						<li>
+							<a href="javascript:;"id="showTendPanel">确认绑定</a>
+
+						</li>
+					</ul>
+				</form>
+
+				<div class="remind">
+					<p>
+						1、解除绑定必须您的总额、待收、借款负债、银行余额为零，才能解绑成功。
+					</p>
+					<p>
+						2、如果您解绑之后，可能将无法成功提现，由此产生的提现费用将不予返还
+					</p>
+				</div>
+				<div class="customer_telephone">
+					如果您在操作过程中出现问题，请点击页面右侧在线客服，或拨打轻松贷客服电话:400-8763-118
+				</div>
+			</div>
+			<!--解绑银行卡-->
+			<div class="unbundling" style="display:none;">
+				<form action="userNew/cancelBindSignedCard.action" method="post"
+					  id="cancelBindForm" data-name="modCashPsw" novalidate="novalidate">
+					<ul>
+						<li class="clearfix">
+							<div class="card_left fl">
+								存管电子账户:
+							</div>
+							<div class="card_right fl">
+								6212461110000099832
+							</div>
+						</li>
+						<li class="clearfix">
+							<div class="card_left fl">
+								选择银行:
+							</div>
+							<div class="card_right fl">
+								&#24314;&#35774;&#38134;&#34892;
+							</div>
+						</li>
+						<li class="clearfix">
+							<div class="card_left fl">
+								绑定银行卡号:
+							</div>
+							<div class="card_right fl">
+								6236682830002880390
+							</div>
+						</li>
+						<li>
+							<a href="javascript:;"id="cancelBindSignedCard">确认解绑</a>
+
+						</li>
+					</ul>
+
+				</form>
+				<div class="remind">
+					<p>
+						1、解除绑定必须您的总额、待收、借款负债、银行余额为零，才能解绑成功。
+					</p>
+					<p>
+						2、如果您解绑之后，可能将无法成功提现，由此产生的提现费用将不予返还
+					</p>
+				</div>
+			</div>
+
+			<!--缴费授权-->
+			<div class="authorizat" style="display:none;">
+				<form action="userNew/businessLicense.action" method="post"
+					  id="authorizatForm" data-name="modCashPsw" novalidate="novalidate">
+					<ul>
+						<li class="clearfix">
+							<div class="card_left fl">
+								存管电子账户:
+							</div>
+							<div class="card_right fl">
+								6212461110000099832
+							</div>
+						</li>
+						<li class="clearfix">
+							<div class="card_left fl">
+								选择银行:
+							</div>
+							<div class="card_right fl">
+								&#24314;&#35774;&#38134;&#34892;
+							</div>
+						</li>
+						<li class="clearfix">
+							<div class="card_left fl">
+								绑定银行卡号:
+							</div>
+							<div class="card_right fl">
+								6236682830002880390
+							</div>
+						</li>
+						<li>
+							<a href="javascript:;"id="businessLicense">确认授权</a>
+
+						</li>
+					</ul>
+
+				</form>
+				<div class="remind">
+					<p>
+						请务必核对以下授权信息，操作需谨慎！
+					</p>
+
+				</div>
+			</div>
+
+			<!--修改昵称-->
+			<div class="modify_nickName" id="updatename" style="display:none;">
+				<form  id="updateNameForm" method="post"   action="/userNew/updateName.action">
+					<ul>
+						<li>
+							<div class="clearfix">
+								<div class="name_left fl">
+									原昵称：
+								</div>
+								<div class="name_right fl">
+									<input  disabled type="text" value="18720920060"/>
+								</div>
+							</div>
+
+						</li>
+						<li>
+							<div class="clearfix">
+								<div class="name_left fl">
+									新昵称：
+								</div>
+								<div class="name_right fl">
+									<input name="newName" placeholder="请输入您的新昵称" type="text" class="validate[required] u-amount">
+								</div>
+							</div>
+							<!-- <p>
+                                <img src="img/remind.png">手机号码输入错误
+                            </p> -->
+						</li>
+
+						<li>
+
+							<a id="nameSumbit" href="javascript:;" >确认提交</a>
+
+						</li>
+					</ul>
+				</form>
+			</div>
+
+			<!--修改手机号-->
+			<div class="modify_phoneNumber" id="updatePhone" style="display:none;">
+				<form  id="updatePhoneForm" method="post"   action="/userNew/updatePhone.action">
+					<ul>
+						<li>
+							<div class="clearfix">
+								<div class="phone_left fl">
+									原手机号码:
+								</div>
+								<div class="phone_right fl">
+									<input name="oldPhone" placeholder="请输入您的旧手机号码" type="text" value="18720920060" class="validate[required] u-amount">
+								</div>
+							</div>
+							<!-- 	<p>
+                                    <img src="img/remind.png">不能为空
+                                </p> -->
+						</li>
+						<!-- <li>
+                            <div class="clearfix">
+                                <div class="phone_left fl">
+                                    新手机号码:
+                                </div>
+                                <div class="phone_right fl">
+                                     <input name="newPhone" placeholder="请输入您的新手机号码" type="text" class="validate[required] u-amount">
+                                </div>
+                            </div>
+                            <p>
+                                <img src="img/remind.png">手机号码输入错误
+                            </p>
+                        </li> -->
+						<li>
+							<div class="clearfix">
+								<div class="phone_left fl">
+									手机验证码:
+								</div>
+								<div class="phone_right fl" id="captcha">
+									<input name="verificationCode" placeholder="" type="text" class="validate[required] u-amount" style="width:90px;">
+									<input id="btnSendUpdatePhoneCode" type="button" value="点击获取手机验证码" rel="updatePhone" class="get_verification" style="position:absolute;"/>
+									<p style="margin-left:80px;text-indent: 10em;display: none; " class="mt10 f12 blue phone_code_msg hide">验证码已发送，请查看手机短信<br><strong>（如遇收不到短信或短信验证超时，请及时联系在线客服帮您处理）
+
+									</strong></p>
+								</div>
+							</div>
+							<!-- <p>
+                                <img src="img/remind.png">验证码错误
+                            </p> -->
+						</li>
+						<li>
+
+							<a id="phoneSumbit" href="javascript:;" >确认提交</a>
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- 底部 -->
+
+<base >
+<div class="bottom">
+	<div class="w1200">
+		<div class="bottom_1">
+			<ul>
+				<li><a href="aboutus.html">关于我们</a></li>
+				<li><a href="contcatus.html">联系我们</a></li>
+				<li><a href="guarantee.html">保障体系</a></li>
+				<li><a href="bulletin.html">平台公告</a></li>
+				<li><a href="hr.html">招贤纳士</a></li>
+				<li><a href="problem.html">常见问题</a></li>
+				<li><a href="guide.html">使用指南</a></li>
+				<li><a href="app.html">手机客户端</a></li>
+			</ul>
+		</div>
+		<div class="bottom_middle clearfix">
+			<div class="bottom_2">
+				<p>电话: 0791-83858285</p>
+				<p>邮箱: service@kkd2p.com</p>
+				<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+			</div>
+
+			<div class="bottom_4">
+
+				<h3>400-8763-118</h3>
+
+
+				<div class="serviceTime clearfix">
+					<p>服务时间：周一至周五9：00-21：00</p>
+					<p>
+						网贷有风险，出借需谨慎
+					</p>
+					<p>
+						陕西省互联网金融协会:400-9158-227
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="bottom_5 clearfix">
+			<ul>
+
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+
+				<li>? 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+
+			</ul>
+		</div>
+		<div class="bottom_6">
+			<ul>
+				<li>友情链接:</li>
+
+				<li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+
+				<li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+
+				<li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+
+
+
+
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var flag = true;
+        //				更改信息
+        $(".modify_information span").on("click", function() {
+            $(".personal_bottom .basic_information").slideUp(500);
+            $(".personal_bottom .modifyInformation").slideDown(400);
+        })
+        //			修改登录密码
+        $("#modify_loginPwd").on("click", function() {
+            $(".modify_loginPwd").slideDown(500).siblings().slideUp(500);
+        })
+        //				修改昵称
+        $("#modify_name ").on("click", function() {
+
+            $(".personal_bottom .modify_nickName").slideDown(500).siblings().slideUp(500);
+
+        })
+        //				修改手机号码
+        $("#modify_phone ").on("click", function() {
+
+            $(".personal_bottom .modify_phoneNumber").slideDown(500).siblings().slideUp(500);
+
+        })
+        //				交易密码
+        $("#transaction_password").on("click", function() {
+            $(".personal_bottom .transactionPwd").slideDown(500).siblings().slideUp(500);
+        })
+        //				绑定银行卡
+        $("#bundling_card").on("click", function() {
+            $(".personal_bottom .bank_card").slideDown(500).siblings().slideUp(500);
+            flag = false;
+        })
+        //				缴费授权
+        $("#modify_authorizeSet").on("click", function() {
+            $(".personal_bottom .authorizat").slideDown(500).siblings().slideUp(500);
+            flag = false;
+        })
+
+        $(".bank_card ul li .confirm_button").on("click", function() {
+            if(flag == false) {
+                $(".bundling_card").hide();
+                $(".unbundling_card").show();
+            }
+        })
+        //				解除绑定
+        $("#unbundling_card").on("click", function() {
+            $(".personal_bottom .unbundling").slideDown(500).siblings().slideUp(500);
+        })
+        //取消修改
+        $("#cancleButton").on("click", function() {
+            $(".personal_bottom .basic_information ").slideDown(500).siblings().slideUp(500);
+        })
+        //点击昵称返回个人信息
+        $("#essentialName").on("click", function() {
+            $(".personal_bottom .basic_information").slideDown(500).siblings().slideUp(500);
+        })
+
+
+
+    })
+</script>
+</body>
+
+</html>

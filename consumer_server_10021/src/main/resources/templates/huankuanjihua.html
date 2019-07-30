@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+			<base href="">
+			<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="互联网金融、轻松贷">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="description" content="高效、精准、安全的P2P网络借贷平台">
+<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+<link rel="shortcut icon" href="favicon.ico"></link>
+<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/login.css" />
+<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
+<script  type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery-1.8.2.min.js"></script>
+<link href="http://39.107.15.222:8081/src/theme/validationEngine/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine-zh_CN.js"></script>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine.js"></script>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery.form.js"></script>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/common.js"></script>
+<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/main.css" />
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/layer/layer.js"></script>  
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.circliful.js"></script>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/scroll.js" ></script>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/person_style.js" ></script>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/personal.css" />  
+<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/style.css" />
+<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/swiper-3.4.2.min.css" />
+<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/mall.css" />
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
+
+
+ 
+ 
+
+		<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/default/new/double-date.css" />
+ 	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/default/new/js/double-date.js" ></script>
+ 	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/page.js"></script>
+ 
+		<title>首页-轻松贷-一心一意，普惠金融</title>
+		<script type="text/javascript">
+    $(function() {
+        $('#about li a').click(function() {
+            $('.selectmenu_ed').removeClass('selectmenu_ed');
+            $(this).parents("li").addClass('selectmenu_ed');
+            $(".hyrc").load($(this).attr("rel"));
+            $("#pageServlet").val($(this).attr("rel"));
+
+        });
+        $('#about li:eq(0) a').click();
+    });
+</script>
+<script type="text/javascript">
+    var mess="您";
+    function repay(id, repayAccountYes,bondsmanUserId) { 
+        var useMoney = 0;  
+        if(bondsmanUserId!=0){
+            mess="请注意,您当前选择的是担保人代还款!担保人";
+            $.ajax({
+                    type : "POST",
+                    url : "userNew/showJxyh.action",
+                    async:false,  //同步
+                    data:{
+                        "userId" : bondsmanUserId, 
+                    },
+                    dataType : "json", 
+                    success : function(data) { 
+                        var balance = Math.max(data.message * 100) / 100; 
+                        useMoney = balance;
+                    }
+                }); 
+        }else{
+            useMoney = 0.01;
+        } 
+        var repayLayer = layer.open({
+                    type : 1,
+			area : [ 'auto', 'auto' ],
+			content : mess+"当前余额为:<span style='color:red;'>" + useMoney
+					+ "</span>,本期预期应还总额为:<span style='color:red;'>"
+					+ repayAccountYes + "</span>请确保您有足够的余额！<br/><br/>",
+			btn : [ '立即还款', '取消' ],
+			btnAlign : 'c',//按钮居中
+			shade : 0, //不显示遮罩      
+			    btns : 2,
+                yes : function() {
+                    if (useMoney < repayAccountYes) {
+                        layer.alert("可用余额不足！");
+                        return false;
+                    } 
+                    var loadi = layer.load('还款中,请勿其它操作…');
+                    $.ajax({
+                        type : "POST",
+                        url : "repaymentNew/toRepay.action",
+                        data : {
+                            "id" : id, 
+                            "repayAccountYes":repayAccountYes,
+                            "type":0,
+                            "bondsmanUserId":bondsmanUserId
+                        },
+                        dataType : "json",
+                        error : function(data) {
+                            alert("error");
+                        },
+                        success : function(data) {
+                            if (!data.status) {
+                                layer.close(loadi);
+                                repay(id, repayAccountYes);
+                                $('#repayError').html(data.message);
+                                return false;
+                            } else {
+                                layer.close(loadi);
+                                layer.alert("还款上传至银行，等待银行审核", 9, function() {
+                                    window.location.reload();
+                                });
+                            };
+                        }
+                    });
+                },
+                no : function() {
+                    layer.close(repayLayer);
+                }
+            }
+        );
+    }
+    
+        function repay_pre(id,borrowId,InterestAll,sort,bondsmanUserId) {
+            var useMoney = 0;
+            var mess="您";
+            if(bondsmanUserId!=0){
+                mess="请注意,您当前选择的是担保人代还款!担保人";
+                $.ajax({
+                        type : "POST",
+                        url : "userNew/showJxyh.action",
+                        async:false,  //同步
+                        data:{
+                            "userId" : bondsmanUserId, 
+                        },
+                        dataType : "json", 
+                        success : function(data) { 
+                            var balance = Math.max(data.message * 100) / 100; 
+                            useMoney = balance;
+                        }
+                    }); 
+            }else{
+                useMoney = 0.01;
+            } 
+            var vemessage = '2';
+            var repayAccount = 0;
+            $.ajax({
+                type : "POST",
+                url : "repaymentNew/getRepayPreAccount.go",
+                async:false,  //同步
+                data : {
+                    "id" : id 
+                },
+                dataType : "json",
+                success : function(data) {
+                     repayAccount = data.message;
+                     vemessage = data.vemessage;
+                }
+            });
+            var repayAccountYes=0;
+            if(vemessage=='0'){
+                repayAccountYes = Number(repayAccount)+Number(InterestAll);
+            } 
+            if(vemessage=='1'){
+                repayAccountYes = Number(repayAccount);
+            }
+            if(vemessage=='2'){
+                layer.alert("本标种不支持提前还款");
+                return false
+            }  
+            /* if(repayAccount==0){
+               repayAccountYes = "请计算好提前还款应该还多少。以实际还款金额为准";
+            } */  
+        var repayLayer = layer.open({
+                   type : 1,
+			area : [ 'auto', 'auto' ],
+			content : mess+"当前余额为:<span style='color:red;'>" + useMoney
+					+ "</span>,本期预期应还总额为:<span style='color:red;'>"
+					+ repayAccountYes + "</span>请确保您有足够的余额！<br/><br/>",
+			btn : [ '立即还款', '取消' ],
+			btnAlign : 'c',//按钮居中
+			shade : 0, //不显示遮罩      
+			    btns : 2,
+                        yes : function() {
+                            if (useMoney < repayAccountYes) {
+                                layer.alert("可用余额不足！");
+                                return false;
+                            } 
+                            var loadi = layer.load('还款中,请勿其它操作…');
+                            $.ajax({
+                                type : "POST",
+                                url : "repaymentNew/toRepay.go",
+                                data : {
+                                    "id" : id, 
+                                    "repayAccountYes":0,
+                                    "type":1,
+                                    "bondsmanUserId":bondsmanUserId
+                                },
+                                dataType : "json",
+                                error : function(data) {
+                                    alert("error");
+                                },
+                                success : function(data) {
+                                    if (!data.status) {
+                                        layer.close(loadi);
+                                        repay(id, repayAccountYes);
+                                        $('#repayError').html(data.message);
+                                        return false;
+                                    } else {
+                                        layer.close(loadi);
+                                        layer.alert("还款上传至银行，等待银行审核", 9, function() {
+                                            window.location.reload();
+                                        });
+                                    };
+                                }
+                            });
+                        },
+                        no : function() {
+                            layer.close(repayLayer);
+                        }
+                    }
+                );
+    }
+</script>
+	</head>
+
+	<body>
+		<!--top begin-->
+			
+<base href="">
+<script type="text/javascript">
+	$(function() {
+		$(".navitem li").hover(function() {
+			$(this).find("ol").show().siblings().find("ol").hide("slow");
+		}, function() {
+			$(this).find("ol").slideUp("slow");
+		})
+		$(".code_text li").hover(function() {
+			var inde = $(this).index();
+			$(".code_img ul li").eq(inde).show().siblings().hide();
+		})
+		$.ajax({
+			type : "POST",
+			url : "newLogin/headerLogin.action",
+			dataType : "json",
+			success : function(data) {
+				if (data.status) {
+					$('#register').before("<li><span class='nh'>您好，</span> </li>");
+					$('#register a').text("" + data.message + "");
+					$('#register a').attr("href", "userNew/index.go");
+					$('#login').remove();
+					$('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
+					$("#wealth").text('开启您的财富之旅');
+					$("#wealth").attr("href","reCash/toAdd.go");
+					$("#bannerlogin").remove();
+				}
+
+			}
+		});
+	});
+</script>
+<div class=" big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+				
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+				<!--跳转登陆界面
+					<a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="login.html">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+				<!--注册界面
+					<a href="register/toRegister.go">快速注册</a>-->
+					<a href="zhuce.html">快速注册</a>
+				</li>
+				
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+				<a href="guide.html">使用指南</a></li>
+				
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+				<a href="problem.html">常见问题</a></li>
+				
+               <li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+			   <a style="color: #faa039" href="guarantee.html" >安全保障</a></li> 
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+		 
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+			
+					<li >
+						<a href="list.html"
+							>我要投资
+						</a>
+						
+						<ol class="m-list">
+							
+									<li>
+										<a href="list.html"
+											>投资列表
+										</a>
+									</li>
+								
+									<li>
+										<a href="xiangdao.html"
+											>投资向导
+										</a>
+									</li>
+								
+						</ol>
+					</li>
+				
+					<li >
+						<a href="msgpilu.html"
+							>信息披露
+						</a>
+						
+						<ol class="m-list">
+							
+						</ol>
+					</li>
+				
+					<li >
+						<a href="dae.html"
+							>我要借款
+							 <i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+						    
+						</a>
+						
+						<ol class="m-list">
+							
+									<li>
+										<a href="xiaoe.html">小额借款</a>
+									</li>
+								
+									<li>
+										<a href="dae.html"> 大额借款</a>
+									</li>
+						</ol>
+					</li>
+				
+					<li >
+						<a href="aboutus.html"> 关于我们</a>
+						<ol class="m-list">
+							
+									<li>
+										<a href="aboutus.html"> 企业简介</a>
+									</li>
+								
+									<li>
+										<a href="zizhi.html"> 公司资质</a>
+									</li>
+								
+									<li>
+										<a href="hezuohb.html"> 合作伙伴</a>
+									</li>
+								
+									<li>
+										<a href="contactus.html"> 联系我们</a>
+									</li>
+								
+									<li>
+										<a href="bulletin.html"> 平台公告</a>
+									</li>
+								
+									<li>
+										<a href="hr.html"> 招贤纳士</a>
+									</li>
+								
+						</ol>
+					</li>
+				<li class="m-menu active"><a href="wodezhanghu.html">我的账户</a></li>
+		</ul>
+	</div>
+</div>
+		<!--nav end-->
+		<div class="w1200" style="margin-bottom:10px;">
+			<div class="location">
+				你所在位置:
+				<a href="index.html">首页</a> >
+				<a href="jiekuanguanli.html">借款管理</a>>
+				<a href="huankuanjihua.html">还款计划</a>
+			</div>
+			<!--  menu -->
+            	
+
+<script>
+	$(document).ready(function() {
+		$(".payment li").on("click", function() {
+			var ind = $(this).index();
+			$(this).addClass("active").siblings().removeClass("active");
+			$(".table_list .table_list_item").eq(ind).show().siblings().hide();
+		})
+		 $(".personal_nav ul li").hover(function() {
+			$(this).find("ol").show().siblings().find("ol").hide("slow");
+		}, function() {
+			$(this).find("ol").slideUp("slow");
+		}) 
+	})
+</script>
+<div class="personanNavList" >
+	<div class="personal_nav">
+
+		<ul style="margin-left:auto;margin-right:auto;">
+			
+				<li
+					>
+       		
+					<a class="nav1"  href="wodezhanghu.html"
+					>我的账户<span
+						class="iconIMg"></span>
+				</a>
+
+					<ol>
+						
+					</ol></li>
+			
+				<li
+					>
+       		
+					<a class="nav2"  href="touziguanli.html"
+					>投资管理<span
+						class="iconIMg"></span>
+				</a>
+
+					<ol>
+						
+								<li ><a href="fengxianpinggu.html"
+									>风险评估
+								</a></li>
+							
+								<li ><a href="touziguanli.html"
+									>我的投资
+								</a></li>
+							
+								<li ><a href="huikuanmingxi.html"
+									>回款明细
+								</a></li>
+							
+					</ol></li>
+			
+				<li  class="active"
+					>
+       		
+					<a class="nav3"  href="jiekuanguanli.html"
+					>借款管理<span
+						class="iconIMg"></span>
+				</a>
+
+					<ol>
+						
+								<li ><a href="jiekuanguanli.html"
+									>我的借款
+								</a></li>
+							
+								<li ><a href="huankuanjihua.html"
+									>还款计划
+								</a></li>
+							
+					</ol></li>
+			
+				<li
+					>
+       		
+					<a class="nav4"  href="zijinguanli.html"
+					>资金管理<span
+						class="iconIMg"></span>
+				</a>
+
+					<ol>
+						
+								<li ><a href="zijinguanli.html"
+									>重置/提现
+								</a></li>
+							
+								<li ><a href="jiaoyijilu.html"
+									>交易记录
+								</a></li>
+							
+								<li ><a href="cunguanjilu.html"
+									>存管交易记录
+								</a></li>
+							
+					</ol></li>
+			
+				<li
+					
+       		 
+       		>
+       		
+					<a class="nav5"  href="zhanghuguanli.html"
+					>账户管理<span
+						class="iconIMg"></span>
+				</a>
+
+					<ol>
+						
+								<li 
+			        		 class="active"
+			        	><a href="zhanghuguanli.html">个人信息
+								</a></li>
+							
+								
+							
+								<li ><a href="zhanneixinxi.html"
+									>站内消息
+								</a></li>
+							
+					</ol></li>
+
+					
+		</ul>
+
+	</div>
+</div>
+
+			<div class="my_investment">
+				<div class="investment_content">
+					<!-- <div class="search">
+						<ul class="fl">
+							<li>
+								起止时间
+							</li>
+							<li class="start_time date date1" id="from">
+								<span class="iconfont icon-rili"></span>
+								<input type="text" class="date-check">
+							</li>
+							<li class="end_time date" id="to">
+								<span class="iconfont icon-rili"></span>
+								<input type="text" class="date-check">
+							</li>
+							<li>
+								<a href="#">查询</a>
+							</li>
+						</ul>
+						<ul class="fl month">
+							<li class="active">最近7天</li>
+							<li>1月</li>
+							<li>3月</li>
+							<li>6月</li>
+							<li>1年</li>
+						</ul>
+					</div> -->
+					<div class="table_item">
+						<div class="table_title clearfix">
+							<ul id="about" class="fl payment">
+								<li class="active"><a href="javaScript:void(0);" id="now"
+                            rel="repaymentNew/list.action"
+                            title="还款计划">还款计划</a></li>
+							</ul>
+							<!-- <div class="export fr">
+								导出excel
+							</div> -->
+						</div>
+						<div class="table_list">
+							<div class="table_list_item">
+							<div  class="hyrc"></div>
+								 <input
+                            type="hidden" id="pageServlet"
+                            value="repaymentNew/list.action" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+	
+		<!-- 底部 -->
+		
+<base >
+<div class="bottom">
+	<div class="w1200">
+		<div class="bottom_1">
+			<ul>
+				<li><a href="aboutus.html">关于我们</a></li>
+				<li><a href="contcatus.html">联系我们</a></li>
+				<li><a href="guarantee.html">保障体系</a></li>
+				<li><a href="bulletin.html">平台公告</a></li>
+				<li><a href="hr.html">招贤纳士</a></li>
+				<li><a href="problem.html">常见问题</a></li>
+				<li><a href="guide.html">使用指南</a></li>
+				<li><a href="app.html">手机客户端</a></li>
+			</ul>
+		</div>
+		<div class="bottom_middle clearfix">
+			<div class="bottom_2">
+				<p>电话: 0791-83858285</p>
+				<p>邮箱: service@kkd2p.com</p>
+				<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+			</div>
+		
+			<div class="bottom_4">
+				
+				<h3>400-8763-118</h3>
+				
+				
+				<div class="serviceTime clearfix">
+							<p>服务时间：周一至周五9：00-21：00</p>
+							<p>
+								网贷有风险，出借需谨慎
+							</p>
+							<p>
+							  陕西省互联网金融协会:400-9158-227
+							</p>
+						</div>
+			</div>
+		</div>
+		<div class="bottom_5 clearfix">
+			<ul>
+				
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+				
+				<li>© 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+			
+			</ul>
+		</div>
+		<div class="bottom_6">
+			<ul>
+				<li>友情链接:</li>
+				
+					                    <li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+					
+					                    <li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+					
+					                    <li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+					
+					                  
+
+					
+			</ul>
+		</div>
+	</div>
+</div>	
+<style type="text/css">
+	.personal_nav ul>li {
+        float: left;
+        width: 20%;
+         text-align: center;
+         height: 55px;
+         line-height: 55px;
+        font-size: 18px;
+}
+</style>
+		<script>
+			$(document).ready(function() {
+				$(".payment li").on("click", function() {
+					var ind = $(this).index();
+					$(this).addClass("active").siblings().removeClass("active");
+					$(".table_list .table_list_item").eq(ind).show().siblings().hide();
+				})
+				$(".personal_nav ul li").hover(function() {
+					var index = $(this).index();
+					if(index != 0) {
+						$(".down_menu ul").eq(index - 1).slideDown("slow").siblings().slideUp(50);
+					}
+					if(index == 0) {
+						$(".down_menu ul").slideUp(50);
+					}
+				},function(){
+					$(".down_menu ul").slideUP(50);
+				}
+				)
+				$(".down_menu ul").hover(function() {
+					$(this).slideDown("slow");
+				}, function() {
+					$(this).slideUp(50);
+				})
+			})
+		</script>
+	</body>
+
+</html>

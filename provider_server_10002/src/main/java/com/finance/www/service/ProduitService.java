@@ -2,6 +2,7 @@ package com.finance.www.service;
 
 import com.finance.www.pojo.Produit;
 import com.finance.www.pvo.JieKuanXxVo;
+import com.finance.www.pvo.PageVo;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public interface ProduitService {
     List<Produit> chaProduitBytype(Integer pt);
     //查询一个商品的详细信息
     JieKuanXxVo chaProduitBypid(Integer pid);
-    //根据商品来查询上传的图片
+    //根据标的类型与标的还款方式，标的还款时间来获取资源并分页
+    PageVo chaProduitByPage(String ProduitType, String style, String timeLimit,Integer page);
 
 }
