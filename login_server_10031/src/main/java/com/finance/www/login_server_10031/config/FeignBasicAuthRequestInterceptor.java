@@ -3,12 +3,14 @@ package com.finance.www.login_server_10031.config;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author ：邓一凡
  * @date ：Created in 2019/7/27 13:52
  * @description ：
  */
+@Configuration
 public class FeignBasicAuthRequestInterceptor implements RequestInterceptor {
 
     public FeignBasicAuthRequestInterceptor() {
@@ -18,7 +20,7 @@ public class FeignBasicAuthRequestInterceptor implements RequestInterceptor {
     /**
      * 从系统变量上获取令牌添加到请求头中
      *
-     * @param template
+     * @param template .
      */
     @Override
     public void apply(RequestTemplate template) {
