@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.finance.www.mapper.TransactionRecordsMapper" >
+  <resultMap id="BaseResultMap" type="com.finance.www.pojo.TransactionRecords" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="jytype" property="jytype" jdbcType="INTEGER" />
+    <result column="jine" property="jine" jdbcType="VARCHAR" />
+    <result column="dealing_party" property="dealingParty" jdbcType="VARCHAR" />
+    <result column="jilu_time" property="jiluTime" jdbcType="TIMESTAMP" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, jytype, jine, dealing_party, jilu_time, member_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.finance.www.pojo.TransactionRecordsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from transaction_records
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from transaction_records
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from transaction_records
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.finance.www.pojo.TransactionRecordsExample" >
+    delete from transaction_records
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.finance.www.pojo.TransactionRecords" >
+    insert into transaction_records (id, jytype, jine, 
+      dealing_party, jilu_time, member_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{jytype,jdbcType=INTEGER}, #{jine,jdbcType=VARCHAR}, 
+      #{dealingParty,jdbcType=VARCHAR}, #{jiluTime,jdbcType=TIMESTAMP}, #{memberId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.finance.www.pojo.TransactionRecords" >
+    insert into transaction_records
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jytype != null" >
+        jytype,
+      </if>
+      <if test="jine != null" >
+        jine,
+      </if>
+      <if test="dealingParty != null" >
+        dealing_party,
+      </if>
+      <if test="jiluTime != null" >
+        jilu_time,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jytype != null" >
+        #{jytype,jdbcType=INTEGER},
+      </if>
+      <if test="jine != null" >
+        #{jine,jdbcType=VARCHAR},
+      </if>
+      <if test="dealingParty != null" >
+        #{dealingParty,jdbcType=VARCHAR},
+      </if>
+      <if test="jiluTime != null" >
+        #{jiluTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.finance.www.pojo.TransactionRecordsExample" resultType="java.lang.Integer" >
+    select count(*) from transaction_records
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update transaction_records
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.jytype != null" >
+        jytype = #{record.jytype,jdbcType=INTEGER},
+      </if>
+      <if test="record.jine != null" >
+        jine = #{record.jine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealingParty != null" >
+        dealing_party = #{record.dealingParty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jiluTime != null" >
+        jilu_time = #{record.jiluTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update transaction_records
+    set id = #{record.id,jdbcType=INTEGER},
+      jytype = #{record.jytype,jdbcType=INTEGER},
+      jine = #{record.jine,jdbcType=VARCHAR},
+      dealing_party = #{record.dealingParty,jdbcType=VARCHAR},
+      jilu_time = #{record.jiluTime,jdbcType=TIMESTAMP},
+      member_id = #{record.memberId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.finance.www.pojo.TransactionRecords" >
+    update transaction_records
+    <set >
+      <if test="jytype != null" >
+        jytype = #{jytype,jdbcType=INTEGER},
+      </if>
+      <if test="jine != null" >
+        jine = #{jine,jdbcType=VARCHAR},
+      </if>
+      <if test="dealingParty != null" >
+        dealing_party = #{dealingParty,jdbcType=VARCHAR},
+      </if>
+      <if test="jiluTime != null" >
+        jilu_time = #{jiluTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.finance.www.pojo.TransactionRecords" >
+    update transaction_records
+    set jytype = #{jytype,jdbcType=INTEGER},
+      jine = #{jine,jdbcType=VARCHAR},
+      dealing_party = #{dealingParty,jdbcType=VARCHAR},
+      jilu_time = #{jiluTime,jdbcType=TIMESTAMP},
+      member_id = #{memberId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

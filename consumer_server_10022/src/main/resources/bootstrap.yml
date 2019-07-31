@@ -11,7 +11,7 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8080/eureka
+      defaultZone: http://10.12.159.124:8080/eureka
 server:
   port: 10022
 spring:
@@ -26,4 +26,14 @@ spring:
 feign:
   httpclient:
     enabled: true
-    connection-timeout: 10000
+    connection-timeout: 80000
+#security:
+#  oauth2:
+#    client:
+#      client-id: dubitian
+#      client-secret: dubitian
+#      access-token-uri: http://10.12.159.124:8050/oauth/token
+#      user-authorization-uri: http://10.12.159.124:8050/oauth/authorize
+#      pre-established-redirect-uri: http://localhost:10022
+#    resource:
+#      token-info-uri: http://10.12.159.124:8050/oauth/check_token

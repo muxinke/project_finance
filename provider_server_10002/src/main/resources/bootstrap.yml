@@ -12,9 +12,11 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8080/eureka
+      defaultZone: http://10.12.159.124:8080/eureka
 server:
   port: 10002
+  servlet:
+    context-path: /contents
 spring:
   application:
     name: provider-server2
@@ -24,6 +26,16 @@ spring:
     url: jdbc:mysql://39.107.15.222:3306/easydai?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
     username: root
     password: 971103
+security:
+  oauth2:
+    client:
+      client-id: dubitian
+      client-secret: dubitian
+      access-token-uri: http://10.12.159.124:8050/oauth/token
+      user-authorization-uri: http://10.12.159.124:8050/oauth/authorize
+      pre-established-redirect-uri: http://www.youdao.com
+    resource:
+      token-info-uri: http://10.12.159.124:8050/oauth/check_token
  # redis:
  #   lettuce:
  #     pool:

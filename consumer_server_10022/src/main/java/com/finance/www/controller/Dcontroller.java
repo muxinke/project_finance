@@ -1,19 +1,22 @@
 package com.finance.www.controller;
 
+import com.finance.www.Vo.InvestVos;
 import com.finance.www.Vo.JieKuanXxVos;
+import com.finance.www.Vo.MemberInfoVo;
 import com.finance.www.Vo.ProduitVo;
+import com.finance.www.pojo.MemberAccount;
 import com.finance.www.pojo.Produit;
 import com.finance.www.pojo.ProduitImg;
+import com.finance.www.pvo.InvestmentVo;
+import com.finance.www.pvo.PageVo;
 import com.finance.www.service.IndexService;
+import com.finance.www.service.Service10001;
 import com.finance.www.utils.PojoZVoUtil;
 import com.finance.www.pvo.JieKuanXxVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,9 +33,12 @@ import java.util.List;
  THE_CREDIT_SCALE(9, "信用标"),
  */
 @Controller
+@RequestMapping("/contents")
 public class Dcontroller {
     @Autowired
     IndexService indexService;
+    @Autowired
+    Service10001 service10001;
 /*     @Autowired
      ListService listService;*/
     @GetMapping("/")
@@ -70,20 +76,87 @@ public class Dcontroller {
         model.addAttribute("produit7s",produitVos7);
         return "index";
     }
-    /*//商品展示列表
+   //商品展示列表
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String list(@RequestParam(value = "type",defaultValue ="")Integer type){
-        listService.findProduitBytype(type)
+    public String list(@RequestParam(value = "biaotype",defaultValue ="")Integer biaotype,Model model){
+       if(!"".equals(biaotype)){
+          model.addAttribute("biaotype",biaotype);
+       }
         return "list";
-    }*/
+    }
+    //商品列标引入
+    @RequestMapping(value = "/listyy",method = RequestMethod.GET)
+    public String listyy(@RequestParam(value ="biaotype",defaultValue = "")String biaotype,
+                         @RequestParam(value ="style",defaultValue = "")String style,
+                         @RequestParam(value ="b",defaultValue = "")String b,
+                         @RequestParam(value ="timeLimit",defaultValue = "")String timeLimit,
+                         @RequestParam(value = "page",defaultValue = "1")Integer page,Model model){
+        //靠标的类型与标的还款方式还有期限来查询标并且分页
+        PageVo produitByPage = indexService.findProduitByPage(biaotype, style, timeLimit,page);
+        List<Produit> kk = produitByPage.getKk();
+        List<ProduitVo> produitVos = PojoZVoUtil.produitUtil(kk);
+        model.addAttribute("produits",produitVos);
+        model.addAttribute("biaotype",biaotype);
+        model.addAttribute("style",style);
+        model.addAttribute("timeLimit",timeLimit);
+        model.addAttribute("page",page);
+        model.addAttribute("total",produitByPage.getTotal());
+        return "listyy";
+    }
+    @RequestMapping(value = "/listyy",method = RequestMethod.POST)
+    public String listyykk(@RequestParam(value ="biaotype",defaultValue = "")String biaotype,
+                         @RequestParam(value ="style",defaultValue = "")String style,
+                         @RequestParam(value ="timeLimit",defaultValue = "")String timeLimit,
+                         @RequestParam(value = "currenPageNum",defaultValue = "1")Integer currenPageNum,Model model){
+        System.out.println(currenPageNum);
+        //靠标的类型与标的还款方式还有期限来查询标并且分页
+        PageVo produitByPage = indexService.findProduitByPage(biaotype, style, timeLimit,currenPageNum);
+        List<Produit> kk = produitByPage.getKk();
+        List<ProduitVo> produitVos = PojoZVoUtil.produitUtil(kk);
+        model.addAttribute("produits",produitVos);
+        model.addAttribute("biaotype",biaotype);
+        model.addAttribute("style",style);
+        model.addAttribute("timeLimit",timeLimit);
+        model.addAttribute("page",currenPageNum);
+        model.addAttribute("total",produitByPage.getTotal());
+        return "listyy";
+    }
+    //商品的详细信息
     @RequestMapping(value = "/detail",method = RequestMethod.GET)
     public String detail(@RequestParam(value = "pid",defaultValue = "")Integer pid,Model model){
         JieKuanXxVo produitByPid = indexService.findProduitByPid(pid);
         JieKuanXxVos jieKuanXxVos = PojoZVoUtil.JieKuanVozJieKuanVos(produitByPid);
         //根据pid查出该商品的相关图片
         List<ProduitImg> produitImgs = indexService.findProduitImgById(pid);
+        // 查出投资该标的人
+        List<InvestmentVo> investmentBypid = indexService.findInvestmentBypid(pid);
+        List<InvestVos> investVos = PojoZVoUtil.getInvestVos(investmentBypid);
+        model.addAttribute("invests",investVos);
         model.addAttribute("pimgs",produitImgs);
         model.addAttribute("jkxxs",jieKuanXxVos);
         return "detail";
+    }
+    //查询账户的余额
+    @RequestMapping(value = "/showzhanghujine",method = RequestMethod.POST)
+    @ResponseBody
+    public MemberAccount showZhangHuJine(@RequestParam(value = "userid",defaultValue = "")Integer userid){
+        MemberAccount memberAccount = service10001.showZhangHuJine(userid);
+        return memberAccount;
+    }
+    //根据id查询用户的具体信息
+    @RequestMapping(value = "/chaxustatus",method = RequestMethod.POST)
+    @ResponseBody
+    public MemberInfoVo chaxunxx(@RequestParam(value = "userid",defaultValue = "")Integer userid, @RequestParam(value = "biaotype",defaultValue = "")Integer biaotype){
+        MemberInfoVo userInfoByid = indexService.findUserInfoByid(userid, biaotype);
+        return  userInfoByid;
+    }
+    //我要投资
+    @RequestMapping(value = "/woyaotouzi",method = RequestMethod.POST)
+    @ResponseBody
+    public String woYaoTouZi(@RequestParam(value = "userid",defaultValue = "")Integer userid,
+                             @RequestParam(value = "tenderMoney",defaultValue = "")Integer tenderMoney,
+                             @RequestParam(value = "borrowId",defaultValue = "")Integer borrowId){//商品的id
+       indexService.addSiGeBiao(userid,tenderMoney,borrowId);
+       return "1";
     }
 }

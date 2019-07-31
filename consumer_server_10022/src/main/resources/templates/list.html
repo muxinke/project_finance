@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<base >
 	<title>投资列表-轻松贷-一心一意，普惠金融</title>
+	<meta charset="UTF-8">
 	<meta http-equiv="Cache-Control" content="no-transform" />
 	<meta http-equiv="Cache-Control" content="no-siteapp" />
 	<meta http-equiv="pragma" content="no-cache">
@@ -14,7 +15,6 @@
 	<meta http-equiv="description" content="高效、精准、安全的P2P网络借贷平台">
 
 	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/login.css" />
-	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
 	<script  type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery-1.8.2.min.js"></script>
 	<link href="http://39.107.15.222:8081/src/theme/validationEngine/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine-zh_CN.js"></script>
@@ -25,7 +25,6 @@
 	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/layer/layer.js"></script>
 	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.circliful.js"></script>
 	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/scroll.js" ></script>
-	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
 	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/person_style.js" ></script>
 	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
 	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/personal.css" />
@@ -35,13 +34,8 @@
 	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
 
 
-
-
-
-
-	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
 	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/investment.css" />
-	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/page.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/page.js"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
             //头部固定
@@ -93,10 +87,10 @@
                 $('#duration').removeClass("active");
                 $('#duration').addClass("all")
             })
-            //链接页面
+           /* //链接页面
             $(".project_list a").on("click", function() {
-                $(this).attr("href", "investment_detail.html");
-            })
+                $(this).attr("href", "/detail");
+            })*/
 
             //xh();
             //进度条
@@ -136,13 +130,13 @@
                 $(".repayment_method  .type_right2 ul li").removeClass("active");
                 all(3);
             });
-            var type = '';
+            var type = $("#kk").val();
             if(type!=null && type!=''){
-                $(".hyrc").load("newBorrow/page.action?biaotype=" + type + "");
-                $("#pageServlet").val("newBorrow/page.action?biaotype=" + type + "");
+                $(".hyrc").load("/listyy?b=1&biaotype=" + type + "");
+                $("#pageServlet").val("/listyy?b=1&biaotype=" + type + "");
             }else{
-                $(".hyrc").load("newBorrow/page.action");
-                $("#pageServlet").val("newBorrow/page.action");
+                $(".hyrc").load("/listyy?b=1");
+                $("#pageServlet").val("/listyy");
             }
 
 
@@ -151,7 +145,7 @@
 
         function all(code){
             loadi = layer.load(3);
-            var url = "newBorrow/page.action?b=1";
+            var url = "/listyy?b=1";
             var biaotype = $('#borrowType .active a').attr("value");
             var style = $('#paymentMode .active a').attr("value");
             var time = $('#timeLimit .active a').attr("value");
@@ -180,14 +174,14 @@
                 }
             }
             $(".hyrc").load(url);
-            $("#pageServlet").val("newBorrow/page.action?biaotype=" + biaotype + "&style=" + style + "&timeLimit=" + time);
+            $("#pageServlet").val("/listyy?biaotype=" + biaotype + "&style=" + style + "&timeLimit=" + time);
             layer.close(loadi);
         }
 
 
         function loadList() {
             loadi = layer.load(3);
-            var url = "newBorrow/page.action?b=1";
+            var url = "/listyy?b=1";
 
             var biaotype = $('#borrowType .active a').attr("value");
             var style = $('#paymentMode .active a').attr("value");
@@ -203,7 +197,7 @@
             }
 
             $(".hyrc").load(url);
-            $("#pageServlet").val("newBorrow/page.action?biaotype=" + biaotype + "&style=" + style + "&timeLimit=" + time);
+            $("#pageServlet").val("listyy?biaotype=" + biaotype + "&style=" + style + "&timeLimit=" + time);
             layer.close(loadi);
         }
 
@@ -333,7 +327,7 @@
 			<li >
 				<a href="dae.html"
 				>我要借款
-					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('theme/computer/img/hot2.gif') no-repeat"></i>
+					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
 
 				</a>
 
@@ -384,7 +378,7 @@
 	</div>
 </div>
 
-
+<input id="kk" hidden type="text" th:value="${biaotype}"/>
 <div class="w1200">
 	<div class="wap mt2 g-invest f-clear">
 		<div class="location">
@@ -401,7 +395,7 @@
 
 					<li >
 
-						<a href="javascript:void(0)" id="gyl" value="gyl" >
+						<a href="javascript:void(0)" id="gyl" value="3" >
 
 							供应链
 						</a>
@@ -410,7 +404,7 @@
 
 					<li >
 
-						<a href="javascript:void(0)" id="bx" value="bx" >
+						<a href="javascript:void(0)" id="bx" value="2" >
 
 							保险承担
 						</a>
@@ -419,7 +413,7 @@
 
 					<li >
 
-						<a href="javascript:void(0)" id="xsb" value="xsb" >
+						<a href="javascript:void(0)" id="xsb" value="1" >
 
 							新手标
 						</a>
@@ -428,7 +422,7 @@
 
 					<li >
 
-						<a href="javascript:void(0)" id="bzj" value="bzj" >
+						<a href="javascript:void(0)" id="bzj" value="4" >
 
 							保证金
 						</a>
@@ -437,7 +431,7 @@
 
 					<li >
 
-						<a href="javascript:void(0)" id="llq" value="llq" >
+						<a href="javascript:void(0)" id="llq" value="5" >
 
 							轻松消费
 						</a>
@@ -446,7 +440,7 @@
 
 					<li >
 
-						<a href="javascript:void(0)" id="rzzl" value="rzzl" >
+						<a href="javascript:void(0)" id="rzzl" value="6" >
 
 							融资租凭
 						</a>
@@ -455,10 +449,10 @@
 
 					<li >
 
-						<a href="javascript:void(0)" id="vouch" value="vouch" >
+						<a href="javascript:void(0)" id="vouch" value="7" >
 
 							担保标
-							[<span>3</span>]
+
 
 						</a>
 
@@ -466,7 +460,7 @@
 
 					<li >
 
-						<a href="javascript:void(0)" id="fast" value="fast" >
+						<a href="javascript:void(0)" id="fast" value="8" >
 
 							抵押标
 						</a>
@@ -475,7 +469,7 @@
 
 					<li >
 
-						<a href="javascript:void(0)" id="xin" value="xin" >
+						<a href="javascript:void(0)" id="xin" value="9" >
 
 							信用标
 						</a>
@@ -492,11 +486,11 @@
 			<div class="type_right fl">
 				<ul>
 
-					<li><a href="javascript:void(0)"  value="3" >按期付息到期还本</a></li>
+					<li><a href="javascript:void(0)"  value="1" >按期付息到期还本</a></li>
 
-					<li><a href="javascript:void(0)"  value="0" >按月分期还款</a></li>
+					<li><a href="javascript:void(0)"  value="2" >按月分期还款</a></li>
 
-					<li><a href="javascript:void(0)"  value="2" >到期全额还款</a></li>
+					<li><a href="javascript:void(0)"  value="3" >到期全额还款</a></li>
 
 				</ul>
 			</div>
@@ -514,12 +508,12 @@
 			</div>
 		</div>
 		<div class="moreTarget">
-			<span class="iconfont icon-sjiantou02 trans"></span>
+			<img src="http://39.107.15.222:8081/src/theme/biaoqian/xiangxiajiantou.png"/>
 		</div>
 	</div>
 	<div class="hyrc"></div>
 
-	<input type="hidden" id="pageServlet" value='newBorrow/page.action' />
+	<input type="hidden" id="pageServlet" value='/listyy' />
 
 </div>
 <!-- 底部 -->
@@ -567,9 +561,9 @@
 		<div class="bottom_5 clearfix">
 			<ul>
 
-				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="theme/computer/img/aq.jpg"></a></li>
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
 
-				<li>© 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+				<li>© 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
 
 			</ul>
 		</div>
@@ -596,32 +590,33 @@
 </body>
 <script type="text/javascript">
     $(function() {
-        var type = '';
-        if(type=="bzj"){
+        var type = $("#kk").val();
+        if(type=="4"){
             $("#biaoType").addClass("allTitle");
             $("#biaoType").removeClass("active");
             $("#bzj").parent().addClass("active");
         }
-        if(type=="bx"){
+        if(type=="2"){
             $("#biaoType").removeClass("active");
             $("#biaoType").addClass("allTitle");
             $("#bx").parent().addClass("active");
         }
-        if(type=="fast"){
+        if(type=="8"){
             $("#fast").parent().addClass("active");
             $("#biaoType").removeClass("active");
             $("#biaoType").addClass("allTitle");
         }
-        if(type=="vouch"){
+        if(type=="7"){
             $("#vouch").parent().addClass("active");
             $("#biaoType").removeClass("active");
             $("#biaoType").addClass("allTitle");
         }
-        if(type=="jin"){
-            $("#jin").parent().addClass("active");
+        if(type=="3"){
+            $("#gyl").parent().addClass("active");
             $("#biaoType").removeClass("active");
             $("#biaoType").addClass("allTitle");
         }
     });
+
 </script>
 </html>
