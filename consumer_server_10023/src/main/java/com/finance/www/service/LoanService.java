@@ -1,5 +1,6 @@
 package com.finance.www.service;
 
+import com.finance.www.pojo.BankLimitmoney;
 import com.finance.www.pojo.MemberAccount;
 import com.finance.www.pojo.MemberCard;
 import com.finance.www.pojo.MemberRegister;
@@ -28,5 +29,10 @@ public interface LoanService {
     @PostMapping("/quickRecharge")
     public int  quickRecharge(@RequestParam("money")long money,
                               @RequestParam("id")int id);
+    @GetMapping("/findBank")
+    public BankLimitmoney findBank(@RequestParam("bankName")String bankName);
+    //提现
+    @PostMapping("/withdraw")
+    public int  tixian(@RequestParam("money")long money, @RequestParam("id")int id);
 }
 
