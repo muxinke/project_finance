@@ -92,4 +92,10 @@ public class ProduitServiceImpl implements ProduitService{
         return pageVo;
     }
 
+    @Override
+    public Integer chaCountByIdType(Integer userid, Integer biaotype) {
+        Integer integer = produitMapper.chaCountBytype(userid, biaotype);
+        return integer;
+    }
+
 }

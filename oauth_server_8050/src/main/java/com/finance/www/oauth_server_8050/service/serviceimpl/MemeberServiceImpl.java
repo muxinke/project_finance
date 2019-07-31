@@ -7,6 +7,12 @@ import com.finance.www.pojo.Memeber;
 import com.finance.www.pojo.MemeberExample;
 
 
+import org.springframework.data.domain.Example;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -54,13 +60,13 @@ public class MemeberServiceImpl implements MemeberService {
     }
 
     @Override
-    public int updateByExampleSelective(Memeber record,MemeberExample example) {
-        return memeberMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(Memeber record, MemeberExample example) {
+        return memeberMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(Memeber record,MemeberExample example) {
-        return memeberMapper.updateByExample(record,example);
+    public int updateByExample(Memeber record, MemeberExample example) {
+        return memeberMapper.updateByExample(record, example);
     }
 
     @Override
@@ -72,5 +78,12 @@ public class MemeberServiceImpl implements MemeberService {
     public int updateByPrimaryKey(Memeber record) {
         return memeberMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public Memeber findAllByUsername(String username) {
+        return memeberMapper.findAllByUsername(username);
+    }
+
+
 
 }

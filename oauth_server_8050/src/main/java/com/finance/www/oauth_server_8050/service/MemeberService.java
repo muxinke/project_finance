@@ -2,6 +2,7 @@ package com.finance.www.oauth_server_8050.service;
 
 import com.finance.www.pojo.Memeber;
 import com.finance.www.pojo.MemeberExample;
+import org.springframework.data.domain.Example;
 
 import java.util.List;
 
@@ -29,6 +30,11 @@ public interface MemeberService{
     int updateByPrimaryKeySelective(Memeber record);
 
     int updateByPrimaryKey(Memeber record);
+
+
+
+	Memeber findAllByUsername(String username);
+
 
 
 

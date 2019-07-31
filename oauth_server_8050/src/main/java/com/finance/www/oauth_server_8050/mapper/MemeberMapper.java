@@ -3,10 +3,13 @@ package com.finance.www.oauth_server_8050.mapper;
 
 import com.finance.www.pojo.Memeber;
 import com.finance.www.pojo.MemeberExample;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.data.repository.query.Param;
 import java.util.List;
+
+
+
 
 @Mapper
 public interface MemeberMapper {
@@ -31,4 +34,8 @@ public interface MemeberMapper {
     int updateByPrimaryKeySelective(Memeber record);
 
     int updateByPrimaryKey(Memeber record);
+
+    Memeber findAllByUsername(@Param("username")String username);
+
+
 }
