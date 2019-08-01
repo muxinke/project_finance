@@ -8,8 +8,10 @@ import com.finance.www.enums.RepaymentStateEnum;
 import com.finance.www.pojo.MemberCard;
 import com.finance.www.pojo.MemberLimit;
 import com.finance.www.pojo.MemberRegister;
+import com.finance.www.pojo.UserBean;
 import com.finance.www.service.BorrowManageService;
 import com.finance.www.service.BorrowMoneyService;
+import com.finance.www.service.GetUserIdService;
 import com.finance.www.service.MemberShiMingService;
 import com.finance.www.utils.*;
 import com.finance.www.vo.*;
@@ -17,9 +19,14 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,18 +34,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * Created by Administrator on 2019/7/24.
  */
-
+@Slf4j
 @Controller
 public class BorrowMoneyController {
     @Autowired
@@ -47,21 +57,41 @@ public class BorrowMoneyController {
     private BorrowManageService borrowManageService;
     @Autowired
     private MemberShiMingService memberShiMing;
+    @Autowired
+    private GetUserIdService getUserIdService;
 /**
      * 跳转小额借款界面
      * @return
      */
 
     @GetMapping("xiaoe")
-    public String xiaoe(Model model){
-/**判断用户是否登录*/
-
-
+    public String xiaoe(Model model,HttpServletResponse response,HttpServletRequest request) throws IOException {
+        /*String header = request.getHeader("Authorization");
+        log.error("header{ }",header);*/
+       /* SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        if (authentication != null && authentication.getDetails() instanceof OAuth2AuthenticationDetails) {
+            OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
+            String tokenValue = details.getTokenValue();
+            Cookie cookie = new Cookie("token",tokenValue);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+        }*/
+        /**通过上下文得到token，写入cookie*/
+        String tokenValue = GetDetailToken.getDetailToken();
+        log.error("tokenValue:{}",tokenValue);
+        Cookie cookie = new Cookie("token",tokenValue);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        /**获取用户id*/
+       Integer memberId = GetUserBean.getUserBean(tokenValue);
+        log.error("memberId:{}",memberId);
+      /*  Principal user = getUserIdService.user();
+        String  memberId = user.getName();*/
         //根据用户id查找用户的借款额度，银行卡号
-        MemberLimit memberLimit= borrowMoneyService.xiaoeMemberLimit(2);
-        List<MemberCard> cards= borrowMoneyService.xiaoeMemberCard(2);
+        MemberLimit memberLimit= borrowMoneyService.xiaoeMemberLimit(memberId);
+        List<MemberCard> cards= borrowMoneyService.xiaoeMemberCard(memberId);
 /**提交额度*/
-
         model.addAttribute("edu",((float)memberLimit.getShengyuedu())/100);
 /**提交银行卡表*/
 
@@ -84,8 +114,21 @@ public class BorrowMoneyController {
      */
 
     @PostMapping("borrowSubmit")
-    public String borrowSubmit(MemberSmallBorrow memberSmallBorrow){
-        int code =borrowMoneyService.addSmallRecord(memberSmallBorrow);
+    public String borrowSubmit(MemberSmallBorrow memberSmallBorrow, HttpServletRequest request){
+        Cookie token = CookiesUtil.getCookieByName(request, "token");
+        if(token==null){
+            return "redirect:http://10.12.159.124:8050/login";
+        }
+        String value = token.getValue();
+        String Valetoken = "bearer "+value;
+        /**查出当前用户id*/
+       /* Principal user = getUserIdService.user();
+        String  id = user.getName();
+        int memberId=Integer.parseInt(id);*/
+       int memberId=2;
+        memberSmallBorrow.setMemberId(memberId);
+        memberSmallBorrow.setIs_agreed(1);
+        int code =borrowMoneyService.addSmallRecord(memberSmallBorrow,Valetoken);
         if(101==code){
             return "redirect:tishi1";
         }else if(102==code){
@@ -184,14 +227,22 @@ public class BorrowMoneyController {
 @Value("${myLilv}")
 private String lilv;
     @GetMapping("apply")
-    public String apply(int numPage,Model model){
+    public String apply(int numPage,Model model,HttpServletRequest request){
+        Cookie token = CookiesUtil.getCookieByName(request, "token");
+        if(token==null){
+            return "redirect:http://10.12.159.124:8050/login";
+        }
+        String value = token.getValue();
+        String Valetoken = "bearer "+value;
 /**用户id*/
-
-        int memberId=2;
+       /* Principal user = getUserIdService.user();
+        String  id = user.getName();
+        int memberId=Integer.parseInt(id);*/
+       int memberId =2;
 /**查询申请中的借款记录,开启分页*/
 
         int pageSize=10;
-        PageInfo<ApplyMoney> pageInfo = borrowManageService.list(memberId, 0, numPage, pageSize);
+        PageInfo<ApplyMoney> pageInfo = borrowManageService.list(memberId, 0, numPage, pageSize,Valetoken);
         ArrayList<ApplyMoney> vos = new ArrayList<>();
         if(pageInfo.getList().size()>0) {
             for (ApplyMoney applyMoney : pageInfo.getList()) {
@@ -217,11 +268,20 @@ private String lilv;
      * @return
      */
     @PostMapping("apply")
-    public String apply2(int currenPageNum,Model model){
+    public String apply2(int currenPageNum,Model model,HttpServletRequest request){
+        Cookie token = CookiesUtil.getCookieByName(request, "token");
+        if(token==null){
+            return "redirect:http://10.12.159.124:8050/login";
+        }
+        String value = token.getValue();
+        String Valetoken = "bearer "+value;
         /**用户id*/
-        int memberId=2;
+      /*  Principal user = getUserIdService.user();
+        String  id = user.getName();
+        int memberId=Integer.parseInt(id);*/
+      int memberId=2;
         int pageSize=10;
-        PageInfo<ApplyMoney> list = borrowManageService.list(memberId, 0, currenPageNum, pageSize);
+        PageInfo<ApplyMoney> list = borrowManageService.list(memberId, 0, currenPageNum, pageSize,Valetoken);
         ArrayList<ApplyMoney> vos = new ArrayList<>();
         if(list.getList().size()>0) {
             for (ApplyMoney applyMoney : list.getList()) {
@@ -272,9 +332,12 @@ private String lilv;
     @GetMapping("bank")
     public String bank(Model model){
         /**获取用户id*/
-        int memberid=2;
+       /* Principal user = getUserIdService.user();
+        String  id = user.getName();
+        int memberId=Integer.parseInt(id);*/
+       int memberId =2;
         /**根据用户id查出用户的实名信息*/
-        MemberRegister member = memberShiMing.getMember(2);
+        MemberRegister member = memberShiMing.getMember(memberId);
 
         model.addAttribute("liushuihao", SuiJiNumber.getNum());
         model.addAttribute("member",member);
@@ -303,7 +366,10 @@ private String lilv;
     @ResponseBody
     public int subinfo(@RequestParam("bankcard")String bankcard,@RequestParam("bankName")String bankName){
         /**用户id*/
-        int memberId=2;
+       /* Principal user = getUserIdService.user();
+        String  id = user.getName();
+        int memberId=Integer.parseInt(id);*/
+       int memberId =2;
         int result =borrowMoneyService.insertCard(bankcard,bankName,memberId);
         return 101;
     }

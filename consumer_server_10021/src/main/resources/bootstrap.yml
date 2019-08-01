@@ -14,7 +14,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://10.12.159.30:8080/eureka
+      defaultZone: http://39.107.15.222:8761/eureka
 hystrix:
   command:
     default:
@@ -28,5 +28,31 @@ server:
   port: 10021
 myLilv: 14.4%
 feign:
-  hystrix:
-    enabled: true
+  client:
+      config:
+        rpc-user: # feign name
+          requestInterceptors:
+           - com.finance.www.config.OAuth2FeignRequestInterceptor
+security:
+
+  oauth2:
+
+    client:
+      #      APP ID
+      client-id: mxkclient1
+      #      相当与 APP KEY
+      client-secret: mxkclient1
+      #      换取账户令牌地址
+      access-token-uri: http://10.12.159.124:8050/oauth/token
+      #      授权地址
+      user-authorization-uri: http://10.12.159.124:8050/oauth/authorize
+      #      重定向的页面必须和认证中心的一致
+      pre-established-redirect-uri: http://10.12.159:30:10021/login
+
+    resource:
+      #      验证令牌信息的地址
+      token-info-uri: http://10.12.159.124:8050/oauth/check_token
+logging:
+  level:
+    com.finance.www.service.BorrowMoneyService: debug
+

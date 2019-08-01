@@ -67,21 +67,7 @@ public class BorrowMoneyController {
      */
     @PostMapping("borrowSubmit")
     int addSmallRecord(@RequestBody MemberSmallBorrow memberSmallBorrow){
-        /**查出当前用户id,封装进对象*/
-        memberSmallBorrow.setMemberId(2);
-        memberSmallBorrow.setIs_agreed(1);
 /*
-        *//**根据借款金额和借款时间借款金额 计算还款周期*//*
-        //等额本金
-        if(memberSmallBorrow.getBorrowStyle()==1){
-            CpmVo cpmVo = CpmMoneyUtils.getCpm(memberSmallBorrow.getBorrowMoney(), memberSmallBorrow.getBorrowTime(), 0.012f);
-
-        }
-        //先息后本
-        else if(memberSmallBorrow.getBorrowStyle()==2){
-            Biapp biapp = BiappMoneyUtils.getBiapp(memberSmallBorrow.getBorrowMoney(), memberSmallBorrow.getBorrowTime(),  0.012f);
-
-        }*/
         /**判断选择的是否是本地账户**/
         if(LOCALACCOUNT.equals(memberSmallBorrow.getCardName())){
             //调用业务接口，给本地账户打钱
