@@ -3,7 +3,6 @@ package com.finance.www.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data
@@ -22,7 +21,7 @@ public class Memeber implements Serializable {
     /**
     * 会员登陆密码
     */
-    @JsonIgnore
+
     private String password;
 
     /**
