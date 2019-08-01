@@ -2,7 +2,9 @@ package com.finance.www.testxx;
 
 import com.finance.www.mapper.BigLoanMapper;
 import com.finance.www.mapper.MemberRegisterMapper;
+import com.finance.www.pojo.BankLimitmoney;
 import com.finance.www.pojo.MemberRegister;
+import com.finance.www.service.BankLimitmoneySerrvice;
 import com.finance.www.service.MemberRegisterService;
 import com.finance.www.vox.AddBigLoan;
 import org.junit.Test;
@@ -23,6 +25,8 @@ public class TestA {
     private BigLoanMapper bigLoanMapper;
     @Autowired
     private MemberRegisterService memberRegisterService;
+    @Autowired
+    private BankLimitmoneySerrvice bankLimitmoneySerrvice;
     @Test
     public void test(){
         AddBigLoan addBigLoan = new AddBigLoan();
@@ -41,5 +45,11 @@ public class TestA {
     public void test2(){
         MemberRegister byId = memberRegisterService.findById(2);
         System.out.println("memberRegister = " + byId);
+    }
+    @Test
+    public void test3(){
+        BankLimitmoney bankLimitmoney = bankLimitmoneySerrvice.findByName("中国银行");
+        Integer bankId = bankLimitmoney.getBankId();
+        System.out.println("bankId = " + bankId);
     }
 }

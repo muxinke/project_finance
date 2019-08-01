@@ -102,22 +102,18 @@
 
             }
 
-            //表单验证
-			/*    $('#cashForm').validationEngine({
-			 promptPosition: "topRight",
-			 ajaxSubmit: true
-			 }); */
             $("#cashSubmit").on("click",function(){
 
                 var money = $('#money').val();
 
-				/*  var useMoney=0.01; */
-                var balance=$('#balance').val();
+                var balance=$('#accountBalance').text();
+                console.log("money="+money);
+                console.log("balance="+balance);
                 var typeId = 1;
 
                 var freeNum=$('#freeNum').val();
                 var val=$('input:radio[name="free"]:checked').val();
-                if(val==1){
+                /*if(val==1){
 
                     if(freeNum<=0){
                         layer.alert("你已经没有免费提现资格,赶紧去投资赚免费提现吧！！");
@@ -125,11 +121,13 @@
                     }
                 }else{
                     balance=balance-1;
-                }
-
-
+                }*/
                 if(money<100){
                     layer.alert("提现不能小于100哦");
+                    return false;
+                }
+                if(balance<money){
+                    layer.alert("提现金额不能大于可用余额");
                     return false;
                 }
                 var bankLineNumber = $('#bankLineNumber').val();
@@ -148,6 +146,7 @@
                     layer.alert("可用余额不能少于100");
                     return false;
                 }
+
                 if(!clickOftenRef()){
                     return false;
                 }
@@ -158,19 +157,16 @@
                 // $(this).ajaxSubmit(ajaxOption($(this),"提现申请成功,请等待管理员审核"));
                 $.ajax({
                     type: "POST",
-                    url: "reCash/cash.action",
+                    url: "/withdraw",
                     dataType: "json",
                     data: {
                         money:money,
-                        bankLineNumber:bankLineNumber,
-                        free:free
-
                     },
                     success: function(data) {
-                        if(data.status) {
-                            window.location.href = "reCash/Withholding.action?money=" + money+"&bankLineNumber=" + bankLineNumber + "&free=" + free;
+                        if(data==1) {
+                            window.location.href = "http://localhost:10023/success";
                         } else {
-                            layer.alert(data.message);
+                            layer.alert("提现失败,请重新操作");
                             return false;
                         }
                     }
@@ -231,32 +227,32 @@
         $(function(){
 
             //表单验证
-            $('#rechargeForm').validationEngine({
+           /* $('#rechargeForm').validationEngine({
                 promptPosition: "topRight",
                 ajaxSubmit: true
             });
             $("#rechangesubmit").on("click",function(){
                 $('#rechargeForm').submit();
 
-            });
-            $('#rechargeForm').submit(function() {
-				/* var timestamp=new Date().getTime();
+            });*/
+            /*$('#rechargeForm').submit(function() {
+				 /!*var timestamp=new Date().getTime();
 				 if(timestamp>1478617200000){
 				 public_alert('尊敬的用户，您好！由于陕西银行存管版本系统正在做域名切换导致快捷充值功能暂时关闭（线下充值不受影响）;预计时间早上9.00恢复正常。',9,function(){
-				 window.location="http://jxyh.yxp2p.com/user/index.action";
+				 window.location="http://localhost:10023/index";
 				 },function(){
-				 window.location="http://jxyh.yxp2p.com/user/index.action";
+				 window.location="http://localhost:10023/index";
 				 });
 				 return false;
-				 }  */
-				/*     if(!clickOftenRef()){
-				 return false;
 				 }
+				     if(!clickOftenRef()){
+				 return false;
+				 }*!/
 
 
 				 var reMoney=$('#reMoney').val();
-				 var smsSeq=$('#smsSeq').val();   */
-				/* var banK=$('#bankName').val();
+				 var smsSeq=$('#smsSeq').val();
+				 var banK=$('#bankcard').val();
 				 if(banK=='工商银行'){
 				 if(reMoney>10000){
 				 layer.alert("工商单笔不能超1万，单日1万");
@@ -311,12 +307,12 @@
 				 layer.alert("招商单笔不能超5万，单日5万");
 				 return false;
 				 }
-				 } */
+				 }
 
 
-				/*     $(this).ajaxSubmit(ajaxOption($(this),"充值成功")); */
+				     $(this).ajaxSubmit(ajaxOption($(this),"充值成功"));
                 return true; // 阻止表单默认提交
-            });
+            });*/
 
         });
 
@@ -335,11 +331,6 @@
 
         });
 
-
-
-		/*  function chakan() {
-		 var chakan = popLayer('#bindbank', '绑定银行卡', '600px', '400px');
-		 } */
         $(document).ready(function() {
             $(".payment_bank").on("click",function(){
 
@@ -400,7 +391,7 @@
             var inde = $(this).index();
             $(".code_img ul li").eq(inde).show().siblings().hide();
         })
-        $.ajax({
+        /*$.ajax({
             type : "POST",
             url : "newLogin/headerLogin.action",
             dataType : "json",
@@ -417,7 +408,7 @@
                 }
 
             }
-        });
+        });*/
     });
 </script>
 <div class=" big100">
@@ -640,16 +631,12 @@
 
 					<ol>
 
-						<li ><a href="zijinguanli.html"
-						>重置/提现
+						<li ><a href="zijinguanli"
+						>充值/提现
 						</a></li>
 
-						<li ><a href="jiaoyijilu.html"
+						<li ><a href="jiaoyijilu"
 						>交易记录
-						</a></li>
-
-						<li ><a href="cunguanjilu.html"
-						>存管交易记录
 						</a></li>
 
 					</ol></li>
@@ -754,12 +741,10 @@
 			</div>
 			<!--快捷充值-->
 			<div class="quickRecharge" style="display:none;">
-
-
-				<form class="layui-form" id="rechargeForm" method="post" action="quickRecharge"  >
-					<input type="hidden" name="jxbankUser.phone" value="18720920060" id="phone"/>
+				<form class="layui-form" id="rechargeForm" method="get"  >
+					<!--<input type="hidden" name="jxbankUser.phone" value="18720920060" id="phone"/>
 					<input type="hidden" id="smsSeq" name="smsSeq" value="&#26681;&#25454;&#30417;&#31649;&#35201;&#27714;&#24517;&#39035;&#20808;&#24320;&#36890;&#32564;&#36153;&#25480;&#26435;,&#25165;&#33021;&#20805;&#20540;&#21734;!">
-					<ul>
+					--><ul>
 						<li>
 							电子账户: <span class="electronicAccount" style="font-size: 15px" th:text="${name}">6212461110000099832</span>
 						</li>
@@ -768,7 +753,7 @@
 						</li>
 						<li>请选择您要使用哪张银行卡进行充值:<div class="layui-form-item">
 								<div class="layui-input-block" style="width: 240px;margin-left: 230px;margin-top: -30px">
-									<select name="bankcard" lay-verify="required"  >
+									<select id="bankcard" name="bankcard" lay-verify="required"  >
 										<option  th:value="${membercard}" th:each="membercard:${membercards}" th:text="${membercard}"></option>
 
 									</select>
@@ -778,21 +763,23 @@
 						<li>
 							<span class="tagging">*</span>充值金额:
 							<input type="text" name="money" id="reMoney" onkeyup="assignMoney(this)"
-																	  class="validate[required,custom[number],min[100],max[1000000]] u-amount" placeholder=""><span class="quota" th:text="${msg}"></span>
+																	  class="validate[required,custom[number],min[100],max[1000000]] u-amount" placeholder="">
+							<span class="quota" style="color: red" th:text="${msg}"></span>
 
 						</li>
 
 						<li>
-							<span class="tagging">*</span>实际支付金额:<span id="realMoney" class="bankBalance">0.0</span>元<span class="tagging" style="margin-left:20px;"><a class="payment_bank" style="color: red"> 注：单笔充值限额查看各个银行上的充值限额为准</a></span>
+							<span class="tagging">*</span>实际支付金额:<span id="realMoney" class="bankBalance">0.0</span>元
+							<span class="tagging" style="margin-left:20px;">
+							<a class="payment_bank" style="color: blue"> 注：单笔充值限额查看各个银行上的充值限额为准</a></span>
 						</li>
 						<li>
-							<!--<a href="javascript:;" id="rechangesubmit" class="quickRechargeButton">
-								确认提交
-							</a>-->
-							<input type="submit" id="rechangesubmit" class="quickRechargeButton" value="确认提交">
+							<!--<a  id="rechangesubmit" class="quickRechargeButton">确认提交</a>-->
+							<button class="layui-btn layui-btn-normal" id="rechangesubmit">确认提交</button>
+							<!--<input type="submit" id="rechangesubmit" class="quickRechargeButton" value="确认提交">-->
 						</li>
 					</ul>
-				</form>
+				<!--</form>-->
 
 
 				<div class="reminder">
@@ -825,45 +812,35 @@
 						<img src="http://39.107.15.222:8081/src/theme/computer/img/jx_bank.png" style="position:relative;bottom:6px;">
 					</li>
 					<li>
-						<p>
-							西安银行电子账户
-						</p>
-						<p>
-							6212461110000099832
-						</p>
+
 					</li>
 					<li class="cash_bank">
 						<!-- <div class="bank_img fl"><img src="img/jsBank.png"></div> -->
 						<div class="bank_name fl">
-							<p>
-								&#24314;&#35774;&#38134;&#34892;
-							</p>
-							<p>
-								6236682830002880390
-							</p>
+
 						</div>
 					</li>
 				</ul>
 			</div>
 			<div class="withdrawals_content clearfix">
 				<div class="wContent_left fl">
-					<form id="cashForm" method="post"  action="reCash/Withholding.action" >
+					<form id="cashForm" class="layui-form" method="post"  action="reCash/Withholding.action" >
 
 						<input type="hidden" id="freeNum" value="0">
 						<input type="hidden" id="balance" value="0.01">
 						<ul>
 							<li>
-								真实姓名: <span>&#20309;&#20048;&#26126;</span>
+								真实姓名: <span th:text="${name}">&#20309;&#20048;&#26126;</span>
 							</li>
 							<li>
-								可用金额: <span>0.01</span>元
+								可用金额: <span id="accountBalance" th:text="${accountBalance}">0.01</span>元
 							</li>
 							<li>
 								正在申请提现: <span  id="realcash" >0.0</span>元
 							</li>
 
 							<li id="sd">
-								可最大提现:<span>-0.99</span>元
+								可最大提现:<span style="color: red" th:text="${accountBalance}">200,000</span>元
 							</li>
 
 							<li id="bl" style="display: none;">
@@ -949,12 +926,21 @@
                                     </p> -->
 								</div>
 							</li>
+							<li>提现到哪张银行卡:<div class="layui-form-item">
+								<div class="layui-input-block" style="width: 240px;margin-left: 230px;margin-top: -30px">
+									<select   lay-verify="required"  >
+										<option  th:value="${membercard}" th:each="membercard:${membercards}" th:text="${membercard}"></option>
+
+									</select>
+								</div>
+							</div>
+							</li>
 							<li
 									style="display: none;"
 									id="bankLineNumberPop">
 								<div class="cash_money">开户银行联行号： <input id="bankLineNumber"  name="bankLineNumber" type="text"/>
 									<p>
-										注：  大额提现必须填写开户银行联行号(请确保联行号正确)!可以咨询开卡银行客服或前往<a style="color:red;" target="_blank" href="https://www.hebbank.com/corporbank/otherBankQueryWeb.do">https://www.hebbank.com/corporbank/otherBankQueryWeb.do查询！</a>或
+										注：  大额提现必须填写开户银行联行号(请确保联行号正确)!可以咨询开卡银行客服或前往<a style="color:red;" target="_blank" href="https://www.xacbank.com/icms/static/xacbank2019/zh/rh3fvnjt/rh3fvnjt.html#link_0">https://www.xacbank.com/icms/static/xacbank2019/zh/rh3fvnjt/rh3fvnjt.html#link_0查询！</a>或
 										<a target="_blank" href="http://www.lianhanghao.com/" style="color:red;">http://www.lianhanghao.com/查询！</a>
 
 									</p>
@@ -1153,6 +1139,85 @@
         var layer = layui.layer;
         var laydate = layui.laydate;
         var upload = layui.upload;
+
+    });
+    $("#rechangesubmit").on("click",function () {
+        var reMoney=$('#reMoney').val();
+        var banK=$('#bankcard').val();
+        /*if(banK.contains('工商银行')){
+            if(reMoney>10000){
+                alert("工商单笔不能超1万，单日1万");
+                return false;
+            }
+        }
+        if(banK.contains('建设银行')){
+            if(reMoney>10000){
+                alert("建行单笔不能超5000，单日1万");
+                return false;
+            }
+
+        }
+        if(banK.contains('兴业银行')){
+            if(reMoney>50000){
+                alert("兴业单笔不能超5万，单日5万");
+                return false;
+            }
+
+        }
+        if(banK.contains('中信银行')){
+            if(reMoney>20000){
+                layer.alert("兴业单笔不能超2万，单月2万");
+                return false;
+            }
+        }
+        if(banK.contains('民生银行')){
+            if(reMoney>100000){
+                alert("兴业单笔不能超10万，单日10万");
+                return false;
+            }
+        }
+        if(banK.contains('邮储银行')){
+            alert("不能通过快捷方式充值哦,可以汇款方式充值");
+            return false;
+        }
+        if(banK.contains('光大银行')){
+            if(reMoney>100000){
+                alert("光大单笔不能超10万，单日10万");
+                return false;
+            }
+        }
+
+        if(banK.contains('农业银行')){
+            if(reMoney>50000){
+                alert("农业单笔不能超5万，单日5万");
+                return false;
+            }
+        }
+        if(banK.contains('招商银行')){
+            if(reMoney>50000){
+                alert("招商单笔不能超5万，单日5万");
+                return false;
+            }
+        }*/
+        $.ajax({
+            url:"/quickRecharge",
+            type: 'post',
+            dataType: "json",
+            async: true,
+            data:{
+                money:reMoney,
+                bankcard:banK,
+            },
+            success: function (data) {
+                if (data ==1){
+                    window.location.href="http://localhost:10023/success";
+                }else if (data ==0){
+                    alert("您的充值金额超过银行单笔转账金额!");
+                }
+
+            }
+        })
+
     });
 </script>
 <!-- 底部 -->

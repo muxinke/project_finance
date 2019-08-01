@@ -1,0 +1,29 @@
+server:
+  port: 10006
+spring:
+  application:
+    name: provider-querybigload
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.107.15.222:3306/easydai?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    username: root
+    password: 971103
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.finance.www.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+eureka:
+  client:
+    service-url:
+      defaultZone: http://39.107.15.222:8761/eureka
+security:
+  oauth2:
+    client:
+      client-id: mxkresources1
+      client-secret: mxkresources1
+      access-token-uri: http://10.12.159.124:8050/oauth/token
+      user-authorization-uri: http://10.12.159.124:8050/oauth/authorize
+    resource:
+      token-info-uri: http://10.12.159.124:8050/oauth/check_token

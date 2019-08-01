@@ -1,8 +1,11 @@
+/*
 package com.finance.www.config;
 
+*/
 /**
  * Created by Administrator on 2019/7/29.
- */
+ *//*
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +16,11 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
+*/
 /**
  * Created by Administrator on 2019/7/29.
- */
+ *//*
+
 @Configuration
 @EnableAsync
 public class ExecutorConfig {
@@ -42,3 +47,4 @@ public class ExecutorConfig {
         return executor;
     }
 }
+*/

@@ -40,4 +40,7 @@ public interface MemberCardMapper {
      * @return
      */
     public List<MemberCard> queryByMemberId(@Param("memberId") Integer id);
+
+    int insertCard(@Param("bankcard") String bankcard, @Param("bankName") String bankName,
+               @Param("memberId")int memberId);
 }

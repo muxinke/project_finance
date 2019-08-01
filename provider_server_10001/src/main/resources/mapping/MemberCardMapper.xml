@@ -362,4 +362,10 @@
   <select id="queryByMemberId" parameterType="integer" resultMap="BaseResultMap">
     SELECT * FROM member_card WHERE member_id=#{memberId}
   </select>
+  <insert id="insertCard">
+    INSERT INTO
+    member_card
+    (member_id, bankcard, bankname)
+     VALUES (#{memberId},#{bankcard},#{bankName})
+  </insert>
 </mapper>
