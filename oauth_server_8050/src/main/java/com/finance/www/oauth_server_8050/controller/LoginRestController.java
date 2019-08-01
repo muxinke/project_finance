@@ -179,7 +179,7 @@ public class LoginRestController {
         Integer id = memeber.getId();
 
         MemberLimit memberLimit = new MemberLimit();
-
+        memberLimit.setShengyuedu(450000L);
         memberLimit.setId(id);
         memberLimit.setEdu(450000L);
         limitService.insert(memberLimit);
