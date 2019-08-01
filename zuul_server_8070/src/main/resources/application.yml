@@ -32,6 +32,10 @@ zuul:
     oauth-server:
       path: /auth/**
       serviceId: oauth-server
+    oauth-server2:
+      path: /oauth/**
+      serviceId: oauth-server
+
   add-proxy-headers: true
 #--------------------Zuul-----------------------
   #全局取消敏感头让其可以传递到

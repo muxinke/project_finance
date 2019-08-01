@@ -19,7 +19,8 @@ public class OauthServer8050ApplicationTests {
 
     @Test
     public void contextLoads() {
-        System.err.println(new BCryptPasswordEncoder().encode("dubitianziyuan"));
+        System.err.println(new BCryptPasswordEncoder().encode("mxkresources2"));
+
 
     }
 

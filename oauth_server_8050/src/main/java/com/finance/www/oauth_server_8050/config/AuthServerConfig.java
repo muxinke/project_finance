@@ -17,9 +17,12 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
+import org.springframework.security.oauth2.provider.endpoint.AuthorizationEndpoint;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -33,7 +36,6 @@ import javax.sql.DataSource;
 @EnableAuthorizationServer
 public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    // 资源ID
 
     private static final String SOURCE_ID = "order";
 
@@ -74,22 +76,16 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         return new JdbcTokenStore(dataSource);
     }
 
-
-
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints){
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         // 设置令牌
         endpoints.tokenStore(tokenStore());
     }
 
-
-
     @Override
-
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // 读取客户端配置
         clients.withClientDetails(jdbcClientDetails());
-
     }
 
 
@@ -151,6 +147,15 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 */
 
 
+// 自定义页面
+//    @Autowired
+//    private AuthorizationEndpoint authorizationEndpoint;
+//
+//    @PostConstruct
+//    public void init() {
+//        authorizationEndpoint.setUserApprovalPage("forward:/oauth/approvale/confirm");
+//        authorizationEndpoint.setErrorPage("forward:/oauth/approvale/error");
+//    }
 
 
 }
