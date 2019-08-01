@@ -1,20 +1,18 @@
 package com.finance.www.service;
 
+import com.finance.www.pojo.MemberAccount;
 import com.finance.www.pojo.MemberCard;
 import com.finance.www.pojo.MemberLimit;
 import com.finance.www.vo.MemberSmallBorrow;
-import com.sun.javafx.collections.MappingChange;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Future;
+
 
 /**
  * Created by Administrator on 2019/7/24.
  */
+
 @FeignClient(value = "provider-server")
 public interface BorrowMoneyService {
     @GetMapping("xiaoe")
@@ -24,4 +22,7 @@ public interface BorrowMoneyService {
     List<MemberCard> xiaoeMemberCard(@RequestParam("id") int i);
     @PostMapping("borrowSubmit")
     int addSmallRecord(@RequestBody MemberSmallBorrow memberSmallBorrow);
+    @PostMapping("subinfo")
+    int insertCard(@RequestParam("bankcard")String bankcard, @RequestParam("bankName")String bankName,
+                   @RequestParam("memberId")int memberId);
 }

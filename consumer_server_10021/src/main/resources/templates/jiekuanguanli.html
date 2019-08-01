@@ -459,16 +459,16 @@
 						<div class="table_title clearfix">
 							<ul id="about" class="fl payment">
 								<li ><a href="javaScript:void(0);" id="now"
-                            rel="apply?type=already"
+                            rel="apply?numPage=1"
                             title="申请中的借款">申请中的借款</a></li>
 								<li><a href="javaScript:void(0);"
-                            rel="huankuan?type=repayment"
+                            rel="huankuan?numPage=1"
                             title="还款中的借款">还款中的借款</a></li>
 								<li><a href="javaScript:void(0);"
-                            rel="over?type=end"
+                            rel="over?numPage=1"
                             title="已还清的借款">已还清的借款</a></li>
 							</ul>
-							 <div class="export fr">
+							 <div class="export fr" id="excle">
 								导出excel
 							</div>
 						</div>
@@ -566,5 +566,9 @@
 </style>
 	
 	</body>
-
+<script>
+	$("#excle").click(function () {
+        window.location.href="getexcle";
+    })
+</script>
 </html>
