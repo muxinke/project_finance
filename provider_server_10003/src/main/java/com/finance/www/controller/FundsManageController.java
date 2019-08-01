@@ -1,11 +1,14 @@
 package com.finance.www.controller;
 
+import com.finance.www.pojo.BankLimitmoney;
 import com.finance.www.pojo.MemberAccount;
 import com.finance.www.pojo.MemberCard;
 import com.finance.www.pojo.MemberRegister;
+import com.finance.www.service.BankLimitmoneySerrvice;
 import com.finance.www.service.MemberAccountService;
 import com.finance.www.service.MemberCardService;
 import com.finance.www.service.MemberRegisterService;
+import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +28,8 @@ public class FundsManageController {
     private MemberAccountService memberAccountService;
     @Autowired
     private MemberCardService memberCardService;
+    @Autowired
+    private BankLimitmoneySerrvice bankLimitmoneySerrvice;
     @GetMapping("/zhuanzhangchongzhi")
     public MemberRegister zhuanzhangchongzhi( @RequestParam("id")Integer id){
         MemberRegister memberRegister = memberRegisterService.findById(id);
@@ -49,6 +54,23 @@ public class FundsManageController {
         MemberAccount memberAccount = memberAccountService.selectById(id);
         long accountBalance = memberAccount.getAccountBalance();
         long newBalance=accountBalance+money;
+        int updateBalanceById = memberAccountService.updateBalanceById(id, newBalance);
+        return updateBalanceById;
+    }
+    //查询银行卡
+    @GetMapping("/findBank")
+    public BankLimitmoney findBank(@RequestParam("bankName") String bankName){
+        BankLimitmoney byName = bankLimitmoneySerrvice.findByName(bankName);
+        return byName;
+    }
+    //提现
+    @PostMapping("/withdraw")
+    public int  tixian(@RequestParam("money")long money,
+                              @RequestParam("id")int id){
+        //修改本地账户余额
+        MemberAccount memberAccount = memberAccountService.selectById(id);
+        long accountBalance = memberAccount.getAccountBalance();
+        long newBalance=accountBalance-money;
         int updateBalanceById = memberAccountService.updateBalanceById(id, newBalance);
         return updateBalanceById;
     }
