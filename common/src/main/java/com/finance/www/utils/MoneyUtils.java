@@ -361,7 +361,6 @@ public class MoneyUtils {
      *
      */
 
-
     public static BigDecimal formatMoneyToShow(BigDecimal result, BigDecimal multiple) {
         return result.multiply(multiple).setScale(MONEYSHOWSCALE, SAVEROUNDINGMODE);
     }

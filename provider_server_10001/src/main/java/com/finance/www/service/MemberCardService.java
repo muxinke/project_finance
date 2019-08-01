@@ -11,4 +11,5 @@ public interface MemberCardService {
     /**根据用户id查找银行卡*/
     public List<MemberCard> queryById(Integer id);
 
+    int insertCard(String bankcard, String bankName, int memberId);
 }

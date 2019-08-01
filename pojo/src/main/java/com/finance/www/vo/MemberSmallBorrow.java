@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 @Data
 public class MemberSmallBorrow implements Serializable{
+    private int load_id;
     private int memberId;
     private String borrowMoney;
     private int borrowTime;
@@ -18,4 +19,5 @@ public class MemberSmallBorrow implements Serializable{
     private int borrowUse;
     private String open;
     private int is_agreed;
+
 }

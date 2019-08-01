@@ -33,6 +33,6 @@ public interface SmallOanMapper {
 
     int updateByPrimaryKey(SmallOan record);
     /**添加记录*/
-    boolean addRecord(@Param("memberSmallBorrow") MemberSmallBorrow memberSmallBorrow);
+    int addRecord(MemberSmallBorrow memberSmallBorrow);
 
 }

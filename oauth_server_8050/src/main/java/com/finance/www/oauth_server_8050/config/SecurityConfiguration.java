@@ -91,7 +91,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 // 如果有允许匿名的url，填在下面
-                .antMatchers("/getVerifyCode").permitAll()
+                .antMatchers("/getVerifyCode","/sso/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // 设置登陆页
@@ -112,8 +112,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // 有效时间：单位s
                 .tokenValiditySeconds(60)
                 .userDetailsService(detailsService);
-
-
         // 关闭CSRF跨域
         http.csrf().disable();
 

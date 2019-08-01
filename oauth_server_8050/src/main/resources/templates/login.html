@@ -67,7 +67,7 @@
                 <li class="liregister" id="register">
                     <!--注册界面
                         <a href="register/toRegister.go">快速注册</a>-->
-                    <a href="zhuce.html">快速注册</a>
+                    <a href="/sso/register/toRegister.action">快速注册</a>
                 </li>
 
                 <li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
@@ -93,7 +93,7 @@
         </div>
         <ul class="navitem">
             <li class="active">
-                <a href="index.html">首页</a>
+                <a href="http://10.12.159.120/home">首页</a>
             </li>
 
             <li>
@@ -187,7 +187,7 @@
                 <div class="login_top clearfix">
                     <h3 class="fl">欢迎登录</h3>
                     <p class="fr">
-                        没有账户, <a href="/register/toRegister.action">免费注册</a>
+                        没有账户, <a href="/sso/register/toRegister.action">免费注册</a>
                     </p>
                 </div>
                 <div class="userName" style="position:relative">
@@ -291,6 +291,7 @@
         $(".unauthenticated").hide();
         $(".authenticated").show()
 */
+
         $('#register').before("<li><span class='nh'>您好，</span> </li>");
         $('#register a').text("" + data.name + "");
         $('#register a').attr("href", "userNew/index.go");

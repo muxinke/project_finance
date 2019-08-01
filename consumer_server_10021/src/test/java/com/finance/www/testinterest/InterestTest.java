@@ -1,3 +1,4 @@
+/*
 package com.finance.www.testinterest;
 
 import com.finance.www.utils.BIAPPUtils;
@@ -19,9 +20,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+*/
 /**
  * Created by Administrator on 2019/7/26.
- */
+ *//*
+
 public class InterestTest {
         @Test
     public void test1() {
@@ -54,13 +57,15 @@ public class InterestTest {
             }
         }
 
-    /**
+    */
+/**
      *  等额本息还款方式
      * @param money 借款本金
      * @param count 借款期数
      * @param interestRate 借款利率
      * @return
-     */
+     *//*
+
         public CpmVo lists(String money,int count,float interestRate){
             CpmVo cpmVo = new CpmVo();
             ArrayList<CpmMoneyVo> cpmMoneyVos = new ArrayList<>();
@@ -84,11 +89,13 @@ public class InterestTest {
 
                 CpmMoneyVo cpmMoneyVo = new CpmMoneyVo();
                 //预计还款期数总计
-               /* Calendar instance = Calendar.getInstance();
+               */
+/* Calendar instance = Calendar.getInstance();
                 instance.add(Calendar.MONTH,i);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
                 Date time = instance.getTime();
-                String formatTime = simpleDateFormat.format(time);*/
+                String formatTime = simpleDateFormat.format(time);*//*
+
                 String formatTime = CalculateScheDule.getScheDule(i);
                 System.out.println(formatTime);
                 cpmMoneyVo.setMoney(monthlyMoney);
@@ -129,13 +136,15 @@ public class InterestTest {
             System.out.println(format1);
         }
 
-    /**
+    */
+/**
      * 先息 后本和利息
      * @param money 贷款本金
      * @param count  期数
      * @param interestRate 利率
       * @return
-     */
+     *//*
+
         public Biapp getBiapp(String money, int count, float interestRate){
             //创建返回对象
             Biapp biapp = new Biapp();
@@ -144,10 +153,14 @@ public class InterestTest {
             DecimalFormat df = new DecimalFormat("0.00");
             BigDecimal moneyDecial = new BigDecimal(money);
             BigDecimal interestRateDecimal = new BigDecimal(interestRate);
-            /**计算总利息*/
+            */
+/**计算总利息*//*
+
             BigDecimal interest = BIAPPUtils.interest(moneyDecial, interestRateDecimal, count);
             String interestFormat = df.format(interest);
-            /**计算每月还款金额，还款期数，还款时的时间*/
+            */
+/**计算每月还款金额，还款期数，还款时的时间*//*
+
             for(int i=1;i<=count;i++){
                 BiappMoneyVo biappMoneyVo = new BiappMoneyVo();
                 BigDecimal moneyDecimal = BIAPPUtils.monthlyRepayment(moneyDecial, interestRateDecimal, count, i);
@@ -163,7 +176,9 @@ public class InterestTest {
                 biappMoneyVos.add(biappMoneyVo);
             }
 
-            /**返回给前台的对象*/
+            */
+/**返回给前台的对象*//*
+
             biapp.setTotalMoney(df.format(moneyDecial.add(interest)));
             biapp.setTotalInterest(interestFormat);
             biapp.setMoneyVoList(biappMoneyVos);
@@ -175,3 +190,4 @@ public class InterestTest {
             getBiapp("500",3,0.025f);
         }
 }
+*/

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.finance.www.mapper.MemberProduitCreditorMapper" >
+  <resultMap id="BaseResultMap" type="com.finance.www.pojo.MemberProduitCreditor" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="produit_id" property="produitId" jdbcType="INTEGER" />
+    <result column="debtor_particulars" property="debtorParticulars" jdbcType="VARCHAR" />
+    <result column="guarantor_details" property="guarantorDetails" jdbcType="VARCHAR" />
+    <result column="loans_used" property="loansUsed" jdbcType="VARCHAR" />
+    <result column="Source_repayment" property="sourceRepayment" jdbcType="VARCHAR" />
+    <result column="risk_control" property="riskControl" jdbcType="VARCHAR" />
+    <result column="final_opinion" property="finalOpinion" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, member_id, produit_id, debtor_particulars, guarantor_details, loans_used, Source_repayment, 
+    risk_control, final_opinion, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.finance.www.pojo.MemberProduitCreditorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from member_produit_creditor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_produit_creditor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_produit_creditor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.finance.www.pojo.MemberProduitCreditorExample" >
+    delete from member_produit_creditor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.finance.www.pojo.MemberProduitCreditor" >
+    insert into member_produit_creditor (id, member_id, produit_id, 
+      debtor_particulars, guarantor_details, loans_used, 
+      Source_repayment, risk_control, final_opinion, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{produitId,jdbcType=INTEGER}, 
+      #{debtorParticulars,jdbcType=VARCHAR}, #{guarantorDetails,jdbcType=VARCHAR}, #{loansUsed,jdbcType=VARCHAR}, 
+      #{sourceRepayment,jdbcType=VARCHAR}, #{riskControl,jdbcType=VARCHAR}, #{finalOpinion,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.finance.www.pojo.MemberProduitCreditor" >
+    insert into member_produit_creditor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="produitId != null" >
+        produit_id,
+      </if>
+      <if test="debtorParticulars != null" >
+        debtor_particulars,
+      </if>
+      <if test="guarantorDetails != null" >
+        guarantor_details,
+      </if>
+      <if test="loansUsed != null" >
+        loans_used,
+      </if>
+      <if test="sourceRepayment != null" >
+        Source_repayment,
+      </if>
+      <if test="riskControl != null" >
+        risk_control,
+      </if>
+      <if test="finalOpinion != null" >
+        final_opinion,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="produitId != null" >
+        #{produitId,jdbcType=INTEGER},
+      </if>
+      <if test="debtorParticulars != null" >
+        #{debtorParticulars,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantorDetails != null" >
+        #{guarantorDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="loansUsed != null" >
+        #{loansUsed,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceRepayment != null" >
+        #{sourceRepayment,jdbcType=VARCHAR},
+      </if>
+      <if test="riskControl != null" >
+        #{riskControl,jdbcType=VARCHAR},
+      </if>
+      <if test="finalOpinion != null" >
+        #{finalOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.finance.www.pojo.MemberProduitCreditorExample" resultType="java.lang.Integer" >
+    select count(*) from member_produit_creditor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update member_produit_creditor
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.produitId != null" >
+        produit_id = #{record.produitId,jdbcType=INTEGER},
+      </if>
+      <if test="record.debtorParticulars != null" >
+        debtor_particulars = #{record.debtorParticulars,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guarantorDetails != null" >
+        guarantor_details = #{record.guarantorDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loansUsed != null" >
+        loans_used = #{record.loansUsed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceRepayment != null" >
+        Source_repayment = #{record.sourceRepayment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.riskControl != null" >
+        risk_control = #{record.riskControl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finalOpinion != null" >
+        final_opinion = #{record.finalOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update member_produit_creditor
+    set id = #{record.id,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      produit_id = #{record.produitId,jdbcType=INTEGER},
+      debtor_particulars = #{record.debtorParticulars,jdbcType=VARCHAR},
+      guarantor_details = #{record.guarantorDetails,jdbcType=VARCHAR},
+      loans_used = #{record.loansUsed,jdbcType=VARCHAR},
+      Source_repayment = #{record.sourceRepayment,jdbcType=VARCHAR},
+      risk_control = #{record.riskControl,jdbcType=VARCHAR},
+      final_opinion = #{record.finalOpinion,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.finance.www.pojo.MemberProduitCreditor" >
+    update member_produit_creditor
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="produitId != null" >
+        produit_id = #{produitId,jdbcType=INTEGER},
+      </if>
+      <if test="debtorParticulars != null" >
+        debtor_particulars = #{debtorParticulars,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantorDetails != null" >
+        guarantor_details = #{guarantorDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="loansUsed != null" >
+        loans_used = #{loansUsed,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceRepayment != null" >
+        Source_repayment = #{sourceRepayment,jdbcType=VARCHAR},
+      </if>
+      <if test="riskControl != null" >
+        risk_control = #{riskControl,jdbcType=VARCHAR},
+      </if>
+      <if test="finalOpinion != null" >
+        final_opinion = #{finalOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.finance.www.pojo.MemberProduitCreditor" >
+    update member_produit_creditor
+    set member_id = #{memberId,jdbcType=INTEGER},
+      produit_id = #{produitId,jdbcType=INTEGER},
+      debtor_particulars = #{debtorParticulars,jdbcType=VARCHAR},
+      guarantor_details = #{guarantorDetails,jdbcType=VARCHAR},
+      loans_used = #{loansUsed,jdbcType=VARCHAR},
+      Source_repayment = #{sourceRepayment,jdbcType=VARCHAR},
+      risk_control = #{riskControl,jdbcType=VARCHAR},
+      final_opinion = #{finalOpinion,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

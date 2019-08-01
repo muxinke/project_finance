@@ -1,0 +1,28 @@
+
+server:
+  port: 10041
+spring:
+  application:
+    name: main-consumer-server
+  redis:
+    host: 39.107.15.222
+    port: 6379
+    database: 0
+    password: 971103
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://39.107.15.222:3306/easydai?characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: 971103
+eureka:
+  client:
+    service-url:
+       defaultZone: http://localhost:8080/eureka
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#feign:
+#  hystrix:
+#    enabled: true
