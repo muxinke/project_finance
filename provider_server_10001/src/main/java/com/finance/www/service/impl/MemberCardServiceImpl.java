@@ -22,4 +22,10 @@ public class MemberCardServiceImpl implements MemberCardService {
         return memberCardMapper.queryByMemberId(id);
 
     }
+
+    @Override
+    public int insertCard(String bankcard, String bankName,int memberId) {
+        int i =memberCardMapper.insertCard(bankcard,bankName,memberId);
+        return i;
+    }
 }

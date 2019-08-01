@@ -1,0 +1,62 @@
+@media (max-width: 1000px) {
+    .top {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .submit {
+        width: auto;
+        padding-left: 12px;
+    }
+
+    .ipt {
+        padding-left: 0;
+        width: auto;
+    }
+
+    .iptbehind {
+        padding-left: 0;
+        width: auto;
+    }
+
+    .iptbehind2 {
+        padding-left: 0;
+        width: auto;
+    }
+
+    .iptbehind11 {
+        padding-left: 0;
+        width: auto;
+    }
+
+    .top-con {
+        flex-direction: row;
+    }
+
+    .header {
+        width: 100%;
+    }
+
+    .submit1 {
+        width: auto;
+        padding-left: 12px;
+    }
+
+    .submit-30040000 {
+        width: auto;
+        padding-left: 12px;
+    }
+
+    .stateIcon {
+        width: auto;
+        padding-left: 12px;
+    }
+
+    .bot1 {
+        width: auto;
+    }
+
+    .bot {
+        width: auto;
+    }
+}
