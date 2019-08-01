@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>使用指南-轻松贷-一心一意，普惠金融</title>
+    <link rel="stylesheet" href="css/layui.css" media="all">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+</head>
+<style>
+	.layui-table img {
+		height: 200px;
+		max-width: 400px;
+	}
+	table td:nth-child(4n+1){
+		width: 450px;
+	}
+</style>
+<body>
+<script type="text/javascript">
+	$(function() {
+		$(".navitem li").hover(function() {
+			$(this).find("ol").show().siblings().find("ol").hide("slow");
+		}, function() {
+			$(this).find("ol").slideUp("slow");
+		})
+		$(".code_text li").hover(function() {
+			var inde = $(this).index();
+			$(".code_img ul li").eq(inde).show().siblings().hide();
+		})
+		$.ajax({
+			type : "POST",
+			url : "newLogin/headerLogin.action",
+			dataType : "json",
+			success : function(data) {
+				if (data.status) {
+					$('#register').before("<li><span class='nh'>您好，</span> </li>");
+					$('#register a').text("" + data.message + "");
+					$('#register a').attr("href", "userNew/index.go");
+					$('#login').remove();
+					$('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
+					$("#bannerlogin").remove();
+				}
+
+			}
+		});
+	});
+</script>	
+	<base >
+<div class=" big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+				
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+				<!--跳转登陆界面
+					<a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="login">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+				<!--注册界面
+					<a href="register/toRegister.go">快速注册</a>-->
+					<a href="zhuce">快速注册</a>
+				</li>
+
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+				<a href="guide">使用指南</a></li>
+				
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+				<a href="problem">常见问题</a></li>
+				
+               <li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+			   <a style="color: #faa039" href="guarantee" >安全保障</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+		 
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li>
+				<a href="index">首页</a>
+			</li>
+			
+					<li >
+						<a href="list"
+							>我要投资
+						</a>
+						
+						<ol class="m-list">
+							
+									<li>
+										<a href="list"
+											>投资列表
+										</a>
+									</li>
+								
+									<li>
+										<a href="xiangdao"
+											>投资向导
+										</a>
+									</li>
+								
+						</ol>
+					</li>
+				
+					<li >
+						<a href="msgpilu"
+							>信息披露
+						</a>
+						
+						<ol class="m-list">
+							
+						</ol>
+					</li>
+				
+					<li class="active" >
+						<a href="dae"
+							>我要借款
+							 <i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+						    
+						</a>
+						
+						<ol class="m-list">
+                            <li>
+                                <a href="wenjuan">我的额度</a>
+                            </li>
+							
+									<li>
+										<a href="xiaoe">小额借款</a>
+									</li>
+								
+									<li>
+										<a href="dae"> 大额借款</a>
+									</li>
+						</ol>
+					</li>
+				
+					<li >
+						<a href="aboutus"> 关于我们</a>
+						<ol class="m-list">
+							
+									<li>
+										<a href="aboutus"> 企业简介</a>
+									</li>
+								
+									<li>
+										<a href="zizhi"> 公司资质</a>
+									</li>
+								
+									<li>
+										<a href="hezuohb"> 合作伙伴</a>
+									</li>
+								
+									<li>
+										<a href="contactus"> 联系我们</a>
+									</li>
+								
+									<li>
+										<a href="bulletin"> 平台公告</a>
+									</li>
+								
+									<li>
+										<a href="hr"> 招贤纳士</a>
+									</li>
+								
+						</ol>
+					</li>
+			
+		</ul>
+	</div>
+</div>
+<div id="kk">
+	<blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+		<div id="uploadImg" class="layui-upload">
+			<button type="button" class="layui-btn" id="upload">
+				<i class="layui-icon">&#xe67c;</i>上传资质<span style="color: red;font-size: 20px;">*</span>
+			</button>
+			<div class="layui-upload-list">
+				<table class="layui-table" style="text-align: center;">
+					<thead>
+					<tr>
+						<th style="text-align: center;">图片预览</th>
+						<th style="text-align: center;">大小</th>
+						<th style="text-align: center;">状态</th>
+						<th style="text-align: center;">操作</th>
+					</tr>
+					</thead>
+					<tbody id="imgList" style="width: auto;height:450px"></tbody>
+				</table>
+			</div>
+			<button type="button" class="layui-btn" id="startUpload">开始上传</button>
+			<div style="color: #000;margin:10px 0;">温馨提示: 请依次传入身份证正面、身份证反面本人户口本页及银行卡正面四张图片, 单张图片的大小不超过5MB, 长宽比例推荐1.5:1,
+				推荐上传图片长675px,宽450px
+			</div>
+		</div>
+		<input type="text" name="face_img" id="imgInput" style="display: none;" lay-verify="required">
+	</blockquote>
+	<button type="button" style="margin-left: 20px" class="layui-btn" onclick="window.location.href='/daeshenhe'">完成</button>
+</div>
+<form>
+	<input name="amount"  hidden="hidden  " id="amount" th:value="${amount}" >
+	<input  name="xingzhi"  hidden="hidden" id="xingzhi"  th:value="${xingzhi}" >
+	<input  name="qixian"  hidden="hidden"  id="qixian" th:value="${qixian}" >
+	<input name="paymethod"  hidden="hidden" id="paymethod"  th:value="${paymethod}" >
+</form>
+   <!-- <div class="layui-tab-item"><div id="table_wrap">
+<table class="layui-table" style="margin-top: 30px;margin-left: 30px;width: 200px">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th >贷款信息如下</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>姓名:<span>xxx</span></td>
+    </tr>
+    <tr>
+        <td>借款金额:<span>xxx</span></td>
+    </tr>
+    <tr>
+        <td>每期还款:<span>xxx</span></td>
+    </tr>
+    <tr>
+        <td>还款期数:<span>xxx</span></td>
+    </tr>
+    </tbody>
+</table>
+    <br/>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">确认提交</button>
+        </div>
+    </div>
+</div></div>-->
+
+<script src="http://39.107.15.222:8081/src/layui/layui.js"></script>
+<script>
+    layui.use(['table','element','form','slider','layer','laydate','upload'], function(){
+        var $ = layui.jquery;
+        var table = layui.table;
+        var element = layui.element;
+        var form = layui.form;
+        var slider = layui.slider;
+        var layer = layui.layer;
+		 var laydate = layui.laydate;
+		 var upload = layui.upload;
+
+        //多文件列表示例
+        var demoListView = $('#imgList');
+        var totalArray = new Array();
+        var amount=$("#amount").val();
+        var howlong=$("#qixian").val();
+        var xingzhi=$("#xingzhi").val();
+        var paymethod=$("#paymethod").val();
+        var uploadInst = upload.render({
+            elem: '#upload' //绑定元素
+            , url: 'upload?amount='+amount+"&howlong="+howlong+"&xingzhi="+xingzhi+"&paymethod="+paymethod//上传接口
+            , accept: 'images'  // 允许上传的文件类型
+            , acceptMime: 'image/jpg,image/png'   // (只支持jpg和png格式，多个用逗号隔开),
+            // , size: 88888888888        // 最大允许上传的文件大小  单位 KB
+            , auto: false //选择文件后不自动上传
+            , bindAction: '#startUpload' //指向一个按钮触发上传
+            , multiple: true   // 开启多文件上传
+            // , number: 6    //  同时上传文件的最大个数
+            , choose: function (obj) {
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                var arr = Object.keys(files);
+                totalArray = totalArray.concat(arr);
+                // 检查上传文件的个数
+                if (totalArray.length <=10) {
+                    //读取本地文件
+                    obj.preview(function (index, file, result) {
+                        var tr = $(['<tr id="upload-' + index + '">'
+                            , '<td><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></td>'
+                            , '<td>' + (file.size / 1014).toFixed(1) + 'kb</td>'
+                            , '<td>等待上传</td>'
+                            , '<td>'
+                            , '<button class="layui-btn demo-reload layui-hide">重传</button>'
+                            , '<button class="layui-btn layui-btn-danger demo-delete">删除</button>'
+                            , '</td>'
+                            , '</tr>'].join(''));
+
+                        //单个重传
+                        tr.find('.demo-reload').on('click', function () {
+                            obj.upload(index, file);
+                        });
+
+                        //删除
+                        tr.find('.demo-delete').on('click', function () {
+                            delete files[index]; //删除对应的文件
+                            tr.remove();
+                            uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                        });
+
+                        demoListView.append(tr);
+                    });
+                } else {
+                    // 超出上传最大文件
+                    layer.msg("上传文件最多不超过4个")
+                }
+
+            }
+            , done: function (res, index, upload) {
+                console.log("res", res);
+                if (res == 0) { //上传成功
+                    // 上传成功后将图片路径拼接到input中，多个路径用","分割
+					/*  var inputVal = document.getElementById("imgInput").value;
+					 var valData = "";
+					 if (inputVal) {
+					 valData = inputVal + "," + res.data[0].fp_relative;
+					 } else {
+					 valData = res.data[0].fp_relative;
+					 }*/
+                    document.getElementById("imgInput").value = "kkk";
+                    var tr = demoListView.find('tr#upload-' + index)
+                        , tds = tr.children();
+                    tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                    tds.eq(3).html(''); //清空操作
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+
+                }
+                this.error(index, upload);
+            }
+            , error: function (index, upload) {
+                var tr = demoListView.find('tr#upload-' + index)
+                    , tds = tr.children();
+                tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+            }
+        });
+    });
+</script>
+		<!-- 底部 -->
+		
+<base >
+<div class="bottom" style="">
+	<div class="w1200">
+		<div class="bottom_1">
+			<ul>
+				<li><a href="aboutus">关于我们</a></li>
+				<li><a href="contcatus">联系我们</a></li>
+				<li><a href="guarantee">保障体系</a></li>
+				<li><a href="bulletin">平台公告</a></li>
+				<li><a href="hr">招贤纳士</a></li>
+				<li><a href="problem">常见问题</a></li>
+				<li><a href="guide">使用指南</a></li>
+				<li><a href="app">手机客户端</a></li>
+			</ul>
+		</div>
+		<div class="bottom_middle clearfix">
+			<div class="bottom_2">
+				<p>电话: 0791-83858285</p>
+				<p>邮箱: service@kkd2p.com</p>
+				<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+			</div>
+		
+			<div class="bottom_4">
+				
+				<h3>400-8763-118</h3>
+				
+				
+				<div class="serviceTime clearfix">
+							<p>服务时间：周一至周五9：00-21：00</p>
+							<p>
+								网贷有风险，出借需谨慎
+							</p>
+							<p>
+							  陕西省互联网金融协会:400-9158-227
+							</p>
+						</div>
+			</div>
+		</div>
+		<div class="bottom_5 clearfix">
+			<ul>
+				
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+				
+				<li>© 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+			
+			</ul>
+		</div>
+		<div class="bottom_6">
+			<ul>
+				<li>友情链接:</li>
+				
+					                    <li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+					
+					                    <li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+					
+					                    <li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+					
+					                  
+
+					
+			</ul>
+		</div>
+	</div>
+</div>	
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery-2.1.4.min.js" ></script>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js" ></script>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+</body>
+</html>
+

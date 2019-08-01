@@ -588,4 +588,27 @@ and mpc.produit_id=p.id
 and mpc.member_id=m.id
 and p.id=#{pid}
   </select>
+  <select id="chaCountBytype" resultType="int">
+       SELECT
+  COUNT(*)
+FROM
+member_produit_creditor mpc,
+produit p,
+memeber m
+where mpc.produit_id=p.id
+and mpc.member_id=m.id
+and m.id=#{userid}
+AND p.investment_type=#{biaotype}
+  </select>
+  <select id="chaProduitMember" resultType="string">
+    SELECT
+    m.username
+    FROM
+    member_produit_creditor mpc,
+produit p,
+memeber m
+where mpc.produit_id=p.id
+and mpc.member_id=m.id
+and p.id=#{pid}
+  </select>
 </mapper>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="keywords" content="互联网金融、轻松贷">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="description" content="高效、精准、安全的P2P网络借贷平台">
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/login.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
+	<script  type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery-1.8.2.min.js"></script>
+	<link href="http://39.107.15.222:8081/src/theme/validationEngine/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine-zh_CN.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery.form.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/common.js"></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/main.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/layer/layer.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.circliful.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/scroll.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/person_style.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/personal.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/swiper-3.4.2.min.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/mall.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
+
+
+
+
+
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/laydate/laydate.js"></script>
+	<title>首页-轻松贷-一心一意，普惠金融</title>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/page.js"></script>
+	<script type="text/javascript">
+        $(function() {
+            $(".hyrc").load("investmentNew/tradeLogList.action");
+            $("#pageServlet").val("investmentNew/tradeLogList.action");
+
+        });
+        function searchTrade() {
+            var type = $('#type').val();
+            var beginTime = $('#beginTime').val();
+            var endTime = $('#endTime').val();
+            $("#pageServlet").val("investmentNew/tradeLogList.action?accountLog.type="+type+"&accountLog.beginTime="+beginTime+"&accountLog.endTime="+endTime+"");
+            $(".hyrc").load("investmentNew/tradeLogList.action?accountLog.type="+type+"&accountLog.beginTime="+beginTime+"&accountLog.endTime="+endTime+"");
+        }
+        //导出EXCEL
+        var ecxel = function(selected){
+            var length = $('.hyrc table tbody tr').length;
+            if(length<=0){
+                return false;
+            }
+            var type = $('#type').val();
+            var beginTime = $('#beginTime').val();
+            var endTime = $('#endTime').val();
+            var url = selected+"?accountLog.type="+type+"&accountLog.beginTime="+beginTime+"&accountLog.endTime="+endTime+"";
+            $('#excel').attr("href",selected+"?accountLog.type="+type+"&accountLog.beginTime="+beginTime+"&accountLog.endTime="+endTime+"");
+            return true;
+        }
+	</script>
+</head>
+
+<body>
+<!--top begin-->
+
+<base href="">
+<script type="text/javascript">
+    $(function() {
+        $(".navitem li").hover(function() {
+            $(this).find("ol").show().siblings().find("ol").hide("slow");
+        }, function() {
+            $(this).find("ol").slideUp("slow");
+        })
+        $(".code_text li").hover(function() {
+            var inde = $(this).index();
+            $(".code_img ul li").eq(inde).show().siblings().hide();
+        })
+        /*$.ajax({
+            type : "POST",
+            url : "newLogin/headerLogin.action",
+            dataType : "json",
+            success : function(data) {
+                if (data.status) {
+                    $('#register').before("<li><span class='nh'>您好，</span> </li>");
+                    $('#register a').text("" + data.message + "");
+                    $('#register a').attr("href", "userNew/index.go");
+                    $('#login').remove();
+                    $('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
+                    $("#wealth").text('开启您的财富之旅');
+                    $("#wealth").attr("href","reCash/toAdd.go");
+                    $("#bannerlogin").remove();
+                }
+
+            }
+        });*/
+    });
+</script>
+<div class=" big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+					<!--跳转登陆界面
+                        <a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="login.html">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+					<!--注册界面
+                        <a href="register/toRegister.go">快速注册</a>-->
+					<a href="zhuce.html">快速注册</a>
+				</li>
+
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+					<a href="guide.html">使用指南</a></li>
+
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+					<a href="problem.html">常见问题</a></li>
+
+				<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+					<a style="color: #faa039" href="guarantee.html" >安全保障</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+
+			<li >
+				<a href="list.html"
+				>我要投资
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="list.html"
+						>投资列表
+						</a>
+					</li>
+
+					<li>
+						<a href="xiangdao.html"
+						>投资向导
+						</a>
+					</li>
+
+				</ol>
+			</li>
+
+			<li >
+				<a href="msgpilu.html"
+				>信息披露
+				</a>
+
+				<ol class="m-list">
+
+				</ol>
+			</li>
+
+			<li >
+				<a href="dae.html"
+				>我要借款
+					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="xiaoe.html">小额借款</a>
+					</li>
+
+					<li>
+						<a href="dae.html"> 大额借款</a>
+					</li>
+				</ol>
+			</li>
+
+			<li >
+				<a href="aboutus.html"> 关于我们</a>
+				<ol class="m-list">
+
+					<li>
+						<a href="aboutus.html"> 企业简介</a>
+					</li>
+
+					<li>
+						<a href="zizhi.html"> 公司资质</a>
+					</li>
+
+					<li>
+						<a href="hezuohb.html"> 合作伙伴</a>
+					</li>
+
+					<li>
+						<a href="contactus.html"> 联系我们</a>
+					</li>
+
+					<li>
+						<a href="bulletin.html"> 平台公告</a>
+					</li>
+
+					<li>
+						<a href="hr.html"> 招贤纳士</a>
+					</li>
+
+				</ol>
+			</li>
+			<li class="m-menu active"><a href="wodezhanghu.html">我的账户</a></li>
+		</ul>
+	</div>
+</div>
+
+<!--nav end-->
+<div class="w1200" style="margin-bottom:10px;">
+	<div class="location">
+		你所在位置: <a href="index.html">首页</a> > <a href="zijinguanli.html">资金管理</a>>
+		<a href="jiaoyijilu.html">交易记录</a>
+	</div>
+	<!--  menu -->
+
+
+	<script>
+        $(document).ready(function() {
+            $(".payment li").on("click", function() {
+                var ind = $(this).index();
+                $(this).addClass("active").siblings().removeClass("active");
+                $(".table_list .table_list_item").eq(ind).show().siblings().hide();
+            })
+            $(".personal_nav ul li").hover(function() {
+                $(this).find("ol").show().siblings().find("ol").hide("slow");
+            }, function() {
+                $(this).find("ol").slideUp("slow");
+            })
+        })
+	</script>
+	<div class="personanNavList" >
+		<div class="personal_nav">
+
+			<ul style="margin-left:auto;margin-right:auto;">
+
+				<li
+				>
+
+					<a class="nav1"  href="wodezhanghu.html"
+					>我的账户<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+					</ol></li>
+
+				<li
+				>
+
+					<a class="nav2"  href="touziguanli.html"
+					>投资管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li ><a href="fengxianpinggu.html"
+						>风险评估
+						</a></li>
+
+						<li ><a href="touziguanli.html"
+						>我的投资
+						</a></li>
+
+						<li ><a href="huikuanmingxi.html"
+						>回款明细
+						</a></li>
+
+					</ol></li>
+
+				<li
+				>
+
+					<a class="nav3"  href="jiekuanguanli.html"
+					>借款管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li ><a href="jiekuanguanli.html"
+						>我的借款
+						</a></li>
+
+						<li ><a href="huankuanjihua.html"
+						>还款计划
+						</a></li>
+
+					</ol></li>
+
+				<li class="active"
+				>
+
+					<a class="nav4"  href="zijinguanli.html"
+					>资金管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li ><a href="zijinguanli"
+						>充值/提现
+						</a></li>
+
+						<li ><a href="jiaoyijilu"
+						>交易记录
+						</a></li>
+
+
+					</ol></li>
+
+				<li
+
+						class=""
+				>
+
+					<a class="nav5"  href="zhanghuguanli.html"
+					>账户管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li
+								class="active"
+						><a href="zhanghuguanli.html">个人信息
+						</a></li>
+
+
+
+						<li ><a href="zhanneixinxi.html"
+						>站内消息
+						</a></li>
+
+					</ol></li>
+
+
+			</ul>
+
+		</div>
+	</div>
+	<div class="my_investment">
+		<div class="investment_content">
+			<div class="status">
+				<ul class="fl">
+					<li>状态</li>
+					<li class="status_select"><select name="accLog.type" id="type" class="lf mr20 u-select1" autocomplete="off">
+						<option value=""
+						>全部</option>
+						<option value="withdrawal_success">提现成功</option>
+						<option value="recharge_false">提现失败</option>
+						<option value="repayment">还款记录</option>
+						<option value="recharge">充值成功</option>
+						<option value="recharge_false">充值失败</option>
+						<option value="borrow_success">小额借款记录</option>
+						<option value="dae_success">大额贷款记录</option>
+						<!--<option value="vip">vip会员费</option>
+						<option value="tender_mange">利息管理费用</option>
+						<option value="deduction">费用扣除</option>
+						<option value="recharge">用户充值</option>
+						<option value="invest_false">投标失败资金返回</option>
+						<option value="borrow_kouhui">借款人罚金扣回</option>
+						<option value="withdrawal_success">提现成功</option>
+						<option value="invest">扣除冻结款</option>
+						<option value="late_repayment">逾期还款</option>
+						<option value="vipFee">冻结VIP申请费</option>
+						<option value="realname">实名认证费用</option>
+						<option value="smssq">扣除短信费用</option>
+						<option value="borrow_success">借款成功</option>
+						<option value="borrow_fee">借款手续费</option>
+						<option value="recharge_fee">提现手续费</option>
+						<option value="vouch_awardpay">担保奖励支付</option>
+						<option value="withdrawal_fail">提现失败</option>
+						<option value="fee">充值手续费</option>
+						<option value="ticheng">投标提成</option>
+						<option value="vipFee_fail">vip申请没通过退费</option>
+						<option value="recharge_success">提现成功</option>
+						<option value="tixian_fee">扣除提现手续费</option>
+						<option value="invest_fail">投资失败</option>
+						<option value="cash_cancel">取消提现解冻</option>
+						<option value="collection">收益金额</option>
+						<option value="vouch_award">担保奖励接收</option>
+						<option value="vipFee">冻结vip申请费用</option>
+						<option value="award_lower">扣除投标奖励</option>
+						<option value="late_collection">逾期收入</option>
+						<option value="recharge_reward">充值奖励金额</option>
+						<option value="cash_frost">提现冻结</option>
+						<option value="recharge_false">提现失败</option>
+						<option value="borrow_fee_forst">发标费用冻结</option>
+						<option value="invest_success">投资成功</option>
+						<option value="borrow_frost">解冻借款担保金</option>
+						<option value="margin_vouch">担保成功冻结5%</option>
+						<option value="vipFee_success">扣除vip费用成功</option>
+						<option value="award_add">投标奖励</option>
+						<option value="scene_account">现场认证费用</option>
+						<option value="registerjl">注册奖励</option>
+						<option value="borrow_success">借款入帐</option>
+						<option value="system_repayment">逾期系统还款</option>
+						<option value="borrow_fee_unforst">发标费用解冻</option>
+						<option value="invest">投标</option>
+						<option value="repayment">还款</option>
+						<option value="video">视频认证费用</option>
+						<option value="vipFee_fail">扣除vip费用失败</option>
+						<option value="repayment">还款</option>
+						<option value="vouch_advanced">担保垫付扣费</option>
+						<option value="withdrawal_apply">发起提现</option>
+						<option value="margin">保证金</option>
+						<option value="late_rate">逾期利息扣除</option>
+						<option value="vipFee_success">扣除冻结VIP费</option>
+						<option value="experience_account">体验金利息发放</option>-->
+
+
+					</select>
+					</li>
+					<li>起止时间</li>
+					<li class="start_time date date1" id="from"><!-- <span
+							class="iconfont icon-rili"></span> --> <tr>
+						<td class="tdLabel"></td>
+						<td
+						><input type="text" name="accountLog.beginTime" value="" id="beginTime" class="laydate-icon" onclick="laydate({max:laydate.now()})"/></td>
+					</tr>
+
+					</li>
+					<li class="end_time date" id="to"><!-- <span
+							class="iconfont icon-rili"></span> --> <tr>
+						<td class="tdLabel"></td>
+						<td
+						><input type="text" name="accountLog.endTime" value="" id="endTime" class="laydate-icon" onclick="laydate({max:laydate.now()})"/></td>
+					</tr>
+					</li>
+					<li><a href="javascript:void(0);" onclick="searchTrade();">查询</a>
+					</li>
+				</ul>
+				<div class="application fr">
+					<a id="excel" href="export/front!tradeLog.action"
+					   onclick="return ecxel(this)" title="导出查询结果">导出查询结果</a>
+				</div>
+			</div>
+			<div class="table_item">
+				<div class="table_list">
+					<div class="table_list_item">
+						<div class="hyrc"></div>
+						<input type="hidden" id="pageServlet"
+							   value='investmentNew/tradeLogList.action' />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- 底部 -->
+
+<base >
+<div class="bottom">
+	<div class="w1200">
+		<div class="bottom_1">
+			<ul>
+				<li><a href="aboutus.html">关于我们</a></li>
+				<li><a href="contcatus.html">联系我们</a></li>
+				<li><a href="guarantee.html">保障体系</a></li>
+				<li><a href="bulletin.html">平台公告</a></li>
+				<li><a href="hr.html">招贤纳士</a></li>
+				<li><a href="problem.html">常见问题</a></li>
+				<li><a href="guide.html">使用指南</a></li>
+				<li><a href="app.html">手机客户端</a></li>
+			</ul>
+		</div>
+		<div class="bottom_middle clearfix">
+			<div class="bottom_2">
+				<p>电话: 0791-83858285</p>
+				<p>邮箱: service@kkd2p.com</p>
+				<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+			</div>
+
+			<div class="bottom_4">
+
+				<h3>400-8763-118</h3>
+
+
+				<div class="serviceTime clearfix">
+					<p>服务时间：周一至周五9：00-21：00</p>
+					<p>
+						网贷有风险，出借需谨慎
+					</p>
+					<p>
+						陕西省互联网金融协会:400-9158-227
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="bottom_5 clearfix">
+			<ul>
+
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+
+				<li>?  2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+
+			</ul>
+		</div>
+		<div class="bottom_6">
+			<ul>
+				<li>友情链接:</li>
+
+				<li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+
+				<li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+
+				<li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+
+
+
+
+			</ul>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+	.personal_nav ul>li {
+		float: left;
+		width: 20%;
+		text-align: center;
+		height: 55px;
+		line-height: 55px;
+		font-size: 18px;
+	}
+</style>
+
+
+</body>
+
+</html>

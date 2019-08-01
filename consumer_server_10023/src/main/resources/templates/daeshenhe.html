@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>使用指南-轻松贷-一心一意，普惠金融</title>
+    <link rel="stylesheet" href="css/layui.css" media="all">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+</head>
+
+<body>
+<script type="text/javascript">
+	$(function() {
+		$(".navitem li").hover(function() {
+			$(this).find("ol").show().siblings().find("ol").hide("slow");
+		}, function() {
+			$(this).find("ol").slideUp("slow");
+		})
+		$(".code_text li").hover(function() {
+			var inde = $(this).index();
+			$(".code_img ul li").eq(inde).show().siblings().hide();
+		})
+		$.ajax({
+			type : "POST",
+			url : "newLogin/headerLogin.action",
+			dataType : "json",
+			success : function(data) {
+				if (data.status) {
+					$('#register').before("<li><span class='nh'>您好，</span> </li>");
+					$('#register a').text("" + data.message + "");
+					$('#register a').attr("href", "userNew/index.go");
+					$('#login').remove();
+					$('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
+					$("#bannerlogin").remove();
+				}
+
+			}
+		});
+	});
+</script>	
+	<base >
+<div class=" big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+				
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+				<!--跳转登陆界面
+					<a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="login">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+				<!--注册界面
+					<a href="register/toRegister.go">快速注册</a>-->
+					<a href="zhuce">快速注册</a>
+				</li>
+				
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+				<a href="guide">使用指南</a></li>
+				
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+				<a href="problem">常见问题</a></li>
+				
+               <li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+			   <a style="color: #faa039" href="guarantee" >安全保障</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+		 
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li>
+				<a href="index">首页</a>
+			</li>
+			
+					<li >
+						<a href="list"
+							>我要投资
+						</a>
+						
+						<ol class="m-list">
+							
+									<li>
+										<a href="list"
+											>投资列表
+										</a>
+									</li>
+								
+									<li>
+										<a href="xiangdao"
+											>投资向导
+										</a>
+									</li>
+								
+						</ol>
+					</li>
+				
+					<li >
+						<a href="msgpilu"
+							>信息披露
+						</a>
+						
+						<ol class="m-list">
+							
+						</ol>
+					</li>
+				
+					<li class="active" >
+						<a href="dae"
+							>我要借款
+							 <!--<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>-->
+						    
+						</a>
+						
+						<ol class="m-list">
+                            <li>
+                                <a href="wenjuan">我的额度</a>
+                            </li>
+							
+									<li>
+										<a href="xiaoe">小额借款</a>
+									</li>
+								
+									<li>
+										<a href="dae"> 大额借款</a>
+									</li>
+						</ol>
+					</li>
+				
+					<li >
+						<a href="aboutus"> 关于我们</a>
+						<ol class="m-list">
+							
+									<li>
+										<a href="aboutus"> 企业简介</a>
+									</li>
+								
+									<li>
+										<a href="zizhi"> 公司资质</a>
+									</li>
+								
+									<li>
+										<a href="hezuohb"> 合作伙伴</a>
+									</li>
+								
+									<li>
+										<a href="contactus"> 联系我们</a>
+									</li>
+								
+									<li>
+										<a href="bulletin"> 平台公告</a>
+									</li>
+								
+									<li>
+										<a href="hr"> 招贤纳士</a>
+									</li>
+								
+						</ol>
+					</li>
+			
+		</ul>
+	</div>
+</div>
+<div id="kk">
+	<!--<a href="http://www.layui.com" class="layui-btn">回到首页</a>-->
+      <div class="layui-collapse" lay-accordion>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">申请审核中(预计需要1-3个工作日)</h2>
+        <div class="layui-colla-content layui-show">
+            <div id="date1"></div>
+            您可能会收到审核电话,请注意保持电话畅通。
+            审核人员不会向您收取任何费用,请小心电话诈骗。<br/>
+            感谢您的耐心等待!
+        </div>
+    </div>
+</div>
+<img id="img2" src="img/dai.jpg" style="margin-left: 30px;margin-top: 20px;width: 200px;height: 200px"/>
+</div>
+
+<script src="http://39.107.15.222:8081/src/layui/layui.js"></script>
+<script>
+    layui.use(['element','form','slider','layer','laydate','upload'], function(){
+        var $ = layui.$;
+        var element = layui.element;
+        var form = layui.form;
+        var slider = layui.slider;
+        var layer = layui.layer;
+		 var laydate = layui.laydate;
+		laydate.render({
+            elem: '#date1',
+            type: 'datetime',
+            value: new Date()
+        });
+        //…
+
+    });
+</script>
+		<!-- 底部 -->
+		
+<base >
+<div class="bottom" style="">
+	<div class="w1200">
+		<div class="bottom_1">
+			<ul>
+				<li><a href="aboutus">关于我们</a></li>
+				<li><a href="contcatus">联系我们</a></li>
+				<li><a href="guarantee">保障体系</a></li>
+				<li><a href="bulletin">平台公告</a></li>
+				<li><a href="hr">招贤纳士</a></li>
+				<li><a href="problem">常见问题</a></li>
+				<li><a href="guide">使用指南</a></li>
+				<li><a href="app">手机客户端</a></li>
+			</ul>
+		</div>
+		<div class="bottom_middle clearfix">
+			<div class="bottom_2">
+				<p>电话: 0791-83858285</p>
+				<p>邮箱: service@kkd2p.com</p>
+				<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+			</div>
+		
+			<div class="bottom_4">
+				
+				<h3>400-8763-118</h3>
+				
+				
+				<div class="serviceTime clearfix">
+							<p>服务时间：周一至周五9：00-21：00</p>
+							<p>
+								网贷有风险，出借需谨慎
+							</p>
+							<p>
+							  陕西省互联网金融协会:400-9158-227
+							</p>
+						</div>
+			</div>
+		</div>
+		<div class="bottom_5 clearfix">
+			<ul>
+				
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+				
+				<li>© 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+			
+			</ul>
+		</div>
+		<div class="bottom_6">
+			<ul>
+				<li>友情链接:</li>
+				
+					                    <li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+					
+					                    <li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+					
+					                    <li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+					
+					                  
+
+					
+			</ul>
+		</div>
+	</div>
+</div>	
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery-2.1.4.min.js" ></script>
+		<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js" ></script>
+		<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+</body>
+</html>
+

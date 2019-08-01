@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finance.www.pojo.MemberInfoMapper">
+  <resultMap id="BaseResultMap" type="com.finance.www.pojo.MemberInfo">
+    <!--@mbg.generated-->
+    <id column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
+    <result column="gender" jdbcType="SMALLINT" property="gender" />
+    <result column="date_birth" jdbcType="TIMESTAMP" property="dateBirth" />
+    <result column="record_schooling" jdbcType="VARCHAR" property="recordSchooling" />
+    <result column="marriage_status" jdbcType="INTEGER" property="marriageStatus" />
+    <result column="housing_info" jdbcType="VARCHAR" property="housingInfo" />
+    <result column="monthly_income" jdbcType="VARCHAR" property="monthlyIncome" />
+    <result column="home_address" jdbcType="VARCHAR" property="homeAddress" />
+    <result column="industry" jdbcType="VARCHAR" property="industry" />
+    <result column="is_transaction_password" jdbcType="SMALLINT" property="isTransactionPassword" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="is_login_password" jdbcType="SMALLINT" property="isLoginPassword" />
+    <result column="is_tied_card" jdbcType="SMALLINT" property="isTiedCard" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    member_id, school_id, gender, date_birth, record_schooling, marriage_status, housing_info, 
+    monthly_income, home_address, industry, is_transaction_password, img_url, is_login_password, 
+    is_tied_card, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.finance.www.pojo.MemberInfoExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from member_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from member_info
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from member_info
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.finance.www.pojo.MemberInfoExample">
+    <!--@mbg.generated-->
+    delete from member_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="member_id" keyProperty="memberId" parameterType="com.finance.www.pojo.MemberInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into member_info (school_id, gender, date_birth, 
+      record_schooling, marriage_status, housing_info, 
+      monthly_income, home_address, industry, 
+      is_transaction_password, img_url, is_login_password, 
+      is_tied_card, create_time, update_time
+      )
+    values (#{schoolId,jdbcType=INTEGER}, #{gender,jdbcType=SMALLINT}, #{dateBirth,jdbcType=TIMESTAMP}, 
+      #{recordSchooling,jdbcType=VARCHAR}, #{marriageStatus,jdbcType=INTEGER}, #{housingInfo,jdbcType=VARCHAR}, 
+      #{monthlyIncome,jdbcType=VARCHAR}, #{homeAddress,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, 
+      #{isTransactionPassword,jdbcType=SMALLINT}, #{imgUrl,jdbcType=VARCHAR}, #{isLoginPassword,jdbcType=SMALLINT}, 
+      #{isTiedCard,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="member_id" keyProperty="memberId" parameterType="com.finance.www.pojo.MemberInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into member_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="schoolId != null">
+        school_id,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="dateBirth != null">
+        date_birth,
+      </if>
+      <if test="recordSchooling != null and recordSchooling != ''">
+        record_schooling,
+      </if>
+      <if test="marriageStatus != null">
+        marriage_status,
+      </if>
+      <if test="housingInfo != null and housingInfo != ''">
+        housing_info,
+      </if>
+      <if test="monthlyIncome != null and monthlyIncome != ''">
+        monthly_income,
+      </if>
+      <if test="homeAddress != null and homeAddress != ''">
+        home_address,
+      </if>
+      <if test="industry != null and industry != ''">
+        industry,
+      </if>
+      <if test="isTransactionPassword != null">
+        is_transaction_password,
+      </if>
+      <if test="imgUrl != null and imgUrl != ''">
+        img_url,
+      </if>
+      <if test="isLoginPassword != null">
+        is_login_password,
+      </if>
+      <if test="isTiedCard != null">
+        is_tied_card,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="schoolId != null">
+        #{schoolId,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=SMALLINT},
+      </if>
+      <if test="dateBirth != null">
+        #{dateBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordSchooling != null and recordSchooling != ''">
+        #{recordSchooling,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatus != null">
+        #{marriageStatus,jdbcType=INTEGER},
+      </if>
+      <if test="housingInfo != null and housingInfo != ''">
+        #{housingInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="monthlyIncome != null and monthlyIncome != ''">
+        #{monthlyIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null and homeAddress != ''">
+        #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null and industry != ''">
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="isTransactionPassword != null">
+        #{isTransactionPassword,jdbcType=SMALLINT},
+      </if>
+      <if test="imgUrl != null and imgUrl != ''">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isLoginPassword != null">
+        #{isLoginPassword,jdbcType=SMALLINT},
+      </if>
+      <if test="isTiedCard != null">
+        #{isTiedCard,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.finance.www.pojo.MemberInfoExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from member_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update member_info
+    <set>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.schoolId != null">
+        school_id = #{record.schoolId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=SMALLINT},
+      </if>
+      <if test="record.dateBirth != null">
+        date_birth = #{record.dateBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.recordSchooling != null">
+        record_schooling = #{record.recordSchooling,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marriageStatus != null">
+        marriage_status = #{record.marriageStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.housingInfo != null">
+        housing_info = #{record.housingInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monthlyIncome != null">
+        monthly_income = #{record.monthlyIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homeAddress != null">
+        home_address = #{record.homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industry != null">
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isTransactionPassword != null">
+        is_transaction_password = #{record.isTransactionPassword,jdbcType=SMALLINT},
+      </if>
+      <if test="record.imgUrl != null">
+        img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isLoginPassword != null">
+        is_login_password = #{record.isLoginPassword,jdbcType=SMALLINT},
+      </if>
+      <if test="record.isTiedCard != null">
+        is_tied_card = #{record.isTiedCard,jdbcType=SMALLINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update member_info
+    set member_id = #{record.memberId,jdbcType=INTEGER},
+      school_id = #{record.schoolId,jdbcType=INTEGER},
+      gender = #{record.gender,jdbcType=SMALLINT},
+      date_birth = #{record.dateBirth,jdbcType=TIMESTAMP},
+      record_schooling = #{record.recordSchooling,jdbcType=VARCHAR},
+      marriage_status = #{record.marriageStatus,jdbcType=INTEGER},
+      housing_info = #{record.housingInfo,jdbcType=VARCHAR},
+      monthly_income = #{record.monthlyIncome,jdbcType=VARCHAR},
+      home_address = #{record.homeAddress,jdbcType=VARCHAR},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      is_transaction_password = #{record.isTransactionPassword,jdbcType=SMALLINT},
+      img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      is_login_password = #{record.isLoginPassword,jdbcType=SMALLINT},
+      is_tied_card = #{record.isTiedCard,jdbcType=SMALLINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.finance.www.pojo.MemberInfo">
+    <!--@mbg.generated-->
+    update member_info
+    <set>
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=SMALLINT},
+      </if>
+      <if test="dateBirth != null">
+        date_birth = #{dateBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordSchooling != null and recordSchooling != ''">
+        record_schooling = #{recordSchooling,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatus != null">
+        marriage_status = #{marriageStatus,jdbcType=INTEGER},
+      </if>
+      <if test="housingInfo != null and housingInfo != ''">
+        housing_info = #{housingInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="monthlyIncome != null and monthlyIncome != ''">
+        monthly_income = #{monthlyIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null and homeAddress != ''">
+        home_address = #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null and industry != ''">
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="isTransactionPassword != null">
+        is_transaction_password = #{isTransactionPassword,jdbcType=SMALLINT},
+      </if>
+      <if test="imgUrl != null and imgUrl != ''">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isLoginPassword != null">
+        is_login_password = #{isLoginPassword,jdbcType=SMALLINT},
+      </if>
+      <if test="isTiedCard != null">
+        is_tied_card = #{isTiedCard,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.finance.www.pojo.MemberInfo">
+    <!--@mbg.generated-->
+    update member_info
+    set school_id = #{schoolId,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=SMALLINT},
+      date_birth = #{dateBirth,jdbcType=TIMESTAMP},
+      record_schooling = #{recordSchooling,jdbcType=VARCHAR},
+      marriage_status = #{marriageStatus,jdbcType=INTEGER},
+      housing_info = #{housingInfo,jdbcType=VARCHAR},
+      monthly_income = #{monthlyIncome,jdbcType=VARCHAR},
+      home_address = #{homeAddress,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      is_transaction_password = #{isTransactionPassword,jdbcType=SMALLINT},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      is_login_password = #{isLoginPassword,jdbcType=SMALLINT},
+      is_tied_card = #{isTiedCard,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+</mapper>

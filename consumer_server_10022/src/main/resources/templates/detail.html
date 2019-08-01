@@ -40,8 +40,6 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
 	<link rel="stylesheet"
-		  href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
-	<link rel="stylesheet"
 		  href="http://39.107.15.222:8081/src/theme/computer/css/investment.css" />
 	<title>投资详情</title>
 	<style type="text/css">
@@ -119,19 +117,21 @@
                 }
             }, 1000);
 
-            var jxbankUserstatus = '';
-            if(jxbankUserstatus == "undefined" || jxbankUserstatus == '' || jxbankUserstatus == null || jxbankUserstatus == 0) {
+            var jxbankUserstatus =$("#lg").text();
+            var userid=$("#userId").val();
+            if(jxbankUserstatus=="请登录") {
                 $('#balance').html("0.00");
             } else {
                 $.ajax({
                     type: "POST",
-                    url: "account/showJxyh.action",
+                    url: "/showzhanghujine?userid="+userid,
                     dataType: "json",
                     success: function(data) {
-                        var balance = Math.max(data.message * 100) / 100;
-                        var djbalance = Math.max(data.vemessage * 100) / 100;
+                         var balance=data.accountBalance;
                         $('#balance').html(balance);
                         $('#useAccount').val(balance);
+                        $('#balanc').val(balance);
+
                     }
                 });
             }
@@ -170,6 +170,25 @@
                     $("#wealth").text('开启您的财富之旅');
                     $("#wealth").attr("href","reCash/toAdd.go");
                     $("#bannerlogin").remove();
+                    $("#lg").text("立即投资");
+                    $("#lg").attr("href","javascript:showTendPanel()");
+                    $("#userId").val(data.id);
+                    var  userid=data.id;
+                    var biaotype=$("#biaoType").val();
+                    $.ajax({
+                        type:"post",
+                        url:"/chaxustatus",
+                        data:{
+                            userid:userid,
+                            biaotype:biaotype
+                        },
+                        success:function (data) {
+                            $("#isTransactionPassword").val(data.memberInfo.isTransactionPassword)
+                            $("#isTiedCard").val(data.memberInfo.isTiedCard)
+                            $("#dbalance").val(data.cishu)
+                        }
+
+                    });
                 }
 
             }
@@ -312,7 +331,8 @@
 <div class="w1200">
 	<div class="project_introduction">
 		<div class="project_title">
-			<input type="hidden" name="borrow.id" value="9950" id="borrowId"/>
+			<input type="hidden" name="borrow.id" th:value="${jkxxs.pid}" id="borrowId"/>
+			<input type="hidden"  id="biaoType" th:value="${jkxxs.investmentType}"/>
 			<span class="vouch bStyle" th:text="${jkxxs.biaoShiXiaoZi}">保</span>
 
 			<div class=" fl">
@@ -413,18 +433,16 @@
 						<input type="text" id="tenderMoney" onblur="assignInterest(this)"
 							   placeholder="100元起投且为整数" />
 						<button onclick="autoInput()">自动填写</button>
-						<input type="hidden" id="userId"
-							   value=""> <input
-							type="hidden" id="dbalance"
-							value=""> <input
-							type="hidden" id="balanc"
-							value=""> <input
-							type="hidden" id="useAccount" value="">
+						<input type="hidden" id="userId" value="">
+						<input	type="hidden" id="dbalance" value="">
+						<input	type="hidden" id="isTransactionPassword" value="">
+						<input	type="hidden" id="isTiedCard" value="">
+						<input 	type="hidden" id="balanc"	value="">
+						<input	type="hidden" id="useAccount" value="">
 					</div>
 
-					<div class="bid_button"
-						 onclick="location='newLogin/loginPage.go'">
-						<a href="login.html" style="color: white;">请登录</a>
+					<div class="bid_button">
+						<a id="lg" href="login.html" style="color: white;">请登录</a>
 					</div>
 
 
@@ -565,31 +583,36 @@
 					<li class="bidding_month">投标方式</li>
 					<li class="in_time">投资时间</li>
 				</ul></li>
-			<li>
+			<li th:each="invest:${invests}">
 				<ul class="record_list">
-					<li class="in_user">
+					<li class="in_user"><span th:text="${invest.investName}">ll</span>
 					</li>
 					<li class="in_money">
 						<div class="fl InmoneyIcon">
-
+<!--
 							<img src="http://39.107.15.222:8081/src/theme/computer/img/p2.png">
 
 							<img src="http://39.107.15.222:8081/src/theme/computer/img/p1.png">
 
-							<img src="http://39.107.15.222:8081/src/theme/computer/img/p3.png">
+							<img src="http://39.107.15.222:8081/src/theme/computer/img/p3.png">-->
 
 						</div>
 						<div class="fl InmonJe">
-									<span>100.0
+									<span th:text="${invest.jine}">100.0
 									</span><span>元</span>
 						</div></li>
-					<li class="effective_amount">100.0
+					<li class="effective_amount"><span th:text="${invest.yxjine}">100.0</span>
 					</li>
-					<li class="bidding_month">
-						<img src="http://39.107.15.222:8081/src/theme/computer/img/pc.png"
+					<li class="bidding_month" th:switch="${invest.investWay}">
+
+						<img th:case="'1'" src="http://39.107.15.222:8081/src/theme/computer/img/pc.png"
 							 style="width:26px;height:24px;">
+						<img th:case="'2'" src="http://39.107.15.222:8081/src/theme/computer/img/telephone.png"
+								 style="width:26px;height:24px;">
+						<img th:case="'3'" src="http://39.107.15.222:8081/src/theme/computer/img/weixin.png"
+								 style="width:26px;height:24px;">
 					</li>
-					<li class="in_time">2019-07-18 14:26:09
+					<li class="in_time"><span th:text="${invest.investtime}">ss</span>
 					</li>
 				</ul>
 			</li>
@@ -703,12 +726,12 @@
             }
 
         }
-        if(n>0){
+    /*    if(n>0){
             if(j>0){
                 $('#prompt').html("抱歉,现金券与加息券不能叠加使用,请重新选择!");
                 return false;
             }
-        }
+        }*/
 
         if(n>0){
             $('#men').html(totalMoney);
@@ -749,7 +772,7 @@
             $(".record_detail").children().eq(ind).show().siblings().hide();
         })
 
-        //				卡券
+      /*  //				卡券
         $(".card_coupons").on("click", function() {
             $(this).find("h5").slideUp(150);
             $(this).find(".cards").slideDown(150);
@@ -793,7 +816,7 @@
                 $(this).find("span").attr("class", "iconfont icon-duoxuankuangxuanzhong1");
             }
 
-        })
+        })*/
     });
 </script>
 <script type="text/javascript">
@@ -858,14 +881,9 @@
 			 });
 			 return false;
 			 }  */
-            var biaoType = 'vouch';
-            var inviteUserid = '';
-            if(inviteUserid=='网贷天眼' && biaoType=='xsb'){
-
-                $('#prompt').html("您是我们合作方平台,不能投资新手标。");
-                return false;
-            }
+            //银行的余额
             var balanc = $("#balanc").val();
+            var biaoType= $("#biaoType").val();
             if(balanc==undefined){
                 $('#prompt').html("银行余额未读取,请耐心等待");
                 return false;
@@ -880,19 +898,13 @@
                 $('#prompt').html("请输入投资金额");
                 return false;
             }
-            var status = '';
-            if(status == 0) {
-                $('#prompt').html("<a style='color:red;' href='userNew/index.action'>请先去绑定电子账户哦,再来投标哦.</a>");
+            var bindCard =$("#isTiedCard").val();
+            if(bindCard =="0") {
+                $('#prompt').html("<a style='color:red;' href='#绑定银行卡界面'>您还没设置银行卡号, 请先去银行卡号.</a>");
                 return false;
             }
-
-            var bindCard = '';
-            if(bindCard == null || bindCard == '') {
-                $('#prompt').html("<a style='color:red;' href='userNew/safeTy.action'>您还没设置银行卡号, 请先去银行卡号.</a>");
-                return false;
-            }
-            var payPasswordYes = '';
-            if(payPasswordYes == 0) {
+            var payPasswordYes = $("isTransactionPassword");
+            if(payPasswordYes == "0") {
                 $('#prompt').html("<a style='color:red;' href='userNew/safeTy.action'>您还没设置支付密码, 请先去设置支付密码</a>");
                 return false;
             }
@@ -903,7 +915,7 @@
                 $('#prompt').html("投资金额不能少于" + minInvestorAmount + "元");
                 return false;
             }
-            if(biaoType == 'bx') {
+            if(biaoType == '2') {
                 if(tenderMoney % minInvestorAmount != 0) {
                     $('#prompt').html("投资金额必须为" + minInvestorAmount + "的整数倍");
                     return false;
@@ -929,36 +941,16 @@
                 $('#prompt').html("投资金额不能大于差额" + accountSum + "元哦！！");
                 return false;
             }
-
-            //计算
-			/* var hongbaoId =  $('#hongbaoId').val();
-			 if(hongbaoId>0){
-			 var hongbaoMoney =  $("#hongbaoId").find("option:selected").text();
-			 hongbaoMoney=hongbaoMoney.substring(0,hongbaoMoney.length-1);
-			 var timeLimit = 3;
-			 var account =  50000.0;
-			 var tenderMoney = $('#tenderMoney').val();
-			 var deductionMoney = 0;
-			 if(timeLimit<5){
-			 deductionMoney = (tenderMoney*(timeLimit/1000.00));
-			 }else{
-			 deductionMoney = (tenderMoney*(5/1000.00));
-			 }
-			 if(deductionMoney>hongbaoMoney){
-			 deductionMoney = hongbaoMoney;
-			 }
-			 $('#HbMessage').text("您已选择使用红包,可抵扣"+deductionMoney+"元");
-			 }    */
             var timeLimit = '3';
+            //投标次数
             var dbalance = $("#dbalance").val();
             var userid = $("#userId").val();
-            if(biaoType == 'xsb') {
-                if(userid != 11978 && userid != 27066 && userid != 12085 && userid != 12152 && userid !=15525 && userid !=12334&& userid !=15583 && userid !=30410&& userid !=15583) {
+            if(biaoType == '1') {
                     if(dbalance >= 1) {
                         $('#prompt').html("抱歉,未投资者才能投新手标哦（只能投一次哦）！");
                         return false;
                     }
-                }
+
             }
             $('#newTenderMoney').val(tenderMoney);
             $('#limit').val(timeLimit);
@@ -968,7 +960,7 @@
                 $('#prompt').html("帐户余额不足,请先去充值.");
                 return false;
             }
-            var tenderlimit = $('#limit').val();
+           /* var tenderlimit = $('#limit').val();
             var tenderbiao = $('#biao').val();
             $('#erromess').html("");
             $('#tenderprompt').html("");
@@ -994,8 +986,8 @@
                         }
                     }
                 }
-            }
-            if(parseFloat(tenderMoney) < parseFloat(totalMoney)) {
+            }*/
+           /* if(parseFloat(tenderMoney) < parseFloat(totalMoney)) {
                 $('#prompt').html("现金劵未达到投资条件必须满" + totalMoney + "!不能使用");
                 return false;
             }
@@ -1014,8 +1006,8 @@
                     totalRatesCoupon += 1;
                     ratesCouponIds += radio1[j].value + ",";
                 }
-            }
-            var addAprCount = 1;
+            }*/
+            /*var addAprCount = 1;
             var hbAndAprKG = false;
             if(totalRatesCoupon > addAprCount) {
                 $('#prompt').html("加息券使用个数不能超过" + addAprCount + "个,请重新选择!");
@@ -1024,24 +1016,23 @@
             if(!hbAndAprKG && countHongb >= 1 && totalRatesCoupon >= 1) {
                 $('#prompt').html("抱歉,现金券与加息券不能叠加使用,请重新选择!");
                 return false;
-            }
-            var token = $('#token').val();
+            }*/
             var borrowId = $('#borrowId').val();
+            var userid=$("#userId").val();
             $.ajax({
                 type: "POST",
-                url: "jxyhapi/bidTender.action",
+                url: "/woyaotouzi",
                 dataType: "json",
                 data: {
                     tenderMoney: tenderMoney,
                     borrowId: borrowId,
-                    token: token,
-                    hongbaoIds: hongbaoIds
+					userid:userid
                 },
                 success: function(data) {
-                    if(data.status) {
-                        window.location.href = "newBorrow/bidApply.go?tenderMoney=" + tenderMoney + "&borrowId=" + borrowId + "&hongbaoIds=" + hongbaoIds + "&ratesCouponIds=" + ratesCouponIds;
+                    if(data=='1') {
+                        alert("已成功投资，具体信息请查看我的账户")
                     } else {
-                        $('#prompt').html(data.message);
+                        $('#prompt').html("tou");
                     }
                 }
             });

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="" lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <title id="BUSINESS_TYPETT">网贷资金存管子账户开立</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style-750-1000.css">
+</head>
+<body>
+<p id="showmsg"></p>
+<div id="bigDiv" style="display: block">
+    <div class="header-con">
+        <div class="header">
+            <a href="#" class="logo"><i id="logo"></i></a> <i class="headerLine"></i>
+            <span id="BUSINESS_TYPET" class="headTit">网贷资金存管子账户开立</span>
+        </div>
+    </div>
+
+    <div class="top-con" style="display: -ms-flex; display: flex; height: auto">
+        <div class="top" style="margin: auto">
+            <div class="order1">
+                <h3 class="order-tit">
+                    <i></i><font style="font-size: 17px" id="BUSINESS_TYPEF">网贷资金存管子账户开立</font>
+                </h3>
+                <ul class="orderList">
+                    <li class="listItem"><span class="list-tit">交易流水号：</span> <span
+                            id=SEQNO class="list-num" th:text="${liushuihao}"></span></li>
+                    <li class="listItem" id="SURNAME_LI"><span class="list-tit">姓名：</span> <span
+                            id="SURNAME" class="list-num" th:text="${member.realName}"></span></li>
+                    <!--<li class="listItem"><span class="list-tit1">手机号码：</span> <span-->
+                    <!--id="MOBILE" class="list-tit1"></span></li>-->
+                </ul>
+            </div>
+            <div id="submitDiv" class="submit">
+                <div class="ipt" style="padding:45px 0 0 80px;">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;绑定银行卡号：</span>
+                    <input type="text" id="BIND_CARD_NO" name="recard" onkeyup="this.value=this.value.replace(/\D/g,'')"
+                           maxlength="32" placeholder="请输入绑定银行卡号"/>
+                </div>
+                <div class="iptbehind iptbehind2">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;银行名称：</span>
+                    <input type="text" id="bankname"  maxlength="18"placeholder="您的银行卡"/>
+                </div>
+               <!-- <div class="iptbehind iptbehind2" style="display: none;" id="SURNAME_DIV">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名：</span>
+                    <input type="text" id="SURNAME_IPT" name="recard"
+                           maxlength="32" placeholder="请输入姓名"/>
+                </div>-->
+                <div class="iptbehind iptbehind2">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证件号码：</span>
+                    <input type="text" id="IDNO" name="idno" maxlength="18" placeholder="请输入证件号码"/>
+                </div>
+                <div class="iptbehind iptbehind2">
+                    <span>设置交易密码：</span>
+                    <input type="password" id="encPin1" name="encPin1" onkeyup="this.value=this.value.replace(/\D/g,'')"
+                           ng-model="whdata.staticPin" maxlength="6" data-encryptionpwd="" placeholder="请输入6位数字交易密码"/>
+                    <input type="hidden" value="" name="encPin1" autocomplete="off" id="pin1" ng-model="whdata.pin"/>
+                </div>
+                <div class="iptbehind iptbehind2">
+                    <span>确认交易密码：</span>
+                    <input type="password" id="encPin2" name="encPin2" onkeyup="this.value=this.value.replace(/\D/g,'')"
+                           ng-model="whdata.staticPin" maxlength="6" data-encryptionpwd="" placeholder="请输入6位数字交易密码"/>
+                    <input type="hidden" value="" name="encPin2" autocomplete="off" id="pin2" ng-model="whdata.pin"/>
+                </div>
+                <div class="iptbehind iptbehind2">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机号码：</span>
+                    <input type="text" id="PHONE" name="PHONE" maxlength="12"
+                            placeholder="请输入手机号码"/>
+                </div>
+                <div class="iptbehind iptbehind2">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;验证码：</span>
+                    <input type="text" id="smsInput" name="smsCode" maxlength="6" placeholder="请输入验证码"/>
+                    <div style="display: none;" id="SEKEY"></div>
+                    <div style="display: none;" id="SMS_SEQ"></div>
+                    <input type="hidden" id="aa">
+                    <button type="button" id="smsBtn" class="smsBtn">获取验证码</button>
+                </div>
+                <div class="warningMsg1">
+                    <b id="msg"></b>
+                </div>
+
+                <div id="agreementDiv" class="agreementDiv"></div>
+
+                <div>
+                    <input type="button" id="sub" value="确 认"/>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="bot-con3">
+        <div class="bot1">
+            <br/>
+            <br/>
+            <p class="botTips">温馨提示</p>
+            <p class="botTips">1、设置密码为6位纯数字；</p>
+            <p class="botTips">2、设置密码不能为6位相同或连续数字。</p>
+            <p class="botTips">3、设置密码不能为证件号中连续6位。</p>
+        </div>
+    </div>
+    <div class="footer" style="display: none">
+        <p>版权所有 晋商银行 晋ICP备08004982号</p>
+    </div>
+</div>
+<script src="http://39.107.15.222:8081/src/layui/layui.js"></script>
+</body>
+<script>
+    layui.use(['element', 'layer','form'], function(){
+        var $ = layui.jquery
+            ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+        $("#BIND_CARD_NO").blur(function () {
+            //调用银行查询银行接口
+            var bankcard=$(this).val();
+            if (bankcard!=null && bankcard!=""){
+                $.ajax({
+                    url: "/checkCard",
+                    type: "post",
+                    data: {
+                        bankcard: bankcard
+                    },
+                    success: function (data) {
+                        $("#bankname").val(data);
+                    }
+
+                })
+            }
+        })
+        $("#encPin2").blur(function () {
+            if ($(this).val()!=$("#encPin1").val()){
+                alert("密码不匹配");
+                $("#encPin1").val("");
+                $("#encPin2").val("");
+
+            }
+        })
+        $("#smsBtn").click(function () {
+            //发送短信验证码
+            var phone= $("#PHONE").val();
+            if (phone!=null && phone!="") {
+                alert("短信验证码已发出");
+                $.post("/sendMa",{phone:phone} ,function (data) {
+                    $("#aa").val(data);
+                }, "json");
+            }
+        })
+        $("#sub").click(function () {
+            if ($("#aa").val()!=$("#smsInput").val()){
+                alert("验证码不匹配");
+                $("#smsInput").val("");
+            }else {
+               var bankcard = $("#BIND_CARD_NO").val();
+               var bankName =$("#bankname").val();
+                $.ajax({
+                    url: "subinfo",
+                    type: "post",
+                    async: false,
+                    data: {
+                        bankcard: bankcard,
+                        bankName: bankName
+                    },
+                    success: function (data) {
+                        alert("添加成功");
+                        window.location.href="xiaoe";
+                    }
+
+                })
+            }
+        })
+    })
+
+
+
+
+</script>
+</html>

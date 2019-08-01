@@ -1,9 +1,11 @@
 package com.finance.www.utils;
 
+import com.finance.www.Vo.InvestVos;
 import com.finance.www.Vo.JieKuanXxVos;
 import com.finance.www.Vo.ProduitVo;
 import com.finance.www.enums.*;
 import com.finance.www.pojo.Produit;
+import com.finance.www.pvo.InvestmentVo;
 import com.finance.www.pvo.JieKuanXxVo;
 
 import java.text.DecimalFormat;
@@ -70,6 +72,7 @@ public class PojoZVoUtil {
             double v = aDouble / aDouble1;
             produitVo.setWanchenglv(df.format(Math.round(v*100)));
             produitVo.setWcbaifenbi(Math.round(v*100)+"%");
+            produitVo.setBiaotizi(BiaoShiEnum.getBiaoShi(produit.getInvestmentType()));
             produitVos.add(produitVo);
         }
         return produitVos;
@@ -78,7 +81,7 @@ public class PojoZVoUtil {
         DecimalFormat df = new DecimalFormat("0.0");
         JieKuanXxVos jieKuanXxVos = new JieKuanXxVos();
         jieKuanXxVos.setPid(jieKuanXxVo.getPid());
-        jieKuanXxVos.setInvestmentType(ProduitEnum.getEnumType(jieKuanXxVo.getInvestmentType()));
+        jieKuanXxVos.setInvestmentType(jieKuanXxVo.getInvestmentType());
         jieKuanXxVos.setProduitsOrdre(OrdreEnum.getEnumLevel(jieKuanXxVo.getProduitsOrdre()));
         jieKuanXxVos.setMontantDeOffre(df.format(Long.valueOf(jieKuanXxVo.getMontantDeOffre())/100));
         jieKuanXxVos.setInvestmentAmount(df.format(Long.valueOf(jieKuanXxVo.getInvestmentAmount())/100));
@@ -130,5 +133,19 @@ public class PojoZVoUtil {
         jieKuanXxVos.setFinalOpinion(jieKuanXxVo.getFinalOpinion());
         return jieKuanXxVos;
     }
-
+    public static  List<InvestVos> getInvestVos(List<InvestmentVo> investmentVos){
+        DecimalFormat df = new DecimalFormat("0.0");
+        ArrayList<InvestVos> investVos = new ArrayList<>();
+        for(InvestmentVo investmentVo:investmentVos){
+            InvestVos investVos1 = new InvestVos();
+            investVos1.setId(investmentVo.getId());
+            investVos1.setInvestName(investmentVo.getInvestName());
+            investVos1.setJine(df.format(Long.valueOf(investmentVo.getJine())/100));
+            investVos1.setYxjine(df.format(Long.valueOf(investmentVo.getJine())/100));
+            investVos1.setInvesttime(investmentVo.getInvesttime());
+            investVos1.setInvestWay(investmentVo.getInvestWay());
+            investVos.add(investVos1);
+        }
+        return investVos;
+    }
 }

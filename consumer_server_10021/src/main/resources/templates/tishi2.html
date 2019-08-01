@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>申请借款成功，<span id="jishi">5</span>秒后返回首页</h3>
+</body>
+<script src="http://39.107.15.222:8081/src/layui/layui.js"></script>
+<script>
+    var count=4;
+    var jishi = setInterval("daojishi()",1000);
+    function daojishi() {
+        if (count==0) {
+            clearInterval(jishi);
+            //返回首页
+            window.location.href = "index.html";
+        }
+        var time =document.getElementById("jishi");
+        time.innerHTML=count;
+        count--;
+    }
+</script>
+</html>

@@ -1,0 +1,46 @@
+server:
+  port: 8040
+  servlet:
+    session:
+      cookie:
+        name: OAUTH2SESSION
+spring:
+  application:
+    name: cllient-8040
+  main:
+    allow-bean-definition-overriding: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://39.107.15.222:8761/eureka
+logging:
+  level:
+    com.finance.www.comsumer_client_8040.service.Resources8060Service: debug
+
+
+security:
+
+  oauth2:
+
+    client:
+      #      APP ID
+      client-id: mxk
+      #      相当与 APP KEY
+      client-secret: mxk
+      #      换取账户令牌地址
+      access-token-uri: http://localhost:8050/oauth/token
+      #      授权地址
+      user-authorization-uri: http://localhost:8050/oauth/authorize
+      #      重定向的页面必须和认证中心的一致
+      pre-established-redirect-uri: http://localhost:8040/member/login
+
+    resource:
+      #      验证令牌信息的地址
+      token-info-uri: http://localhost:8050/oauth/check_token
+
+feign:
+  client:
+    config:
+      rpc-user: # feign name
+        requestInterceptors:
+          - com.finance.www.comsumer_client_8040.config.OAuth2FeignRequestInterceptor

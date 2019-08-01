@@ -3,8 +3,11 @@ package com.finance.www.service.Impl;
 import com.finance.www.mapper.ProduitMapper;
 import com.finance.www.pojo.Produit;
 import com.finance.www.pojo.ProduitExample;
+import com.finance.www.pvo.PageVo;
 import com.finance.www.service.ProduitService;
 import com.finance.www.pvo.JieKuanXxVo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +58,44 @@ public class ProduitServiceImpl implements ProduitService{
     public JieKuanXxVo  chaProduitBypid(Integer pid) {
         JieKuanXxVo jieKuanXxVo = produitMapper.chajkXx(pid);
         return jieKuanXxVo;
+    }
+
+    @Override
+    public PageVo chaProduitByPage(String ProduitType, String style, String timeLimit,Integer page) {
+        ProduitExample produitExample = new ProduitExample();
+        ProduitExample.Criteria criteria = produitExample.createCriteria();
+        if(!"".equals(ProduitType)) {
+            Integer biaotype = Integer.valueOf(ProduitType);
+            criteria.andInvestmentTypeEqualTo(biaotype);
+        }
+        if(!"".equals(style)){
+            Integer style1 = Integer.valueOf(style);
+            criteria.andRemboursementsGuiseEqualTo(style1);
+        }
+        if(!"".equals(timeLimit)){
+            Integer timeLimit1 = Integer.valueOf(timeLimit);
+            if(timeLimit1==6){
+                criteria.andRemboursementsExpiresBetween(1,6);
+            }else if(timeLimit1==12){
+                criteria.andRemboursementsExpiresBetween(7,12);
+            }else {
+                criteria.andRemboursementsExpiresBetween(13,24);
+            }
+        }
+        PageHelper.startPage(page,6);
+        List<Produit> produits = produitMapper.selectByExample(produitExample);
+        PageInfo<Produit> pg = new PageInfo<>(produits);
+        Integer total =(int) pg.getTotal();
+        PageVo pageVo = new PageVo();
+        pageVo.setKk(produits);
+        pageVo.setTotal(total);
+        return pageVo;
+    }
+
+    @Override
+    public Integer chaCountByIdType(Integer userid, Integer biaotype) {
+        Integer integer = produitMapper.chaCountBytype(userid, biaotype);
+        return integer;
     }
 
 }

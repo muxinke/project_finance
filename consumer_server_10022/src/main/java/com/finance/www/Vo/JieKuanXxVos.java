@@ -10,7 +10,7 @@ import lombok.Data;
 public class JieKuanXxVos {
     private Integer pid;
     //投资类型
-    private String  investmentType;
+    private Integer  investmentType;
     /**
      *产品等级
      */

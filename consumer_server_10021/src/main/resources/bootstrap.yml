@@ -5,11 +5,28 @@ spring:
   profiles:
     active: 10021
   cloud:
-      config:
-        discovery:
-          service-id: server-config
-          enabled: true
+    config:
+      discovery:
+        service-id: server-config
+        enabled: true
+  thymeleaf:
+    cache: false
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8080/eureka
+      defaultZone: http://10.12.159.30:8080/eureka
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+ribbon:
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
+server:
+  port: 10021
+myLilv: 14.4%
+feign:
+  hystrix:
+    enabled: true

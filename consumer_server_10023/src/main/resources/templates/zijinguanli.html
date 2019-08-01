@@ -1,0 +1,1333 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="keywords" content="互联网金融、轻松贷">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="description" content="高效、精准、安全的P2P网络借贷平台">
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+	<link rel="shortcut icon" href="favicon.ico"></link>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/login.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
+	<script  type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery-1.8.2.min.js"></script>
+	<link href="http://39.107.15.222:8081/src/theme/validationEngine/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine-zh_CN.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery.form.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/common.js"></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/main.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/layer/layer.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.circliful.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/scroll.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/person_style.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/personal.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/swiper-3.4.2.min.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/mall.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="css/layui.css" media="all">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+
+
+	<title>首页-轻松贷-一心一意，普惠金融</title>
+	<script src="http://39.107.15.222:8081/src/theme/js/gt.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/userSms.js"></script>
+
+	<script type="text/javascript">
+        var handler = function(captchaObj) {
+
+            // 将验证码加到id为captcha的元素里
+            captchaObj.appendTo("#captcha");
+            captchaObj.bindOn("#btnSendRechange");
+            captchaObj.onSuccess(function() {
+                var validateData = captchaObj.getValidate();
+                var reMoney = $('#reMoney').val();
+                var phone = $('#phone').val();
+                if(reMoney == null || reMoney == '') {
+                    layer.alert("充值金额不能为空");
+                    return false;
+                }
+                VerificationCode($("#btnSendRechange"),phone);
+            });
+        };
+        $(function() {
+            initBehaviorVerify();
+        });
+	</script>
+	<script type="text/javascript">
+
+        $(function(){
+            var status = false;
+
+            <!--  if(!status){public_alert('根据监管要求必须先开通缴费授权,才能充值哦!',9,function(){window.location="userNew/safeTy.action";},function(){                   window.location="userNew/safeTy.action";});return;}-->
+
+            var cc= '';
+            var bb=cc.replace(/%3A/g,":").replace(/%2c/g,",");
+
+            if(bb!=''){
+
+                var obj=eval("("+bb+")");
+                var  message=obj.message;
+                if(message=='txmmsuccess'){
+                    message="操作成功,请查看个人中心余额";
+                }
+                if(message=='txmmerror'){
+                    message="提现失败";
+                }
+                var  messageStatus=obj.status;
+
+                if(messageStatus==true){
+                    public_alert(message,9,function(){
+                        window.location="userNew/index.action";
+                    },function(){
+
+                        window.location="userNew/safeTy.action";
+                    });
+                }
+                else{
+                    layer.alert(message);
+                }
+
+            }
+
+            $("#cashSubmit").on("click",function(){
+
+                var money = $('#money').val();
+
+                var balance=$('#accountBalance').text();
+                console.log("money="+money);
+                console.log("balance="+balance);
+                var typeId = 1;
+
+                var freeNum=$('#freeNum').val();
+                var val=$('input:radio[name="free"]:checked').val();
+                /*if(val==1){
+
+                    if(freeNum<=0){
+                        layer.alert("你已经没有免费提现资格,赶紧去投资赚免费提现吧！！");
+                        return false;
+                    }
+                }else{
+                    balance=balance-1;
+                }*/
+                if(money<100){
+                    layer.alert("提现不能小于100哦");
+                    return false;
+                }
+                if(balance<money){
+                    layer.alert("提现金额不能大于可用余额");
+                    return false;
+                }
+                var bankLineNumber = $('#bankLineNumber').val();
+                if(money>=200000 && bankLineNumber==''){
+                    layer.alert("大额提现银行联行号不能为空");
+                    return false;
+                }
+                if(typeId==2 && bankLineNumber==''){
+                    layer.alert("企业账户提现银行联行号不能为空");
+                    return false;
+                }
+                if(typeId==1 && money<50000){
+                    $('#bankLineNumber').val("");
+                }
+                if(balance<100){
+                    layer.alert("可用余额不能少于100");
+                    return false;
+                }
+
+                if(!clickOftenRef()){
+                    return false;
+                }
+                var free=$('#free').val();
+                if(free==undefined){
+                    free=0;
+                }
+                // $(this).ajaxSubmit(ajaxOption($(this),"提现申请成功,请等待管理员审核"));
+                $.ajax({
+                    type: "POST",
+                    url: "/withdraw",
+                    dataType: "json",
+                    data: {
+                        money:money,
+                    },
+                    success: function(data) {
+                        if(data==1) {
+                            window.location.href = "http://localhost:10023/success";
+                        } else {
+                            layer.alert("提现失败,请重新操作");
+                            return false;
+                        }
+                    }
+                }); // 阻止表单默认提交
+            });
+
+
+        });
+
+
+        function cashMoney(selected){
+
+            var money = $('#money').val();
+            var typeId = 1;
+            if(money>=200000 && typeId==1){
+                $("#bankLineNumberPop").show();
+            }
+            if(money<200000 && typeId==1){
+                $("#bankLineNumberPop").hide();
+            }
+            $('#realcash').html($(selected).val());
+        }
+
+        function setSelectUserNo(radioObj){
+
+            var radioCheck= $(radioObj).val();
+            if(radioCheck==1){
+                $('#bl').show();
+                $('#sd').hide();
+
+            }else{
+                $('#bl').hide();
+                $('#sd').show();
+
+            }
+        }
+	</script>
+	<script type="text/javascript">
+        $(function(){
+            //表单验证
+            $('#businessRechargeForm').validationEngine({
+                promptPosition: "topRight",
+                ajaxSubmit: true
+            });
+            $("#businessRechangesubmit").on("click",function(){
+                $('#businessRechargeForm').submit();
+
+            });
+            $('#businessRechargeForm').submit(function() {
+
+                return true;
+            });
+
+        });
+
+	</script>
+	<script type="text/javascript">
+        $(function(){
+
+            //表单验证
+           /* $('#rechargeForm').validationEngine({
+                promptPosition: "topRight",
+                ajaxSubmit: true
+            });
+            $("#rechangesubmit").on("click",function(){
+                $('#rechargeForm').submit();
+
+            });*/
+            /*$('#rechargeForm').submit(function() {
+				 /!*var timestamp=new Date().getTime();
+				 if(timestamp>1478617200000){
+				 public_alert('尊敬的用户，您好！由于陕西银行存管版本系统正在做域名切换导致快捷充值功能暂时关闭（线下充值不受影响）;预计时间早上9.00恢复正常。',9,function(){
+				 window.location="http://localhost:10023/index";
+				 },function(){
+				 window.location="http://localhost:10023/index";
+				 });
+				 return false;
+				 }
+				     if(!clickOftenRef()){
+				 return false;
+				 }*!/
+
+
+				 var reMoney=$('#reMoney').val();
+				 var smsSeq=$('#smsSeq').val();
+				 var banK=$('#bankcard').val();
+				 if(banK=='工商银行'){
+				 if(reMoney>10000){
+				 layer.alert("工商单笔不能超1万，单日1万");
+				 return false;
+				 }
+				 }
+				 if(banK=='建设银行'){
+				 if(reMoney>10000){
+				 layer.alert("建行单笔不能超5000，单日1万");
+				 return false;
+				 }
+
+				 }
+				 if(banK=='兴业银行'){
+				 if(reMoney>50000){
+				 layer.alert("兴业单笔不能超5万，单日5万");
+				 return false;
+				 }
+
+				 }
+				 if(banK=='中信银行'){
+				 if(reMoney>20000){
+				 layer.alert("兴业单笔不能超2万，单月2万");
+				 return false;
+				 }
+				 }
+				 if(banK=='民生银行'){
+				 if(reMoney>100000){
+				 layer.alert("兴业单笔不能超10万，单日10万");
+				 return false;
+				 }
+				 }
+				 if(banK=='中国邮政储蓄银行'){
+				 layer.alert("不能通过快捷方式充值哦,可以汇款方式充值");
+				 return false;
+				 }
+				 if(banK=='光大银行'){
+				 if(reMoney>100000){
+				 layer.alert("光大单笔不能超10万，单日10万");
+				 return false;
+				 }
+				 }
+
+				 if(banK=='农业银行'){
+				 if(reMoney>50000){
+				 layer.alert("农业单笔不能超5万，单日5万");
+				 return false;
+				 }
+				 }
+				 if(banK=='招商银行'){
+				 if(reMoney>50000){
+				 layer.alert("招商单笔不能超5万，单日5万");
+				 return false;
+				 }
+				 }
+
+
+				     $(this).ajaxSubmit(ajaxOption($(this),"充值成功"));
+                return true; // 阻止表单默认提交
+            });*/
+
+        });
+
+
+
+
+
+        $('#rechargeType2').click();
+        $('#rechargeType2').click(function() {
+            $('#rechargeOn').hide();
+            $('#rechargeRemit').show();
+        });
+        $('#rechargeType1').click(function() {
+            $('#rechargeOn').show();
+            $('#rechargeRemit').hide();
+
+        });
+
+        $(document).ready(function() {
+            $(".payment_bank").on("click",function(){
+
+                $(".bindBank").hide();
+                $(".bindBankList").show();
+            });
+            $(".iconfont.icon-guanbianniu").on("click",function(){
+                $(".bindBankList").hide();
+                $(".bindBank").show();
+            });
+            $(".txproblem").hover(function(){
+                $(".txcz").css("opacity","1");
+            },function(){
+                $(".txcz").css("opacity","0");
+            });
+        });
+
+        function assignMoney(selected) {
+            $('#realMoney').html($(selected).val());
+        }
+	</script>
+</head>
+<style>
+	/* .mftx{position:relative;} */
+	.mftx .txproblem{cursor:pointer;color:#666;display:inline-block;font-weight:200;width:20px;height:20px;border-radius:50%;border:1px solid #ccc;text-align:center;line-height:20px;margin-left:10px;}
+	.mftx table{display:inherit;position:absolute;left:200px;top:0px;background-color:#fff;border:1px solid #ccc;font-size:14px;opacity:0;}
+	.mftx .txcz tr td,.mftx .txcz tr th{text-align:center;border-bottom:1px solid #ccc;}
+	.mftx .txcz tr th{background-color:#ccc;}
+	.mftx .txcz tr td:not(:first-child){border-left:1px solid #ccc;}
+	.mftx .txcz tr:last-child td{border-bottom:0px;}
+	.mftx .txcz tr .level{width:25%;}
+	.mftx .txcz tr .ful{width:75%;}
+	.recharge .transfer_recharge .transfer_left .reminder{margin-top:20px;}
+	/*  .recharge .transfer_recharge .transfer_left .reminder p{color:#666;} */
+	.recharge .transfer_recharge .transfer_left p{color:#666;}
+</style>
+<style type="text/css">
+	.personal_nav ul>li {
+		float: left;
+		width: 20%;
+		text-align: center;
+		height: 55px;
+		line-height: 55px;
+		font-size: 18px;
+	}
+</style>
+<body>
+<!--top begin-->
+<!--top begin-->
+<script type="text/javascript">
+    $(function() {
+        $(".navitem li").hover(function() {
+            $(this).find("ol").show().siblings().find("ol").hide("slow");
+        }, function() {
+            $(this).find("ol").slideUp("slow");
+        })
+        $(".code_text li").hover(function() {
+            var inde = $(this).index();
+            $(".code_img ul li").eq(inde).show().siblings().hide();
+        })
+        /*$.ajax({
+            type : "POST",
+            url : "newLogin/headerLogin.action",
+            dataType : "json",
+            success : function(data) {
+                if (data.status) {
+                    $('#register').before("<li><span class='nh'>您好，</span> </li>");
+                    $('#register a').text("" + data.message + "");
+                    $('#register a').attr("href", "userNew/index.go");
+                    $('#login').remove();
+                    $('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
+                    $("#wealth").text('开启您的财富之旅');
+                    $("#wealth").attr("href","reCash/toAdd.go");
+                    $("#bannerlogin").remove();
+                }
+
+            }
+        });*/
+    });
+</script>
+<div class=" big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+					<!--跳转登陆界面
+                        <a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="login.html">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+					<!--注册界面
+                        <a href="register/toRegister.go">快速注册</a>-->
+					<a href="zhuce.html">快速注册</a>
+				</li>
+
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+					<a href="guide.html">使用指南</a></li>
+
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+					<a href="problem.html">常见问题</a></li>
+
+				<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+					<a style="color: #faa039" href="guarantee.html" >安全保障</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+
+			<li >
+				<a href="list.html"
+				>我要投资
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="list.html"
+						>投资列表
+						</a>
+					</li>
+
+					<li>
+						<a href="xiangdao.html"
+						>投资向导
+						</a>
+					</li>
+
+				</ol>
+			</li>
+
+			<li >
+				<a href="dae.html"
+				>我要借款
+					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="xiaoe.html">小额借款</a>
+					</li>
+
+					<li>
+						<a href="dae.html"> 大额借款</a>
+					</li>
+				</ol>
+			</li>
+
+			<li >
+				<a href="aboutus.html"> 关于我们</a>
+				<ol class="m-list">
+
+					<li>
+						<a href="aboutus.html"> 企业简介</a>
+					</li>
+
+					<li>
+						<a href="zizhi.html"> 公司资质</a>
+					</li>
+
+					<li>
+						<a href="hezuohb.html"> 合作伙伴</a>
+					</li>
+
+					<li>
+						<a href="contactus.html"> 联系我们</a>
+					</li>
+
+					<li>
+						<a href="bulletin.html"> 平台公告</a>
+					</li>
+
+					<li>
+						<a href="hr.html"> 招贤纳士</a>
+					</li>
+
+				</ol>
+			</li>
+			<li class="m-menu active"><a href="userNew/index.go">我的账户</a></li>
+		</ul>
+	</div>
+</div>
+<!--nav end-->
+<div class="w1200" style="margin-bottom:10px;">
+	<div class="location">
+		你所在位置:
+		<a href="/newIndex/index.go">首页</a> >
+		<a href="/reCash/toAdd.go">资金管理</a>>
+		<a href="/reCash/toAdd.go">充值/提现</a>
+	</div>
+	<!--  menu -->
+
+
+	<script>
+        $(document).ready(function() {
+            $(".payment li").on("click", function() {
+                var ind = $(this).index();
+                $(this).addClass("active").siblings().removeClass("active");
+                $(".table_list .table_list_item").eq(ind).show().siblings().hide();
+            })
+            $(".personal_nav ul li").hover(function() {
+                $(this).find("ol").show().siblings().find("ol").hide("slow");
+            }, function() {
+                $(this).find("ol").slideUp("slow");
+            })
+        })
+	</script>
+	<div class="personanNavList" >
+		<div class="personal_nav">
+
+			<ul style="margin-left:auto;margin-right:auto;">
+
+				<li
+				>
+
+					<a class="nav1"  href="wodezhanghu.html"
+					>我的账户<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+					</ol></li>
+
+				<li
+				>
+
+					<a class="nav2"  href="touziguanli.html"
+					>投资管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li ><a href="fengxianpinggu.html"
+						>风险评估
+						</a></li>
+
+						<li ><a href="touziguanli.html"
+						>我的投资
+						</a></li>
+
+						<li ><a href="huikuanmingxi.html"
+						>回款明细
+						</a></li>
+
+					</ol></li>
+
+				<li
+				>
+
+					<a class="nav3"  href="jiekuanguanli.html"
+					>借款管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li ><a href="jiekuanguanli.html"
+						>我的借款
+						</a></li>
+
+						<li ><a href="huankuanjihua.html"
+						>还款计划
+						</a></li>
+
+					</ol></li>
+
+				<li class="active"
+				>
+
+					<a class="nav4"  href="zijinguanli.html"
+					>资金管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li ><a href="zijinguanli"
+						>充值/提现
+						</a></li>
+
+						<li ><a href="jiaoyijilu"
+						>交易记录
+						</a></li>
+
+					</ol></li>
+
+				<li
+
+						class="nav5"
+				>
+
+					<a class="nav5"  href="zhanghuguanli.html"
+					>账户管理<span
+							class="iconIMg"></span>
+					</a>
+
+					<ol>
+
+						<li
+								class="active"
+						><a href="zhanghuguanli.html">个人信息
+						</a></li>
+
+
+
+						<li ><a href="zhanneixinxi.html"
+						>站内消息
+						</a></li>
+
+					</ol></li>
+
+
+			</ul>
+
+		</div>
+	</div>
+	<div class="recharge">
+		<div class="toggle_title">
+			<ul>
+				<li class="active">
+					充值
+				</li>
+				<li >
+					提现
+				</li>
+			</ul>
+		</div>
+
+		<!--充值-->
+		<div class="transfer_recharge clearfix">
+			<div   class="recharge_mode" style="position:relative;left:285px;">
+				<span class="fl">选择充值方式</span>
+				<div class="recharge_radius fl">
+					<p class="move_button"></p>
+					<span class="active tR" style="position:relative;">转账充值</span>
+					<span class="qR" style="position:relative;">快捷充值</span>
+				</div>
+			</div>
+			<!--转账充值-->
+			<div class="transderRecharge" >
+				<div class="transfer_left fl">
+					<h3>
+						您可以使用您的电子账户绑定的银行卡，使用对应的手机银行或网上银行进行跨行转账，转账时所需填写的信息如下：
+					</h3>
+					<p style="color:#666;">请使用您的银行卡转账到下方轻松贷资金存管专户</p>
+					<p>
+						收款方真实姓名：<span th:text="${name}">陕西懿懿投资咨询有限公司</span>
+					</p>
+					<p>
+						收款方开户行： <span>陕西银行股份有限公司铁路支行
+
+                                        </span>
+					</p>
+					<div class="reminder">
+						<p>
+							温馨提示
+						</p>
+						<p>
+							1.跨行转账根据银行最新规定，只支持轻松贷在陕西银行的资金存管专户，不支持他人银行卡或本人非绑定银行卡进行转账，也不支持其他第三方支付方式。
+						</p>
+
+						<p>
+							2. 请您务必在转账充值前，确保已在轻松贷平台绑定了一张您本人的银行卡，并务必使用该张绑定的银行卡，向以上账户进行转账充值，否则充值资金将被原路退回；
+						</p>
+						<p>
+							3.充值过程中可能收取转账费用以银行规定为准；轻松贷不收取其他任何手续费。
+						</p>
+						<p>
+							4.如果充值过程中出现任何问题，请联系客服QQ：3316974713。
+						</p>
+					</div>
+				</div>
+				<div class="transfer_right fr">
+					<img src="http://39.107.15.222:8081/src/theme/computer/img/transfer.png">
+					<div class="propaganda">
+						<h3>
+							多种方式转账
+						</h3>
+						<p>
+							网银、手机银行
+						</p>
+					</div>
+				</div>
+			</div>
+			<!--快捷充值-->
+			<div class="quickRecharge" style="display:none;">
+				<form class="layui-form" id="rechargeForm" method="get"  >
+					<!--<input type="hidden" name="jxbankUser.phone" value="18720920060" id="phone"/>
+					<input type="hidden" id="smsSeq" name="smsSeq" value="&#26681;&#25454;&#30417;&#31649;&#35201;&#27714;&#24517;&#39035;&#20808;&#24320;&#36890;&#32564;&#36153;&#25480;&#26435;,&#25165;&#33021;&#20805;&#20540;&#21734;!">
+					--><ul>
+						<li>
+							电子账户: <span class="electronicAccount" style="font-size: 15px" th:text="${name}">6212461110000099832</span>
+						</li>
+						<li>
+							银行余额: <span class="bankBalance" style="font-size: 15px;color: #0000FF" th:text="${accountBalance}">0.01</span>元
+						</li>
+						<li>请选择您要使用哪张银行卡进行充值:<div class="layui-form-item">
+								<div class="layui-input-block" style="width: 240px;margin-left: 230px;margin-top: -30px">
+									<select id="bankcard" name="bankcard" lay-verify="required"  >
+										<option  th:value="${membercard}" th:each="membercard:${membercards}" th:text="${membercard}"></option>
+
+									</select>
+								</div>
+							</div>
+						</li>
+						<li>
+							<span class="tagging">*</span>充值金额:
+							<input type="text" name="money" id="reMoney" onkeyup="assignMoney(this)"
+																	  class="validate[required,custom[number],min[100],max[1000000]] u-amount" placeholder="">
+							<span class="quota" style="color: red" th:text="${msg}"></span>
+
+						</li>
+
+						<li>
+							<span class="tagging">*</span>实际支付金额:<span id="realMoney" class="bankBalance">0.0</span>元
+							<span class="tagging" style="margin-left:20px;">
+							<a class="payment_bank" style="color: blue"> 注：单笔充值限额查看各个银行上的充值限额为准</a></span>
+						</li>
+						<li>
+							<!--<a  id="rechangesubmit" class="quickRechargeButton">确认提交</a>-->
+							<button class="layui-btn layui-btn-normal" id="rechangesubmit">确认提交</button>
+							<!--<input type="submit" id="rechangesubmit" class="quickRechargeButton" value="确认提交">-->
+						</li>
+					</ul>
+				<!--</form>-->
+
+
+				<div class="reminder">
+					<p>
+						温馨提示
+					</p>
+					<p>
+						1.为了您的账户安全，请在充值前进行身份认证、手机绑定以及提现密码设置。
+					</p>
+					<p>
+						2.您的账户资金将通过银行存款进行充值。
+					</p>
+					<p>
+						3.请注意您的银行卡充值限制，以免造成不便。
+					</p>
+					<p>
+						4.禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。
+					</p>
+					<p>
+						5.如果充值金额没有及时到账，请联系客服，400-8763-118。
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--提现-->
+		<div class="withdrawals"  style="display:none;">
+			<div class="widthdrawals_bank">
+				<ul>
+					<li>
+						<img src="http://39.107.15.222:8081/src/theme/computer/img/jx_bank.png" style="position:relative;bottom:6px;">
+					</li>
+					<li>
+
+					</li>
+					<li class="cash_bank">
+						<!-- <div class="bank_img fl"><img src="img/jsBank.png"></div> -->
+						<div class="bank_name fl">
+
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="withdrawals_content clearfix">
+				<div class="wContent_left fl">
+					<form id="cashForm" class="layui-form" method="post"  action="reCash/Withholding.action" >
+
+						<input type="hidden" id="freeNum" value="0">
+						<input type="hidden" id="balance" value="0.01">
+						<ul>
+							<li>
+								真实姓名: <span th:text="${name}">&#20309;&#20048;&#26126;</span>
+							</li>
+							<li>
+								可用金额: <span id="accountBalance" th:text="${accountBalance}">0.01</span>元
+							</li>
+							<li>
+								正在申请提现: <span  id="realcash" >0.0</span>元
+							</li>
+
+							<li id="sd">
+								可最大提现:<span style="color: red" th:text="${accountBalance}">200,000</span>元
+							</li>
+
+							<li id="bl" style="display: none;">
+								可最大提现:<span>0.01</span>元
+							</li>
+							<li class="mftx">
+								本月免手续费数: <span  >0</span>次<strong class="txproblem">?</strong>
+								<table border="0" cellpadding="0" cellspacing="0" class="txcz">
+									<tr>
+										<th class="level">
+											会员等级
+										</th>
+										<th class="ful">
+											提现福利
+										</th>
+									</tr>
+									<tr>
+										<td>
+											VIP卡
+										</td>
+										<td>
+											每月1次免费提现机会
+										</td>
+									</tr>
+									<tr>
+										<td>
+											铜卡
+										</td>
+										<td>
+											每月2次免费提现机会
+										</td>
+									</tr>
+									<tr>
+										<td>
+											银卡
+										</td>
+										<td>
+											每月2次免费提现机会
+										</td>
+									</tr>
+									<tr>
+										<td>
+											金卡
+										</td>
+										<td>
+											每月3次免费提现机会
+										</td>
+									</tr>
+									<tr>
+										<td>
+											白金卡
+										</td>
+										<td>
+											每月3次免费提现机会
+										</td>
+									</tr>
+									<tr>
+										<td>
+											钻石卡
+										</td>
+										<td>
+											每月5次免费提现机会
+										</td>
+									</tr>
+									<tr>
+										<td>
+											黑钻卡
+										</td>
+										<td>
+											每月7次免费提现机会
+										</td>
+									</tr>
+								</table>
+							</li>
+
+							<!--                 <li>
+                                                提现手续费: <span>1</span>元
+                                            </li> -->
+							<li>
+								<div class="cash_money">提现金额: <input type="text" id="money" name="money" onkeyup="cashMoney(this)" class="validate[required,custom[number],min[1],max[3000000.0]] u-amount" /> 元
+									<!-- <p>
+                                        <img src="img/remind.png">此处不可留白
+                                    </p> -->
+								</div>
+							</li>
+							<li>提现到哪张银行卡:<div class="layui-form-item">
+								<div class="layui-input-block" style="width: 240px;margin-left: 230px;margin-top: -30px">
+									<select   lay-verify="required"  >
+										<option  th:value="${membercard}" th:each="membercard:${membercards}" th:text="${membercard}"></option>
+
+									</select>
+								</div>
+							</div>
+							</li>
+							<li
+									style="display: none;"
+									id="bankLineNumberPop">
+								<div class="cash_money">开户银行联行号： <input id="bankLineNumber"  name="bankLineNumber" type="text"/>
+									<p>
+										注：  大额提现必须填写开户银行联行号(请确保联行号正确)!可以咨询开卡银行客服或前往<a style="color:red;" target="_blank" href="https://www.xacbank.com/icms/static/xacbank2019/zh/rh3fvnjt/rh3fvnjt.html#link_0">https://www.xacbank.com/icms/static/xacbank2019/zh/rh3fvnjt/rh3fvnjt.html#link_0查询！</a>或
+										<a target="_blank" href="http://www.lianhanghao.com/" style="color:red;">http://www.lianhanghao.com/查询！</a>
+
+									</p>
+								</div>
+							</li>
+							<li>
+								<a id="cashSubmit" href="javascript:;" class="cashSubmit">确认提交</a>
+							</li>
+						</ul>
+					</form>
+				</div>
+				<div class="wContent_right fr">
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<th class="pattern">提现模式</th>
+							<th class="limit">提现额度</th>
+							<th class="fee">手续费 (元/笔)</th>
+							<th class="paymentTime">到账时间</th>
+						</tr>
+						<tr>
+							<td>
+								提现模式
+							</td>
+							<td>
+								20万 （含） 以下
+							</td>
+							<td>
+								1
+							</td>
+							<td>
+								T+0到账 （T为申请提现日，0为0个工作日）
+							</td>
+						</tr>
+						<tr>
+							<td>
+								大额提现
+							</td>
+							<td>
+								20万以上
+							</td>
+							<td>
+								1
+							</td>
+							<td>
+								工作日9:30-16:30实时到账，反之则T+1个工作日到账。
+							</td>
+						</tr>
+					</table>
+					<div class="remind">
+						<p>
+							温馨提示:
+						</p>
+						<p>
+							1.提现手续费为1块钱一笔,由陕西银行收取。
+						</p>
+						<p>
+							2.请确保您输入的提现金额，以及银行帐号信息准确无误。
+						</p>
+						<p>
+							3.如果您填写的提现信息不正确可能会导致提现失败，由此产生的提现费用将不予返还。
+						</p>
+						<p>
+							4.平台禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+<div id="bindbank" class="bindBankList" >
+	<h5>
+		<b>支持银行</b>
+		<span class="iconfont icon-guanbianniu fr">
+                    </span>
+	</h5>
+	<table class="bank_header" border="0" cellspacing="0" cellpadding="0">
+		<tbody>
+		<tr>
+			<td>&nbsp;&nbsp;支持银行</td>
+			<td>交易金额</td>
+			<td >备注</td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;建设银行</td>
+			<td>单笔100万单日200万</td>
+			<td>在建设银行柜面或个人网银开通电子支付功能</td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;兴业银行</td>
+			<td >单笔5万单日5万</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;中信银行</td>
+			<td>单笔5000单月1万</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;民生银行</td>
+			<td>暂不支持</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;邮储银行</td>
+			<td>单笔单日1万</td>
+			<td>可开户,可通过汇款方式充值。</td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;光大银行</td>
+			<td>单笔单日5万</td>
+			<td>在光大银行柜面或个人网银开通电子支付功能</td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;平安银行</td>
+			<td >不限</td>
+			<td>需开通银联无卡支付业务</td>
+		</tr>
+		<tr>
+			<td >&nbsp;&nbsp;工商银行</td>
+			<td>单笔99万单日99万</td>
+			<!-- <td>暂不支持9558开头的银行卡、卡号为18位的卡</td> -->
+		</tr>
+		<tr>
+			<td >&nbsp;&nbsp;农业银行</td>
+			<td>单笔2000单日1万</td>
+			<td>暂不支持95599开头银行卡</td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;中国银行</td>
+			<td>单笔单日5万</td>
+			<td>需开通银联无卡支付业务</td>
+		</tr>
+		<tr>
+			<td >&nbsp;&nbsp;招商银行</td>
+			<td>单笔单日10万</td>
+			<td>首笔10万，第二笔以后5万</td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;广发银行</td>
+			<td>单笔单日100万</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;交通银行</td>
+			<td>单笔20万单日20万</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;浦发银行</td>
+			<td>单笔20万单日20万</td>
+			<td></td>
+		</tr><tr>
+			<td>&nbsp;&nbsp;华夏银行</td>
+			<td>单笔单日2万</td>
+			<td></td>
+		</tr><tr>
+			<td>&nbsp;&nbsp;恒丰银行</td>
+			<td>暂不支持</td>
+			<td></td>
+		</tr><tr>
+			<td>&nbsp;&nbsp;上海银行</td>
+			<td>单笔5000单日1万</td>
+			<td></td>
+		</tr><tr>
+			<td>&nbsp;&nbsp;北京银行</td>
+			<td>单笔100万单日100万</td>
+			<td></td>
+		</tr><tr>
+			<td>&nbsp;&nbsp;南京银行</td>
+			<td>暂不支持</td>
+			<td></td>
+		</tr><tr>
+			<td>&nbsp;&nbsp;广州银行</td>
+			<td>单笔50万单日100万</td>
+			<td></td>
+		</tr><tr>
+			<td>&nbsp;&nbsp;江苏银行</td>
+			<td>暂不支持</td>
+			<td></td>
+		</tr>
+
+		</tbody>
+	</table>
+	<div class="Bdagging">注：充值限额可参考上表，具体的额度以发卡银行的为准  如果您在发卡银行设置的支付额度低于此表限额，以您的设置为准。</div>
+</div>
+<script src="http://39.107.15.222:8081/src/layui/layui.js"></script>
+<script>
+    layui.use(['element','form','slider','layer','laydate','upload'], function(){
+        var $ = layui.jquery;
+        var element = layui.element;
+        var form = layui.form;
+        var slider = layui.slider;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+        var upload = layui.upload;
+
+    });
+    $("#rechangesubmit").on("click",function () {
+        var reMoney=$('#reMoney').val();
+        var banK=$('#bankcard').val();
+        /*if(banK.contains('工商银行')){
+            if(reMoney>10000){
+                alert("工商单笔不能超1万，单日1万");
+                return false;
+            }
+        }
+        if(banK.contains('建设银行')){
+            if(reMoney>10000){
+                alert("建行单笔不能超5000，单日1万");
+                return false;
+            }
+
+        }
+        if(banK.contains('兴业银行')){
+            if(reMoney>50000){
+                alert("兴业单笔不能超5万，单日5万");
+                return false;
+            }
+
+        }
+        if(banK.contains('中信银行')){
+            if(reMoney>20000){
+                layer.alert("兴业单笔不能超2万，单月2万");
+                return false;
+            }
+        }
+        if(banK.contains('民生银行')){
+            if(reMoney>100000){
+                alert("兴业单笔不能超10万，单日10万");
+                return false;
+            }
+        }
+        if(banK.contains('邮储银行')){
+            alert("不能通过快捷方式充值哦,可以汇款方式充值");
+            return false;
+        }
+        if(banK.contains('光大银行')){
+            if(reMoney>100000){
+                alert("光大单笔不能超10万，单日10万");
+                return false;
+            }
+        }
+
+        if(banK.contains('农业银行')){
+            if(reMoney>50000){
+                alert("农业单笔不能超5万，单日5万");
+                return false;
+            }
+        }
+        if(banK.contains('招商银行')){
+            if(reMoney>50000){
+                alert("招商单笔不能超5万，单日5万");
+                return false;
+            }
+        }*/
+        $.ajax({
+            url:"/quickRecharge",
+            type: 'post',
+            dataType: "json",
+            async: true,
+            data:{
+                money:reMoney,
+                bankcard:banK,
+            },
+            success: function (data) {
+                if (data ==1){
+                    window.location.href="http://localhost:10023/success";
+                }else if (data ==0){
+                    alert("您的充值金额超过银行单笔转账金额!");
+                }
+
+            }
+        })
+
+    });
+</script>
+<!-- 底部 -->
+
+<base >
+<div class="bottom">
+	<div class="w1200">
+		<div class="bottom_1">
+			<ul>
+				<li><a href="aboutus.html">关于我们</a></li>
+				<li><a href="contcatus.html">联系我们</a></li>
+				<li><a href="guarantee.html">保障体系</a></li>
+				<li><a href="bulletin.html">平台公告</a></li>
+				<li><a href="hr.html">招贤纳士</a></li>
+				<li><a href="problem.html">常见问题</a></li>
+				<li><a href="guide.html">使用指南</a></li>
+				<li><a href="app.html">手机客户端</a></li>
+			</ul>
+		</div>
+		<div class="bottom_middle clearfix">
+			<div class="bottom_2">
+				<p>电话: 0791-83858285</p>
+				<p>邮箱: service@kkd2p.com</p>
+				<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+			</div>
+
+			<div class="bottom_4">
+
+				<h3>400-8763-118</h3>
+
+
+				<div class="serviceTime clearfix">
+					<p>服务时间：周一至周五9：00-21：00</p>
+					<p>
+						网贷有风险，出借需谨慎
+					</p>
+					<p>
+						陕西省互联网金融协会:400-9158-227
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="bottom_5 clearfix">
+			<ul>
+
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+
+				<li> 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+
+			</ul>
+		</div>
+		<div class="bottom_6">
+			<ul>
+				<li>友情链接:</li>
+
+				<li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+
+				<li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+
+				<li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+
+
+
+
+			</ul>
+		</div>
+	</div>
+</div>
+<script>
+    $(document).ready(function() {
+
+//               充值方式
+        var flag;
+        $(".recharge_mode").on("click",function(){
+            if(flag==true){
+                $(this).find("p").css("left","0px");
+                $(this).find(".tR").addClass("active");
+                $(this).find(".qR").removeClass("active");
+                $(".transderRecharge").show();
+                $(".quickRecharge").hide();
+                flag=false;
+            }else{
+                $(this).find("p").css({"right":"0px","left":"auto"});
+                $(this).find(".qR").addClass("active");
+                $(this).find(".tR").removeClass("active");
+                $(".quickRecharge").show();
+                $(".transderRecharge").hide();
+                flag=true;
+            }
+        })
+
+//          充值提现
+        $(".toggle_title ul li").on("click",function(){
+            var $index=$(this).index();
+            $(this).addClass("active").siblings().removeClass("active");
+            if($index==0){
+                $(".transfer_recharge").show();
+                $(".withdrawals").hide();
+            }
+            if($index==1){
+                $(".transfer_recharge").hide();
+                $(".withdrawals").show();
+            }
+        })
+
+    })
+</script>
+</body>
+
+</html>

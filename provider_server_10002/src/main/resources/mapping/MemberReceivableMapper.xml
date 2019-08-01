@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finance.www.mapper.MemberReceivableMapper">
+  <resultMap id="BaseResultMap" type="com.finance.www.pojo.MemberReceivable">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="produit_id" jdbcType="INTEGER" property="produitId" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="accounts_receivable_date" jdbcType="TIMESTAMP" property="accountsReceivableDate" />
+    <result column="Current_total" jdbcType="VARCHAR" property="currentTotal" />
+    <result column="collected_principal" jdbcType="VARCHAR" property="collectedPrincipal" />
+    <result column="collecting_interest" jdbcType="VARCHAR" property="collectingInterest" />
+    <result column="collecting_total" jdbcType="VARCHAR" property="collectingTotal" />
+    <result column="management_fee" jdbcType="VARCHAR" property="managementFee" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="should_principal" jdbcType="VARCHAR" property="shouldPrincipal" />
+    <result column="receivable_account" jdbcType="VARCHAR" property="receivableAccount" />
+    <result column="paid_principal_interest" jdbcType="VARCHAR" property="paidPrincipalInterest" />
+    <result column="paid_interest" jdbcType="VARCHAR" property="paidInterest" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, produit_id, member_id, accounts_receivable_date, Current_total, collected_principal, 
+    collecting_interest, collecting_total, management_fee, `state`, should_principal, 
+    receivable_account, paid_principal_interest, paid_interest, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.finance.www.pojo.MemberReceivableExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from member_receivable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from member_receivable
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from member_receivable
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.finance.www.pojo.MemberReceivableExample">
+    <!--@mbg.generated-->
+    delete from member_receivable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.finance.www.pojo.MemberReceivable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into member_receivable (produit_id, member_id, accounts_receivable_date, 
+      Current_total, collected_principal, collecting_interest, 
+      collecting_total, management_fee, `state`, 
+      should_principal, receivable_account, paid_principal_interest, 
+      paid_interest, create_time, update_time
+      )
+    values (#{produitId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{accountsReceivableDate,jdbcType=TIMESTAMP}, 
+      #{currentTotal,jdbcType=VARCHAR}, #{collectedPrincipal,jdbcType=VARCHAR}, #{collectingInterest,jdbcType=VARCHAR}, 
+      #{collectingTotal,jdbcType=VARCHAR}, #{managementFee,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{shouldPrincipal,jdbcType=VARCHAR}, #{receivableAccount,jdbcType=VARCHAR}, #{paidPrincipalInterest,jdbcType=VARCHAR}, 
+      #{paidInterest,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.finance.www.pojo.MemberReceivable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into member_receivable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="produitId != null">
+        produit_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="accountsReceivableDate != null">
+        accounts_receivable_date,
+      </if>
+      <if test="currentTotal != null and currentTotal != ''">
+        Current_total,
+      </if>
+      <if test="collectedPrincipal != null and collectedPrincipal != ''">
+        collected_principal,
+      </if>
+      <if test="collectingInterest != null and collectingInterest != ''">
+        collecting_interest,
+      </if>
+      <if test="collectingTotal != null and collectingTotal != ''">
+        collecting_total,
+      </if>
+      <if test="managementFee != null and managementFee != ''">
+        management_fee,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="shouldPrincipal != null and shouldPrincipal != ''">
+        should_principal,
+      </if>
+      <if test="receivableAccount != null and receivableAccount != ''">
+        receivable_account,
+      </if>
+      <if test="paidPrincipalInterest != null and paidPrincipalInterest != ''">
+        paid_principal_interest,
+      </if>
+      <if test="paidInterest != null and paidInterest != ''">
+        paid_interest,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="produitId != null">
+        #{produitId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="accountsReceivableDate != null">
+        #{accountsReceivableDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentTotal != null and currentTotal != ''">
+        #{currentTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="collectedPrincipal != null and collectedPrincipal != ''">
+        #{collectedPrincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="collectingInterest != null and collectingInterest != ''">
+        #{collectingInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="collectingTotal != null and collectingTotal != ''">
+        #{collectingTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="managementFee != null and managementFee != ''">
+        #{managementFee,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="shouldPrincipal != null and shouldPrincipal != ''">
+        #{shouldPrincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableAccount != null and receivableAccount != ''">
+        #{receivableAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="paidPrincipalInterest != null and paidPrincipalInterest != ''">
+        #{paidPrincipalInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="paidInterest != null and paidInterest != ''">
+        #{paidInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.finance.www.pojo.MemberReceivableExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from member_receivable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update member_receivable
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.produitId != null">
+        produit_id = #{record.produitId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountsReceivableDate != null">
+        accounts_receivable_date = #{record.accountsReceivableDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.currentTotal != null">
+        Current_total = #{record.currentTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectedPrincipal != null">
+        collected_principal = #{record.collectedPrincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectingInterest != null">
+        collecting_interest = #{record.collectingInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectingTotal != null">
+        collecting_total = #{record.collectingTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managementFee != null">
+        management_fee = #{record.managementFee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        `state` = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.shouldPrincipal != null">
+        should_principal = #{record.shouldPrincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivableAccount != null">
+        receivable_account = #{record.receivableAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paidPrincipalInterest != null">
+        paid_principal_interest = #{record.paidPrincipalInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paidInterest != null">
+        paid_interest = #{record.paidInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update member_receivable
+    set id = #{record.id,jdbcType=INTEGER},
+      produit_id = #{record.produitId,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      accounts_receivable_date = #{record.accountsReceivableDate,jdbcType=TIMESTAMP},
+      Current_total = #{record.currentTotal,jdbcType=VARCHAR},
+      collected_principal = #{record.collectedPrincipal,jdbcType=VARCHAR},
+      collecting_interest = #{record.collectingInterest,jdbcType=VARCHAR},
+      collecting_total = #{record.collectingTotal,jdbcType=VARCHAR},
+      management_fee = #{record.managementFee,jdbcType=VARCHAR},
+      `state` = #{record.state,jdbcType=INTEGER},
+      should_principal = #{record.shouldPrincipal,jdbcType=VARCHAR},
+      receivable_account = #{record.receivableAccount,jdbcType=VARCHAR},
+      paid_principal_interest = #{record.paidPrincipalInterest,jdbcType=VARCHAR},
+      paid_interest = #{record.paidInterest,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.finance.www.pojo.MemberReceivable">
+    <!--@mbg.generated-->
+    update member_receivable
+    <set>
+      <if test="produitId != null">
+        produit_id = #{produitId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="accountsReceivableDate != null">
+        accounts_receivable_date = #{accountsReceivableDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentTotal != null and currentTotal != ''">
+        Current_total = #{currentTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="collectedPrincipal != null and collectedPrincipal != ''">
+        collected_principal = #{collectedPrincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="collectingInterest != null and collectingInterest != ''">
+        collecting_interest = #{collectingInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="collectingTotal != null and collectingTotal != ''">
+        collecting_total = #{collectingTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="managementFee != null and managementFee != ''">
+        management_fee = #{managementFee,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="shouldPrincipal != null and shouldPrincipal != ''">
+        should_principal = #{shouldPrincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableAccount != null and receivableAccount != ''">
+        receivable_account = #{receivableAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="paidPrincipalInterest != null and paidPrincipalInterest != ''">
+        paid_principal_interest = #{paidPrincipalInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="paidInterest != null and paidInterest != ''">
+        paid_interest = #{paidInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.finance.www.pojo.MemberReceivable">
+    <!--@mbg.generated-->
+    update member_receivable
+    set produit_id = #{produitId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      accounts_receivable_date = #{accountsReceivableDate,jdbcType=TIMESTAMP},
+      Current_total = #{currentTotal,jdbcType=VARCHAR},
+      collected_principal = #{collectedPrincipal,jdbcType=VARCHAR},
+      collecting_interest = #{collectingInterest,jdbcType=VARCHAR},
+      collecting_total = #{collectingTotal,jdbcType=VARCHAR},
+      management_fee = #{managementFee,jdbcType=VARCHAR},
+      `state` = #{state,jdbcType=INTEGER},
+      should_principal = #{shouldPrincipal,jdbcType=VARCHAR},
+      receivable_account = #{receivableAccount,jdbcType=VARCHAR},
+      paid_principal_interest = #{paidPrincipalInterest,jdbcType=VARCHAR},
+      paid_interest = #{paidInterest,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

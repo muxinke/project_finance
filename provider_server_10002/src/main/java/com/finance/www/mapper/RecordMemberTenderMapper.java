@@ -1,15 +1,16 @@
 package com.finance.www.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.finance.www.pojo.RecordMemberTender;
 import com.finance.www.pojo.RecordMemberTenderExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import com.finance.www.pvo.InvestmentVo;
+import lombok.Data;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface RecordMemberTenderMapper {
-    long countByExample(RecordMemberTenderExample example);
+    int countByExample(RecordMemberTenderExample example);
 
     int deleteByExample(RecordMemberTenderExample example);
 
@@ -30,4 +31,5 @@ public interface RecordMemberTenderMapper {
     int updateByPrimaryKeySelective(RecordMemberTender record);
 
     int updateByPrimaryKey(RecordMemberTender record);
+    List<InvestmentVo> findInvestmentBypid(@Param("pid")Integer pid);
 }

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="" lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>申请中的借款</title>
+</head>
+<body>
+<style>
+    .addinterest {
+        background: red none repeat scroll 0 0;
+        color: #fff;
+        display: block;
+        font-style: normal;
+        font-size: 12px;
+        height: 20px;
+        margin-left: 60px;
+        line-height: 20px;
+        position: absolute;
+        text-align: center;
+        margin-top: -47px;
+        width: 28px;
+    }
+
+    .addapr {
+        border: 1px solid red;
+        color: red;
+        display: block;
+        font-size: 14px;
+        font-style: normal;
+        height: 18px;
+        line-height: 18px;
+        margin-left: 88px;
+        margin-top: -47px;
+        position: absolute;
+        text-align: center;
+    }
+    .project_list_title .action12{margin-left:10px;}
+    .project_list_title .action12 img{vertical-align:middle;height:22px;}
+
+</style>
+<table border="0" cellpadding="0" cellspacing="0" class="tableList">
+
+    <tbody><tr>
+        <th>标题</th>
+        <th>金额(元)</th>
+        <th>年利率   </th>
+        <th>期限</th>
+        <th>发布时间</th>
+        <th>状态</th>
+    </tr>
+    <tr th:each="item:${applylist.list}">
+        <td th:text="${item.biaoTi}"></td>
+        <td th:text="${item.money}"></td>
+        <td th:text="${item.lilv}"></td>
+        <td th:text="${item.qixian}"></td>
+        <td th:text="${item.shijian}"></td>
+        <td th:text="${item.state}"></td>
+    </tr>
+
+    </tbody></table>
+
+<style>
+    .m-page {
+        width: 44%;
+        margin: 40px auto 20px auto;
+        height: auto;
+        min-height: 1px;
+        overflow: hidden;
+
+    }
+
+    .m-page ol {
+        width: auto;
+        height: auto;
+        float:left;
+        min-height: 1px;
+        overflow: hidden;
+        border:1px solid #cfcfcf;
+    }
+    .m-page ol a{
+        display:block;
+        float: left;
+        border-left: 1px solid #cfcfcf;
+        width:40px;
+        padding:0px 5px;
+        height: 40px;
+        line-height: 40px;
+        text-align:center;
+        background-color: #f5f5f5;
+        color:#7e7e7e;
+    }
+    .m-page ol a#up,.m-page ol a#next{width:72px;padding:0px 5px;}
+    .m-page ol a span{display:block;}
+    .m-page ol a:first-child{
+        border-left:0px;
+    }
+    .m-page ol a.lf.f-active{
+        background-color:#2ab4fc;
+        color:#fff;
+    }
+</style>
+<div class="f-clear m-page mt2">
+    <ol class="lr f-clear">
+        <a href="#" style="float: left;" id="up">上一页</a>
+        <span th:each="num:${applylist.getNavigatepageNums()}" th:if="${num<4}">
+        <a href="#" class="lf " th:id="${num}" onclick="change(this.id)" ><span id="num" th:text="${num}"></span> </a>
+        </span>
+        <!--<a href="#" class="lf f-active" ><span>2</span> </a>
+
+        <a href="#" class="lf"><span>3</span> </a>
+
+        <a href="#" class="lf f-active"><span>4</span> </a>
+
+        <a href="#" class="lf"><span>5</span> </a>
+
+        <a href="#" class="lf"><span>6</span> </a>-->
+
+        <a href="#" style="float: left;" id="next">下一页</a>
+        <input type="hidden" id="currentPage" value="2">
+        <input type="hidden" id="pageTotal" th:value="${applylist.getTotal()}">
+    </ol>
+</div>
+</body>
+<script>
+    function change(id) {
+        console.log(id);
+        $("#currentPage").val(id);
+    }
+</script>
+</html>
