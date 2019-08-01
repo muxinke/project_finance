@@ -18,9 +18,18 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8080/eureka
+      defaultZone: http://39.107.15.222:8761/eureka
 server:
   port: 10003
 mybatis:
   type-aliases-package: com.finance.www.pojo
   mapper-locations: classpath:mapping/*.xml
+security:
+  oauth2:
+    client:
+      client-id: ffresources1
+      client-secret: ffresources1
+      access-token-uri: http://10.12.159.124:8050/oauth/token
+      user-authorization-uri: http://10.12.159.124:8050/oauth/authorize
+    resource:
+      token-info-uri: http://10.12.159.124:8050/oauth/check_token

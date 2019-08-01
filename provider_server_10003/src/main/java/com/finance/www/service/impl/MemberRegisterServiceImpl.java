@@ -3,6 +3,7 @@ package com.finance.www.service.impl;
 import com.finance.www.mapper.MemberRegisterMapper;
 import com.finance.www.pojo.MemberRegister;
 import com.finance.www.service.MemberRegisterService;
+import com.finance.www.vox.RegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,17 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
     public MemberRegister findById(Integer id) {
         MemberRegister memberRegister = memberRegisterMapper.selectByPrimaryKey(id);
         return memberRegister;
+    }
+
+    @Override
+    public int isHaveMyId(Integer id) {
+        int haveMyId = memberRegisterMapper.isHaveMyId(id);
+        return haveMyId;
+    }
+
+    @Override
+    public int shiming(RegisterVo registerVo) {
+        int shiming = memberRegisterMapper.shiming(registerVo);
+        return shiming;
     }
 }

@@ -74,4 +74,11 @@ public class FundsManageController {
         int updateBalanceById = memberAccountService.updateBalanceById(id, newBalance);
         return updateBalanceById;
     }
+    //查询实名认证表
+    @GetMapping("query")
+    public MemberRegister getMember(@RequestParam("id")int id){
+        MemberRegister memberRegister = memberRegisterService.findById(id);
+        return memberRegister;
+    };
+
 }

@@ -27,6 +27,8 @@ public class TestA {
     private MemberRegisterService memberRegisterService;
     @Autowired
     private BankLimitmoneySerrvice bankLimitmoneySerrvice;
+    @Autowired
+    private MemberRegisterMapper memberRegisterMapper;
     @Test
     public void test(){
         AddBigLoan addBigLoan = new AddBigLoan();
@@ -51,5 +53,10 @@ public class TestA {
         BankLimitmoney bankLimitmoney = bankLimitmoneySerrvice.findByName("中国银行");
         Integer bankId = bankLimitmoney.getBankId();
         System.out.println("bankId = " + bankId);
+    }
+    @Test
+    public void test4(){
+        int haveMyId = memberRegisterMapper.isHaveMyId(3);
+        System.out.println("haveMyId = " + haveMyId);
     }
 }
