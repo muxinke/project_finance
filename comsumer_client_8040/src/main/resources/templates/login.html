@@ -138,7 +138,7 @@
             data: {
                 verificationCode: verifyCode,
                 findphone: phone,
-                findpwd: password
+                findpwd: password,
             },
             dataType: "json",
             success: function (data) {
@@ -322,7 +322,7 @@
         </ul>
     </div>
 </div>
-<!--<input type="hidden" th:value="${url}" id="prePage"/>-->
+<input type="hidden" th:value="${url}" id="prePage"/>
 <div class="login">
     <div class="login_main">
         <div class="login_box">
@@ -356,7 +356,6 @@
                 </div>
                 <div class="loginButton">
                     <a onclick="check();"> 登录 </a>
-                    <a href="/login/github"> github登录 </a>
                 </div>
                 <div class="forgetPwd">
                     <a>忘记密码</a>
