@@ -13,7 +13,7 @@ import java.util.List;
  * @website http://www.bejson.com/java2pojo/
  */
 @Data
-public class UserBean {
+public class JsonRootBean {
 
     private boolean active;
     private long exp;
