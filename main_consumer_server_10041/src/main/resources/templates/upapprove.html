@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="GB18030" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <style>
+        .tree li {
+            list-style-type: none;
+            cursor: pointer;
+        }
+
+        .url {
+            width: 300px;
+            height: 300px;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background: #F4F4F4;
+        }
+
+        table tbody td:nth-child(even) {
+            color: #C00;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div><a class="navbar-brand" style="font-size:32px;" href="#">信贷平台 - 资质认证审核</a></div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li style="padding-top:8px;">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-success dropdown-toggle"
+                                data-toggle="dropdown">
+                            <i class="glyphicon glyphicon-user"></i> 张三 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#"><i class="glyphicon glyphicon-cog"></i> 个人设置</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
+                            <li class="divider"></li>
+                            <li><a href="index.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li style="margin-left:10px;padding-top:8px;">
+                    <button type="button" class="btn btn-default btn-danger">
+                        <span class="glyphicon glyphicon-question-sign"></span> 帮助
+                    </button>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search..."/>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <div class="tree">
+                <ul style="padding-left:0px;" class="list-group">
+                    <li class="list-group-item tree-closed">
+                        <a href="main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a>
+                    </li>
+                    <li class="list-group-item tree-closed">
+                        <span><i class="glyphicon glyphicon glyphicon-tasks"></i> 权限管理 <span class="badge"
+                                                                                             style="float:right">3</span></span>
+                        <ul style="margin-top:10px;display:none;">
+                            <li style="height:30px;">
+                                <a href="user.html"><i class="glyphicon glyphicon-user"></i> 用户维护</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="role.html"><i class="glyphicon glyphicon-king"></i> 角色维护</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="permission.html"><i class="glyphicon glyphicon-lock"></i> 许可维护</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">
+                        <span><i class="glyphicon glyphicon-ok"></i> 业务审核 <span class="badge"
+                                                                                style="float:right">3</span></span>
+                        <ul style="margin-top:10px;">
+                            <li style="height:30px;">
+                                <a href="auth_cert.html" style="color:red;"><i class="glyphicon glyphicon-check"></i>
+                                    实名认证审核</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="auth_adv.html"><i class="glyphicon glyphicon-check"></i> 广告审核</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="auth_project.html"><i class="glyphicon glyphicon-check"></i> 项目审核</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item tree-closed">
+                        <span><i class="glyphicon glyphicon-th-large"></i> 业务管理 <span class="badge" style="float:right">7</span></span>
+                        <ul style="margin-top:10px;display:none;">
+                            <li style="height:30px;">
+                                <a href="cert.html"><i class="glyphicon glyphicon-picture"></i> 资质维护</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="type.html"><i class="glyphicon glyphicon-equalizer"></i> 分类管理</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="process.html"><i class="glyphicon glyphicon-random"></i> 流程管理</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="advertisement.html"><i class="glyphicon glyphicon-hdd"></i> 广告管理</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="message.html"><i class="glyphicon glyphicon-comment"></i> 消息模板</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="project_type.html"><i class="glyphicon glyphicon-list"></i> 项目分类</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="tag.html"><i class="glyphicon glyphicon-tags"></i> 项目标签</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item tree-closed">
+                        <a href="param.html"><i class="glyphicon glyphicon-list-alt"></i> 参数管理</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 认证信息详情</h3>
+                </div>
+                <div class="panel-body">
+                    <h5>用户认证详情</h5>
+                    <hr style="clear:both;"/>
+                    <div class="table-responsive" th:each="bandmvo:${bandmvo}">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">bid</label>
+                            <input type="text" class="form-control" name="bid" readonly="readonly"
+                                   id="exampleInputPassword1" th:value="${bandmvo.getId()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">会员id</label>
+                            <input type="text" class="form-control" name="memberId" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getMemberId()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">申请金额</label>
+                            <input type="text" class="form-control" name="amount" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getAmount()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">资金用途</label>
+                            <input type="text" class="form-control" name="xingzhi" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getXingzhi()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">贷款期限</label>
+                            <input type="text" class="form-control" name="howlong" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getHowlong()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">还款方式</label>
+                            <input type="text" class="form-control" name="paymethod" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getPaymethod()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">身份证正面</label>
+                            <input type="text" class="form-control" name="idcardone" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getIdcardone()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">身份证背面</label>
+                            <input type="text" class="form-control" name="idcardtwo" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getIdcardtwo()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">银行卡</label>
+                            <input type="text" class="form-control" name="bankcard" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getBankcard()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">申请时间</label>
+                            <input type="text" class="form-control" name="createTime" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getCreateTime()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">申请状态</label>
+                            <input type="text" class="form-control" name="state" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getState()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">真实姓名</label>
+                            <input type="text" class="form-control" name="username" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getUsername()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">联系电话</label>
+                            <input type="text" class="form-control" name="mobile" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getMobile()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">电子邮箱</label>
+                            <input type="text" class="form-control" name="email" readonly="readonly"
+                                   id="exampleInputPassword2" th:value="${bandmvo.getEmail()}"/>
+                        </div>
+
+                        <div class="form-group" th:each="bigImgurl:${bigImgurl}">
+                            <label for="exampleInputPassword1">审核资料</label>
+                            <br/>
+                            <img class="url" th:src="@{${bigImgurl.getImgUrl()}}"/>
+
+                        </div>
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 审批意见详情</h3>
+                        </div>
+                        </br>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">信用等级</label>
+                            <input type="text" class="form-control" name="produitsOrdre" id="exampleInputPassword2"
+                                   placeholder="请输入信用等级Integer">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">产品标号</label>
+                            <input type="text" class="form-control" name="produitMarque" id="exampleInputPassword2"
+                                   placeholder="请输入产品标号Integer">
+                        </div>
+                        <!--<div class="form-group">
+                            <label for="exampleInputPassword1">还款期限</label>
+                            <input type="text" class="form-control" name="remboursementsExpires"
+                                   id="exampleInputPassword2" placeholder="请输入还款期限Integer">
+                        </div>-->
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">项目状态</label>
+                            <input type="text" class="form-control" name="isCondition" id="exampleInputPassword2"
+                                   placeholder="请输入项目状态Integer">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">主体性质</label>
+                            <input type="text" class="form-control" name="natureDuSujet" id="exampleInputPassword2"
+                                   placeholder="请输入主体性质String">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">所属行业</label>
+                            <input type="text" class="form-control" name="secteurActivite" id="exampleInputPassword2"
+                                   placeholder="请输入所属行业String">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">年收入情况</label>
+                            <input type="text" class="form-control" name="revenuAnnuel" id="exampleInputPassword2"
+                                   placeholder="请输入年收入情况String">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">征信结果</label>
+                            <input type="text" class="form-control" name="creditFruit" id="exampleInputPassword2"
+                                   placeholder="请输入征信结果String">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">负债情况</label>
+                            <input type="text" class="form-control" name="totalEngagements" id="exampleInputPassword2"
+                                   placeholder="请输入其他借款情况String">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">其他借款情况</label>
+                            <input type="text" class="form-control" name="autresEmprunts" id="exampleInputPassword2"
+                                   placeholder="请输入其他借款情况String">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">年利率</label>
+                            <input type="text" class="form-control" name="yearInterestRate" id="exampleInputPassword2"
+                                   placeholder="请输入年利率String">
+                        </div>
+                        <!--<div class="form-group">
+                            <label for="exampleInputPassword1">借款标题</label>
+                            <input type="text" class="form-control" name="borrowingTitle" id="exampleInputPassword2"
+                                   placeholder="请输入借款标题String">
+                        </div>-->
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 债权人信息录入</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">债务人详细信息</label>
+                            <input type="text" class="form-control" name="debtorParticulars" id="exampleInputPassword2"
+                                   placeholder="请输入债务人详细信息String">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">担保人详情</label>
+                            <input type="text" class="form-control" name="guarantorDetails" id="exampleInputPassword2"
+                                   placeholder="请输入担保人详情String">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">贷款用途</label>
+                            <input type="text" class="form-control" name="loansUsed" id="exampleInputPassword2"
+                                   placeholder="请输入贷款用途String">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">还款来源</label>
+                            <input type="text" class="form-control" name="sourceRepayment" id="exampleInputPassword2"
+                                   placeholder="请输入还款来源String">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">终审意见</label>
+                            <input type="text" class="form-control" name="finalOpinion" id="exampleInputPassword2"
+                                   placeholder="请输入终审意见String">
+                        </div>
+                        </br>
+                        <input type="hidden" name="id"/>
+                        <button onclick="fanhui()" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i>返回
+                        </button>
+                        <button onclick="tijiao()" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i>通过
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="script/docs.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".list-group-item").click(function () {
+            if ($(this).find("ul")) {
+                $(this).toggleClass("tree-closed");
+                if ($(this).hasClass("tree-closed")) {
+                    $("ul", this).hide("fast");
+                } else {
+                    $("ul", this).show("fast");
+                }
+            }
+        });
+
+
+    });
+    function fanhui() {
+        window.location.href = "auth_cert";
+    }
+    function tijiao() {
+        var url = [];
+        var str;
+        $(".url").each(function () {
+            url.push($(this).attr("src"));
+            str = url.join(",");
+
+        });
+
+        var bid = $("[name='bid']").val();
+        var memberId = $("[name='memberId']").val();
+        var amount = $("[name='amount']").val();
+        var xingzhi = $("[name='xingzhi']").val();
+        var howlong = $("[name='howlong']").val();
+        var paymethod = $("[name='paymethod']").val();
+        var idcardone = $("[name='idcardone']").val();
+        var idcardtwo = $("[name='idcardtwo']").val();
+        var bankcard = $("[name='bankcard']").val();
+        var createTime = $("[name='createTime']").val();
+        var state = $("[name='state']").val();
+        var username = $("[name='username']").val();
+        var mobile = $("[name='mobile']").val();
+        var email = $("[name='email']").val();
+        //--------------------审批意见详情-----------------------
+        var produitsOrdre = $("[name='produitsOrdre']").val();
+        var produitMarque = $("[name='produitMarque']").val();
+        var isCondition = $("[name='isCondition']").val();
+        var natureDuSujet = $("[name='natureDuSujet']").val();
+        var secteurActivite = $("[name='secteurActivite']").val();
+        var revenuAnnuel = $("[name='revenuAnnuel']").val();
+        var creditFruit = $("[name='creditFruit']").val();
+        var totalEngagements = $("[name='totalEngagements']").val();
+        var autresEmprunts = $("[name='autresEmprunts']").val();
+        var yearInterestRate = $("[name='yearInterestRate']").val();
+        //------------------债务人信息-----------------
+        var debtorParticulars = $("[name='debtorParticulars']").val();
+        var guarantorDetails = $("[name='guarantorDetails']").val();
+        var loansUsed = $("[name='loansUsed']").val();
+        var sourceRepayment = $("[name='sourceRepayment']").val();
+        var finalOpinion = $("[name='finalOpinion']").val();
+
+
+        $.ajax({
+            type: "POST",
+            url: "/upappresult",
+            data: {
+                str: str,
+                bid: bid,
+                memberId: memberId,
+                amount: amount,
+                xingzhi: xingzhi,
+                howlong: howlong,
+                paymethod: paymethod,
+                idcardone: idcardone,
+                idcardtwo: idcardtwo,
+                bankcard: bankcard,
+                createTime: createTime,
+                state: state,
+                username: username,
+                mobile: mobile,
+                email: email,
+                //--------------------审批意见详情-----------------------
+                produitsOrdre: produitsOrdre,
+                produitMarque: produitMarque,
+                isCondition: isCondition,
+                natureDuSujet: natureDuSujet,
+                secteurActivite: secteurActivite,
+                revenuAnnuel: revenuAnnuel,
+                creditFruit: creditFruit,
+                totalEngagements: totalEngagements,
+                autresEmprunts: autresEmprunts,
+                yearInterestRate: yearInterestRate,
+                //------------------债务人信息-----------------
+                debtorParticulars: debtorParticulars,
+                guarantorDetails: guarantorDetails,
+                loansUsed: loansUsed,
+                sourceRepayment: sourceRepayment,
+                finalOpinion: finalOpinion
+            },
+            dataType: "json",
+            success: function (data) {
+                if(data==1){
+                    alert("审批通过！")
+                    window.location.href="auth_cert";
+                }
+            }
+
+        });
+    }
+</script>
+</body>
+</html>
