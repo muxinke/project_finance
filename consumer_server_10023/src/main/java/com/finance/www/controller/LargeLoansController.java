@@ -1,10 +1,8 @@
 package com.finance.www.controller;
 
+import com.finance.www.service.GetUserIdService;
 import com.finance.www.service.LoanService;
-import com.finance.www.utils.AliyunOssUtils;
-import com.finance.www.utils.DeleteFileUtil;
-import com.finance.www.utils.DengEUtils;
-import com.finance.www.utils.XianXiHouBenUtils;
+import com.finance.www.utils.*;
 import com.finance.www.vox.AddBigLoan;
 import com.finance.www.vox.DengEMethod;
 import com.finance.www.vox.XianXiHouBenMethod;
@@ -15,9 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.*;
 
 /**
@@ -27,6 +29,8 @@ import java.util.*;
 public class LargeLoansController {
     @Autowired
     private LoanService loanService;
+    @Autowired
+    private GetUserIdService getUserIdService;
     @GetMapping("/wenjuan")
     public String wenjuan(){
         return "wenjuan";
@@ -35,10 +39,16 @@ public class LargeLoansController {
     public String daexx(@RequestParam("age")int age, @RequestParam("work")int work,
                         @RequestParam("income")int income, @RequestParam("nomoney")int nomoney,
                         @RequestParam("guarantee")int guarantee, @RequestParam("debt")int debt,
-                        @RequestParam("loantime")int loantime, Model model){
+                        @RequestParam("loantime")int loantime, Model model, HttpServletResponse response) throws IOException {
         int sum=age+work+income+nomoney+guarantee+debt+loantime;//7-28
         //查询用户id
-        Integer uid=2;
+        /**通过上下文得到token，写入cookie*/
+        String tokenValue = GetDetailToken.getDetailToken();
+        Cookie cookie = new Cookie("token",tokenValue);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        /**获取用户id*/
+        Integer id = GetUserBean.getUserBean(tokenValue);
         long edu=0;
         //根据用户id修改其贷款额度
         if(sum<10){//贷款额度为10万
@@ -51,7 +61,7 @@ public class LargeLoansController {
             edu=10000000;
         }
         model.addAttribute("edu",edu);
-        loanService.dae(uid,edu);
+        loanService.dae(id,edu);
         return "dae";
     }
     @GetMapping("/dae")
@@ -63,7 +73,7 @@ public class LargeLoansController {
     @PostMapping("/dae2")
     public String dae2(@RequestParam("amount")long amount,@RequestParam("xingzhi")Integer xingzhi,
                        @RequestParam("qixian")Integer qixian,@RequestParam("paymethod")Integer paymethod,
-                       Model model){
+                       Model model,HttpServletRequest request){
         System.out.println("amount = " + amount);
         System.out.println("use = " + xingzhi);
         System.out.println("qixian = " + qixian);
@@ -77,12 +87,19 @@ public class LargeLoansController {
     }
     @PostMapping("/upload")
     @ResponseBody
-    public String uploadBlog(MultipartHttpServletRequest request,
-                             AddBigLoan addBigLoan){
+    public String uploadBlog(MultipartHttpServletRequest request,HttpServletResponse response,
+                             AddBigLoan addBigLoan,HttpServletRequest request1) throws IOException {
         // System.out.println("addBigLoan = " +addBigLoan);
         ArrayList<AddBigLoan> list = new ArrayList<>();
         //查询当前用户id
-        int memberId=2;
+        /**通过上下文得到token，写入cookie*/
+        String tokenValue = GetDetailToken.getDetailToken();
+        Cookie cookie = new Cookie("token",tokenValue);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        /**获取用户id*/
+        Integer id = GetUserBean.getUserBean(tokenValue);
+        //int memberId=2;
         //默认state为0---未审核
         //addBigLoan.setState(0);
         /**********************************************************/
@@ -109,7 +126,7 @@ public class LargeLoansController {
                         System.out.println("第三次");
                         /**构造对象传到提供者*/
                         AddBigLoan loan = new AddBigLoan();
-                        loan.setMemberId(memberId);
+                        loan.setMemberId(id);
                         loan.setXingzhi(addBigLoan.getXingzhi());
                         loan.setHowlong(addBigLoan.getHowlong());
                         loan.setPaymethod(addBigLoan.getPaymethod());
@@ -163,7 +180,7 @@ public class LargeLoansController {
     @PostMapping("/query1")
     @ResponseBody
     public XianXiHouBenMethod query1(@RequestParam("borrow")String money,
-                         @RequestParam("time")int time){
+                         @RequestParam("time")int time,HttpServletRequest request){
         XianXiHouBenMethod xianXiHouBen = XianXiHouBenUtils.getXianXiHouBen(money, time, 0.012f);
         return xianXiHouBen;
     }
@@ -171,7 +188,7 @@ public class LargeLoansController {
     @PostMapping("/query2")
     @ResponseBody
     public DengEMethod query2(@RequestParam("borrow")String money,
-                         @RequestParam("time")int time){
+                         @RequestParam("time")int time,HttpServletRequest request){
         DengEMethod dengE = DengEUtils.getDengE(money, time, 0.012f);
         return dengE;
     }
@@ -179,7 +196,7 @@ public class LargeLoansController {
     @PostMapping("/query3")
     @ResponseBody
     public DengEMethod query3(@RequestParam("borrow")String money,
-                              @RequestParam("time")int time){
+                              @RequestParam("time")int time,HttpServletRequest request){
         DengEMethod dengE = DengEUtils.getDengE(money, time, 0.023f);
         return dengE;
     }

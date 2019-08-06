@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta http-equiv="Cache-Control" content="no-transform" />
 	<meta http-equiv="Cache-Control" content="no-siteapp" />
 	<meta http-equiv="pragma" content="no-cache">
@@ -31,7 +32,9 @@
 	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/swiper-3.4.2.min.css" />
 	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/mall.css" />
 	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
-
+	<link rel="stylesheet" href="css/layui.css" media="all">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 
 
@@ -49,8 +52,9 @@
             var type = $('#type').val();
             var beginTime = $('#beginTime').val();
             var endTime = $('#endTime').val();
-            $("#pageServlet").val("investmentNew/tradeLogList.action?accountLog.type="+type+"&accountLog.beginTime="+beginTime+"&accountLog.endTime="+endTime+"");
-            $(".hyrc").load("investmentNew/tradeLogList.action?accountLog.type="+type+"&accountLog.beginTime="+beginTime+"&accountLog.endTime="+endTime+"");
+
+          $("#pageServlet").val("investmentNew/tradeLogList.action?accountLog.type="+type+"&accountLog.beginTime="+beginTime+"&accountLog.endTime="+endTime+"");
+            $(".hyrc").load("investment New/tradeLogList.action?accountLog.type="+type+"&accountLog.beginTime="+beginTime+"&accountLog.endTime="+endTime+"");
         }
         //导出EXCEL
         var ecxel = function(selected){
@@ -419,7 +423,7 @@
 						<option value="late_collection">逾期收入</option>
 						<option value="recharge_reward">充值奖励金额</option>
 						<option value="cash_frost">提现冻结</option>
-						<option value="recharge_false">提现失败</option>
+				-		<option value="recharge_false">提现失败</option>
 						<option value="borrow_fee_forst">发标费用冻结</option>
 						<option value="invest_success">投资成功</option>
 						<option value="borrow_frost">解冻借款担保金</option>
@@ -446,23 +450,21 @@
 
 					</select>
 					</li>
-					<li>起止时间</li>
-					<li class="start_time date date1" id="from"><!-- <span
-							class="iconfont icon-rili"></span> --> <tr>
-						<td class="tdLabel"></td>
-						<td
-						><input type="text" name="accountLog.beginTime" value="" id="beginTime" class="laydate-icon" onclick="laydate({max:laydate.now()})"/></td>
-					</tr>
-
+					<li>起止时间 &nbsp;&nbsp;</li>
+					<li>
+						<div class="layui-form">
+							<div class="layui-form-item">
+								<div class="layui-inline">
+									<input type="text" name="accountLog.beginTime" class="layui-input test-item" id="beginTime" >
+								</div>
+								<div class="layui-inline">
+									<input type="text" name="accountLog.endTime" class="layui-input test-item"  id="endTime" >
+								</div>
+							</div>
+						</div>
 					</li>
-					<li class="end_time date" id="to"><!-- <span
-							class="iconfont icon-rili"></span> --> <tr>
-						<td class="tdLabel"></td>
-						<td
-						><input type="text" name="accountLog.endTime" value="" id="endTime" class="laydate-icon" onclick="laydate({max:laydate.now()})"/></td>
-					</tr>
-					</li>
-					<li><a href="javascript:void(0);" onclick="searchTrade();">查询</a>
+					<li>
+						<a href="javascript:void(0);" id="chaxun" onclick="searchTrade();">查询</a>
 					</li>
 				</ul>
 				<div class="application fr">
@@ -483,7 +485,25 @@
 	</div>
 
 </div>
+<script src="http://39.107.15.222:8081/src/layui/layui.js"></script>
+<script>
+    layui.use(['element','form','slider','layer','laydate','upload'], function() {
+        var $ = layui.jquery;
+        var element = layui.element;
+        var form = layui.form;
+        var slider = layui.slider;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+        var upload = layui.upload;
+        lay('.test-item').each(function(){
+            laydate.render({
+                elem: this
+                ,trigger: 'click'
+            });
+        });
+    });
 
+</script>
 <!-- 底部 -->
 
 <base >
