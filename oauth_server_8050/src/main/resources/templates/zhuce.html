@@ -166,7 +166,7 @@
         </div>
         <ul class="navitem">
             <li class="active">
-                <a href="index.html">首页</a>
+                <a href="/sso/shouye">首页</a>
             </li>
 
             <li>
@@ -201,8 +201,7 @@
                 </ol>
             </li>
             <li>
-                <a href="dae.html"
-                >我要借款
+                <a href="/sso/dae">我要借款
                     <i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('theme/computer/img/hot2.gif') no-repeat"></i>
 
                 </a>
@@ -210,11 +209,11 @@
                 <ol class="m-list">
 
                     <li>
-                        <a href="xiaoe.html">小额借款</a>
+                        <a href="/sso/xiaoe">小额借款</a>
                     </li>
 
                     <li>
-                        <a href="dae.html"> 大额借款</a>
+                        <a href="/sso/dae"> 大额借款</a>
                     </li>
                 </ol>
             </li>
@@ -266,7 +265,7 @@
             </ul>
         </div>
         <div class="reLogin">已有账号?
-            <a href="login.html">立即登录</a>
+            <a href="/login">立即登录</a>
         </div>
         <div class="register_box_content">
             <form>
@@ -583,7 +582,7 @@
             success: function (data) {
                 if (data.status == "SUCCESS") {
                     // 重定向首页
-                    window.location.href = "http://10.12.159.120:10022/home";
+                    window.location.href = "http://10.12.159.120:10022/index";
                 } else {
                     layer.alert(data.message, {icon: 0});
                 }

@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="keywords">
+	<title>投资产品-轻松贷-一心一意，普惠金融</title>
+	<base >
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="keywords" content="互联网金融、轻松贷">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="description" content="高效、精准、安全的P2P网络借贷平台">
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+	<link rel="shortcut icon" href="favicon.ico"></link>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/login.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
+	<script  type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery-1.8.2.min.js"></script>
+	<link href="http://39.107.15.222:8081/src/theme/validationEngine/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine-zh_CN.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery.form.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/common.js"></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/main.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/layer/layer.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.circliful.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/scroll.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/person_style.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/personal.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/swiper-3.4.2.min.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/mall.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
+
+
+
+
+
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/xxpl/new/css/leader.css" />
+
+</head>
+<style>
+
+</style>
+
+<body>
+
+<base >
+<script type="text/javascript">
+    $.get("/user", function (data) {
+		/* $("#user").html(data.name);
+		 $(".unauthenticated").hide();
+		 $(".authenticated").show()
+		 */
+
+        $('#register').before("<li><span class='nh'>您好，</span> </li>");
+        $('#register a').text("" + data.name + "");
+        $('#register a').attr("href", "userNew/index.go");
+        $('#login').remove();
+        $('#register').after("<li><a href='/tuichu' class=\"btn btn-primary\" >退出</a></li>");
+        $("#wealth").text('开启您的财富之旅');
+        $("#wealth").attr("href", "/reCash/toAdd.go");
+        $("#bannerlogin").remove();
+    });
+</script>
+<div class=" big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+					<!--跳转登陆界面
+                        <a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="/login">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+					<!--注册界面
+                        <a href="register/toRegister.go">快速注册</a>-->
+					<a href="/zhuce">快速注册</a>
+				</li>
+
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+					<a href="/guide">使用指南</a></li>
+
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+					<a href="/problem">常见问题</a></li>
+
+				<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+					<a style="color: #faa039" href="guarantee.html" >安全保障</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li>
+				<a href="/index">首页</a>
+			</li>
+
+			<li >
+				<a href="/list"
+				>我要投资
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="/list"
+						>投资列表
+						</a>
+					</li>
+
+					<li>
+						<a href="/xiangdao"
+						>投资向导
+						</a>
+					</li>
+
+				</ol>
+			</li>
+
+			<li class="active">
+				<a href="/msgpilu"
+				>信息披露
+				</a>
+
+				<ol class="m-list">
+
+				</ol>
+			</li>
+
+			<li >
+				<a href="/dae"
+				>我要借款
+					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="/xiaoe">小额借款</a>
+					</li>
+
+					<li>
+						<a href="/dae"> 大额借款</a>
+					</li>
+				</ol>
+			</li>
+
+			<li >
+				<a href="/aboutus"> 关于我们</a>
+				<ol class="m-list">
+
+					<li>
+						<a href="/aboutus"> 企业简介</a>
+					</li>
+
+					<li>
+						<a href="#"> 公司资质</a>
+					</li>
+
+					<li>
+						<a href="#"> 合作伙伴</a>
+					</li>
+
+					<li>
+						<a href="#"> 联系我们</a>
+					</li>
+
+					<li>
+						<a href="#"> 平台公告</a>
+					</li>
+
+					<li>
+						<a href="#"> 招贤纳士</a>
+					</li>
+
+				</ol>
+			</li>
+
+		</ul>
+	</div>
+</div>
+<style>
+	.w12002{width:1200px;margin:0px auto;}
+</style>
+<div class="banner">
+	<div class="bannerImg">
+		<div class="bigBox">
+			<div class="bannerLeft"></div>
+			<div class="bannerRight"></div>
+			<div class="right"></div>
+			<div class="circle"></div>
+			<div class="ring1">
+				<img src="http://39.107.15.222:8081/src/theme/xxpl/new/img/ring1.png" alt="" />
+			</div>
+			<div class="ring2">
+				<img src="http://39.107.15.222:8081/src/theme/xxpl/new/img/ring2.png" alt="" />
+			</div>
+			<div class="ring3">
+				<img src="http://39.107.15.222:8081/src/theme/xxpl/new/img/ring3.png" alt="" />
+			</div>
+			<div class="bannerText">
+				<img src="http://39.107.15.222:8081/src/theme/xxpl/new/img/opertionDaysText.png" alt="" />
+				<div class="operation_days"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="navbar">
+	<ul class="clearfix w12002" >
+		<li>
+			<a href="/msgpilu">企业信息<i></i></a>
+			<ol class="navBarChild">
+				<li>
+					<a href="/msgpilu">企业信息</a>
+				</li>
+				<li>
+					<!--<a href="msgpilugongsi.html">--><a href="#">公司治理</a>
+				</li>
+				<li>
+					<!--<a href="jxyh.html">--><a href="#">银行存管</a>
+				</li>
+				<li>
+					<!--<a href="msgpilushenhe.html">--><a href="#">审核信息</a>
+				</li>
+				<li>
+					<!--<a href="msgpilushixiang.html">--><a href="#">重大事项</a>
+				</li>
+				<li>
+					<!--<a href="msgpilucnshu.html">--><a href="#">法人承诺书</a>
+				</li>
+
+			</ol>
+		</li>
+		<li>
+			<a href="/yyshuju">运营数据<i></i></a>
+			<ol class="navBarChild">
+				<li>
+					<a href="/yyshuju">
+						实时数据
+					</a>
+				</li>
+				<li>
+					<!--<a href="yybaogao.html">--><a href="#">
+					运营报告
+				</a>
+				</li>
+			</ol>
+		</li>
+		<li>
+			<a href="/chanpin">投资产品<i></i></a>
+			<ol class="navBarChild">
+				<li>
+					<!--<a href="chanpin.html">--><a href="#">
+					产品介绍
+				</a>
+				</li>
+				<li>
+					<!--<a href="chanpinzifei.html">--><a href="#">
+					资费标准
+				</a>
+				</li>
+				<li>
+					<!--<a href="chanpinzhuce.html">--><a href="#">
+					注册协议
+				</a>
+				</li>
+			</ol>
+		</li>
+		<li>
+			<a href="/guarantee">安全保障</a>
+		</li>
+		<li>
+			<a href="/fagui">投资者教育<i></i></a>
+			<ol class="navBarChild">
+
+				<li>
+					<!--<a href="fagui.html">--><a href="#">
+					风险提示
+				</a>
+				</li>
+				<li>
+					<!--<a href="faguijinling.html">--><a href="#">
+					十三条禁令
+				</a>
+				</li>
+				<li>
+					<!--<a href="faguixingwei.html">--><a href="#">
+					出借人禁止性行为
+				</a>
+				</li>
+			</ol>
+		</li>
+	</ul>
+</div>
+
+<div class="w1200" style="margin-top:40px;">
+	<ul class="subNav clearfix">
+		<li class="cur"> <span>投标保证金</span></li>
+		<li><span>轻松普惠</span></li>
+		<!-- <li><span>余额理财</span></li> -->
+		<li><span>供应链金融</span></li>
+	</ul>
+	<div class="acticle">
+		<div class="info infoShow">
+			<p>
+				轻松贷“投标保证金”产品是以陕西省及全国范围内优质的建工企业为核心，借款用途仅限于企业缴纳投标保证金。投标保证金是指在招标投标活动中，投标人随投标文件一同递交给招标人的一定形式、一定金额的投标责任担保。其主要保证投标人在递交投标文件后不得撤销投标文件，中标后不得无正当理由不与招标人订立合同，在签订合同时不得向招标人提出附加条件、或者不按照招标文件要求提交履约保证金。
+			</p>
+			<p>
+				该产品由借款企业法人代表及配偶、公司所有股东（实际控制人）及配偶签署无限连带责任担保，借款用途必须为专款专用。
+			</p>
+			<h3>
+				准入条件
+			</h3>
+			<ul>
+				<li>
+					1、借款主体必须为合法注册的独立法人资格企业，且证件齐全；连续两年无不良银行记录，近一年无不良商业信用记录，无法院被执行记录
+				</li>
+				<li>
+					2、企业有固定的生产经营场所，具有5年以上的连续经营记录且股东和实际控制人具有一定行业从业经验;
+				</li>
+				<li>
+					3、企业资质以壹级为主，优质企业可放宽至贰级；近三年每年主营业务收入都在5000万人民币以上，且有盈利；
+				</li>
+			</ul>
+			<h3>
+				风控模型
+			</h3>
+			<h4>
+				五道缜密审核 安全固若金汤
+			</h4>
+			<ul>
+				<li>
+					1、实地考察：线下实地考察借款企业；
+				</li>
+				<li>
+					2、资料审核：审核包括银行流水、资产情况等十余项必备材料；
+				</li>
+				<li>
+					3、背景调查：对借款人背景、实际控制人、其他股东背景信息详尽调查；
+				</li>
+				<li>
+					4、还款能力：结合资料审查和财务数据，分析综合评估其还款能力；
+				</li>
+				<li>
+					5、二次核查：由本平台自有风控团队对每个申请项目进行二次严格把关。
+				</li>
+			</ul>
+
+			<h3>
+				贷后管理
+			</h3>
+			<h4>
+				健全的贷后措施 充分保障投资者利益
+			</h4>
+			<ul>
+				<li>
+					1、资金监控<br> 贷款发放后，经办信贷经理要求借款企业缴纳投标保证金后，将转账电子凭证上传至网站供投资者查阅；
+				</li>
+				<li>
+					2、贷中检查<br> 风控人员通过借款企业的银行流水进行分析，检查贷款资金使用是否符合合同约定的专款专用；
+				</li>
+				<li>
+					3、贷后管理<br> 借款企业缴纳投标保证金后，风控人员通过投标的当地政府公共资源交易网进行不间断查询，通过中标公示名单审查企业是否中标。
+				</li>
+			</ul>
+		</div>
+		<div class="info">
+			<p>
+				轻松贷“轻松普惠”产品依托小额分散的原则，通过车辆抵质押、房产抵押、担保等信贷产品模式，以六道风控审核系统为重要风控手段，引入多方数据源交叉验证，同时必须提供足值的抵押物或相应的担保机制作为保障。
+			</p>
+			<h3>
+				贷后管理
+			</h3>
+			<ul>
+				<li>
+					1、资金监控<br> 贷款发放后，经办客户经理负责对贷款用途实行监控；
+				</li>
+				<li>
+					2、贷中检查 <br> 风控人员负责对抵（质）押物进行不间断检查，确保抵（质）押物安全无风险；
+				</li>
+				<li>
+					3、贷后管理<br> 经办客户经理负责跟踪检查，对影响借款人还款能力的重大变化、贷款用途的真实性等情况应及时上报，出现恶意逾期等情况立即移交催收部门进行上门催收，如催收效果不明显或借款人确实无还款来源，我司就依法对抵（质）押物进行表现处理。
+				</li>
+			</ul>
+		</div>
+
+		<div class="info">
+			<p>
+				轻松贷“供应链金融”产品是以围绕陕西省及全国范围内优质的建工企业为核心，借款企业均为核心企业上下游企业，核心企业为借款企业提供担保，借款用途专款专用。
+			</p>
+			<p>
+				该产品由借款企业法人代表及配偶、公司所有股东（实际控制人）及配偶签署无限连带责任担保；同时核心企业法人代表及配偶、公司所有股东（实际控制人）及配偶签署无限连带责任担保。
+			</p>
+			<h3>
+				核心企业准入条件
+			</h3>
+			<ul>
+				<li>
+					1、借款主体必须为合法注册的独立法人资格企业，且证件齐全；连续两年无不良银行记录，近一年无不良商业信用记录，无法院被执行记录。
+				</li>
+				<li>
+					2、企业有固定的生产经营场所，具有5年以上的连续经营记录且股东和实际控制人具有一定行业从业经验;
+				</li>
+				<li>
+					3、企业资质以壹级为主，近三年每年主营业务收入都在5000万人民币以上，且有盈利；
+				</li>
+			</ul>
+			<h3>
+				风控模型
+			</h3>
+			<h4>
+				五道缜密审核 安全固若金汤
+			</h4>
+			<ul>
+				<li>
+					1、实地考察：线下实地考察借款企业；
+				</li>
+				<li>
+					2、资料审核：审核包括银行流水、资产情况等十余项必备材料；
+				</li>
+				<li>
+					3、背景调查：对借款人背景、实际控制人、其他股东背景信息详尽调查；
+				</li>
+				<li>
+					4、还款能力：结合资料审查和财务数据，分析综合评估其还款能力；
+				</li>
+				<li>
+					5、二次核查：由本平台自有风控团队对每个申请项目进行二次严格把关。
+				</li>
+			</ul>
+
+			<h3>
+				贷后管理
+			</h3>
+			<h4>
+				健全的贷后措施 充分保障投资者利益
+			</h4>
+			<ul>
+				<li>
+					1、资金监控<br> 贷款发放后，经办客户经理负责对贷款用途实行监控；
+				</li>
+				<li>
+					2、贷中检查<br>风控人员通过借款企业的银行流水进行分析，检查贷款资金使用是否符合合同约定的专款专用；
+				</li>
+				<li>
+					3、贷后管理<br> 经办客户经理及风控经理负责跟踪检查，对于借款企业及核心企业进行动态跟踪，了解企业经营状况。
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="Corporate">
+		<img src="http://39.107.15.222:8081/src/theme/xxpl/new/img/corporate.png" alt="" />
+	</div>
+</div>
+
+<!-- 底部 -->
+
+<base >
+<div class="bottom">
+	<div class="w1200">
+		<div class="bottom_1">
+			<ul>
+				<li><a href="/aboutus">关于我们</a></li>
+				<li><a href="#">联系我们</a></li>
+				<li><a href="/guarantee">保障体系</a></li>
+				<li><a href="#">平台公告</a></li>
+				<li><a href="#">招贤纳士</a></li>
+				<li><a href="/problem">常见问题</a></li>
+				<li><a href="/guide">使用指南</a></li>
+				<li><a href="#">手机客户端</a></li>
+			</ul>
+		</div>
+		<div class="bottom_middle clearfix">
+			<div class="bottom_2">
+				<p>电话: 0791-83858285</p>
+				<p>邮箱: service@kkd2p.com</p>
+				<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+			</div>
+
+			<div class="bottom_4">
+
+				<h3>400-8763-118</h3>
+
+
+				<div class="serviceTime clearfix">
+					<p>服务时间：周一至周五9：00-21：00</p>
+					<p>
+						网贷有风险，出借需谨慎
+					</p>
+					<p>
+						陕西省互联网金融协会:400-9158-227
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="bottom_5 clearfix">
+			<ul>
+
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+
+				<li>© 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+
+			</ul>
+		</div>
+		<div class="bottom_6">
+			<ul>
+				<li>友情链接:</li>
+
+				<li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+
+				<li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+
+				<li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+
+
+
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/xxpl/new/js/dataStyle.js" ></script>
+<script>
+    $(function() {
+        var flag = true;
+        $(".subNav li").on("click", function() {
+            var index = $(this).index();
+            $(this).addClass("cur").siblings().removeClass("cur");
+            $(".acticle .info").eq(index).addClass("infoShow").siblings().removeClass("infoShow");
+        });
+        Time();
+    });
+</script>
+</body>
+
+</html>

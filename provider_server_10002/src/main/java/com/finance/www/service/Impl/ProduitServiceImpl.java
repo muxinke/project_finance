@@ -11,6 +11,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,5 +98,29 @@ public class ProduitServiceImpl implements ProduitService{
         Integer integer = produitMapper.chaCountBytype(userid, biaotype);
         return integer;
     }
+
+    @Override
+    public String chaMoneys() {
+        String s = produitMapper.chaMoneys();
+        BigDecimal db = new BigDecimal(s);
+        String ii = db.toPlainString();
+        String substring = ii.substring(0, ii.length() - 2);
+        StringBuilder stringBuilder = new StringBuilder(substring);
+        stringBuilder.append(".00");
+        String s1 = stringBuilder.toString();
+        return s1;
+    }
+
+
+  /*  public static void main(String[] args) {
+        BigDecimal db = new BigDecimal("");
+        String ii = db.toPlainString();
+        String substring = ii.substring(0, ii.length() - 2);
+        StringBuilder stringBuilder = new StringBuilder(substring);
+        stringBuilder.append(".00");
+        String s1 = stringBuilder.toString();
+        System.out.println("s1 = " + s1);
+    }
+*/
 
 }

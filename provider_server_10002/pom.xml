@@ -21,9 +21,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-oauth2</artifactId>
-		</dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-oauth2</artifactId>
+	</dependency>
 		<dependency>
 			<groupId>com.finance.www</groupId>
 			<artifactId>pojo</artifactId>

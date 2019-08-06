@@ -611,4 +611,10 @@ where mpc.produit_id=p.id
 and mpc.member_id=m.id
 and p.id=#{pid}
   </select>
+  <select id="chaMoneys" resultType="string">
+    SELECT
+    sum(produit.montant_de_offre)
+    FROM
+    produit
+  </select>
 </mapper>

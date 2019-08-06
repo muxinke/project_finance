@@ -2,10 +2,12 @@ package com.finance.www.controller;
 
 import com.finance.www.Vo.MemberInfoVo;
 import com.finance.www.pojo.MemberInfo;
+import com.finance.www.pojo.Memeber;
 import com.finance.www.pojo.Produit;
 import com.finance.www.pojo.ProduitImg;
 import com.finance.www.pvo.InvestmentVo;
 import com.finance.www.pvo.PageVo;
+import com.finance.www.pvo.YEVo;
 import com.finance.www.service.*;
 import com.finance.www.pvo.JieKuanXxVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +54,7 @@ public class TController {
     //商品的图片
     @RequestMapping(value = "/findProduitImgById",method = RequestMethod.GET)
     List<ProduitImg> findProduitImgById(@RequestParam(value = "pid")Integer pid){
-        System.out.println("pid = " + pid);
         List<ProduitImg> produitImgs = produitImgService.chaProduitImgById(pid);
-        System.out.println(produitImgs);
         return produitImgs;
     }
     //查出投资该标的所有人
@@ -73,13 +73,14 @@ public class TController {
         return produits;
     }
     //查询用户的具体信息
-    @RequestMapping(value = "/chaxunyonghubyid",method = RequestMethod.POST)
+    @RequestMapping(value = "/chaxunyonghubyid",method = RequestMethod.GET)
     MemberInfoVo findUserInfoByid(@RequestParam(value = "userid")Integer userid, @RequestParam(value = "biaotype")Integer biaotype){
         MemberInfo memberInfo = memberInfoService.chaXunYongHuXx(userid);
         Integer integer = produitService.chaCountByIdType(userid, biaotype);
         MemberInfoVo memberInfoVo = new MemberInfoVo();
         memberInfoVo.setCishu(integer);
         memberInfoVo.setMemberInfo(memberInfo);
+        System.out.println("memberInfoVo = " + memberInfoVo);
         return memberInfoVo;
     }
     //将投资记录分别存入四各表中
@@ -93,4 +94,26 @@ public class TController {
           transactionRecordsService.addjiaoyijl(userid,tenderMoney,borrowId);
 
     }
+    //查询用户的数量
+    @Autowired
+    MemeberService memeberService;
+    @RequestMapping(value ="/chaxunyonghunum",method = RequestMethod.GET)
+    Integer findMemberNum(){
+        Integer memberNum = memeberService.findMemberNum();
+        return memberNum;
+    }
+    //查询所有交易的金额
+    //查询所有的交易金额
+    @RequestMapping(value = "/chaxunmoneys",method = RequestMethod.GET)
+    String findMoneys(){
+       String moneys= produitService.chaMoneys();
+       return  moneys;
+    }
+    //查询用户
+    @RequestMapping(value = "/chamember",method = RequestMethod.GET)
+    Memeber findMemberByid(@RequestParam(value = "userid")Integer userid){
+        Memeber memberByid = memeberService.findMemberByid(userid);
+        return memberByid;
+    }
+
 }

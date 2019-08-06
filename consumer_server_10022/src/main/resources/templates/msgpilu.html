@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<base >
+	<title>企业信息—轻松贷-一心一意，普惠金融</title>
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="keywords" content="互联网金融、轻松贷">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="description" content="高效、精准、安全的P2P网络借贷平台">
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/login.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
+	<script  type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery-1.8.2.min.js"></script>
+	<link href="http://39.107.15.222:8081/src/theme/validationEngine/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine-zh_CN.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery.form.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/common.js"></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/main.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/layer/layer.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.circliful.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/scroll.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/person_style.js" ></script>
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/personal.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/swiper-3.4.2.min.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/mall.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
+
+
+
+
+
+
+
+	<link rel="stylesheet" type="text/css" href="http://39.107.15.222:8081/src/theme/xxpl/new/css/leader.css" />
+	<link rel="stylesheet" type="text/css" href="http://39.107.15.222:8081/src/theme/xxpl/new/css/data.css">
+	<link rel="stylesheet" type="text/css" href="http://39.107.15.222:8081/src/theme/xxpl/new/css/map.css" />
+</head>
+<style>
+	.complaint{
+		width:100%;
+		padding:20px;
+		border:1px solid #CCCCCC;
+	}
+	.complaint li{
+		line-height:40px;
+	}
+	.complaint li.half{
+		width:50%;
+	}
+
+</style>
+
+<body>
+
+<base >
+<script type="text/javascript">
+    $.get("/user", function (data) {
+		/* $("#user").html(data.name);
+		 $(".unauthenticated").hide();
+		 $(".authenticated").show()
+		 */
+
+        $('#register').before("<li><span class='nh'>您好，</span> </li>");
+        $('#register a').text("" + data.name + "");
+        $('#register a').attr("href", "userNew/index.go");
+        $('#login').remove();
+        $('#register').after("<li><a href='/tuichu' class=\"btn btn-primary\" >退出</a></li>");
+        $("#wealth").text('开启您的财富之旅');
+        $("#wealth").attr("href", "/reCash/toAdd.go");
+        $("#bannerlogin").remove();
+    });
+</script>
+<div class=" big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+					<!--跳转登陆界面
+                        <a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="/login">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+					<!--注册界面
+                        <a href="register/toRegister.go">快速注册</a>-->
+					<a href="/zhuce">快速注册</a>
+				</li>
+
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+					<a href="/guide">使用指南</a></li>
+
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+					<a href="/problem">常见问题</a></li>
+
+				<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+					<a style="color: #faa039" href="/guarantee" >安全保障</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li>
+				<a href="/index">首页</a>
+			</li>
+
+			<li >
+				<a href="/list"
+				>我要投资
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="/list"
+						>投资列表
+						</a>
+					</li>
+
+					<li>
+						<a href="/xiangdao"
+						>投资向导
+						</a>
+					</li>
+
+				</ol>
+			</li>
+
+			<li class="active">
+				<a href="/msgpilu"
+				>信息披露
+				</a>
+
+			</li>
+
+			<li >
+				<a href="/dae"
+				>我要借款
+					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="/xiaoe">小额借款</a>
+					</li>
+
+					<li>
+						<a href="/dae"> 大额借款</a>
+					</li>
+				</ol>
+			</li>
+
+			<li >
+				<a href="/aboutus"> 关于我们</a>
+				<ol class="m-list">
+
+					<li>
+						<a href="/aboutus"> 企业简介</a>
+					</li>
+
+					<li>
+						<a href="#"> 公司资质</a>
+					</li>
+
+					<li>
+						<a href="#"> 合作伙伴</a>
+					</li>
+
+					<li>
+						<a href="#"> 联系我们</a>
+					</li>
+
+					<li>
+						<a href="#"> 平台公告</a>
+					</li>
+
+					<li>
+						<a href="#"> 招贤纳士</a>
+					</li>
+
+				</ol>
+			</li>
+
+		</ul>
+	</div>
+</div>
+<style>
+	.w12002{width:1200px;margin:0px auto;}
+</style>
+<div class="banner">
+	<div class="bannerImg">
+		<div class="bigBox">
+			<div class="bannerLeft"></div>
+			<div class="bannerRight"></div>
+			<div class="right"></div>
+			<div class="circle"></div>
+			<div class="ring1">
+				<img src="http://39.107.15.222:8081/src/theme/xxpl/new/img/ring1.png" alt="" />
+			</div>
+			<div class="ring2">
+				<img src="http://39.107.15.222:8081/src/theme/xxpl/new/img/ring2.png" alt="" />
+			</div>
+			<div class="ring3">
+				<img src="http://39.107.15.222:8081/src/theme/xxpl/new/img/ring3.png" alt="" />
+			</div>
+			<div class="bannerText">
+				<img src="http://39.107.15.222:8081/src/theme/xxpl/new/img/opertionDaysText.png" alt="" />
+				<div class="operation_days"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="navbar">
+	<ul class="clearfix w12002" >
+		<li>
+			<a href="msgpilu.html">企业信息<i></i></a>
+			<ol class="navBarChild">
+				<li>
+					<a href="/msgpilu">企业信息</a>
+				</li>
+				<li>
+					<!--<a href="msgpilugongsi.html">--><a href="#">公司治理</a>
+				</li>
+				<li>
+					<!--<a href="jxyh.html">--><a href="#">银行存管</a>
+				</li>
+				<li>
+					<!--<a href="msgpilushenhe.html">--><a href="#">审核信息</a>
+				</li>
+				<li>
+					<!--<a href="msgpilushixiang.html">--><a href="#">重大事项</a>
+				</li>
+				<li>
+					<!--<a href="msgpilucnshu.html">--><a href="#">法人承诺书</a>
+				</li>
+
+			</ol>
+		</li>
+		<li>
+			<a href="/yyshuju">运营数据<i></i></a>
+			<ol class="navBarChild">
+				<li>
+					<a href="/yyshuju">
+						实时数据
+					</a>
+				</li>
+				<li>
+					<!--<a href="yybaogao.html">--><a href="#">
+					运营报告
+				</a>
+				</li>
+			</ol>
+		</li>
+		<li>
+			<a href="/chanpin">投资产品<i></i></a>
+			<ol class="navBarChild">
+				<li>
+					<!--<a href="chanpin.html">--><a href="#">
+					产品介绍
+				</a>
+				</li>
+				<li>
+					<!--<a href="chanpinzifei.html">--><a href="#">
+					资费标准
+				</a>
+				</li>
+				<li>
+					<!--<a href="chanpinzhuce.html">--><a href="#">
+					注册协议
+				</a>
+				</li>
+			</ol>
+		</li>
+		<li>
+			<a href="/guarantee">安全保障</a>
+		</li>
+		<li>
+			<a href="/fagui">投资者教育<i></i></a>
+			<ol class="navBarChild">
+
+				<li>
+					<!--<a href="fagui.html">--><a href="#">
+					风险提示
+				</a>
+				</li>
+				<li>
+					<!--<a href="faguijinling.html">--><a href="#">
+					十三条禁令
+				</a>
+				</li>
+				<li>
+					<!--<a href="faguixingwei.html">--><a href="#">
+					出借人禁止性行为
+				</a>
+				</li>
+			</ol>
+		</li>
+	</ul>
+</div>
+
+
+<!--企业信息-->
+<div class="enInformation">
+	<div class="InformationList">
+		<div class="w1200" style="margin-bottom:0px;">
+			<div class="inforTitle">
+				<b>
+					企业信息
+				</b>
+			</div>
+			<div class="infoContent">
+				<table border="0" cellpadding="0" cellspacing="0" class="infoTable">
+					<tr>
+						<td>
+							企业全称
+						</td>
+						<td>
+							陕西钱多多投资咨询有限公司
+						</td>
+					</tr>
+					<tr>
+						<td>
+							企业简称
+						</td>
+						<td>
+							轻松贷
+						</td>
+					</tr>
+					<tr>
+						<td>
+							注册资本
+						</td>
+						<td>
+							5000万元
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							统一社会信用代码
+						</td>
+						<td>
+							9136012508149585X4
+						</td>
+					</tr>
+					<tr>
+						<td>
+							实缴资本
+						</td>
+						<td>
+							1020万元
+						</td>
+					</tr>
+					<tr>
+						<td>
+							法定代表人
+						</td>
+						<td>
+							何乐明
+						</td>
+					</tr>
+					<tr>
+						<td>
+							成立时间
+						</td>
+						<td>
+							2019年07月14日
+						</td>
+					</tr>
+					<tr>
+						<td>
+							注册地址
+						</td>
+						<td>
+							陕西省西安市大雁区南窑国际89栋503室（第5层）
+						</td>
+					</tr>
+					<tr>
+						<td>
+							经营地址
+						</td>
+						<td>
+							陕西省西安市大雁区南窑国际89栋503室（第5层）
+						</td>
+					</tr>
+					<tr>
+						<td>
+							经营期限
+						</td>
+						<td>
+							2013年11月14日至2063年11月13日
+						</td>
+					</tr>
+					<tr>
+						<td>
+							经营状态
+						</td>
+						<td>
+							开业
+						</td>
+					</tr>
+					<tr>
+						<td>
+							经营范围
+						</td>
+						<td>
+							经济信息咨询；投资管理咨询；网上商务咨询；计算机软件技术开发、技术服务（以上项目国家有专项规定的凭许可证、资质证或其他批准文件经营）
+						</td>
+					</tr>
+					<tr>
+						<td>
+							分支机构情况
+						</td>
+						<td>
+							暂无分支机构
+						</td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+	</div>
+	<div class="InformationList platformInformation">
+		<div class="w1200">
+			<div class="inforTitle">
+				<b>
+					平台信息
+				</b>
+			</div>
+			<div class="infoContent">
+				<table border="0" cellpadding="0" cellspacing="0" class="infoTable">
+					<tr>
+						<td>
+							平台网址
+						</td>
+						<td>
+							www.qsjd.com
+						</td>
+					</tr>
+					<tr>
+						<td>
+							平台全称
+						</td>
+						<td>
+							陕西钱多多投资咨询有限公司
+						</td>
+					</tr>
+					<tr>
+						<td>
+							平台简称
+						</td>
+						<td>
+							轻松贷
+						</td>
+					</tr>
+					<tr>
+						<td>
+							平台上线时间
+						</td>
+						<td>
+							2014年1月15日
+						</td>
+					</tr>
+					<tr>
+						<td>
+							平台APP名称
+						</td>
+						<td>
+							轻松贷
+						</td>
+					</tr>
+					<tr>
+						<td>
+							平台APP上线时间
+						</td>
+						<td>
+							2017年1月
+						</td>
+					</tr>
+					<tr>
+						<td>
+							微信订阅号
+						</td>
+						<td>
+							轻松贷
+						</td>
+					</tr>
+					<tr>
+						<td>
+							微信服务号
+						</td>
+						<td>
+							轻松理财
+						</td>
+					</tr>
+					<tr>
+						<td>
+							信息安全监测认证
+						</td>
+						<td>
+							信息系统安全等级保护3级36000013003-17001
+						</td>
+					</tr>
+					<tr>
+						<td>
+							资金存管信息
+						</td>
+						<td>
+							陕西银行资金存管
+						</td>
+					</tr>
+					<tr>
+						<td>
+							工信部网站备案信息
+						</td>
+						<td>
+							陕ICP备13008061-1
+						</td>
+					</tr>
+					<tr>
+						<td>
+							风控管理信息
+						</td>
+						<td>
+							<a  href="/guarantee">查看风控专题</a>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							公安部备案信息
+						</td>
+						<td>
+							<img src="http://39.107.15.222:8081/src/theme/xxpl/new/img/police.png" style="vertical-align:middle;margin-right:4px;">陕公网安备 36010802000123号
+						</td>
+					</tr>
+					<tr>
+						<td>
+							电信业务经营许可信息
+						</td>
+						<td>
+							办理中
+						</td>
+					</tr>
+					<tr>
+						<td>
+							地方金融监管部分备案登记信息
+						</td>
+						<td>
+							备案中
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="InformationList platformInformation">
+		<div class="w1200" style="margin-bottom:0px;">
+			<div class="inforTitle">
+				<b>
+					投诉举报
+				</b>
+			</div>
+			<div class="infoContent">
+				<ul class="complaint clearfix">
+					<li class="fl half">
+						省金融办投诉电话：0791-88918231
+					</li>
+					<li class="fr half">
+						省互联网金融协会投诉电话：400-9158-227
+					</li>
+					<li class="fl half">
+						省银监局投诉电话：0791-86766700
+					</li>
+					<li class="fr half">
+						省金融办电子邮箱：jx_jrb_jcs@163.com
+					</li>
+					<li class="clearfix">
+						省互联网金融协会电子邮箱：jxhlwjr@163.com
+					</li>
+					<li class="clearfix">
+						省金融办通讯地址：陕西省西安市雁塔区行政中心西4栋1-2楼
+					</li>
+					<li class="clearfix">
+						省互联网金融协会通讯地址：陕西省西安市雁塔区国际博览城绿地商业中心4号楼A座1008-1009
+					</li>
+					<li class="clearfix">
+						省银监局通讯地址：陕西省西安市山中路213号
+					</li>
+				</ul>
+			</div>
+			<div class="Corporate" style="padding-right:102px;">
+				<img src="http://39.107.15.222:8081/src/theme/xxpl/new/img/corporate.png" alt="" />
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+
+<!-- 底部 -->
+
+<base >
+<div class="bottom">
+	<div class="w1200">
+		<div class="bottom_1">
+			<ul>
+				<li><a href="/aboutus">关于我们</a></li>
+				<li><a href="#">联系我们</a></li>
+				<li><a href="/guarantee">保障体系</a></li>
+				<li><a href="#">平台公告</a></li>
+				<li><a href="#">招贤纳士</a></li>
+				<li><a href="/problem">常见问题</a></li>
+				<li><a href="/guide">使用指南</a></li>
+				<li><a href="#">手机客户端</a></li>
+			</ul>
+		</div>
+		<div class="bottom_middle clearfix">
+			<div class="bottom_2">
+				<p>电话: 0791-83858285</p>
+				<p>邮箱: service@kkd2p.com</p>
+				<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+			</div>
+
+			<div class="bottom_4">
+
+				<h3>400-8763-118</h3>
+
+
+				<div class="serviceTime clearfix">
+					<p>服务时间：周一至周五9：00-21：00</p>
+					<p>
+						网贷有风险，出借需谨慎
+					</p>
+					<p>
+						陕西省互联网金融协会:400-9158-227
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="bottom_5 clearfix">
+			<ul>
+
+				<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+
+				<li>© 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+
+			</ul>
+		</div>
+		<div class="bottom_6">
+			<ul>
+				<li>友情链接:</li>
+
+				<li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+
+				<li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+
+				<li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+
+
+
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+</body>
+<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/xxpl/new/js/dataStyle.js"></script>
+<script type="text/javascript">
+    $(function() {
+        Time();
+    })
+</script>
+
+</html>

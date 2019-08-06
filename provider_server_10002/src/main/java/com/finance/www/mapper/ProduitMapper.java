@@ -34,4 +34,5 @@ public interface ProduitMapper {
 
     Integer chaCountBytype(@Param("userid")Integer userid,@Param("biaotype") Integer biaotype);
     String chaProduitMember(@Param("pid")Integer pid);
+    String chaMoneys();
 }

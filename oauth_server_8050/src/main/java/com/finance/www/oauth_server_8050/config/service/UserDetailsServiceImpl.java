@@ -4,10 +4,8 @@ import com.finance.www.oauth_server_8050.pojo.TbPermission;
 import com.finance.www.oauth_server_8050.service.MemeberService;
 import com.finance.www.oauth_server_8050.service.TbPermissionService;
 import com.finance.www.pojo.Memeber;
-import com.finance.www.pojo.MemeberExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -48,6 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
             // 声明用户授权
             tbPermissions.forEach(tbPermission -> {
+
                 // 遍历权限添加
                 if (tbPermission != null && tbPermission.getEnname() != null) {
                     GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(tbPermission.getEnname());

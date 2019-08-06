@@ -1,0 +1,756 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<base >
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>安全保障-轻松贷-一心一意，普惠金融</title>
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+	<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/test.css" />
+	<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.min.js"></script>
+</head>
+
+<body>
+<!--top begin-->
+
+<base >
+<script type="text/javascript">
+    $.get("/user", function (data) {
+		/* $("#user").html(data.name);
+		 $(".unauthenticated").hide();
+		 $(".authenticated").show()
+		 */
+
+        $('#register').before("<li><span class='nh'>您好，</span> </li>");
+        $('#register a').text("" + data.name + "");
+        $('#register a').attr("href", "userNew/index.go");
+        $('#login').remove();
+        $('#register').after("<li><a href='/tuichu' class=\"btn btn-primary\" >退出</a></li>");
+        $("#wealth").text('开启您的财富之旅');
+        $("#wealth").attr("href", "/reCash/toAdd.go");
+        $("#bannerlogin").remove();
+    });
+</script>
+<div class=" big100">
+	<div class="top clearfix">
+		<div class="top_left fl">
+			<ul>
+				<li class="phone">
+					<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+				</li>
+
+			</ul>
+		</div>
+		<div class="top_right fr">
+			<ul>
+				<li class="lilogin" id="login">
+					<!--跳转登陆界面
+                        <a href="newLogin/loginPage.go">立即登录</a>-->
+					<a href="/login">立即登录</a>
+				</li>
+				<li class="liregister" id="register">
+					<!--注册界面
+                        <a href="register/toRegister.go">快速注册</a>-->
+					<a href="/zhuce">快速注册</a>
+				</li>
+
+				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+					<a href="/guide">使用指南</a></li>
+
+				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+					<a href="/problem">常见问题</a></li>
+
+				<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+					<a style="color: #faa039" href="/guarantee" >安全保障</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav">
+	<div class="topNavItem  clearfix" >
+
+		<div class="logo">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+		</div>
+		<div class="adv">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+		</div>
+		<ul class="navitem">
+			<li>
+				<a href="/index">首页</a>
+			</li>
+
+			<li >
+				<a href="/list"
+				>我要投资
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="/list"
+						>投资列表
+						</a>
+					</li>
+
+					<li>
+						<a href="/xiangdao"
+						>投资向导
+						</a>
+					</li>
+
+				</ol>
+			</li>
+
+			<li class="active" >
+				<a href="/msgpilu"
+				>信息披露
+				</a>
+
+				<ol class="m-list">
+
+				</ol>
+			</li>
+
+			<li >
+				<a href="/dae"
+				>我要借款
+					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+
+				</a>
+
+				<ol class="m-list">
+
+					<li>
+						<a href="/xiaoe">小额借款</a>
+					</li>
+
+					<li>
+						<a href="/dae"> 大额借款</a>
+					</li>
+				</ol>
+			</li>
+
+			<li >
+				<a href="/aboutus"> 关于我们</a>
+				<ol class="m-list">
+
+					<li>
+						<a href="/aboutus"> 企业简介</a>
+					</li>
+
+					<li>
+						<a href="#"> 公司资质</a>
+					</li>
+
+					<li>
+						<a href="#"> 合作伙伴</a>
+					</li>
+
+					<li>
+						<a href="#"> 联系我们</a>
+					</li>
+
+					<li>
+						<a href="#"> 平台公告</a>
+					</li>
+
+					<li>
+						<a href="#"> 招贤纳士</a>
+					</li>
+
+				</ol>
+			</li>
+
+		</ul>
+	</div>
+</div>
+<!--主屏幕-->
+<div id="pic1" num="3">
+	<!--导航条-->
+	<div class="nag" style="top: 250px;">
+		<div class="ac active"><b></b></div>
+		<div class="ac"><b></b></div>
+		<div class="ac"><b></b></div>
+		<div class="ac"><b></b></div>
+		<div class="ac"><b></b></div>
+		<div class="ac"><b></b></div>
+		<div class="ac"><b></b></div>
+		<div class="ac"><b></b></div>
+	</div>
+	<!--底部-->
+	<div class="divtop" style="bottom: 30px;">
+		<img id="btntop" class="btntop" src="http://39.107.15.222:8081/src/theme/computer/img/top.png" style="margin-top: 0.310592px; display: inline;">
+	</div>
+	<!--第一屏-->
+	<div class="back a1" style="height: 847px;">
+		<a class="a1_one">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/1a.png">
+		</a>
+		<a class="al_two">
+			<img src="http://39.107.15.222:8081/src/theme/computer/img/radar.gif">
+		</a>
+		<a class="al_three" id="radar"></a>
+		<a id="radar"></a>
+	</div>
+	<!--第二屏-->
+	<div class="back a2" style="height: 847px;">
+		<div class="n3">
+			<!--<a target="_blank" href="http://www.jq22.com/"></a>-->
+			<div class="security clearfix">
+				<div class="security_left fl">
+					<h3>投资稳健</h3>
+					<p>
+						稳健可靠的项目是平台立足的根本。在P2P（投资者+平台+借款人）运行模式下，壹心贷发布的投资项目全部是经由信贷精心筛选、风控严格审核的融资项目。基于此，壹心贷创造了“三重安全保障，六大风控体系”，同时又接入了江西银行存管系统，隔离平台与用户之间的资金，确保了用户投资资金和收益的安全性。
+					</p>
+					<p>
+						为了保证用户资金与平台自身资金的充分隔离，更好的进行自律监管，壹心贷与江西银行达成合作，率先实现银行资金存管。江西银行将依法对壹心贷用户的账户信息和交易资金进行监督和管理，每一位用户都将在江西银行的存管系统内拥有一个专属的交易资金管理账户，未经用户输入交易密码确认，任何人无法动用用户的资金，更大程度保证了用户的资金安全。
+					</p>
+					<p>
+						江西银行由原南昌银行合并景德镇市商业银行，并更名为江西银行，在原南昌市40家城市信用社基础上，由南昌市地方财政发起设立，1997年12月经中国人民银行批准成立。现有注册资本46.78亿元，江西省高速公路投资集团系其第一大股东。
+					</p>
+				</div>
+				<div class="security_right fr">
+					<span class="a2_one"><img src="http://39.107.15.222:8081/src/theme/computer/img/2a.png"></span>
+					<span class="a2_two"><img src="http://39.107.15.222:8081/src/theme/computer/img/2b.png"></span>
+					<span class="a2_three"><img src="http://39.107.15.222:8081/src/theme/computer/img/2c.png"></span>
+					<span class="a2_four"><img src="http://39.107.15.222:8081/src/theme/computer/img/2d.png"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--第三屏-->
+	<div class="back a3" style="height: 847px;">
+		<div class="n4">
+			<h3>江西银行存管优势</h3>
+			<div class="advantage">
+				<div class="ad_line"></div>
+				<div class="a3_one">
+					<div class="a1_one_img">
+						<img src="http://39.107.15.222:8081/src/theme/computer/img/3a.png">
+					</div>
+					<p>充值、投资一键完成，提现即时到帐，用钱不用等候，支持快捷支付、网银转账等多种方式。</p>
+				</div>
+				<div class="a3_one">
+					<div class="a2_one_img">
+						<img src="http://39.107.15.222:8081/src/theme/computer/img/3b.png">
+					</div>
+					<p>借贷行为受法律保护资金流向与交易行为一致，壹心贷与用户资金完全隔离</p>
+				</div>
+				<div class="a3_one">
+					<div class="a3_one_img">
+						<img src="http://39.107.15.222:8081/src/theme/computer/img/3c.png">
+					</div>
+					<p>账户余额资金享受余额理财，充值免费，提现手续费1元/笔</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--第四屏-->
+	<div class="back a4" style="height: 847px;">
+		<div class="n5">
+			<h3>三重安全保障</h3>
+			<div class="guarantee">
+				<div class="a4_one">
+					<img src="http://39.107.15.222:8081/src/theme/computer/img/4a.png" id="a4_one">
+					<p>
+						1.壹心贷采用国内领先的P2P与O2O相结合的方式，线下负责开发优质借款人，6道风控把关，线上发布借款标，投资人在线投资。</p>
+				</div>
+				<div class="a4_one">
+					<img src="http://39.107.15.222:8081/src/theme/computer/img/4b.png" id="a4_two">
+					<p>2.为了确保资金安全性，壹心贷采用江西银行存管，为借款人及投资人进行高效安全的存管服务。</p>
+				</div>
+				<div class="a4_one">
+					<img src="http://39.107.15.222:8081/src/theme/computer/img/4c.png" id="a4_three">
+					<p>
+						3.携手法大大，保障所签电子合同的法律有效性及证据效力法大大平台集合了公安部eID电子身份系统、中国金融认证中心CFCA证书系统、第三方授时技术及防篡改技术等一系列国家认可的权威技术解决方案，确保在法大大平台所签署的电子合同同时符合《合同法》和《电子签名法》的要求，保障用户所签电子合同的法律有效性及证据效力。
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!--第五屏-->
+	<div class="back a5" style="height: 847px;">
+		<div class="n6">
+			<h3>六大风控体系</h3>
+			<div class="control_system">
+				<div class="system_cloud" id="n1yue3"></div>
+				<div class="system_control">
+					<div class="system_bulb"></div>
+					<div class="system_small_cloud"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--第六屏-->
+	<div class="back a6" style="height: 847px;">
+		<div class="n7">
+			<h3>实力保障</h3>
+			<div class="strength_guarantee clearfix">
+				<div class="guarantee_left fl">
+					<div class="guaranteeList">
+						<p class="gTitle">央行政策支持</p>
+						<p class="gContent">
+							2015年07月18日，央行发布了关于促进互联网金融健康发展的指导意见，意见中明确指出：P2P平台由银监会负责监管，在P2P平台上发生的直接借贷行为属于民间借贷范畴，受合同法、民法通则等法律法规以及最高人民法院相关司法解释规范。并鼓励要坚持平台功能，为投资方和融资方提供信息交互、撮合、资信评估等中介服务，发挥网络贷款优势，努力降低客户融资成本。
+						</p>
+					</div>
+					<div class="guaranteeList">
+						<p class="gTitle">上市公司背景</p>
+						<p class="gContent">
+							A股上司公司联创光电母公司江西省电子集团控股壹心贷，为提升平台公信力创造了更好的条件。</p>
+					</div>
+				</div>
+				<div class="guarantee_right fr">
+					<img src="http://39.107.15.222:8081/src/theme/computer/img/strength_guarantee.png"> <img src="http://39.107.15.222:8081/src/theme/computer/img/left_cloub.png" class="left_c" id="n2yue1"> <img src="http://39.107.15.222:8081/src/theme/computer/img/right_cloub.png" class="right_c" id="n2yue2">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--第七屏-->
+	<div class="back a7" style="height: 847px;">
+		<div class="n8">
+			<h3>信息安全</h3>
+			<div class="information_safety clearfix">
+				<div class="information_left fl">
+					<div class="information">
+						<p class="iTitle">系统安全</p>
+						<p class="iContent">
+							自主技术团队倾力打造，全自主知识产权，采用分布式系统架构，定制化的系统框架，高效的运营手段，确保每个环节均得到安全防护。</p>
+						<p class="iContent">
+							采用SSL等多种加密保护技术，确保用户在进行个人账户操作或敏感信息的操作时，传输信息进行加密处理。采用专业防火墙对系统的web层、应用层和数据层进行隔离；有效防范各种入侵和恶意攻击等行为。
+						</p>
+					</div>
+					<div class="information">
+						<p class="iTitle">隐私安全</p>
+						<p class="iContent">壹心贷对用户提供的信息严格保密，确保用户提供的所有信息都能得到机密保障。</p>
+						<p class="iContent">对用户提供的信息严格保密,除具备下列情形之一外不会向任何外部机构披露。</p>
+					</div>
+				</div>
+				<div class="information_right fr">
+					<img src="http://39.107.15.222:8081/src/theme/computer/img/lock.png" class="safety"> <img src="http://39.107.15.222:8081/src/theme/computer/img/safety1.png" class="safety1"> <img src="http://39.107.15.222:8081/src/theme/computer/img/safety2.png" class="safety2"> <img src="http://39.107.15.222:8081/src/theme/computer/img/safety3.png" class="safety3"> <img src="http://39.107.15.222:8081/src/theme/computer/img/safety4.png" class="safety4">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="back a8" style="height: 847px;">
+		<div class="n9">
+			<h5>立即开启</h5>
+			<h3>安全投资</h3>
+			<div class="Immediate_inv">
+				<a href="list.html"><button>开始投资</button></a>
+			</div>
+		</div>
+	</div>
+
+</div>
+<script>
+    $(document).ready(function() {
+        $(window).scrollTop(0);
+        $(window).scroll(function() {
+            var scrollPos = $(window).scrollTop();
+            if(scrollPos <= 120) {
+                $(window).scrollTop(0);
+            }
+            //              console.log(scrollPos);
+        });
+
+        var h = $(window).height();
+        var w = $(window).width();
+        $(".back").css("height", h + "px");
+        $(".yutop").css("top", (h + 150) + "px");
+        $("#hjimg").css("top", (h + 430) + "px");
+        var yueAnimate = {
+            lbyFun: function() {
+                $("#n11img").css({
+                    "width": "65px",
+                    "height": "5px",
+                    "top": "300px",
+                    "margin-left": "-32px",
+                    "opacity": "0"
+                });
+                $("#n12img").css({
+                    "opacity": "0"
+                });
+                $("#n1p").css({
+                    "opacity": "0"
+                });
+                var y = 460;
+                $("#n12img").animate({
+                    "opacity": 1
+                }, 800, 'easeInCubic');
+                $("#n1p").animate({
+                    "opacity": 1
+                }, 800, 'easeInCubic', function() {
+                    $("#n11img").animate({
+                        "opacity": 0.8,
+                        "width": "328px",
+                        "height": "27px",
+                        "top": "275px",
+                        "margin-left": "-164px"
+                    }, 400, 'easeInCubic', function() {
+                        $("#n11img").animate({
+                            "opacity": 1,
+                            "width": "273px",
+                            "height": "22px",
+                            "top": "285px",
+                            "margin-left": "-137px"
+                        }, 200, "easeInCubic")
+                    });
+                });
+            },
+            btntop: function() {
+                $("#btntop").css({
+                    "margin-top": "0px"
+                });
+                $("#btntop").animate({
+                    "margin-top": "30px"
+                }, 1000, 'linear');
+            },
+            yue: function(id, left, right, time) {
+                $(id).animate({
+                    "margin-left": right
+                }, time, 'linear', function() {
+                    $(id).animate({
+                        "margin-left": left
+                    }, time, 'linear');
+                });
+            },
+            yue2: function(id, left, right, time) {
+                $(id).animate({
+                    "margin-right": left
+                }, time, 'linear', function() {
+                    $(id).animate({
+                        "margin-right": right
+                    }, time, 'linear');
+                });
+            },
+            hjFun: function() {
+                $("#hjimg").css("top", ($(window).height() + 430) + "px");
+                $("#hjimg").css("margin-left", "-824px");
+                $("#n2yue1").css("margin-left", "-560px");
+                $("#n2yue2").css("margin-left", "55px");
+                $("#hjimg").animate({
+                    "top": "230px",
+                    "margin-left": "-340px"
+                }, 1000, 'easeInOutQuint');
+            },
+            //			第二屏特效
+            yuFun: function() {
+                $(".a2_one").animate({
+                    "opacity": 0,
+                    "top": "0px",
+                    "left": "50%"
+                }, 800, 'linear', function() {
+                    $(".a2_one").animate({
+                        "opacity": 1,
+                        "top": "31px",
+                        "left": "50%"
+                    }, 300)
+                });
+                $(".a2_three").animate({
+                    "opacity": 0,
+                    "top": "400px",
+                    "left": "0"
+                }, 1000, 'linear', function() {
+                    $(".a2_three").animate({
+                        "opacity": 1,
+                        "top": "337px",
+                        "left": "17%"
+                    }, 900, 'linear')
+                });
+                $(".a2_four").animate({
+                    "opacity": 0,
+                    "top": "337px",
+                    "right": "-300px"
+                }, 1200, 'linear', function() {
+                    $(".a2_four").animate({
+                        "opacity": 1,
+                        "top": "337px",
+                        "right": "-215px"
+                    }, 1000, 'linear')
+                });
+            },
+            //第三屏特效
+            n5imgFun: function() {
+                $(".a3_one_img img").css({
+                    "width": "20px",
+                    "height": "20px",
+                    "opacity": "0"
+                });
+                $(".a1_one_img img").animate({
+                    "opacity": 0.5,
+                    "width": "200px",
+                    "height": "200px",
+                }, 1000, 'linear', function() {
+                    $(".a1_one_img img").animate({
+                        "opacity": 1,
+                        "width": "160px",
+                        "height": "160px",
+                    }, 500)
+                });
+                $(".a2_one_img img").animate({
+                    "opacity": 0.5,
+                    "width": "250px",
+                    "height": "250px",
+                }, 1500, 'linear', function() {
+                    $(".a2_one_img img").animate({
+                        "opacity": 1,
+                        "width": "160px",
+                        "height": "160px",
+                    }, 800)
+                });
+                $(".a3_one_img img").animate({
+                    "opacity": 0.5,
+                    "width": "300px",
+                    "height": "300px",
+                }, 2000, 'linear', function() {
+                    $(".a3_one_img img").animate({
+                        "opacity": 1,
+                        "width": "160px",
+                        "height": "160px",
+                    }, 1000)
+                });
+            },
+
+            //第四屏特效
+            guaranteeFun: function() {
+                $("#a4_one").animate({
+                    "opacity": 0.5,
+                    "top": "100px",
+                }, 800, 'linear', function() {
+                    $("#a4_one").animate({
+                        "opacity": 1,
+                        "top": "0px"
+                    }, 300)
+                });
+                $("#a4_two").animate({
+                    "opacity": 0.5,
+                    "top": "100px",
+                }, 1000, 'linear', function() {
+                    $("#a4_two").animate({
+                        "opacity": 1,
+                        "top": "0px"
+                    }, 800)
+                });
+                $("#a4_three").animate({
+                    "opacity": 0.5,
+                    "top": "100px",
+                }, 1500, 'linear', function() {
+                    $("#a4_three").animate({
+                        "opacity": 1,
+                        "top": "0px"
+                    }, 1000)
+                });
+            },
+            //第七屏特效
+            informationFun: function() {
+                $(".safety4").animate({
+                    "opacity": 0.5,
+                    "right": "-10px",
+                    "bottom": "-464px"
+                }, 1000, 'linear', function() {
+                    $(".safety4").animate({
+                        "opacity": 1,
+                        "right": "-10px",
+                        "bottom": "-444px"
+                    }, 800)
+                });
+                $(".safety3").animate({
+                    "opacity": 0.5,
+                    "left": "61px",
+                    "bottom": "-430px"
+                }, 1000, 'linear', function() {
+                    $(".safety3").animate({
+                        "opacity": 1,
+                        "left": "61px",
+                        "bottom": "-408px"
+                    }, 800)
+                });
+                $(".safety2").animate({
+                    "opacity": 0.5,
+                    "top": "7px",
+                    "right": "-30px"
+                }, 1000, 'linear', function() {
+                    $(".safety2").animate({
+                        "opacity": 1,
+                        "top": "7px",
+                        "right": "-40px"
+                    }, 600)
+                });
+                $(".safety1").animate({
+                    "opacity": 0.5,
+                    "top": "76px",
+                    "left": "10px"
+                }, 1000, 'linear', function() {
+                    $(".safety1").animate({
+                        "opacity": 1,
+                        "top": "76px",
+                        "left": "24px"
+                    }, 600)
+                });
+            }
+        }
+        //鼠标滚动事件
+        var shubiao = true;
+        var wheel = function(event) {
+            var delta = 0;
+            if(!event)
+                event = window.event;
+            if(event.wheelDelta) {
+                delta = event.wheelDelta / 120;
+            } else if(event.detail) {
+                delta = -event.detail / 3;
+            }
+            if(delta) handle(delta);
+            if(event.preventDefault) event.preventDefault();
+            event.returnValue = false;
+        }
+        if(window.addEventListener) window.addEventListener('DOMMouseScroll', wheel, false);
+        document.onmousewheel = wheel;
+        var $f = true;
+        var handle = function(delta) {
+            if(!shubiao) return;
+            shubiao = false;
+            var random_num = Math.floor((Math.random() * 100) + 50);
+            if(delta < 0) {
+                PicWheelScroll(1);
+                $f = false;
+                //console.log("鼠标滑轮向下滚动：" + delta + "次！"); // 1
+                return false;
+            } else {
+                $f = true;
+                PicWheelScroll(0);
+                //console.log("鼠标滑轮向上滚动：" + delta + "次！"); // -1
+                return false;
+            }
+        }
+        $(".ac").each(function(i) {
+            $(this).click(function() {
+                $(".ac").removeClass("active");
+                $(".ac").eq(i).addClass("active");
+                var num = i + 1;
+                if(num == "8") $("#btntop").hide();
+                else $("#btntop").show();
+                gotoAnchor($(".a" + num));
+                getAnchroFun(num);
+            })
+        })
+        var PicWheelScroll = function(n) {
+            var num = $("#pic1").attr("num");
+            if((num === 8 && n === 1) || (num === 1 && n === 0)) return;
+            if(n == 1) {
+                if(num < 8) num++;
+            } else {
+                if(num > 1) num--;
+            }
+            $(".ac").removeClass("active");
+            $(".ac").eq(num - 1).addClass("active");
+            if(num == "8") $("#btntop").hide();
+            else $("#btntop").show();
+            gotoAnchor($(".a" + num));
+            getAnchroFun(num);
+        }
+        yueAnimate.yue("#n1yue3", "-220px", "-360px", 3500);
+        yueAnimate.yue("#n2yue1", "-11px", "50px", 3500);
+        yueAnimate.yue2("#n2yue2", "20px", "-20px", 3500);
+        //
+        //					yueAnimate.yue("#n4yue1", "-240px", "-160px", 10000);
+        //
+        //					yueAnimate.yue("#n4yue2", "120px", "230px", 10000);
+        setInterval(function() {
+            yueAnimate.yue("#n1yue3", "-220px", "-360px", 3500);
+            yueAnimate.yue("#n2yue1", "-11px", "50px", 3500);
+            yueAnimate.yue2("#n2yue2", "20px", "-20px", 3500);
+            //
+            //						yueAnimate.yue("#n4yue1", "-240px", "-160px", 10000);
+            //
+            //						yueAnimate.yue("#n4yue2", "120px", "230px", 10000);
+
+        }, 4000);
+        setInterval(yueAnimate.btntop, 2000);
+        var getAnchroFun = function(num) {
+            var h = $(window).height();
+            var h = (h - 500 < 30 ? 30 : h - 580) + "px";
+            $(".divtop").css("bottom", "85px");
+            var n = $("#pic1").attr("num");
+            switch(parseInt(num)) {
+                case 1:
+                    if(n == 1 && $f) return false;
+                    yueAnimate.lbyFun();
+                    break;
+                case 2:
+                    yueAnimate.yuFun();
+                    break;
+                case 3:
+                    yueAnimate.n5imgFun();
+                    break;
+                case 4:
+                    yueAnimate.guaranteeFun();
+                    break;
+                case 7:
+                    yueAnimate.informationFun();
+                    break;
+                case 8:
+                    break;
+            }
+            $("#pic1").attr("num", num);
+        }
+        var gotoAnchor = function(selector, isauto) {
+            var anchor = $(selector);
+            if(anchor.length < 0) return;
+            var $win = $(window);
+            var $body = $(window.document.documentElement);
+            var ua = navigator.userAgent.toLowerCase();
+            if(ua.indexOf("webkit") > -1) {
+                $body = $(window.document.body)
+            }
+            var pos = anchor.offset();
+            if(isauto) {
+                var t = pos.top - $win.scrollTop(); //相对于屏幕显示区
+                var t2 = $win.height() - t;
+                if(t2 < anchor.outerHeight()) {
+                    $body.animate({
+                        "scrollTop": pos.top
+                    }, "normal");
+                }
+                return;
+            }
+            $body.animate({
+                "scrollTop": pos.top
+            }, {
+                queue: false,
+                complete: function() {
+                    shubiao = true;
+                }
+            });
+        }
+        gotoAnchor($(".a1"));
+        yueAnimate.lbyFun();
+        $(window).resize(function() {
+            var h = $(window).height();
+            $(".back").css("height", h + "px");
+            var n = $("#pic1").attr("num");
+            var h1 = (h - 500 < 30 ? 30 : h - 580) + "px";
+            $(".divtop").css("bottom", "160px");
+            gotoAnchor($(".a" + n));
+        });
+        $(".divtop").click(function() {
+            var n = $("#pic1").attr("num");
+            if(n == "8") $("#btntop").hide();
+            n = parseInt(n) + 1;
+            if(n == 8) {
+                return;
+            }
+            $(".ac").removeClass("active");
+            $(".ac").eq(n - 1).addClass("active");
+            gotoAnchor($(".a" + n));
+            getAnchroFun(n);
+            $("#pic1").attr("num", n);
+        })
+    })
+</script>
+</body>
+
+</html>
