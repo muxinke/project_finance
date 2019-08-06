@@ -93,7 +93,7 @@
         </div>
         <ul class="navitem">
             <li class="active">
-                <a href="http://10.12.159.120/home">首页</a>
+                <a href="/sso/shouye">首页</a>
             </li>
 
             <li>
@@ -136,42 +136,36 @@
                 <ol class="m-list">
 
                     <li>
-                        <a href="xiaoe.html">小额借款</a>
+                        <a href="/sso/xiaoe">小额借款</a>
                     </li>
 
                     <li>
-                        <a href="dae.html"> 大额借款</a>
+                        <a href="/sso/dae"> 大额借款</a>
                     </li>
                 </ol>
             </li>
 
             <li>
-                <a href="aboutus.html"> 关于我们</a>
+                <a href="/aboutus.html"> 关于我们</a>
                 <ol class="m-list">
 
                     <li>
-                        <a href="aboutus.html"> 企业简介</a>
+                        <a href="/aboutus.html"> 企业简介</a>
                     </li>
 
                     <li>
-                        <a href="zizhi.html"> 公司资质</a>
+                        <a href="/zizhi.html"> 公司资质</a>
                     </li>
 
                     <li>
-                        <a href="hezuohb.html"> 合作伙伴</a>
+                        <a href="/hezuohb.html"> 合作伙伴</a>
                     </li>
 
                     <li>
-                        <a href="contactus.html"> 联系我们</a>
+                        <a href="/contactus.html"> 联系我们</a>
                     </li>
 
-                    <li>
-                        <a href="bulletin.html"> 平台公告</a>
-                    </li>
 
-                    <li>
-                        <a href="hr.html"> 招贤纳士</a>
-                    </li>
 
                 </ol>
             </li>
@@ -287,19 +281,16 @@
 
 <script type="text/javascript">
     $.get("/user", function (data) {
-       /* $("#user").html(data.name);
-        $(".unauthenticated").hide();
-        $(".authenticated").show()
-*/
-
-        $('#register').before("<li><span class='nh'>您好，</span> </li>");
-        $('#register a').text("" + data.name + "");
-        $('#register a').attr("href", "userNew/index.go");
-        $('#login').remove();
-        $('#register').after("<li><button onClick=\"logout()\" class=\"btn btn-primary\" >退出</button></li>");
-        $("#wealth").text('开启您的财富之旅');
-        $("#wealth").attr("href", "/reCash/toAdd.go");
-        $("#bannerlogin").remove();
+         if (data.name!=null){
+             $('#register').before("<li><span class='nh'>您好，</span> </li>");
+             $('#register a').text("" + data.name + "");
+             $('#register a').attr("href", "userNew/index.go");
+             $('#login').remove();
+             $('#register').after("<li><button onClick=\"logout()\" class=\"btn btn-primary\" >退出</button></li>");
+             $("#wealth").text('开启您的财富之旅');
+             $("#wealth").attr("href", "/reCash/toAdd.go");
+             $("#bannerlogin").remove();
+         }
     });
 
     $.ajaxSetup({
