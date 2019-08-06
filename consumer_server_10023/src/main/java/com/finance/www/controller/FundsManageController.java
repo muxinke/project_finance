@@ -7,7 +7,7 @@ import com.finance.www.pojo.MemberCard;
 import com.finance.www.pojo.MemberRegister;
 import com.finance.www.service.GetUserIdService;
 import com.finance.www.service.LoanService;
-import com.finance.www.utils.GetDetailToken;
+import com.finance.www.utils.CookiesUtil;
 import com.finance.www.utils.GetUserBean;
 import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,21 +35,19 @@ public class FundsManageController {
     private LoanService loanService;
     @Autowired
     private GetUserIdService getUserIdService;
-    @GetMapping("/")
-    public String index(){
-        return "index";
-    }
+
     //资金管理
     @GetMapping("/zijinguanli")
     public String zijinguanli(Model model,HttpServletResponse response) throws IOException {
         /**通过上下文得到token，写入cookie*/
-        String tokenValue = GetDetailToken.getDetailToken();
-        Cookie cookie = new Cookie("token",tokenValue);
-        cookie.setPath("/");
-        response.addCookie(cookie);
+//        String tokenValue = GetDetailToken.getDetailToken();
+//        Cookie cookie = new Cookie("token",tokenValue);
+//        cookie.setPath("/");
+//        response.addCookie(cookie);
         /**获取用户id*/
-        Integer id = GetUserBean.getUserBean(tokenValue);
-        //Integer id=2;
+//        Integer id = GetUserBean.getUserBean(tokenValue);
+
+        Integer id=2;
         MemberRegister zhuanzhangchongzhi = loanService.zhuanzhangchongzhi(id);
         String name = zhuanzhangchongzhi.getRealName();
         model.addAttribute("name",name);
@@ -76,12 +74,13 @@ public class FundsManageController {
                                 HttpServletRequest request,HttpServletResponse response) throws IOException {
         //int id=2;
         /**通过上下文得到token，写入cookie*/
-        String tokenValue = GetDetailToken.getDetailToken();
-        Cookie cookie = new Cookie("token",tokenValue);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        /**获取用户id*/
-        Integer id = GetUserBean.getUserBean(tokenValue);
+//        String tokenValue = GetDetailToken.getDetailToken();
+//        Cookie cookie = new Cookie("token",tokenValue);
+//        cookie.setPath("/");
+//        response.addCookie(cookie);
+//        /**获取用户id*/
+//        Integer id = GetUserBean.getUserBean(tokenValue);
+        Integer id = 28;
         String bankcard2=bankcard.substring(0,bankcard.length()-4);
         BankLimitmoney bank = loanService.findBank(bankcard2);
         Integer bankId = bank.getBankId();
@@ -104,12 +103,13 @@ public class FundsManageController {
     public String tixian(@RequestParam("money")long money, HttpServletRequest request, HttpServletResponse response) throws IOException {
         //int id=2;
         /**通过上下文得到token，写入cookie*/
-        String tokenValue = GetDetailToken.getDetailToken();
-        Cookie cookie = new Cookie("token",tokenValue);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        /**获取用户id*/
-        Integer id = GetUserBean.getUserBean(tokenValue);
+//        String tokenValue = GetDetailToken.getDetailToken();
+//        Cookie cookie = new Cookie("token",tokenValue);
+//        cookie.setPath("/");
+//        response.addCookie(cookie);
+//        /**获取用户id*/
+//        Integer id = GetUserBean.getUserBean(tokenValue);
+        Integer id = 28;
         int tixian = loanService.tixian(money, id);
         return "1";
     }

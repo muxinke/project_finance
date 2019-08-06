@@ -1,6 +1,5 @@
 package com.finance.www.service;
 
-import com.finance.www.config.OAuth2FeignRequestInterceptor;
 import com.finance.www.pojo.MemberAccount;
 import com.finance.www.pojo.MemberCard;
 import com.finance.www.pojo.MemberLimit;
@@ -14,7 +13,7 @@ import java.util.List;
  * Created by Administrator on 2019/7/24.
  */
 
-@FeignClient(value = "provider-server",configuration = OAuth2FeignRequestInterceptor.class)
+@FeignClient(value = "provider-server")
 public interface BorrowMoneyService {
     @GetMapping("xiaoe")
     public MemberLimit xiaoeMemberLimit(@RequestParam("id")Integer id);

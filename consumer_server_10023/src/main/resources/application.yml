@@ -6,10 +6,10 @@ spring:
     cache: false
   application:
     name: consumer-server-10023
-  jta:
-    atomikos:
-      properties:
-        service:
+ # jta:
+   # atomikos:
+      #properties:
+        #service:
  # profiles:
  #   active: 10023
   #cloud:
@@ -30,31 +30,6 @@ hystrix:
 ribbon:
   ReadTimeout: 600000
   ConnectTimeout: 600000
-security:
-  oauth2:
-    client:
-      #      APP ID
-      client-id: ffclient1
-      #      相当与 APP KEY
-      client-secret: ffclient1
-      #      换取账户令牌地址
-      access-token-uri: http://10.12.159.124:8050/oauth/token
-      #      授权地址
-      user-authorization-uri: http://10.12.159.124:8050/oauth/authorize
-      #      重定向的页面必须和认证中心的一致
-      pre-established-redirect-uri: http://10.12.159.66:10023/login
-    resource:
-      #      验证令牌信息的地址
-      token-info-uri: http://10.12.159.124:8050/oauth/check_token
-feign:
-  client:
-    config:
-      rpc-user: # feign name
-        requestInterceptors:
-          - com.finance.www.config.OAuth2FeignRequestInterceptor
-logging:
-  level:
-    com.finance.www.service.GetUserIdService: debug
-    com.finance.www.service.LoanService: debug
+
 
 

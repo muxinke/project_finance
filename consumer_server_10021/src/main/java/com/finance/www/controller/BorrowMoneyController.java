@@ -8,10 +8,8 @@ import com.finance.www.enums.RepaymentStateEnum;
 import com.finance.www.pojo.MemberCard;
 import com.finance.www.pojo.MemberLimit;
 import com.finance.www.pojo.MemberRegister;
-import com.finance.www.pojo.UserBean;
 import com.finance.www.service.BorrowManageService;
 import com.finance.www.service.BorrowMoneyService;
-import com.finance.www.service.GetUserIdService;
 import com.finance.www.service.MemberShiMingService;
 import com.finance.www.utils.*;
 import com.finance.www.vo.*;
@@ -23,10 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,8 +51,7 @@ public class BorrowMoneyController {
     private BorrowManageService borrowManageService;
     @Autowired
     private MemberShiMingService memberShiMing;
-    @Autowired
-    private GetUserIdService getUserIdService;
+    int memberId=2;
 /**
      * 跳转小额借款界面
      * @return
@@ -78,14 +71,7 @@ public class BorrowMoneyController {
             response.addCookie(cookie);
         }*/
         /**通过上下文得到token，写入cookie*/
-        String tokenValue = GetDetailToken.getDetailToken();
-        log.error("tokenValue:{}",tokenValue);
-        Cookie cookie = new Cookie("token",tokenValue);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        /**获取用户id*/
-       Integer memberId = GetUserBean.getUserBean(tokenValue);
-        log.error("memberId:{}",memberId);
+
       /*  Principal user = getUserIdService.user();
         String  memberId = user.getName();*/
         //根据用户id查找用户的借款额度，银行卡号
@@ -125,7 +111,7 @@ public class BorrowMoneyController {
        /* Principal user = getUserIdService.user();
         String  id = user.getName();
         int memberId=Integer.parseInt(id);*/
-       int memberId=2;
+
         memberSmallBorrow.setMemberId(memberId);
         memberSmallBorrow.setIs_agreed(1);
         int code =borrowMoneyService.addSmallRecord(memberSmallBorrow,Valetoken);

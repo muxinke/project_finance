@@ -2,7 +2,6 @@
 package com.finance.www.service;
 
 
-import com.finance.www.config.OAuth2FeignRequestInterceptor;
 import com.finance.www.vo.ApplyMoney;
 import com.github.pagehelper.PageInfo;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -20,7 +19,7 @@ import java.util.List;
  * Created by Administrator on 2019/7/30.
  */
 
-@FeignClient(value = "provider-querybigload",configuration = OAuth2FeignRequestInterceptor.class)
+@FeignClient(value = "provider-querybigload")
 public interface BorrowManageService {
     @GetMapping("queryBigload")
     @ResponseBody

@@ -1,6 +1,5 @@
 package com.finance.www.service;
 
-import com.finance.www.config.OAuth2FeignRequestInterceptor;
 import com.finance.www.pojo.BankLimitmoney;
 import com.finance.www.pojo.MemberAccount;
 import com.finance.www.pojo.MemberCard;
@@ -16,7 +15,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2019/7/24.
  */
-@FeignClient(value = "provider-server-10003",configuration = OAuth2FeignRequestInterceptor.class)
+@FeignClient(value = "provider-server-10003")
 public interface LoanService {
     @GetMapping("/dae")
     public int dae(@RequestParam("userid")Integer userid, @RequestParam("edu")Long edu);
@@ -37,11 +36,11 @@ public interface LoanService {
     @PostMapping("/withdraw")
     public int  tixian(@RequestParam("money")long money, @RequestParam("id")int id);
     @GetMapping("query")
-    public MemberRegister getMember(@RequestParam("id")int id,@RequestHeader(name = "Authorization",required = true)String token );
+    public MemberRegister getMember(@RequestParam("id")int id);
     @GetMapping("/ishaveid")
     public int ishaveid(@RequestParam("id")Integer id);
     @PostMapping("/shiming")
-    public int shiming(@RequestBody RegisterVo registerVo,@RequestHeader(name = "Authorization",required = true)String token );
+    public int shiming(@RequestBody RegisterVo registerVo);
 
 }
 

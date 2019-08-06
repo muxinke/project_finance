@@ -24,12 +24,12 @@ server:
 mybatis:
   type-aliases-package: com.finance.www.pojo
   mapper-locations: classpath:mapping/*.xml
-security:
-  oauth2:
-    client:
-      client-id: ffresources1
-      client-secret: ffresources1
-      access-token-uri: http://10.12.159.124:8050/oauth/token
-      user-authorization-uri: http://10.12.159.124:8050/oauth/authorize
-    resource:
-      token-info-uri: http://10.12.159.124:8050/oauth/check_token
+#security:
+#  oauth2:
+#    client:
+#      client-id: ffresources1
+#      client-secret: ffresources1
+#      access-token-uri: http://10.12.159.124:8050/oauth/token
+#      user-authorization-uri: http://10.12.159.124:8050/oauth/authorize
+#    resource:
+#      token-info-uri: http://10.12.159.124:8050/oauth/check_token

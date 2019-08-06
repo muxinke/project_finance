@@ -7,7 +7,6 @@ import com.finance.www.pojo.MemberRegister;
 import com.finance.www.service.GetUserIdService;
 import com.finance.www.service.LoanService;
 import com.finance.www.utils.CookiesUtil;
-import com.finance.www.utils.GetDetailToken;
 import com.finance.www.utils.GetUserBean;
 import com.finance.www.vox.RegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,14 +38,14 @@ public class MyAccountController {
     @PostMapping("/isRegister")
     @ResponseBody
     public int isRegister(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         /**通过上下文得到token，写入cookie*/
-        String tokenValue = GetDetailToken.getDetailToken();
-        Cookie cookie = new Cookie("token",tokenValue);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        /**获取用户id*/
-        Integer memberId = GetUserBean.getUserBean(tokenValue);
+//        String tokenValue = GetDetailToken.getDetailToken();
+//        Cookie cookie = new Cookie("token",tokenValue);
+//        cookie.setPath("/");
+//        response.addCookie(cookie);
+//        /**获取用户id*/
+//        Integer memberId = GetUserBean.getUserBean(tokenValue);
+        Integer memberId = 28;
 
         //Integer id=3;
         int ishaveid = loanService.ishaveid(memberId);
@@ -56,33 +55,25 @@ public class MyAccountController {
     @PostMapping("/shiming")
     public String shiming(RegisterVo registerVo, Model model,HttpServletRequest request,
                           HttpServletResponse response) throws IOException {
-        Cookie token = CookiesUtil.getCookieByName(request, "token");
-        if(token==null){
-            return "redirect:http://10.12.159.124:8050/login";
-        }
-        String value = token.getValue();
-        String Valetoken = "bearer "+value;
 
-        /**通过上下文得到token，写入cookie*/
-        String tokenValue = GetDetailToken.getDetailToken();
-        Cookie cookie = new Cookie("token",tokenValue);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        /**获取用户id*/
-        Integer id = GetUserBean.getUserBean(tokenValue);
-
+//        /**通过上下文得到token，写入cookie*/
+//        String tokenValue = GetDetailToken.getDetailToken();
+//        Cookie cookie = new Cookie("token",tokenValue);
+//        cookie.setPath("/");
+//        response.addCookie(cookie);
+//        /**获取用户id*/
+//        Integer id = GetUserBean.getUserBean(tokenValue);
+        Integer id = 27;
         RegisterVo registerVo1 = new RegisterVo();
         registerVo1.setId(id);
         String realname=registerVo.getRealName();
         String idcard=registerVo.getIdNumber();
         registerVo1.setRealName(realname);
         registerVo1.setIdNumber(idcard);
-        int shiming = loanService.shiming(registerVo1,Valetoken);
-        MemberRegister member = loanService.getMember(id,Valetoken);
+        int shiming = loanService.shiming(registerVo1);
+        MemberRegister member = loanService.getMember(id);
         String realName = member.getRealName();
         model.addAttribute("name",realName);
-
-
         return "wodezhanghu";
     }
 }

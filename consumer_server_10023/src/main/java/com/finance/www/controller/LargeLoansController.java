@@ -43,12 +43,12 @@ public class LargeLoansController {
         int sum=age+work+income+nomoney+guarantee+debt+loantime;//7-28
         //查询用户id
         /**通过上下文得到token，写入cookie*/
-        String tokenValue = GetDetailToken.getDetailToken();
-        Cookie cookie = new Cookie("token",tokenValue);
-        cookie.setPath("/");
-        response.addCookie(cookie);
+//        String tokenValue = GetDetailToken.getDetailToken();
+//        Cookie cookie = new Cookie("token",tokenValue);
+//        cookie.setPath("/");
+//        response.addCookie(cookie);
         /**获取用户id*/
-        Integer id = GetUserBean.getUserBean(tokenValue);
+//        Integer id = GetUserBean.getUserBean("");
         long edu=0;
         //根据用户id修改其贷款额度
         if(sum<10){//贷款额度为10万
@@ -61,9 +61,10 @@ public class LargeLoansController {
             edu=10000000;
         }
         model.addAttribute("edu",edu);
-        loanService.dae(id,edu);
+        loanService.dae(28,edu);
         return "dae";
     }
+
     @GetMapping("/dae")
     public String dae(Model model){
         long edu=10000;
@@ -89,16 +90,16 @@ public class LargeLoansController {
     @ResponseBody
     public String uploadBlog(MultipartHttpServletRequest request,HttpServletResponse response,
                              AddBigLoan addBigLoan,HttpServletRequest request1) throws IOException {
-        // System.out.println("addBigLoan = " +addBigLoan);
+        // System.out.println("addBigLoan = " +addBigLoan)
         ArrayList<AddBigLoan> list = new ArrayList<>();
         //查询当前用户id
         /**通过上下文得到token，写入cookie*/
-        String tokenValue = GetDetailToken.getDetailToken();
-        Cookie cookie = new Cookie("token",tokenValue);
-        cookie.setPath("/");
-        response.addCookie(cookie);
+//        String tokenValue = GetDetailToken.getDetailToken();
+//        Cookie cookie = new Cookie("token",tokenValue);
+//        cookie.setPath("/");
+//        response.addCookie(cookie);
         /**获取用户id*/
-        Integer id = GetUserBean.getUserBean(tokenValue);
+//        Integer id = GetUserBean.getUserBean(tokenValue);
         //int memberId=2;
         //默认state为0---未审核
         //addBigLoan.setState(0);
@@ -126,7 +127,7 @@ public class LargeLoansController {
                         System.out.println("第三次");
                         /**构造对象传到提供者*/
                         AddBigLoan loan = new AddBigLoan();
-                        loan.setMemberId(id);
+                        loan.setMemberId(28);
                         loan.setXingzhi(addBigLoan.getXingzhi());
                         loan.setHowlong(addBigLoan.getHowlong());
                         loan.setPaymethod(addBigLoan.getPaymethod());
@@ -180,7 +181,7 @@ public class LargeLoansController {
     @PostMapping("/query1")
     @ResponseBody
     public XianXiHouBenMethod query1(@RequestParam("borrow")String money,
-                         @RequestParam("time")int time,HttpServletRequest request){
+                         @RequestParam("time")int time){
         XianXiHouBenMethod xianXiHouBen = XianXiHouBenUtils.getXianXiHouBen(money, time, 0.012f);
         return xianXiHouBen;
     }
@@ -188,7 +189,7 @@ public class LargeLoansController {
     @PostMapping("/query2")
     @ResponseBody
     public DengEMethod query2(@RequestParam("borrow")String money,
-                         @RequestParam("time")int time,HttpServletRequest request){
+                         @RequestParam("time")int time){
         DengEMethod dengE = DengEUtils.getDengE(money, time, 0.012f);
         return dengE;
     }
@@ -196,9 +197,17 @@ public class LargeLoansController {
     @PostMapping("/query3")
     @ResponseBody
     public DengEMethod query3(@RequestParam("borrow")String money,
-                              @RequestParam("time")int time,HttpServletRequest request){
+                              @RequestParam("time")int time){
         DengEMethod dengE = DengEUtils.getDengE(money, time, 0.023f);
         return dengE;
+    }
+    @GetMapping("/index")
+    public String index(){
+        return "redirect:http://10.12.159.120:10022/index";
+    }
+    @GetMapping("/")
+    public String indexs(){
+        return "redirect:http://10.12.159.120:10022/index";
     }
 
 }
