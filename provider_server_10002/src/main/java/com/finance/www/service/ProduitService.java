@@ -20,4 +20,6 @@ public interface ProduitService {
     PageVo chaProduitByPage(String ProduitType, String style, String timeLimit,Integer page);
     //根据userid和标的类型来查询投该类型标的次数
     Integer chaCountByIdType(Integer userid,Integer biaotype);
+    //查询交易总金额
+    String chaMoneys();
 }

@@ -197,7 +197,7 @@
             }
 
             $(".hyrc").load(url);
-            $("#pageServlet").val("listyy?biaotype=" + biaotype + "&style=" + style + "&timeLimit=" + time);
+            $("#pageServlet").val("/listyy?biaotype=" + biaotype + "&style=" + style + "&timeLimit=" + time);
             layer.close(loadi);
         }
 
@@ -213,34 +213,20 @@
 
 <base >
 <script type="text/javascript">
-    $(function() {
-        $(".navitem li").hover(function() {
-            $(this).find("ol").show().siblings().find("ol").hide("slow");
-        }, function() {
-            $(this).find("ol").slideUp("slow");
-        })
-        $(".code_text li").hover(function() {
-            var inde = $(this).index();
-            $(".code_img ul li").eq(inde).show().siblings().hide();
-        })
-        $.ajax({
-            type : "POST",
-            url : "newLogin/headerLogin.action",
-            dataType : "json",
-            success : function(data) {
-                if (data.status) {
-                    $('#register').before("<li><span class='nh'>您好，</span> </li>");
-                    $('#register a').text("" + data.message + "");
-                    $('#register a').attr("href", "userNew/index.go");
-                    $('#login').remove();
-                    $('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
-                    $("#wealth").text('开启您的财富之旅');
-                    $("#wealth").attr("href","reCash/toAdd.go");
-                    $("#bannerlogin").remove();
-                }
+    $.get("/user", function (data) {
+		/* $("#user").html(data.name);
+		 $(".unauthenticated").hide();
+		 $(".authenticated").show()
+		 */
 
-            }
-        });
+        $('#register').before("<li><span class='nh'>您好，</span> </li>");
+        $('#register a').text("" + data.name + "");
+        $('#register a').attr("href", "userNew/index.go");
+        $('#login').remove();
+        $('#register').after("<li><a href='/tuichu' class=\"btn btn-primary\" >退出</a></li>");
+        $("#wealth").text('开启您的财富之旅');
+        $("#wealth").attr("href", "/reCash/toAdd.go");
+        $("#bannerlogin").remove();
     });
 </script>
 <div class=" big100">
@@ -258,22 +244,22 @@
 				<li class="lilogin" id="login">
 					<!--跳转登陆界面
                         <a href="newLogin/loginPage.go">立即登录</a>-->
-					<a href="login.html">立即登录</a>
+					<a href="/login">立即登录</a>
 				</li>
 				<li class="liregister" id="register">
 					<!--注册界面
                         <a href="register/toRegister.go">快速注册</a>-->
-					<a href="zhuce.html">快速注册</a>
+					<a href="/zhuce">快速注册</a>
 				</li>
 
 				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
-					<a href="guide.html">使用指南</a></li>
+					<a href="/guide">使用指南</a></li>
 
 				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
-					<a href="problem.html">常见问题</a></li>
+					<a href="/problem">常见问题</a></li>
 
 				<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
-					<a style="color: #faa039" href="guarantee.html" >安全保障</a></li>
+					<a style="color: #faa039" href="/guarantee" >安全保障</a></li>
 			</ul>
 		</div>
 	</div>
@@ -289,24 +275,24 @@
 		</div>
 		<ul class="navitem">
 			<li>
-				<a href="index.html">首页</a>
+				<a href="/index">首页</a>
 			</li>
 
 			<li class="active">
-				<a href="list.html"
+				<a href="/list"
 				>我要投资
 				</a>
 
 				<ol class="m-list">
 
 					<li>
-						<a href="list.html"
+						<a href="/list"
 						>投资列表
 						</a>
 					</li>
 
 					<li>
-						<a href="xiangdao.html"
+						<a href="/xiangdao"
 						>投资向导
 						</a>
 					</li>
@@ -315,7 +301,7 @@
 			</li>
 
 			<li >
-				<a href="msgpilu.html"
+				<a href="/msgpilu"
 				>信息披露
 				</a>
 
@@ -325,7 +311,7 @@
 			</li>
 
 			<li >
-				<a href="dae.html"
+				<a href="/dae"
 				>我要借款
 					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
 
@@ -334,41 +320,41 @@
 				<ol class="m-list">
 
 					<li>
-						<a href="xiaoe.html">小额借款</a>
+						<a href="/xiaoe">小额借款</a>
 					</li>
 
 					<li>
-						<a href="dae.html"> 大额借款</a>
+						<a href="/dae"> 大额借款</a>
 					</li>
 				</ol>
 			</li>
 
 			<li >
-				<a href="aboutus.html"> 关于我们</a>
+				<a href="/aboutus"> 关于我们</a>
 				<ol class="m-list">
 
 					<li>
-						<a href="aboutus.html"> 企业简介</a>
+						<a href="/aboutus"> 企业简介</a>
 					</li>
 
 					<li>
-						<a href="zizhi.html"> 公司资质</a>
+						<a href="#"> 公司资质</a>
 					</li>
 
 					<li>
-						<a href="hezuohb.html"> 合作伙伴</a>
+						<a href="#"> 合作伙伴</a>
 					</li>
 
 					<li>
-						<a href="contactus.html"> 联系我们</a>
+						<a href="#"> 联系我们</a>
 					</li>
 
 					<li>
-						<a href="bulletin.html"> 平台公告</a>
+						<a href="#"> 平台公告</a>
 					</li>
 
 					<li>
-						<a href="hr.html"> 招贤纳士</a>
+						<a href="#"> 招贤纳士</a>
 					</li>
 
 				</ol>
@@ -382,7 +368,7 @@
 <div class="w1200">
 	<div class="wap mt2 g-invest f-clear">
 		<div class="location">
-			你所在位置: <a href="index.html">首页</a> > <a href="list.html">我要投资</a>
+			你所在位置: <a href="/index">首页</a> > <a href="list.html">我要投资</a>
 		</div>
 	</div>
 	<div class="target_type clearfix" >
@@ -523,15 +509,15 @@
 	<div class="w1200">
 		<div class="bottom_1">
 			<ul>
-				<li><a href="aboutus.html">关于我们</a></li>
-				<li><a href="contcatus.html">联系我们</a></li>
-				<li><a href="guide.html">新手向导</a></li>
-				<li><a href="guarantee.html">保障体系</a></li>
-				<li><a href="bulletin.html">平台公告</a></li>
-				<li><a href="hr.html">招贤纳士</a></li>
-				<li><a href="problem.html">常见问题</a></li>
-				<li><a href="guide.html">使用指南</a></li>
-				<li><a href="app.html">手机客户端</a></li>
+				<li><a href="/aboutus">关于我们</a></li>
+				<li><a href="#">联系我们</a></li>
+				<li><a href="/guide">新手向导</a></li>
+				<li><a href="/guarantee">保障体系</a></li>
+				<li><a href="#">平台公告</a></li>
+				<li><a href="#">招贤纳士</a></li>
+				<li><a href="/problem">常见问题</a></li>
+				<li><a href="/guide">使用指南</a></li>
+				<li><a href="#">手机客户端</a></li>
 			</ul>
 		</div>
 

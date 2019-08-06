@@ -143,11 +143,11 @@ color:#fff;
 		
 		<a href="#" th:href="@{/listyy(page=${page},biaotype=${biaotype},style=${style},timeLimit=${timeLimit})}" class="lf f-active"><span th:text="${page}">1</span> </a>
 		
-		<a href="#" class="lf" th:href="@{/listyy(page=${(page+1)},biaotype=${biaotype},style=${style},timeLimit=${timeLimit})}" th:if="${total/6>=(page + 1)}"><span th:text="${page + 1}">2</span> </a>
+		<a href="#" class="lf" th:href="@{/listyy(page=${(page+1)},biaotype=${biaotype},style=${style},timeLimit=${timeLimit})}" th:if="${zongpage>=(page + 1)}"><span th:text="${page + 1}">2</span> </a>
 		
-		<a href="#" style="float: left;"  th:href="@{/listyy(page=${total/6<(page + 1)?page:(page + 1)},biaotype=${biaotype},style=${style},timeLimit=${timeLimit})}" id="next">下一页</a>
+		<a href="#" style="float: left;"  th:href="@{/listyy(page=${zongpage<(page + 1)?page:(page + 1)},biaotype=${biaotype},style=${style},timeLimit=${timeLimit})}" id="next">下一页</a>
 		<input type="hidden" id="currentPage" th:value="${page}">
-		<input type="hidden" id="pageTotal" th:value="${total/6}">
+		<input type="hidden" id="pageTotal" th:value="${zongpage}">
 	</ol>
 </div>
 

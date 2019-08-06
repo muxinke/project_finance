@@ -12,11 +12,9 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://10.12.159.124:8080/eureka
+      defaultZone: http://39.107.15.222:8761/eureka
 server:
   port: 10002
-  servlet:
-    context-path: /contents
 spring:
   application:
     name: provider-server2
@@ -29,11 +27,10 @@ spring:
 security:
   oauth2:
     client:
-      client-id: dubitian
-      client-secret: dubitian
+      client-id: dubitianziyuan
+      client-secret: dubitianziyuan
       access-token-uri: http://10.12.159.124:8050/oauth/token
       user-authorization-uri: http://10.12.159.124:8050/oauth/authorize
-      pre-established-redirect-uri: http://www.youdao.com
     resource:
       token-info-uri: http://10.12.159.124:8050/oauth/check_token
  # redis:

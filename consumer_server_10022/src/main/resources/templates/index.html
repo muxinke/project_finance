@@ -135,34 +135,22 @@
 
 <base >
 <script type="text/javascript">
-    $(function() {
-        $(".navitem li").hover(function() {
-            $(this).find("ol").show().siblings().find("ol").hide("slow");
-        }, function() {
-            $(this).find("ol").slideUp("slow");
-        })
-        $(".code_text li").hover(function() {
-            var inde = $(this).index();
-            $(".code_img ul li").eq(inde).show().siblings().hide();
-        })
-        $.ajax({
-            type : "POST",
-            url : "newLogin/headerLogin.action",
-            dataType : "json",
-            success : function(data) {
-                if (data.status) {
-                    $('#register').before("<li><span class='nh'>您好，</span> </li>");
-                    $('#register a').text("" + data.message + "");
-                    $('#register a').attr("href", "userNew/index.go");
-                    $('#login').remove();
-                    $('#register').after("<li><a href='newLogin/logout.go' >退出</a></li>");
+    $.get("/user", function (data) {
+		/* $("#user").html(data.name);
+		 $(".unauthenticated").hide();
+		 $(".authenticated").show()
+		 */
 
-                    $("#bannerlogin").remove();
-                }
-
-            }
-        });
+        $('#register').before("<li><span class='nh'>您好，</span> </li>");
+        $('#register a').text("" + data.name + "");
+        $('#register a').attr("href", "userNew/index.go");
+        $('#login').remove();
+        $('#register').after("<li><a href='/tuichu' class=\"btn btn-primary\" >退出</a></li>");
+        $("#wealth").text('开启您的财富之旅');
+        $("#wealth").attr("href", "/reCash/toAdd.go");
+        $("#bannerlogin").remove();
     });
+
 </script>
 <div class=" big100">
 	<div class="top clearfix">
@@ -179,22 +167,22 @@
 				<li class="lilogin" id="login">
 					<!--跳转登陆界面
                         <a href="newLogin/loginPage.go">立即登录</a>-->
-					<a href="login.html">立即登录</a>
+					<a href="/login">立即登录</a>
 				</li>
 				<li class="liregister" id="register">
 					<!--注册界面
                         <a href="register/toRegister.go">快速注册</a>-->
-					<a href="zhuce.html">快速注册</a>
+					<a href="/zhuce">快速注册</a>
 				</li>
 
 				<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
-					<a href="guide.html">使用指南</a></li>
+					<a href="/guide">使用指南</a></li>
 
 				<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
-					<a href="problem.html">常见问题</a></li>
+					<a href="/problem">常见问题</a></li>
 
 				<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
-					<a style="color: #faa039" href="guarantee.html" >安全保障</a></li>
+					<a style="color: #faa039" href="/guarantee" >安全保障</a></li>
 			</ul>
 		</div>
 	</div>
@@ -210,7 +198,7 @@
 		</div>
 		<ul class="navitem">
 			<li  class="active" >
-				<a href="index.html">首页</a>
+				<a href="/index">首页</a>
 			</li>
 
 			<li >
@@ -227,7 +215,7 @@
 					</li>
 
 					<li>
-						<a href="xiangdao.html"
+						<a href="/xiangdao"
 						>投资向导
 						</a>
 					</li>
@@ -236,7 +224,7 @@
 			</li>
 
 			<li >
-				<a href="msgpilu.html"
+				<a href="/msgpilu"
 				>信息披露
 				</a>
 
@@ -246,7 +234,7 @@
 			</li>
 
 			<li >
-				<a href="dae.html"
+				<a href="/dae"
 				>我要借款
 					<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
 
@@ -255,41 +243,44 @@
 				<ol class="m-list">
 
 					<li>
-						<a href="xiaoe.html">小额借款</a>
+						<a href="/xiaoe">小额借款</a>
 					</li>
 
 					<li>
-						<a href="dae.html"> 大额借款</a>
+						<a href="/dae"> 大额借款</a>
+					</li>
+					<li>
+						<a href="/wenjuan">问卷</a>
 					</li>
 				</ol>
 			</li>
 
 			<li >
-				<a href="aboutus.html"> 关于我们</a>
+				<a href="/aboutus"> 关于我们</a>
 				<ol class="m-list">
 
 					<li>
-						<a href="aboutus.html"> 企业简介</a>
+						<a href="/aboutus"> 企业简介</a>
 					</li>
 
 					<li>
-						<a href="zizhi.html"> 公司资质</a>
+						<a href="#"> 公司资质</a>
 					</li>
 
 					<li>
-						<a href="hezuohb.html"> 合作伙伴</a>
+						<a href="#"> 合作伙伴</a>
 					</li>
 
 					<li>
-						<a href="contactus.html"> 联系我们</a>
+						<a href="#"> 联系我们</a>
 					</li>
 
 					<li>
-						<a href="bulletin.html"> 平台公告</a>
+						<a href="#"> 平台公告</a>
 					</li>
 
 					<li>
-						<a href="hr.html"> 招贤纳士</a>
+						<a href="#"> 招贤纳士</a>
 					</li>
 
 				</ol>
@@ -422,9 +413,9 @@
 			<h4>预期年化收益率高达</h4>
 			<h3>11.00%</h3>
 			<p>银行存管,提现实时到账</p>
-			<a id="wealth" href="register/toRegister.action" class="collar">领1000元现金红包</a>
+			<a id="wealth" href="#" class="collar">领1000元现金红包</a>
 			<p id="bannerlogin" class="latest_login">
-				已有账号,<a href="login.html">立即登录</a>
+				已有账号,<a href="#">立即登录</a>
 			</p>
 		</div>
 	</div>
@@ -443,7 +434,7 @@
 		<ul class="notice_yxd fl">
 
 			<li>
-				<a href="newCatalog/show.action?id=22&detailId=980">
+				<a href="#">
 					<div class="notice_yxd_left">
 						这里是查出的咨询
 					</div>
@@ -456,7 +447,7 @@
 
 		</ul>
 		<div class="more_yxd fr">
-			<a href="newCatalog/bulletin.action?id=22">更多>></a>
+			<a href="#">更多>></a>
 		</div>
 	</div>
 </div>
@@ -547,7 +538,7 @@
 						</div>
 						<div class="immediate_investment fr">
 
-							<a style="background-color: #707070; color: #ffffff;cursor: pointer;display: block;height: 45px;line-height: 45px;margin: 0 auto;text-align: center;width: 135px;" th:href="'/detail?pid='+${produit1.id}" th:text="${produit1.isCondition}">已还款</a>
+							<a style="background-color: #707070; color: #ffffff;cursor: pointer;display: block;height: 45px;line-height: 45px;margin: 0 auto;text-align: center;width: 135px;" th:href="'/home/detail?pid='+${produit1.id}" th:text="${produit1.isCondition}">已还款</a>
 
 						</div>
 					</div>
@@ -570,7 +561,7 @@
 						<dl>
 							<dt><img src="http://39.107.15.222:8081/src/theme/computer/img/money2.png"></dt>
 							<dd>投资新手项目</dd>
-							<dd class="raiders_register"><a href="zhuce.html">去注册</a></dd>
+							<dd class="raiders_register"><a href="#">去注册</a></dd>
 						</dl>
 					</div>
 				</div>
@@ -749,11 +740,11 @@
 		</li>
 		<li>
 			<p>注册用户数（人）</p>
-			<h3>5</h3>
+			<h3 th:text="${membercount}">5</h3>
 		</li>
 		<li>
 			<p>累计交易额（元）</p>
-			<h3>0.00</h3>
+			<h3 th:text="${moneys}">0.00</h3>
 		</li>
 		<li>
 			<p>累计为用户赚取收益（元）</p>
@@ -762,7 +753,7 @@
 	</ul>
 	<div class="lookMore">
 		<img src="http://39.107.15.222:8081/src/theme/computer/img/data.gif">
-		<a href="yyshuju.html">查看更多</a>
+		<a href="/yyshuju">查看更多</a>
 	</div>
 </div>
 <!--投资项目-->
@@ -893,7 +884,7 @@
 					<p>贷款金额(元)</p>
 				</div>
 				<div class="filled">
-					<a class="auu"th:href="'/detail?pid'+${produit8.id}" th:text="${produit8.isCondition}">已还款
+					<a class="auu"th:href="'/detail?pid='+${produit8.id}" th:text="${produit8.isCondition}">已还款
 					</a>
 				</div>
 			</li>
@@ -996,14 +987,14 @@
 	<div class="w1200">
 		<div class="bottom_1">
 			<ul>
-				<li><a href="aboutus.html">关于我们</a></li>
-				<li><a href="contcatus.html">联系我们</a></li>
-				<li><a href="guarantee.html">保障体系</a></li>
-				<li><a href="bulletin.html">平台公告</a></li>
-				<li><a href="hr.html">招贤纳士</a></li>
-				<li><a href="problem.html">常见问题</a></li>
-				<li><a href="guide.html">使用指南</a></li>
-				<li><a href="app.html">手机客户端</a></li>
+				<li><a href="/aboutus">关于我们</a></li>
+				<li><a href="#">联系我们</a></li>
+				<li><a href="#">保障体系</a></li>
+				<li><a href="#">平台公告</a></li>
+				<li><a href="#">招贤纳士</a></li>
+				<li><a href="/problem">常见问题</a></li>
+				<li><a href="/guide">使用指南</a></li>
+				<li><a href="#">手机客户端</a></li>
 			</ul>
 		</div>
 		<div class="bottom_middle clearfix">

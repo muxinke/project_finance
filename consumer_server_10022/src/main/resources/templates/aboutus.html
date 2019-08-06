@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+				<base >
+				<meta http-equiv="Cache-Control" content="no-transform" />
+				<meta http-equiv="Cache-Control" content="no-siteapp" />
+				<meta http-equiv="pragma" content="no-cache">
+				<meta http-equiv="cache-control" content="no-cache">
+				<meta http-equiv="expires" content="0">
+				<meta http-equiv="keywords" content="互联网金融、轻松贷">
+				<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+				<meta http-equiv="description" content="高效、精准、安全的P2P网络借贷平台">
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+				<link rel="shortcut icon" href="favicon.ico"></link>
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/login.css" />
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
+				<script  type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery-1.8.2.min.js"></script>
+				<link href="http://39.107.15.222:8081/src/theme/validationEngine/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine-zh_CN.js"></script>
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/validationEngine/js/jquery.validationEngine.js"></script>
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/js/jquery.form.js"></script>
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/common.js"></script>
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/main.css" />
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/layer/layer.js"></script>
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/jquery.circliful.js"></script>
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/scroll.js" ></script>
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/person_style.js" ></script>
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js" ></script>
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/personal.css" />
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/style.css" />
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/swiper-3.4.2.min.css" />
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/integralMall/css/mall.css" />
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/integralMall/js/swiper-3.4.2.min.js"></script>
+
+
+
+
+
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/style.css" />
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/about.css" />
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/video-js.css" />
+				<link rel="stylesheet" href="http://39.107.15.222:8081/src/theme/computer/css/iconfont.css" />
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/style.js"></script>
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/iconfont.js"></script>
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/video.min.js"></script>
+				<script type="text/javascript" src="http://39.107.15.222:8081/src/theme/computer/js/videojs-ie8.min.js"></script>
+				<title>关于我们</title>
+				</head>
+				<body>
+				<!--顶部 -->
+
+				<base >
+				<style type="text/css">
+					.aboutNav ul li {
+						float: left;
+						width: 16.66%;
+					}
+				</style>
+				<script type="text/javascript">
+                    $.get("/user", function (data) {
+						/* $("#user").html(data.name);
+						 $(".unauthenticated").hide();
+						 $(".authenticated").show()
+						 */
+
+                        $('#register').before("<li><span class='nh'>您好，</span> </li>");
+                        $('#register a').text("" + data.name + "");
+                        $('#register a').attr("href", "userNew/index.go");
+                        $('#login').remove();
+                        $('#register').after("<li><a href='/tuichu' class=\"btn btn-primary\" >退出</a></li>");
+                        $("#wealth").text('开启您的财富之旅');
+                        $("#wealth").attr("href", "/reCash/toAdd.go");
+                        $("#bannerlogin").remove();
+                    });
+				</script>
+				<div class=" big100">
+					<div class="top clearfix">
+						<div class="top_left fl">
+							<ul>
+								<li class="phone">
+									<img style="width:18px;height:18px;" src="http://39.107.15.222:8081/src/theme/biaoqian/dianhua.png"/>全国服务热线：400-8763-118
+								</li>
+
+							</ul>
+						</div>
+						<div class="top_right fr">
+							<ul>
+								<li class="lilogin" id="login">
+									<!--跳转登陆界面
+                                        <a href="newLogin/loginPage.go">立即登录</a>-->
+									<a href="/login">立即登录</a>
+								</li>
+								<li class="liregister" id="register">
+									<!--注册界面
+                                        <a href="register/toRegister.go">快速注册</a>-->
+									<a href="/zhuce">快速注册</a>
+								</li>
+
+								<li><!--使用指南界面<a href="navigation/guide.go">使用指南</a>-->
+									<a href="/guide">使用指南</a></li>
+
+								<li><!--常用问题界面<a href="navigation/problem.go">常见问题</a>-->
+									<a href="/problem">常见问题</a></li>
+
+								<li ><!--安全保证界面<a style="color: #faa039" href="newBorrow/guarantee.go" >安全保障</a>-->
+									<a style="color: #faa039" href="/guarantee" >安全保障</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="nav">
+					<div class="topNavItem  clearfix" >
+
+						<div class="logo">
+							<img src="http://39.107.15.222:8081/src/theme/computer/img/yxlogo.png">
+						</div>
+						<div class="adv">
+							<img src="http://39.107.15.222:8081/src/theme/computer/img/funds.gif">
+						</div>
+						<ul class="navitem">
+							<li>
+								<a href="/index">首页</a>
+							</li>
+
+							<li >
+								<a href="/list"
+								>我要投资
+								</a>
+
+								<ol class="m-list">
+
+									<li>
+										<a href="/list"
+										>投资列表
+										</a>
+									</li>
+
+									<li>
+										<a href="/xiangdao"
+										>投资向导
+										</a>
+									</li>
+
+								</ol>
+							</li>
+
+							<li >
+								<a href="/msgpilu"
+								>信息披露
+								</a>
+
+								<ol class="m-list">
+
+								</ol>
+							</li>
+
+							<li >
+								<a href="/dae"
+								>我要借款
+									<i style="position: absolute;left: 96px;top:18px;color: red;font-size: 14px;display: block;width:30px;height: 20px;z-index:100;background: url('http://39.107.15.222:8081/src/theme/computer/img/hot2.gif') no-repeat"></i>
+
+								</a>
+
+								<ol class="m-list">
+
+									<li>
+										<a href="/xiaoe">小额借款</a>
+									</li>
+
+									<li>
+										<a href="/dae"> 大额借款</a>
+									</li>
+								</ol>
+							</li>
+
+							<li class="active" >
+								<a href="/aboutus"> 关于我们</a>
+								<ol class="m-list">
+
+									<li>
+										<a href="/aboutus"> 企业简介</a>
+									</li>
+
+									<li>
+										<a href="#"> 公司资质</a>
+									</li>
+
+									<li>
+										<a href="#"> 合作伙伴</a>
+									</li>
+
+									<li>
+										<a href="#"> 联系我们</a>
+									</li>
+
+									<li>
+										<a href="#"> 平台公告</a>
+									</li>
+
+									<li>
+										<a href="#"> 招贤纳士</a>
+									</li>
+
+								</ol>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="w1200">
+					<!-- 二级菜单 -->
+
+					<base >
+					<div class="location">
+						<a href="#">首页</a>>
+						<a href="#" >关于我们</a>
+					</div>
+					<div class="aboutNav">
+						<ul>
+
+
+							<li  class="active"  >
+								<a href="/aboutus">关于我们</a>
+							</li>
+
+
+							<li  >
+								<a href="#">公司资质</a>
+							</li>
+
+
+							<li  >
+								<a href="#">合作伙伴</a>
+							</li>
+
+
+							<li  >
+								<a href="#" >联系我们</a>
+							</li>
+
+
+							<li  >
+								<a href="#">平台公告</a>
+							</li>
+
+
+							<li  >
+								<a href="#" >招贤纳士</a>
+							</li>
+
+
+
+
+						</ul>
+					</div>
+
+					<div class="company_profile">
+						<div class="video">
+							<video id="my-video" class="video-js" controls preload="auto" width="1080" height="600" data-setup="{}">
+								<source src="http://39.107.15.222:8081/src/uploads/video/shipin.mp4" type="video/mp4">
+								<p class="vjs-no-js">
+									To view this video please enable JavaScript, and consider upgrading to a web browser that
+									<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+								</p>
+							</video>
+						</div>
+						<div class="company_profile_content">
+							<p>
+								<br>陕西钱多多投资咨询有限公司成立于2013年，注册资本5000万元，公司第一大股东为陕西省电子集团公司（上市公司联创光电母公司），连续两届当选陕西省互联网金融协会副会长单位。公司始终秉承“一心一意，普惠金融”的宗旨，积极响应国家金融必须服务实体经济的号召，立足服务建工细分领域，精耕细作，做实做强，客户遍布陕西、湖南等省市区，逐步发展成为国内领先的专注建工领域的互联网金融公司。					</p>
+							<p>
+								<br>轻松贷（yxp2p.com）作为陕西钱多多投资咨询有限公司旗下的互联网金融平台，依靠一批专业知识扎实且实战经验丰富的核心团队，嫁接先进金融科技，为众多建工企业提供投标保证金等金融服务，为广大投资者搭建优质的理财服务平台。轻松贷在业务发展迅猛的同时，坚持合规化运营和完善风控体系建设，在国内率先上线陕西银行存管系统，接入法大大电子签章，顺利通过国家信息系统安全等级保护三级测评，陕西首个将履约保证保险引入P2P模式及全国首批与保险公司合作的网贷平台，将资产端产品安全级别提升至最高等级。天道酬勤，厚德载物。轻松贷始终将平台运营安全及投资者资金安全作为公司的立业之本，一心一意地为广大用户提供安全可靠、优质高效、信息透明的互联网金融信息服务平台。					</p>
+							<!-- <dl>
+                                <dt>使命:一心一意，普惠金融。</dt>
+                                <dd>为社会创造价值;</dd>
+                                <dd>为客户提供更好的服务;</dd>
+                                <dd>为股东创造更大的价值;</dd>
+                                <dd>为员工搭建广阔的发展平台。</dd>
+                            </dl> -->
+							<p>愿景:建设成为专业、安全、备受尊重的综合性互联网金融服务平台。</p>
+							<dl>
+								<dt>使命：一心一意  普惠金融</dt>
+								<dd>核心价值观：恪守诚信  谨慎务实  复盘提升  开拓创新</dd>
+								<!-- <dd>仰望星空：开拓创新 锐意进取 志存高远 创造辉煌</dd> -->
+							</dl>
+						</div>
+					</div>
+				</div>
+				<!-- 底部 -->
+
+				<base >
+				<div class="bottom">
+					<div class="w1200">
+						<div class="bottom_1">
+							<ul>
+								<li><a href="/aboutus">关于我们</a></li>
+								<li><a href="#">联系我们</a></li>
+								<li><a href="/guarantee">保障体系</a></li>
+								<li><a href="#">平台公告</a></li>
+								<li><a href="#">招贤纳士</a></li>
+								<li><a href="/problem">常见问题</a></li>
+								<li><a href="/guide">使用指南</a></li>
+								<li><a href="#">手机客户端</a></li>
+							</ul>
+						</div>
+						<div class="bottom_middle clearfix">
+							<div class="bottom_2">
+								<p>电话: 0791-83858285</p>
+								<p>邮箱: service@kkd2p.com</p>
+								<p>地址：西安市雁塔区南窑头中心89号楼503室</p>
+							</div>
+
+							<div class="bottom_4">
+
+								<h3>400-8763-118</h3>
+
+
+								<div class="serviceTime clearfix">
+									<p>服务时间：周一至周五9：00-21：00</p>
+									<p>
+										网贷有风险，出借需谨慎
+									</p>
+									<p>
+										陕西省互联网金融协会:400-9158-227
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="bottom_5 clearfix">
+							<ul>
+
+								<li><a target="_blank" href="http://www.anquan.org/authenticate/cert/?site=www.yxp2p.com&amp;at=business"><img src="http://39.107.15.222:8081/src/theme/computer/img/aq.jpg"></a></li>
+
+								<li>? 2013-2019轻松贷 All rights reserved| 钱多多投资咨询有限公司 |陕ICP备13008061-1 | <img src="http://39.107.15.222:8081/src/theme/computer/img/ga.png"></a>&nbsp陕公网安备 36010802000123号</li>
+
+							</ul>
+						</div>
+						<div class="bottom_6">
+							<ul>
+								<li>友情链接:</li>
+
+								<li><a href="http://www.mobiletrain.org/?pinzhuanbdtg=biaoti"  target="_blank">千锋教育</a></li>
+
+
+								<li><a href="http://www.xaut.edu.cn/" target="_blank">西安理工大学</a></li>
+
+
+								<li><a href="https://www.douyu.com/" target="_blank">一帆贷</a></li>
+
+
+
+
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+                    $(document).ready(function() {
+                        //头部固定
+                        var navOffset = $(".nav").offset().top;
+                        $(window).scroll(function() {
+                            var scrollPos = $(window).scrollTop();
+                            if (scrollPos >= navOffset) {
+                                $(".nav").addClass("navFixed");
+                            } else {
+                                $(".nav").removeClass("navFixed");
+                            }
+                        });
+                        //头部导航
+                        $(".navitem li").hover(function() {
+                            $(this).find("ol").show().siblings().find("ol").hide("slow");
+                        }, function() {
+                            $(this).find("ol").slideUp("slow");
+                        })
+                        //视频播放
+                        var myPlayer = videojs('my-video');
+                        videojs("my-video").ready(function() {
+                            var myPlayer = this;
+                            //				myPlayer.play();
+                        });
+                    })
+				</script>
+				</body>
+
+</html>
